@@ -15,6 +15,7 @@ public class MailSender {
 
     private static Logger logger = Logger.getLogger(MailSender.class);
 
+    /*test git commit*/
     private String username;
     private String password;
     private Properties props;
