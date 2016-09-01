@@ -26,5 +26,15 @@
     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 
+  <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
