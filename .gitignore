@@ -4,3 +4,8 @@
 
 # Maven build
 /target
+
+#eclipse
+/.settings
+*.classpath
+*.project
