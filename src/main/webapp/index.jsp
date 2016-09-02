@@ -26,9 +26,6 @@
 	rel='stylesheet' type='text/css'>
 
 <!-- Styles -->
-<link
-	href="static/css/bootstrap.min.css"
-	rel="stylesheet">
 <link href="static/css/style.css"
 	rel="stylesheet">
 	
@@ -124,27 +121,6 @@
 										style="font-family: 'Open Sans'; font-size: 2em; letter-spacing: 0px; color: #FF0000;">$1</span>
 									per bet
 								</h6>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<!--  Top Menu -->
-			<div class="container bs-main">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-lg-10 col-lg-offset-1">
-						<!-- Top Header and Navigation -->
-						<div class="top-header hidden-xs">
-							<div class="top-navigation">
-								<ul class="top-nav list-unstyled list-inline">
-									<li><a href="">Games</a></li>
-									<li><a href="">Top Users</a></li>
-									<li><a href=""><img
-											src="static/img/logo.png" alt="PayKick Logo" /></a></li>
-									<li><a href="">Contacts</a></li>
-									<li><a href="" class="red">Log In</a></li>
-								</ul>
 							</div>
 						</div>
 					</div>

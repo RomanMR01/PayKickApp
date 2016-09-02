@@ -9,7 +9,8 @@ html {
 body {
 	font-family: 'Raleway', 'sans-serif';
 /*     font-size:1.4em; */
-	font-weight: 400;
+	font-weight: 400;	
+	margin: 0;
 }
 
 html,
@@ -132,6 +133,10 @@ a:hover,a:active,a:focus,a:visited {
 
 .top-header .top-navigation .top-nav li a.blue, .navbar-default .navbar-nav>li>a.blue {
 	color: #FF0000 !important;
+}
+
+#layerslider {
+	font-size: 14px;
 }
 
 #layerslider h1,h2,h3,h4,h5,h6 {
