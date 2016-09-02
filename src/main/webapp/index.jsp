@@ -14,8 +14,7 @@
 <title>PayKick. One bet - one hit!</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon"
-	href="static/img/favicon.ico">
+<link rel="shortcut icon" href="static/img/favicon.ico">
 
 <!-- Fonts -->
 <link
@@ -24,21 +23,26 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'
 	rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 
 <!-- Styles -->
-<link href="static/css/style.css"
-	rel="stylesheet">
-	
+
+
+<link href="static/css/materialize.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+
+<link href="static/css/style.css" rel="stylesheet">
+
 <!-- LayerSlider stylesheet -->
-<link rel="stylesheet"
-	href="static/css/layerslider.css" type="text/css">
+<link rel="stylesheet" href="static/css/layerslider.css" type="text/css">
 </head>
 
 <body>
-	
+
 	<div class="main-wrapper">
 		<div id="home">
-		
+
 			<!-- SLider -->
 			<div id="bg-slider-home">
 				<div id="slider-wrapper">
@@ -126,23 +130,39 @@
 					</div>
 				</div>
 			</div>
-			
+
+			<!--  Top Menu -->	
+			 <div class="container bs-main">
+				<div class="row">
+					<div class="col s12 l10 offset-l1">
+                        <!-- Top Header and Navigation -->
+						<div class="top-header hide-on-med-and-down">
+							<div class="top-navigation">
+								<ul class="top-nav list-unstyled list-inline">
+									<li><a href="">Games</a></li>
+									<li><a href="">Top Users</a></li>
+									<li><a href=""><img src="static/img/logo.png"
+											alt="PayKick Logo" /></a></li>
+									<li><a href="">Contacts</a></li>
+									<li><a href="" class="my-red">Log In</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
 	<!-- Scripts -->
-	<script
-		src="static/js/jquery-1.9.1.min.js"></script>
-	<script
-		src="static/js/layerslider/greensock.js"
+	<script src="static/js/jquery-2.1.1.min.js"></script>
+	<script src="static/js/layerslider/greensock.js" type="text/javascript"></script>
+	<script src="static/js/layerslider/layerslider.transitions.js"
 		type="text/javascript"></script>
-	<script
-		src="static/js/layerslider/layerslider.transitions.js"
+	<script src="static/js/layerslider/layerslider.kreaturamedia.jquery.js"
 		type="text/javascript"></script>
-	<script
-		src="static/js/layerslider/layerslider.kreaturamedia.jquery.js"
-		type="text/javascript"></script>
-	
+
 	<script>
 		jQuery("#layerslider").layerSlider({
 			responsive : false,
