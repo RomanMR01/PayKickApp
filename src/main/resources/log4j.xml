@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration  debug="false">
+
+    <!--Аппендер для зберігання у файл -->
+    <appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+
+        <param name="Threshold" value="debug"/>
+        <param name="File" value="C:/PayKick/payKickLogs.log"/>
+
+        <!--<param name="File" value="${catalina.base}/logs/myLog.log" />-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <!--Шаблон для зберігання дати, типу помилки, класу,методу і рядку плмилки і повідомлення-->
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{2}:%M:%L - %m%n" />
+        </layout>
+    </appender>
+    <root>
+        <!-- Всі рівні від info і нище-->
+        <priority value ="info" />
+        <appender-ref ref="fileAppender" />
+    </root>
+
+</log4j:configuration>
