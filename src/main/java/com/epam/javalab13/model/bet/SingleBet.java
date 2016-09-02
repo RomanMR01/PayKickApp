@@ -16,7 +16,7 @@ public class SingleBet {
 	private BetTotalGoals betTotalGoals;
 	private BetPlayer betPlayer;
 
-	
+
 	// private Player player;
 	public SingleBet() {
 		super();
