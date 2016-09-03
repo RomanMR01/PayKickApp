@@ -168,7 +168,9 @@
         <div id="login-modal" class="modal">
             <div class="modal-content">
                 <div class="row">
-                    <form class="col s12">
+                    <form id="home-login-form" class="col s12">
+                       <h5 class="center-align">Log In</h5>
+                       <br>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="login" type="text">
@@ -179,11 +181,59 @@
                                 <label for="password">Password</label>
                             </div>
                         </div>
+                        <div id="home-submit" class="center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Log In</button>
+                            <p class="message center-align">Still Not Registered? <a href="#"><span class="orange-text">Create an account!</span></a></p>
+                        </div>
+                    </form>
+
+                    <form id="home-registration-form" class="col s12">
+                       <h5 class="center-align">Registration</h5>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="fname" type="text">
+                                <label for="fname">Name</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="surname" type="text">
+                                <label for="surname">Surname</label>
+                            </div>
+                            <div class="col s12">
+                                <p class="big">Sex:</p>
+                                <p>
+                                    <input name="sex" type="radio" id="male" />
+                                    <label for="male">Male</label>
+                                </p>
+                                <p>
+                                    <input name="sex" type="radio" id="female" />
+                                    <label for="female">Female</label>
+                                </p>
+                            </div>
+                            <div class="col s12">
+                                <p class="big">Age:</p>
+                                <p class="range-field">
+                                    <input type="range" id="age" min="0" max="100" />
+                                </p>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="login-reg" type="text">
+                                <label for="login-reg">Login</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="password-reg" type="password">
+                                <label for="password-reg">Password</label>
+                            </div>
+                        </div>
+                        <div id="home-submit" class="center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up</button>
+                            <p class="message center-align">Already Have An Account? <a href="#"><span class="orange-text">Log In!</span></a></p>
+                        </div>
                     </form>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
             </div>
         </div>
 
@@ -206,6 +256,14 @@
                     starting_top: '4%', // Starting top style attribute
                     ending_top: '10%', // Ending top style attribute
                 });
+            });
+        </script>
+        <script>
+            $('.message a').click(function () {
+                $('form').animate({
+                    height: "toggle",
+                    opacity: "toggle"
+                }, "slow");
             });
         </script>
         <script>

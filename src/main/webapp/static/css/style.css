@@ -51,7 +51,7 @@ a:hover {
 /* 3. Header */
 
 .top-header {
-    margin-top: 30px;
+    margin-top: 60px;
     position: relative;
     z-index: 999;
 }
@@ -71,6 +71,10 @@ a:hover {
     text-decoration: none;
 }
 
+.top-header .top-navigation .top-nav li:nth-child(3) a:hover {
+    border-bottom: none !important;
+}
+
 .top-header .top-navigation .top-nav li a {
     color: #fff;
     font-size: 12.6px;
@@ -82,7 +86,7 @@ a:hover {
 }
 
 .top-header .top-navigation .top-nav li a img {
-    margin-bottom: -5px;
+    margin-bottom: -31px;
 }
 
 .top-header .top-navigation .top-nav li.active a,
@@ -179,10 +183,34 @@ h6 {
     background-color: #FFAB2C !important;
 }
 
-#login-modal.modal {
-    width: 30%;
+@media only screen and (min-width: 601px) {
+    #login-modal.modal {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    #login-modal.modal {
+        width: 30%;
+    }
 }
 
 #home-mobile a {
     color: #fff;
+}
+
+#home-submit {
+    margin-top: 0;
+}
+
+#home-submit button {
+    padding: 0 14%;
+}
+
+#home-registration-form {
+    display: none;
+}
+
+#home-registration-form p.big {
+    font-size: 1.2rem;
 }
