@@ -3,6 +3,7 @@ package com.epam.javalab13.dao;
 import com.epam.javalab13.model.bet.SingleBet;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.transformer.SingleBetTransformer;
+import com.epam.javalab13.transformer.TotalBetTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -127,5 +128,47 @@ public class SingleBetDAO {
 
         return singleBets;
 
+    }
+
+    /**
+     * Getting SingleBet
+     * @param id the single bet id
+     * @return the SingleBet object
+     * @throws SQLException
+     */
+    public SingleBet getSingleBetById(int id) throws SQLException {
+        final String SQL = "SELECT * FROM single_bet sb WHERE sb.id=?";
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        SingleBet singleBet = null;
+
+
+
+        try {
+            st = conn.prepareStatement(SQL);
+            st.setInt(1,id);
+            rs = st.executeQuery();
+
+            SingleBetTransformer singleBetTransformer = new SingleBetTransformer();
+            singleBet = singleBetTransformer.getOne(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return singleBet;
     }
 }
