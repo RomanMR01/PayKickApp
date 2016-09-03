@@ -38,7 +38,6 @@ a:hover {
 }
 
 .bg-slider-home {
-	background: url('../img/slider/slide1.jpg') repeat fixed;
 	background-size: auto 150%;
 }
 
@@ -162,3 +161,10 @@ a:hover,a:active,a:focus,a:visited {
 	margin: 0px;
 }
 
+#home_bet {
+    padding: 3% 28%;
+}
+
+#home_bet:hover {
+    background-color: #FFAB2C !important;
+}
