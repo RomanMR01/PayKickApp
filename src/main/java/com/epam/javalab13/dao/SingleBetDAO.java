@@ -2,12 +2,14 @@ package com.epam.javalab13.dao;
 
 import com.epam.javalab13.model.bet.SingleBet;
 import com.epam.javalab13.model.bet.TotalBet;
+import com.epam.javalab13.transformer.SingleBetTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.util.List;
 
 /**
  CRUD operations for single_bet table
@@ -83,5 +85,47 @@ public class SingleBetDAO {
                 logger.warn("Exception while close connection:",e);
             }
         }
+    }
+
+    /**
+     * Getting all single bets by total bet
+     * @param totalBet the TotalBet object
+     * @return list of single bets
+     * @throws SQLException
+     */
+    public List<SingleBet> getSingleBetsByTotal(TotalBet totalBet) throws SQLException {
+        final String SQL = "SELECT * FROM single_bet sb WHERE sb.total_bet_id=?";
+
+        List<SingleBet> singleBets = null;
+        SingleBetTransformer transformer = new SingleBetTransformer();
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(SQL);
+            st.setInt(1,totalBet.getId());
+            rs = st.executeQuery();
+
+
+            singleBets = transformer.getAll(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:",e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:",e);
+            }
+
+        }
+
+        return singleBets;
+
     }
 }
