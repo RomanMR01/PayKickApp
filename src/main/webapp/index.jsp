@@ -42,7 +42,6 @@
 
 	<div class="main-wrapper">
 		<div id="home">
-
 			<!-- SLider -->
 			<div id="bg-slider-home">
 				<div id="slider-wrapper">
@@ -125,6 +124,16 @@
 										style="font-family: 'Open Sans'; font-size: 2em; letter-spacing: 0px; color: #FF0000;">$1</span>
 									per bet
 								</h6>
+								<div class="ls-l" style="top: 565.148px; left: 258.359px; font-size: 1.2em; font-weight: bold;" data-ls="
+							offsetxin:0;
+							durationin:2000;
+							delayin:3600;
+							rotateyin:90;
+							skewxin:60;
+							transformoriginin:25% 50% 0;
+							offsetxout:100;
+							durationout:750;
+							skewxout:60;"><a id="home_bet" class="waves-effect waves-light btn orange"><span class="grey-text text-darken-3">Make a Bet</span></a></div>
 							</div>
 						</div>
 					</div>
@@ -157,6 +166,7 @@
 
 	<!-- Scripts -->
 	<script src="static/js/jquery-2.1.1.min.js"></script>
+	<script src="static/js/materialize.min.js"></script>
 	<script src="static/js/layerslider/greensock.js" type="text/javascript"></script>
 	<script src="static/js/layerslider/layerslider.transitions.js"
 		type="text/javascript"></script>
