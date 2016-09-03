@@ -4,13 +4,9 @@ public class BetResult {
 	private SingleBet singleBet;
 	private Result result;
 
-	public BetResult() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public BetResult(){}
 
 	public BetResult(SingleBet singleBet, Result result) {
-		super();
 		this.singleBet = singleBet;
 		this.result = result;
 	}
@@ -32,30 +28,29 @@ public class BetResult {
 	}
 
 	@Override
-	public String toString() {
-		return "BetResult [result=" + result + "]";
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		BetResult betResult = (BetResult) o;
+
+		if (singleBet != null ? !singleBet.equals(betResult.singleBet) : betResult.singleBet != null) return false;
+		return result == betResult.result;
+
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((this.result == null) ? 0 : this.result.hashCode());
-		return result;
+		int result1 = singleBet != null ? singleBet.hashCode() : 0;
+		result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
+		return result1;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BetResult other = (BetResult) obj;
-		if (result != other.result)
-			return false;
-		return true;
+	public String toString() {
+		return "BetResult{" +
+				"singleBet=" + singleBet +
+				", result=" + result +
+				'}';
 	}
-
 }
