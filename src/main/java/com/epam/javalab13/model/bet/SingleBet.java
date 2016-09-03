@@ -11,6 +11,7 @@ public class SingleBet {
 	private Category category;
 	private double coefficient;
 	private Status status;
+
 	private BetResult betResult;
 	private BetScore betScore;
 	private BetTotalGoals betTotalGoals;
@@ -18,8 +19,6 @@ public class SingleBet {
 	
 	// private Player player;
 	public SingleBet() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -32,9 +31,9 @@ public class SingleBet {
 	 * @param status
 	 * @param betResult
 	 */
-	public SingleBet(TotalBet totalBet, Game game, Category category, double coefficient, Status status,
+	public SingleBet(int id,TotalBet totalBet, Game game, Category category, double coefficient, Status status,
 			BetResult betResult) {
-		super();
+		this.id = id;
 		this.totalBet = totalBet;
 		this.game = game;
 		this.category = category;
@@ -53,9 +52,9 @@ public class SingleBet {
 	 * @param status
 	 * @param betScore
 	 */
-	public SingleBet(TotalBet totalBet, Game game, Category category, double coefficient, Status status,
+	public SingleBet(int id, TotalBet totalBet, Game game, Category category, double coefficient, Status status,
 			BetScore betScore) {
-		super();
+		this.id = id;
 		this.totalBet = totalBet;
 		this.game = game;
 		this.category = category;
@@ -74,9 +73,9 @@ public class SingleBet {
 	 * @param status
 	 * @param betTotalGoals
 	 */
-	public SingleBet(TotalBet totalBet, Game game, Category category, double coefficient, Status status,
+	public SingleBet(int id,TotalBet totalBet, Game game, Category category, double coefficient, Status status,
 			BetTotalGoals betTotalGoals) {
-		super();
+		this.id = id;
 		this.totalBet = totalBet;
 		this.game = game;
 		this.category = category;
@@ -95,24 +94,15 @@ public class SingleBet {
 	 * @param status
 	 * @param player
 	 */
-	public SingleBet(TotalBet totalBet, Game game, Category category, double coefficient, Status status) {
-		super();
+	public SingleBet(int id, TotalBet totalBet, Game game, Category category, double coefficient, Status status,
+			BetPlayer player) {
+		this.id = id;
 		this.totalBet = totalBet;
 		this.game = game;
 		this.category = category;
 		this.coefficient = coefficient;
 		this.status = status;
-	}
-
-	public SingleBet(TotalBet totalBet, Game game, Category category, double coefficient, Status status,
-			BetPlayer betPlayer) {
-		super();
-		this.totalBet = totalBet;
-		this.game = game;
-		this.category = category;
-		this.coefficient = coefficient;
-		this.status = status;
-		this.betPlayer = betPlayer;
+		this.betPlayer = player;
 	}
 
 	public int getId() {
@@ -187,6 +177,14 @@ public class SingleBet {
 		this.betTotalGoals = betTotalGoals;
 	}
 
+	public BetPlayer getBetPlayer() {
+		return betPlayer;
+	}
+
+	public void setBetPlayer(BetPlayer betPlayer) {
+		this.betPlayer = betPlayer;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -255,14 +253,6 @@ public class SingleBet {
 		return "SingleBet [id=" + id + ", totalBet=" + totalBet + ", game=" + game + ", category=" + category
 				+ ", coefficient=" + coefficient + ", status=" + status + ", betResult=" + betResult + ", betScore="
 				+ betScore + ", betTotalGoals=" + betTotalGoals + "]";
-	}
-
-	public BetPlayer getBetPlayer() {
-		return betPlayer;
-	}
-
-	public void setBetPlayer(BetPlayer betPlayer) {
-		this.betPlayer = betPlayer;
 	}
 
 }
