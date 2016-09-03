@@ -134,7 +134,7 @@
                                             <a href=""><img src="static/img/logo.png" alt="PayKick Logo" /></a>
                                         </li>
                                         <li><a href="">Contacts</a></li>
-                                        <li><a href="" class="my-red">Log In</a></li>
+                                        <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                             <li><a href="info">TOP USERS</a></li>
                             <li><a href="client">CONTACTS</a></li>
                             <li><a href="client">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
-                            <li><a class="modal-trigger" href="#loginModal">LOGIN<i class="material-icons right red-text">input</i></a></li>
+                            <li><a class="modal-trigger" href="#login-modal">LOGIN<i class="material-icons right red-text">input</i></a></li>
                             <li><a href="logout">LOGOUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                             <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                         </ul>
