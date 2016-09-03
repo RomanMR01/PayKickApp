@@ -270,4 +270,44 @@ public class TotalBetDAO {
         return awards;
     }
 
+    /**
+     * Getting TotalBet
+     * @param id the total bet id
+     * @return the TotalBet object
+     * @throws SQLException
+     */
+    public TotalBet getTotalBetById(int id) throws SQLException {
+        final String SQL = "SELECT * FROM total_bet tb WHERE tb.id=?";
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        TotalBet totalBet = null;
+        TotalBetTransformer totalBetTransformer = new TotalBetTransformer();
+
+
+        try {
+            st = conn.prepareStatement(SQL);
+            st.setInt(1,id);
+            rs = st.executeQuery();
+
+            totalBet = totalBetTransformer.getOne(rs);
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return totalBet;
+    }
+
 }
