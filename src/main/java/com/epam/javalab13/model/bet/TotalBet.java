@@ -1,7 +1,6 @@
 package com.epam.javalab13.model.bet;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import com.epam.javalab13.model.User;
@@ -11,7 +10,7 @@ public class TotalBet {
 	private User user;
 	private Type type;
 	private int amount;
-	private Timestamp date;
+	private Date date;
 	private double award;
 	private Status status;
 	
@@ -21,7 +20,7 @@ public class TotalBet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TotalBet(Type type, int amount, Timestamp date, double award, Status status) {
+	public TotalBet(Type type, int amount, Date date, double award, Status status) {
 		super();
 		this.type = type;
 		this.amount = amount;
@@ -29,7 +28,7 @@ public class TotalBet {
 		this.award = award;
 		this.status = status;
 	}
-	public TotalBet(User user, Type type, int amount, Timestamp date, double award, Status status) {
+	public TotalBet(User user, Type type, int amount, Date date, double award, Status status) {
 		super();
 		this.user = user;
 		this.type = type;
@@ -38,7 +37,7 @@ public class TotalBet {
 		this.award = award;
 		this.status = status;
 	}
-	public TotalBet(int id, User user, Type type, int amount, Timestamp date, double award, Status status) {
+	public TotalBet(int id, User user, Type type, int amount, Date date, double award, Status status) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -72,10 +71,10 @@ public class TotalBet {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public Timestamp getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Timestamp date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public double getAward() {
