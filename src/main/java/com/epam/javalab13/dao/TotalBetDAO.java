@@ -8,6 +8,7 @@ import com.epam.javalab13.transformer.UserTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,11 @@ public class TotalBetDAO {
             st.setInt(1, totalBet.getUser().getId());
             st.setString(2, totalBet.getType().toString());
             st.setInt(3, totalBet.getAmount());
-            st.setTimestamp(4, totalBet.getDate());
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY/MM/dd HH:MM:ss");
+            String date = simpleDateFormat.format(totalBet.getDate());
+            st.setString(4, date);
+
             st.setDouble(5, totalBet.getAward());
 
             st.executeUpdate();
