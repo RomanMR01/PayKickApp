@@ -16,8 +16,6 @@ public class SingleBet {
 	private BetTotalGoals betTotalGoals;
 	private BetPlayer betPlayer;
 
-	// не може бути одна ставка на багатьох гравців
-	// private Player player;
 	public SingleBet() {
 		super();
 		// TODO Auto-generated constructor stub
