@@ -13,15 +13,10 @@ import java.sql.SQLException;
 public class ConnectionPool {
 
     private static Logger logger = Logger.getLogger(ConnectionPool.class);
-
-    private static ConnectionPool pool = null;
     private static DataSource dataSource;
 
-    /**
-     * Private constructor for Singleton
-     */
-    private ConnectionPool() {
-
+    //Init database properties
+    static {
         /*
         Database properties
          */
@@ -54,9 +49,6 @@ public class ConnectionPool {
      * @return Connection object
      */
     public static Connection getConnection() {
-        if (pool == null) {
-            pool = new ConnectionPool();
-        }
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {

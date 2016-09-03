@@ -52,7 +52,7 @@ a:hover {
 /* 3. Header */
 
 .top-header {
-	margin-top: 50px;
+	margin-top: 30px;
 	position: relative;
 	z-index: 9999;
 }
@@ -66,24 +66,24 @@ a:hover {
 	margin-left: 30px;
 }
 
-.top-header .top-navigation .top-nav li:nth-child(4) {
-	margin-left: 40px;
-	margin-right: 10px;
+.top-header .top-navigation .top-nav li:nth-child(3) {
+	margin-left: 30px;
+	padding: 0;
 	text-decoration: none;
-}
-
-.top-header .top-navigation .top-nav li:nth-child(4) a:hover {
-	border-bottom: none;
 }
 
 .top-header .top-navigation .top-nav li a {
 	color: #fff;
-	font-size: .9em;
+	font-size: 12.6px;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 1.5px;
 	padding-bottom: 3px;
 	border-bottom: 2px solid transparent;
+}
+
+.top-header .top-navigation .top-nav li a img{
+    margin-bottom: -5px;
 }
 
 .top-header .top-navigation .top-nav li.active a,
@@ -113,16 +113,16 @@ a:hover,a:active,a:focus,a:visited {
 	outline: 0;
 }
 
-.top-header .top-navigation .top-nav li a.red, .navbar-default .navbar-nav>li>a.red {
+.top-header .top-navigation .top-nav li a.my-red {
 	color: #FF0019 !important;
 }
 
-.top-header .top-navigation .top-nav li a.red:hover {
+.top-header .top-navigation .top-nav li a.my-red:hover {
 	color: #FF0019 !important;
 	border-bottom: 2px solid #FF0019 !important;
 }
 
-.top-header .top-navigation .top-nav li a.green, .navbar-default .navbar-nav>li>a.green {
+.top-header .top-navigation .top-nav li a.green {
 	color: #2ED01E !important;
 }
 
@@ -131,8 +131,25 @@ a:hover,a:active,a:focus,a:visited {
 	border-bottom: 2px solid #2ED01E !important;
 }
 
-.top-header .top-navigation .top-nav li a.blue, .navbar-default .navbar-nav>li>a.blue {
+.top-header .top-navigation .top-nav li a.blue {
 	color: #FF0000 !important;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none
+}
+
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+    margin-left: -5px
+}
+
+.list-inline>li {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px
 }
 
 #layerslider {
