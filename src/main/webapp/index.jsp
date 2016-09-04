@@ -266,7 +266,7 @@
                     <div id="contacts" class="container">
                         <div class="row">
                             <div class="col s10 offset-s1 m6">
-                                <h5 class="white-text">Our Contacts</h5>
+                                <h6 class="white-text">Our Contacts:</h6>
                                 <ul>
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href="mailto:paykick.team@gmail.com"><i class="material-icons orange-text valign" >email</i>&nbsp; paykick.team@gmail.com</a></li>
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i class="material-icons red-text valign" >phone</i>&nbsp;+38 (063) 583-80-88</a></li>
@@ -274,7 +274,7 @@
                                 </ul>
                             </div>
                             <div class="col s10 offset-s1 m4 offset-m1">
-                                <h5 class="white-text ">Our Rules</h5>
+                                <h6 class="white-text ">Our Rules:</h6>
                                 <ul>
                                     <li><a class="white-text valign-wrapper" href="" target="_blank"><i class="material-icons valign green-text" >assignment</i>&nbsp; Terms of Use</a></li>
                                     <li><a class="white-text valign-wrapper" href="" target="_blank"><i class="material-icons valign orange-text" >https</i>&nbsp; Privacy Policy</a></li>
