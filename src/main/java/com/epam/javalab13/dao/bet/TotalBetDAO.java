@@ -1,10 +1,11 @@
-package com.epam.javalab13.dao;
+package com.epam.javalab13.dao.bet;
 
+import com.epam.javalab13.dao.ConnectionPool;
+import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.statistics.Award;
 import com.epam.javalab13.transformer.TotalBetTransformer;
-import com.epam.javalab13.transformer.UserTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class TotalBetDAO {
 
-    private static Logger logger = Logger.getLogger(UserDAO.class);
+    private static Logger logger = Logger.getLogger(TotalBetDAO.class);
 
     public enum GetTotalBetsType {
         ALL,

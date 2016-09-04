@@ -1,9 +1,7 @@
 package com.epam.javalab13.dao.bet;
 
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.model.bet.BetScore;
-import com.epam.javalab13.model.bet.BetTotalGoals;
 import com.epam.javalab13.model.bet.SingleBet;
 import org.apache.log4j.Logger;
 
@@ -17,7 +15,7 @@ import java.sql.SQLException;
  */
 public class BetScoreDAO {
 
-    private static Logger logger = Logger.getLogger(UserDAO.class);
+    private static Logger logger = Logger.getLogger(BetScoreDAO.class);
 
     /**
      * Add new BetScore into database

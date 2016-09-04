@@ -1,5 +1,6 @@
-package com.epam.javalab13.dao;
+package com.epam.javalab13.dao.bet;
 
+import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.model.bet.BetResult;
 import com.epam.javalab13.model.bet.Result;
 import com.epam.javalab13.model.bet.SingleBet;
@@ -11,10 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- CRUD operations for single_bet table
+ CRUD operations for bet_result table
  */
 public class BetResultDAO {
-    private static Logger logger = Logger.getLogger(UserDAO.class);
+    private static Logger logger = Logger.getLogger(BetResultDAO.class);
 
     /**
      * Add new BetResult into database
@@ -50,7 +51,7 @@ public class BetResultDAO {
 
     /**
      * Getting BetResult by SingleBet
-     * @param singleBet the betResult object
+     * @param singleBet the SingleBet object
      * @throws SQLException
      */
     public BetResult getBetResult(SingleBet singleBet) throws SQLException {

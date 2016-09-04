@@ -1,9 +1,9 @@
-package com.epam.javalab13.dao;
+package com.epam.javalab13.dao.bet;
 
+import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.model.bet.SingleBet;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.transformer.SingleBetTransformer;
-import com.epam.javalab13.transformer.TotalBetTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class SingleBetDAO {
 
-    private static Logger logger = Logger.getLogger(UserDAO.class);
+    private static Logger logger = Logger.getLogger(SingleBetDAO.class);
 
     /**
      * Add new SingleBet into database

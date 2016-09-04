@@ -1,7 +1,6 @@
 package com.epam.javalab13.dao.bet;
 
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.model.bet.BetTotalGoals;
 import com.epam.javalab13.model.bet.SingleBet;
 import org.apache.log4j.Logger;
@@ -16,7 +15,7 @@ import java.sql.SQLException;
  */
 public class BetTotalGoalsDAO {
 
-    private static Logger logger = Logger.getLogger(UserDAO.class);
+    private static Logger logger = Logger.getLogger(BetTotalGoalsDAO.class);
 
     /**
      * Add new BetTotalGoals into database
@@ -52,7 +51,7 @@ public class BetTotalGoalsDAO {
 
     /**
      * Getting BetTotalGoals by SingleBet
-     * @param singleBet the betResult object
+     * @param singleBet the SingleBet object
      * @throws SQLException
      */
     public BetTotalGoals getBetTotalGoals(SingleBet singleBet) throws SQLException {
