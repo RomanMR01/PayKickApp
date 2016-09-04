@@ -3,7 +3,7 @@ package com.epam.javalab13.dao.game;
 import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
-import com.epam.javalab13.transformer.PlayerTransformer;
+import com.epam.javalab13.transformer.game.PlayerTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

@@ -5,7 +5,7 @@ import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.statistics.Award;
-import com.epam.javalab13.transformer.TotalBetTransformer;
+import com.epam.javalab13.transformer.bet.TotalBetTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

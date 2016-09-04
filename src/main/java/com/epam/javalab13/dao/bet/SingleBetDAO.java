@@ -3,7 +3,7 @@ package com.epam.javalab13.dao.bet;
 import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.model.bet.SingleBet;
 import com.epam.javalab13.model.bet.TotalBet;
-import com.epam.javalab13.transformer.SingleBetTransformer;
+import com.epam.javalab13.transformer.bet.SingleBetTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
