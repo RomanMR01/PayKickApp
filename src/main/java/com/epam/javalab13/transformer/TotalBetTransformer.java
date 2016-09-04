@@ -1,9 +1,6 @@
 package com.epam.javalab13.transformer;
 
 import com.epam.javalab13.dao.UserDAO;
-import com.epam.javalab13.model.Gender;
-import com.epam.javalab13.model.Language;
-import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.Status;
 import com.epam.javalab13.model.bet.TotalBet;
@@ -14,9 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Vikno on 9/3/2016.
- */
 public class TotalBetTransformer implements Transformer<TotalBet> {
     @Override
     public TotalBet getOne(ResultSet rs) throws SQLException {
