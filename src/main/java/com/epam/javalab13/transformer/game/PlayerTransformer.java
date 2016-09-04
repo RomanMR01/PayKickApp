@@ -1,7 +1,8 @@
-package com.epam.javalab13.transformer;
+package com.epam.javalab13.transformer.game;
 
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
+import com.epam.javalab13.transformer.Transformer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

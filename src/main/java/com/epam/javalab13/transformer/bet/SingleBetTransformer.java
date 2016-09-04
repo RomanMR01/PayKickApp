@@ -1,8 +1,9 @@
-package com.epam.javalab13.transformer;
+package com.epam.javalab13.transformer.bet;
 
 import com.epam.javalab13.dao.bet.TotalBetDAO;
 import com.epam.javalab13.model.bet.*;
 import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.transformer.Transformer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
