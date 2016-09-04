@@ -350,6 +350,12 @@
                                 <input id="password" type="password" required>
                                 <label for="password">Password</label>
                             </div>
+                            <div class="col s12">
+                                <p>
+                                    <input type="checkbox" id="remember-me" />
+                                    <label for="remember-me">Remember Me</label>
+                                </p>
+                            </div>
                         </div>
                         <div id="home-submit" class="center-align">
                             <button class="btn waves-effect waves-light" type="submit">Log In</button>
@@ -371,7 +377,7 @@
                             <div class="col s12">
                                 <p class="big">Sex:</p>
                                 <p>
-                                    <input name="sex" type="radio" id="male" value="male" required />
+                                    <input name="sex" type="radio" id="male" value="male" required checked />
                                     <label for="male">Male</label>
                                 </p>
                                 <p>
@@ -382,7 +388,7 @@
                             <div class="col s12">
                                 <p class="big">Age:</p>
                                 <p class="range-field">
-                                    <input type="range" id="age" min="0" max="100" />
+                                    <input type="range" id="age" min="0" max="100" value="0" />
                                 </p>
                             </div>
                             <div class="input-field col s12">
