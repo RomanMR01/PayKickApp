@@ -120,12 +120,153 @@
                     </div>
                 </div>
 
-                <!-- Footer -->
-                <footer class="page-footer grey darken-3">
+                <!-- Upcoming Matches -->
+                <div id="home-matches" class="grey lighten-3">
+                    <br>
+                    <br>
                     <div class="container">
+                        <h4 class="center-align" style="margin-bottom: 10px;">Upcoming Matches</h4>
+                        <div class="row">
+                            <div class="col s12 m10 offset-m1 l8 offset-l2">
+                                <ul class="collapsible popout" data-collapsible="expandable">
+                                    <li>
+                                        <div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>1/8 of World Cup:</strong></span> Brazil - Belgium</div>
+                                        <div class="collapsible-body">
+                                            <table class="centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <th>X</th>
+                                                        <th>2</th>
+                                                        <th>1X</th>
+                                                        <th>X2</th>
+                                                        <th>12</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>3.51</td>
+                                                        <td>1.32</td>
+                                                        <td>1.67</td>
+                                                        <td>1.15</td>
+                                                        <td>1.17</td>
+                                                        <td>1.27</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>English Premiere League:</strong></span> Manchester UTD - Arsenal</div>
+                                        <div class="collapsible-body">
+                                            <table class="centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <th>X</th>
+                                                        <th>2</th>
+                                                        <th>1X</th>
+                                                        <th>X2</th>
+                                                        <th>12</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>3.51</td>
+                                                        <td>1.32</td>
+                                                        <td>1.67</td>
+                                                        <td>1.15</td>
+                                                        <td>1.17</td>
+                                                        <td>1.27</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>1/8 of Euro:</strong></span> France - Spain</div>
+                                        <div class="collapsible-body">
+                                            <table class="centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>1</th>
+                                                        <th>X</th>
+                                                        <th>2</th>
+                                                        <th>1X</th>
+                                                        <th>X2</th>
+                                                        <th>12</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>3.51</td>
+                                                        <td>1.32</td>
+                                                        <td>1.67</td>
+                                                        <td>1.15</td>
+                                                        <td>1.17</td>
+                                                        <td>1.27</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <!-- Top Users -->
+                <div id="home-top-users" class="grey lighten-2">
+                    <br>
+                    <br>
+                    <div class="container">
+                        <h4 class="center-align" style="margin-bottom: 10px;">Top Users</h4>
+                        <div class="row">
+                            <div class="col s12 m10 offset-m1 l8 offset-l2">
+                                <table class="striped centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nickname</th>
+                                            <th>Total Win</th>
+                                            <th>Last Bet</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>bashmak125</td>
+                                            <td>$485.45</td>
+                                            <td class="green-text">+ $49.87</td>
+                                        </tr>
+                                        <tr>
+                                            <td>baton17</td>
+                                            <td>$395.15</td>
+                                            <td class="red-text">- $15.13</td>
+                                        </tr>
+                                        <tr>
+                                            <td>gosha</td>
+                                            <td>$315.42</td>
+                                            <td class="green-text">+ $19.12</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer grey darken-1">
+                    <div id="contacts" class="container">
                         <div class="row">
                             <div class="col s10 offset-s1 m6">
-                                <h5 class="white-text">Our Contacts</h5>
+                                <h6 class="white-text">Our Contacts:</h6>
                                 <ul>
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href="mailto:paykick.team@gmail.com"><i class="material-icons orange-text valign" >email</i>&nbsp; paykick.team@gmail.com</a></li>
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i class="material-icons red-text valign" >phone</i>&nbsp;+38 (063) 583-80-88</a></li>
@@ -133,17 +274,13 @@
                                 </ul>
                             </div>
                             <div class="col s10 offset-s1 m4 offset-m1">
-                                <h5 class="white-text ">Our Team</h5>
+                                <h6 class="white-text ">Our Rules:</h6>
                                 <ul>
-                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/olko.skull" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Olya S.</a></li>
-                                    <li><a class="grey-text text-lighten-1 valign-wrapper" href="https://vk.com/mal_roman" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Roma M.</a></li>
-                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/id18674412" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Taras M.</a></li>
-                                    <li><a class="grey-text text-lighten-1 valign-wrapper" href="https://vk.com/id16810841" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Peter K.</a></li>
-                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/relaxable" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Arsen N.</a></li>
+                                    <li><a class="white-text valign-wrapper" href="" target="_blank"><i class="material-icons valign green-text" >assignment</i>&nbsp; Terms of Use</a></li>
+                                    <li><a class="white-text valign-wrapper" href="" target="_blank"><i class="material-icons valign orange-text" >https</i>&nbsp; Privacy Policy</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <hr>
                     </div>
 
                     <div class="footer-copyright grey darken-3">
@@ -161,12 +298,12 @@
                             <div class="top-header hide-on-med-and-down">
                                 <div class="top-navigation">
                                     <ul class="top-nav list-unstyled list-inline">
-                                        <li><a href="">Games</a></li>
-                                        <li><a href="">Top Users</a></li>
+                                        <li><a href="#home-matches">Matches</a></li>
+                                        <li><a href="#home-top-users">Top Users</a></li>
                                         <li>
                                             <a href=""><img src="static/img/logo.png" alt="PayKick Logo" /></a>
                                         </li>
-                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="#contacts">Contacts</a></li>
                                         <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
                                     </ul>
                                 </div>
@@ -179,10 +316,10 @@
                 <nav class="transparent" style="height: 0;">
                     <div class="">
                         <ul id="home-mobile" class="side-nav grey darken-4">
-                            <li><a href="home">GAMES</a></li>
-                            <li><a href="info">TOP USERS</a></li>
-                            <li><a href="client">CONTACTS</a></li>
-                            <li><a href="client">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
+                            <li><a href="#home-matches">MATCHES</a></li>
+                            <li><a href="#home-top-users">TOP USERS</a></li>
+                            <li><a href="#contacts">CONTACTS</a></li>
+                            <li><a href="">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
                             <li><a class="modal-trigger" href="#login-modal">LOGIN<i class="material-icons right red-text">input</i></a></li>
                             <li><a href="logout">LOGOUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                             <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
@@ -273,40 +410,11 @@
         <!-- Scripts -->
         <script src="static/js/jquery-2.1.1.min.js"></script>
         <script src="static/js/materialize.min.js"></script>
+        <script src="static/js/init.js"></script>
+
         <script src="static/js/layerslider/greensock.js" type="text/javascript"></script>
         <script src="static/js/layerslider/layerslider.transitions.js" type="text/javascript"></script>
         <script src="static/js/layerslider/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
-        <script>
-            $(".button-collapse").sideNav();
-            $(".dropdown-button").dropdown();
-            $(document).ready(function () {
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal({
-                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                    opacity: .5, // Opacity of modal background
-                    in_duration: 500, // Transition in duration
-                    out_duration: 200, // Transition out duration
-                    starting_top: '4%', // Starting top style attribute
-                    ending_top: '10%', // Ending top style attribute
-                });
-            });
-        </script>
-        <script>
-            'use strict';
-            $('.message a').click(function () {
-                $('form').animate({
-                    height: "toggle",
-                    opacity: "toggle"
-                }, "slow");
-            });
-        </script>
-        <script>
-            jQuery("#layerslider").layerSlider({
-                responsive: false,
-                responsiveUnder: 1280,
-                layersContainer: 1280,
-            });
-        </script>
 
     </body>
 
