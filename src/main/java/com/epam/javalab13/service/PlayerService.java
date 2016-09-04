@@ -1,6 +1,6 @@
 package com.epam.javalab13.service;
 
-import com.epam.javalab13.dao.PlayerDAO;
+import com.epam.javalab13.dao.game.PlayerDAO;
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 

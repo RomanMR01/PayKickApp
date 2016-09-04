@@ -1,6 +1,6 @@
 package com.epam.javalab13.service;
 
-import com.epam.javalab13.dao.LeagueDAO;
+import com.epam.javalab13.dao.game.LeagueDAO;
 import com.epam.javalab13.model.game.League;
 
 import java.sql.SQLException;
