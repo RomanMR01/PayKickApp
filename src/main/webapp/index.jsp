@@ -120,7 +120,40 @@
                     </div>
                 </div>
 
-                <!--  Top Menu -->
+                <!-- Footer -->
+                <footer class="page-footer grey darken-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s10 offset-s1 m6">
+                                <h5 class="white-text">Our Contacts</h5>
+                                <ul>
+                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="mailto:paykick.team@gmail.com"><i class="material-icons orange-text valign" >email</i>&nbsp; paykick.team@gmail.com</a></li>
+                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i class="material-icons red-text valign" >phone</i>&nbsp;+38 (063) 583-80-88</a></li>
+                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i class="material-icons green-text valign" >location_on</i>&nbsp; Ukraine, Lviv. Kozlaniuka str. 7/5</a></li>
+                                </ul>
+                            </div>
+                            <div class="col s10 offset-s1 m4 offset-m1">
+                                <h5 class="white-text ">Our Team</h5>
+                                <ul>
+                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/olko.skull" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Olya S.</a></li>
+                                    <li><a class="grey-text text-lighten-1 valign-wrapper" href="https://vk.com/mal_roman" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Roma M.</a></li>
+                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/id18674412" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Taras M.</a></li>
+                                    <li><a class="grey-text text-lighten-1 valign-wrapper" href="https://vk.com/id16810841" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Peter K.</a></li>
+                                    <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/relaxable" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Arsen N.</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="footer-copyright grey darken-3">
+                        <div class="container center-align">
+                            <a href=""><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 All rights Reserved
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- Top Menu -->
                 <div class="container bs-main">
                     <div class="row">
                         <div class="col s12 l10 offset-l1">
@@ -169,43 +202,43 @@
             <div class="modal-content">
                 <div class="row">
                     <form id="home-login-form" class="col s12">
-                       <h5 class="center-align">Log In</h5>
-                       <br>
+                        <h5 class="center-align">Log In</h5>
+                        <br>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="login" type="text">
+                                <input id="login" type="text" required>
                                 <label for="login">Login</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="password" type="password">
+                                <input id="password" type="password" required>
                                 <label for="password">Password</label>
                             </div>
                         </div>
                         <div id="home-submit" class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Log In</button>
-                            <p class="message center-align">Still Not Registered? <a href="#"><span class="orange-text">Create an account!</span></a></p>
+                            <button class="btn waves-effect waves-light" type="submit">Log In</button>
+                            <p class="message center-align">Still Not Registered? <a><span class="orange-text">Create an account!</span></a></p>
                         </div>
                     </form>
 
                     <form id="home-registration-form" class="col s12">
-                       <h5 class="center-align">Registration</h5>
+                        <h5 class="center-align">Registration</h5>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="fname" type="text">
+                                <input id="fname" type="text" required>
                                 <label for="fname">Name</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="surname" type="text">
+                                <input id="surname" type="text" required>
                                 <label for="surname">Surname</label>
                             </div>
                             <div class="col s12">
                                 <p class="big">Sex:</p>
                                 <p>
-                                    <input name="sex" type="radio" id="male" />
+                                    <input name="sex" type="radio" id="male" value="male" required />
                                     <label for="male">Male</label>
                                 </p>
                                 <p>
-                                    <input name="sex" type="radio" id="female" />
+                                    <input name="sex" type="radio" id="female" value="female" />
                                     <label for="female">Female</label>
                                 </p>
                             </div>
@@ -216,21 +249,21 @@
                                 </p>
                             </div>
                             <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
+                                <input id="email" type="email" class="validate" required>
                                 <label for="email">Email</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="login-reg" type="text">
+                                <input id="login-reg" type="text" required>
                                 <label for="login-reg">Login</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="password-reg" type="password">
+                                <input id="password-reg" type="password" required>
                                 <label for="password-reg">Password</label>
                             </div>
                         </div>
                         <div id="home-submit" class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up</button>
-                            <p class="message center-align">Already Have An Account? <a href="#"><span class="orange-text">Log In!</span></a></p>
+                            <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
+                            <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a></p>
                         </div>
                     </form>
                 </div>
@@ -259,6 +292,7 @@
             });
         </script>
         <script>
+            'use strict';
             $('.message a').click(function () {
                 $('form').animate({
                     height: "toggle",
