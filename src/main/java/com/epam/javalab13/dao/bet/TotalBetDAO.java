@@ -4,7 +4,7 @@ import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
-import com.epam.javalab13.model.statistics.Award;
+import com.epam.javalab13.model.statistics.TopUser;
 import com.epam.javalab13.transformer.bet.TotalBetTransformer;
 import org.apache.log4j.Logger;
 
@@ -233,45 +233,46 @@ public class TotalBetDAO {
      * @return list of top users total bets
      * @throws SQLException
      */
-    public List<Award> getTopUsersBets() throws SQLException {
+    //TODO Modify
+    public List<TopUser> getTopUsersBets() throws SQLException {
         final String SQL = "SELECT tb.user_id,SUM(tb.award),COUNT(tb.user_id)" +
                            "FROM totalizator.total_bet tb WHERE tb.status LIKE" +
                            " 'WON' GROUP BY tb.user_id ORDER BY SUM(tb.award) DESC";
 
-        List<Award> awards = new ArrayList<>();
+        List<TopUser> awards = new ArrayList<>();
 
-        Connection conn = ConnectionPool.getConnection();
-        Statement st = null;
-        ResultSet rs = null;
-        Award award = null;
-
-        try {
-            st = conn.createStatement();
-            rs = st.executeQuery(SQL);
-
-            while (rs.next()){
-                int userId = rs.getInt("user_id");
-                User u = new User();
-                u.setId(userId);
-                User user = new UserDAO().getUser(u, UserDAO.GetOneUserType.ID);
-
-                award = new Award(user,rs.getDouble(2),rs.getInt(3));
-                awards.add(award);
-            }
-
-        } finally {
-            if (st != null) try {
-                st.close();
-            } catch (Exception e) {
-                logger.warn("Exception while close statement:", e);
-            }
-            if (conn != null) try {
-                conn.close();
-            } catch (Exception e) {
-                logger.warn("Exception while close connection:", e);
-            }
-
-        }
+//        Connection conn = ConnectionPool.getConnection();
+//        Statement st = null;
+//        ResultSet rs = null;
+//        Award award = null;
+//
+//        try {
+//            st = conn.createStatement();
+//            rs = st.executeQuery(SQL);
+//
+//            while (rs.next()){
+//                int userId = rs.getInt("user_id");
+//                User u = new User();
+//                u.setId(userId);
+//                User user = new UserDAO().getUser(u, UserDAO.GetOneUserType.ID);
+//
+//                award = new Award(user,rs.getDouble(2),rs.getInt(3));
+//                awards.add(award);
+//            }
+//
+//        } finally {
+//            if (st != null) try {
+//                st.close();
+//            } catch (Exception e) {
+//                logger.warn("Exception while close statement:", e);
+//            }
+//            if (conn != null) try {
+//                conn.close();
+//            } catch (Exception e) {
+//                logger.warn("Exception while close connection:", e);
+//            }
+//
+//        }
 
         return awards;
     }
