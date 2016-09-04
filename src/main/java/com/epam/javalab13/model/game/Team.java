@@ -34,8 +34,19 @@ public class Team {
 		this.emblemUrl = emblemUrl;
 		this.leagues = leagues;
 	}
+
+	public Team(int id, String name, String location, String emblemUrl, int totalWins, int totalLoses, int totalDraws) {
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.emblemUrl = emblemUrl;
+		this.totalWins = totalWins;
+		this.totalLoses = totalLoses;
+		this.totalDraws = totalDraws;
+	}
+
 	public Team(int id, String name, String location, String emblemUrl, int totalWins, int totalLoses, int totalDraws,
-			List<League> leagues) {
+				List<League> leagues) {
 		super();
 		this.id = id;
 		this.name = name;
