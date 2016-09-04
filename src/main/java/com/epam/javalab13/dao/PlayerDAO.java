@@ -47,9 +47,9 @@ public class PlayerDAO {
 
     public void updatePlayer(Player player, String type) throws SQLException {
         logger.info("DAO updatePlayer entry");
-        final String SQL_NAME = "UPDATE user u SET u.full_name = ? WHERE u.id=?";
-        final String SQL_TOTAL_GAMES = "UPDATE user u SET u.total_games = ? WHERE u.id=?";
-        final String SQL_TEAM = "UPDATE user u SET u.team_id = ? WHERE u.id=?";
+        final String SQL_NAME = "UPDATE player u SET u.full_name = ? WHERE u.id=?";
+        final String SQL_TOTAL_GAMES = "UPDATE player u SET u.total_games = ? WHERE u.id=?";
+        final String SQL_TEAM = "UPDATE player u SET u.team_id = ? WHERE u.id=?";
 
         Connection conn = null;
         PreparedStatement st = null;

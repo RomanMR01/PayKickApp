@@ -1,14 +1,9 @@
 package com.epam.javalab13.dao;
 
-import com.epam.javalab13.model.Gender;
-import com.epam.javalab13.model.Language;
-import com.epam.javalab13.model.Role;
-import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Goal;
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
-import com.epam.javalab13.transformer.UserTransformer;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
