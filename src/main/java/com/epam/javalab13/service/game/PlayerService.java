@@ -1,4 +1,4 @@
-package com.epam.javalab13.service;
+package com.epam.javalab13.service.game;
 
 import com.epam.javalab13.dao.game.PlayerDAO;
 import com.epam.javalab13.model.game.Player;
