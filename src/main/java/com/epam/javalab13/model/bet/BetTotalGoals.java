@@ -4,13 +4,9 @@ public class BetTotalGoals {
 	private SingleBet singleBet;
 	private int totalGoal;
 
-	public BetTotalGoals() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public BetTotalGoals(){}
 
 	public BetTotalGoals(SingleBet singleBet, int totalGoal) {
-		super();
 		this.singleBet = singleBet;
 		this.totalGoal = totalGoal;
 	}
@@ -30,34 +26,31 @@ public class BetTotalGoals {
 	public void setTotalGoal(int totalGoal) {
 		this.totalGoal = totalGoal;
 	}
-	
-	
-	
+
 	@Override
-	public String toString() {
-		return "BetTotalGoals [totalGoal=" + totalGoal + "]";
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		BetTotalGoals that = (BetTotalGoals) o;
+
+		if (totalGoal != that.totalGoal) return false;
+		return singleBet != null ? singleBet.equals(that.singleBet) : that.singleBet == null;
+
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + totalGoal;
+		int result = singleBet != null ? singleBet.hashCode() : 0;
+		result = 31 * result + totalGoal;
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BetTotalGoals other = (BetTotalGoals) obj;
-		if (totalGoal != other.totalGoal)
-			return false;
-		return true;
+	public String toString() {
+		return "BetTotalGoals{" +
+				"singleBet=" + singleBet +
+				", totalGoal=" + totalGoal +
+				'}';
 	}
-
 }
