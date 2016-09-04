@@ -298,12 +298,12 @@
                             <div class="top-header hide-on-med-and-down">
                                 <div class="top-navigation">
                                     <ul class="top-nav list-unstyled list-inline">
-                                        <li><a href="">Matches</a></li>
-                                        <li><a href="">Top Users</a></li>
+                                        <li><a href="#home-matches">Matches</a></li>
+                                        <li><a href="#home-top-users">Top Users</a></li>
                                         <li>
                                             <a href=""><img src="static/img/logo.png" alt="PayKick Logo" /></a>
                                         </li>
-                                        <li><a href="">Contacts</a></li>
+                                        <li><a href="#contacts">Contacts</a></li>
                                         <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
                                     </ul>
                                 </div>
@@ -316,10 +316,10 @@
                 <nav class="transparent" style="height: 0;">
                     <div class="">
                         <ul id="home-mobile" class="side-nav grey darken-4">
-                            <li><a href="home">MATCHES</a></li>
-                            <li><a href="info">TOP USERS</a></li>
-                            <li><a href="client">CONTACTS</a></li>
-                            <li><a href="client">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
+                            <li><a href="#home-matches">MATCHES</a></li>
+                            <li><a href="#home-top-users">TOP USERS</a></li>
+                            <li><a href="#contacts">CONTACTS</a></li>
+                            <li><a href="">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
                             <li><a class="modal-trigger" href="#login-modal">LOGIN<i class="material-icons right red-text">input</i></a></li>
                             <li><a href="logout">LOGOUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                             <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
@@ -410,40 +410,11 @@
         <!-- Scripts -->
         <script src="static/js/jquery-2.1.1.min.js"></script>
         <script src="static/js/materialize.min.js"></script>
+        <script src="static/js/init.js"></script>
+
         <script src="static/js/layerslider/greensock.js" type="text/javascript"></script>
         <script src="static/js/layerslider/layerslider.transitions.js" type="text/javascript"></script>
         <script src="static/js/layerslider/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
-        <script>
-            $(".button-collapse").sideNav();
-            $(".dropdown-button").dropdown();
-            $(document).ready(function () {
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal({
-                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                    opacity: .5, // Opacity of modal background
-                    in_duration: 500, // Transition in duration
-                    out_duration: 200, // Transition out duration
-                    starting_top: '4%', // Starting top style attribute
-                    ending_top: '10%', // Ending top style attribute
-                });
-            });
-        </script>
-        <script>
-            'use strict';
-            $('.message a').click(function () {
-                $('form').animate({
-                    height: "toggle",
-                    opacity: "toggle"
-                }, "slow");
-            });
-        </script>
-        <script>
-            jQuery("#layerslider").layerSlider({
-                responsive: false,
-                responsiveUnder: 1280,
-                layersContainer: 1280,
-            });
-        </script>
 
     </body>
 
