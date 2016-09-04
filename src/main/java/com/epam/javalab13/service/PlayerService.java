@@ -46,4 +46,3 @@ public class PlayerService {
         return playerDAO.getAllPlayers();
     }
 }
-

@@ -30,6 +30,7 @@ public class PlayerTransformer implements Transformer<Player> {
         return player;
     }
 
+    
     @Override
     public List<Player> getAll(ResultSet rs) throws SQLException {
         List<Player> players = new ArrayList<>();

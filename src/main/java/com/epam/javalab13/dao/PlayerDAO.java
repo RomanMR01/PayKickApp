@@ -45,7 +45,6 @@ public class PlayerDAO {
         }
     }
 
-
     public void updatePlayer(Player player, String type) throws SQLException {
         logger.info("DAO updatePlayer entry");
         final String SQL_NAME = "UPDATE user u SET u.full_name = ? WHERE u.id=?";
