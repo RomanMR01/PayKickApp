@@ -3,34 +3,14 @@ package com.epam.javalab13.model.bet;
 import com.epam.javalab13.model.game.Player;
 
 public class BetPlayer {
-	private int id;
 	private SingleBet singleBet;
 	private Player player;
 
-	public BetPlayer() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public BetPlayer(){}
 
 	public BetPlayer(SingleBet singleBet, Player player) {
-		super();
 		this.singleBet = singleBet;
 		this.player = player;
-	}
-
-	public BetPlayer(int id, SingleBet singleBet, Player player) {
-		super();
-		this.id = id;
-		this.singleBet = singleBet;
-		this.player = player;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public SingleBet getSingleBet() {
@@ -50,42 +30,29 @@ public class BetPlayer {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		BetPlayer betPlayer = (BetPlayer) o;
+
+		if (singleBet != null ? !singleBet.equals(betPlayer.singleBet) : betPlayer.singleBet != null) return false;
+		return player != null ? player.equals(betPlayer.player) : betPlayer.player == null;
+
+	}
+
+	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((player == null) ? 0 : player.hashCode());
-		result = prime * result + ((singleBet == null) ? 0 : singleBet.hashCode());
+		int result = singleBet != null ? singleBet.hashCode() : 0;
+		result = 31 * result + (player != null ? player.hashCode() : 0);
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BetPlayer other = (BetPlayer) obj;
-		if (id != other.id)
-			return false;
-		if (player == null) {
-			if (other.player != null)
-				return false;
-		} else if (!player.equals(other.player))
-			return false;
-		if (singleBet == null) {
-			if (other.singleBet != null)
-				return false;
-		} else if (!singleBet.equals(other.singleBet))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "BetPlayer [id=" + id + ", singleBet=" + singleBet + ", player=" + player + "]";
+		return "BetPlayer{" +
+				"singleBet=" + singleBet +
+				", player=" + player +
+				'}';
 	}
-
 }
