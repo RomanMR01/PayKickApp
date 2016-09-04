@@ -173,17 +173,17 @@
                        <br>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="login" type="text">
+                                <input id="login" type="text" required >
                                 <label for="login">Login</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="password" type="password">
+                                <input id="password" type="password" required >
                                 <label for="password">Password</label>
                             </div>
                         </div>
                         <div id="home-submit" class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Log In</button>
-                            <p class="message center-align">Still Not Registered? <a href="#"><span class="orange-text">Create an account!</span></a></p>
+                            <button class="btn waves-effect waves-light" type="submit">Log In</button>
+                            <p class="message center-align">Still Not Registered? <a><span class="orange-text">Create an account!</span></a></p>
                         </div>
                     </form>
 
@@ -191,21 +191,21 @@
                        <h5 class="center-align">Registration</h5>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="fname" type="text">
+                                <input id="fname" type="text" required >
                                 <label for="fname">Name</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="surname" type="text">
+                                <input id="surname" type="text" required >
                                 <label for="surname">Surname</label>
                             </div>
                             <div class="col s12">
                                 <p class="big">Sex:</p>
                                 <p>
-                                    <input name="sex" type="radio" id="male" />
+                                    <input name="sex" type="radio" id="male" value="male" required />
                                     <label for="male">Male</label>
                                 </p>
                                 <p>
-                                    <input name="sex" type="radio" id="female" />
+                                    <input name="sex" type="radio" id="female" value="female" />
                                     <label for="female">Female</label>
                                 </p>
                             </div>
@@ -216,21 +216,21 @@
                                 </p>
                             </div>
                             <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
+                                <input id="email" type="email" class="validate" required >
                                 <label for="email">Email</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="login-reg" type="text">
+                                <input id="login-reg" type="text" required >
                                 <label for="login-reg">Login</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="password-reg" type="password">
+                                <input id="password-reg" type="password" required >
                                 <label for="password-reg">Password</label>
                             </div>
                         </div>
                         <div id="home-submit" class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up</button>
-                            <p class="message center-align">Already Have An Account? <a href="#"><span class="orange-text">Log In!</span></a></p>
+                            <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
+                            <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a></p>
                         </div>
                     </form>
                 </div>
@@ -259,6 +259,7 @@
             });
         </script>
         <script>
+        'use strict';
             $('.message a').click(function () {
                 $('form').animate({
                     height: "toggle",
