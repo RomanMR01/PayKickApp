@@ -124,7 +124,7 @@
                 <footer class="page-footer grey darken-3">
                     <div class="container">
                         <div class="row">
-                            <div class="col s7">
+                            <div class="col s10 offset-s1 m6">
                                 <h5 class="white-text">Our Contacts</h5>
                                 <ul>
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href="mailto:paykick.team@gmail.com"><i class="material-icons orange-text valign" >email</i>&nbsp; paykick.team@gmail.com</a></li>
@@ -132,7 +132,7 @@
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i class="material-icons green-text valign" >location_on</i>&nbsp; Ukraine, Lviv. Kozlaniuka str. 7/5</a></li>
                                 </ul>
                             </div>
-                            <div class="col s3 offset-s2">
+                            <div class="col s10 offset-s1 m4 offset-m1">
                                 <h5 class="white-text ">Our Team</h5>
                                 <ul>
                                     <li><a class="grey-text text-lighten-3 valign-wrapper" href="https://vk.com/olko.skull" target="_blank"><i class="material-icons valign" >assignment_ind</i>&nbsp; Olya S.</a></li>
