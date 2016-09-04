@@ -22,6 +22,15 @@ public class Game {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 
+	 * @param title
+	 * @param location
+	 * @param date
+	 * @param firstTeam
+	 * @param secondTeam
+	 * @param status
+	 */
 	public Game(String title, String location, Date date, Team firstTeam, Team secondTeam, Status status) {
 		super();
 		this.title = title;
@@ -31,7 +40,18 @@ public class Game {
 		this.secondTeam = secondTeam;
 		this.status = status;
 	}
-
+	
+	/**
+	 * 
+	 * @param title
+	 * @param location
+	 * @param date
+	 * @param firstTeam
+	 * @param secondTeam
+	 * @param status
+	 * @param bookmaker
+	 * @param profit
+	 */
 	public Game(String title, String location, Date date, Team firstTeam, Team secondTeam, Status status,
 			User bookmaker, double profit) {
 		super();
@@ -44,7 +64,20 @@ public class Game {
 		this.bookmaker = bookmaker;
 		this.profit = profit;
 	}
-
+	
+	/**
+	 * 
+	 * @param title
+	 * @param location
+	 * @param date
+	 * @param firstTeam
+	 * @param secondTeam
+	 * @param firstGoals
+	 * @param secondGoals
+	 * @param status
+	 * @param bookmaker
+	 * @param profit
+	 */
 	public Game(String title, String location, Date date, Team firstTeam, Team secondTeam, int firstGoals,
 			int secondGoals, Status status, User bookmaker, double profit) {
 		super();
@@ -59,7 +92,21 @@ public class Game {
 		this.bookmaker = bookmaker;
 		this.profit = profit;
 	}
-
+	
+	/**
+	 * 
+	 * @param id
+	 * @param title
+	 * @param location
+	 * @param date
+	 * @param firstTeam
+	 * @param secondTeam
+	 * @param firstGoals
+	 * @param secondGoals
+	 * @param status
+	 * @param bookmaker
+	 * @param profit
+	 */
 	public Game(int id, String title, String location, Date date, Team firstTeam, Team secondTeam, int firstGoals,
 			int secondGoals, Status status, User bookmaker, double profit) {
 		super();

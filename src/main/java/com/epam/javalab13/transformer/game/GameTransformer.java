@@ -11,7 +11,6 @@ import com.epam.javalab13.model.Gender;
 import com.epam.javalab13.model.Language;
 import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
-import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Status;
 import com.epam.javalab13.model.game.Team;
@@ -33,11 +32,17 @@ public class GameTransformer implements Transformer<Game> {
 		}
 		return game;
 	}
-
-	private Game createGame(ResultSet rs) throws SQLException {
+	
+	/**
+	 * Returns instance of Game from this ResultSet rs if method rs.next was called before.
+	 * @param rs
+	 * @return Game
+	 * @throws SQLException
+	 */
+	public Game createGame(ResultSet rs) throws SQLException {
 		Game game = null;
 		game = new Game();
-		game.setId(rs.getInt("id"));
+		game.setId(rs.getInt("game_id"));
 		game.setTitle(rs.getString("title"));
 		game.setLocation(rs.getString("location"));
 		game.setDate(rs.getDate("date"));
