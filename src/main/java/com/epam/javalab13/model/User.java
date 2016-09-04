@@ -1,9 +1,5 @@
 package com.epam.javalab13.model;
 
-import java.util.List;
-
-import com.epam.javalab13.model.bet.TotalBet;
-
 public class User {
 	private int id;
 	private String fullName;
@@ -18,33 +14,10 @@ public class User {
 	private Language language;
 	private boolean isBanned;
 
-	private List<TotalBet> totalBets;
+	public User(){}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public User(int id, String fullName, int age, Gender gender, String email, String login, String password,
-			double balance, String avatarUrl, Role role, Language language, boolean isBanned) {
-		super();
+	public User(int id, String fullName, int age, Gender gender, String email, String login, String password, double balance, String avatarUrl, Role role, Language language, boolean isBanned) {
 		this.id = id;
-		this.fullName = fullName;
-		this.age = age;
-		this.gender = gender;
-		this.email = email;
-		this.login = login;
-		this.password = password;
-		this.balance = balance;
-		this.avatarUrl = avatarUrl;
-		this.role = role;
-		this.language = language;
-		this.isBanned = isBanned;
-	}
-
-	public User(String fullName, int age, Gender gender, String email, String login, String password, double balance,
-			String avatarUrl, Role role, Language language, boolean isBanned) {
-		super();
 		this.fullName = fullName;
 		this.age = age;
 		this.gender = gender;
@@ -150,95 +123,67 @@ public class User {
 		return isBanned;
 	}
 
-	public void setBanned(boolean isBanned) {
-		this.isBanned = isBanned;
+	public void setBanned(boolean banned) {
+		isBanned = banned;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		if (id != user.id) return false;
+		if (age != user.age) return false;
+		if (Double.compare(user.balance, balance) != 0) return false;
+		if (isBanned != user.isBanned) return false;
+		if (fullName != null ? !fullName.equals(user.fullName) : user.fullName != null) return false;
+		if (gender != user.gender) return false;
+		if (email != null ? !email.equals(user.email) : user.email != null) return false;
+		if (login != null ? !login.equals(user.login) : user.login != null) return false;
+		if (password != null ? !password.equals(user.password) : user.password != null) return false;
+		if (avatarUrl != null ? !avatarUrl.equals(user.avatarUrl) : user.avatarUrl != null) return false;
+		if (role != user.role) return false;
+		return language == user.language;
+
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + age;
-		result = prime * result + ((avatarUrl == null) ? 0 : avatarUrl.hashCode());
+		int result;
 		long temp;
+		result = id;
+		result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
+		result = 31 * result + age;
+		result = 31 * result + (gender != null ? gender.hashCode() : 0);
+		result = 31 * result + (email != null ? email.hashCode() : 0);
+		result = 31 * result + (login != null ? login.hashCode() : 0);
+		result = 31 * result + (password != null ? password.hashCode() : 0);
 		temp = Double.doubleToLongBits(balance);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + id;
-		result = prime * result + (isBanned ? 1231 : 1237);
-		result = prime * result + ((language == null) ? 0 : language.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
+		result = 31 * result + (role != null ? role.hashCode() : 0);
+		result = 31 * result + (language != null ? language.hashCode() : 0);
+		result = 31 * result + (isBanned ? 1 : 0);
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (age != other.age)
-			return false;
-		if (avatarUrl == null) {
-			if (other.avatarUrl != null)
-				return false;
-		} else if (!avatarUrl.equals(other.avatarUrl))
-			return false;
-		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (fullName == null) {
-			if (other.fullName != null)
-				return false;
-		} else if (!fullName.equals(other.fullName))
-			return false;
-		if (gender != other.gender)
-			return false;
-		if (id != other.id)
-			return false;
-		if (isBanned != other.isBanned)
-			return false;
-		if (language != other.language)
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (role != other.role)
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "User [id=" + id + ", fullName=" + fullName + ", age=" + age + ", gender=" + gender + ", email=" + email
-				+ ", login=" + login + ", password=" + password + ", balance=" + balance + ", avatarUrl=" + avatarUrl
-				+ ", role=" + role + ", language=" + language + ", isBanned=" + isBanned + "]";
+		return "User{" +
+				"id=" + id +
+				", fullName='" + fullName + '\'' +
+				", age=" + age +
+				", gender=" + gender +
+				", email='" + email + '\'' +
+				", login='" + login + '\'' +
+				", password='" + password + '\'' +
+				", balance=" + balance +
+				", avatarUrl='" + avatarUrl + '\'' +
+				", role=" + role +
+				", language=" + language +
+				", isBanned=" + isBanned +
+				'}';
 	}
-
-	public List<TotalBet> getTotalBets() {
-		return totalBets;
-	}
-
-	public void setTotalBets(List<TotalBet> totalBets) {
-		this.totalBets = totalBets;
-	}
-
 }
