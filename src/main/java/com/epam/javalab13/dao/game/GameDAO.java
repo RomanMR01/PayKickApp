@@ -1,6 +1,7 @@
 package com.epam.javalab13.dao.game;
 
 import com.epam.javalab13.dao.ConnectionPool;
+import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.transformer.game.GameTransformer;
 import org.apache.log4j.Logger;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -168,5 +170,50 @@ public class GameDAO {
         }
 
         return game;
+    }
+
+    /**
+     * Getting game by bookmaker
+     *
+     * @param bookmaker the bookmaker
+     * @return game the Game object
+     * @throws SQLException
+     */
+    public List<Game> getGamesByBookmaker(User bookmaker) throws SQLException {
+        final String SQL = "SELECT * FROM game g WHERE g.bookmaker_id=?";
+
+
+        Game game = null;
+        GameTransformer gameTransformer = new GameTransformer();
+
+        List<Game> games = null;
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+
+
+        try {
+            st = conn.prepareStatement(SQL);
+            st.setInt(1,bookmaker.getId());
+
+            ResultSet rs = st.executeQuery();
+
+            games = gameTransformer.getAll(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return games;
     }
 }
