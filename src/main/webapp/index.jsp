@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : 'ua_UA'}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.lang"/>
     <!DOCTYPE html>
 
     <html>
@@ -293,7 +299,15 @@
                                             <a href=""><img src="static/img/logo.png" alt="PayKick Logo" /></a>
                                         </li>
                                         <li><a href="#contacts">Contacts</a></li>
-                                        <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
+                                        <c:choose>
+                                            <c:when test="${login==null}">
+                                                <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li><a href="cabinet" class="my-red modal-trigger">Cabinet</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+
                                     </ul>
                                 </div>
                             </div>
@@ -308,9 +322,19 @@
                             <li><a href="#home-matches">MATCHES</a></li>
                             <li><a href="#home-top-users">TOP USERS</a></li>
                             <li><a href="#contacts">CONTACTS</a></li>
-                            <li><a href="">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
-                            <li><a class="modal-trigger" href="#login-modal">LOGIN<i class="material-icons right red-text">input</i></a></li>
-                            <li><a href="logout">LOGOUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+
+                            <c:choose>
+                                <c:when test="${login==null}">
+                                    <li><a class="modal-trigger" href="#login-modal">LOGIN<i class="material-icons right red-text">input</i></a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a></li>
+                                    <li><a href="logout">LOGOUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+                                </c:otherwise>
+                            </c:choose>
+
+
+
                             <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                         </ul>
                         <ul id="languageDropdown" class="dropdown-content sidebar grey darken-3">
