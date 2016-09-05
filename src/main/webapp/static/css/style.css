@@ -255,3 +255,7 @@ h6 {
 #sidebar-nav li a.logo {
     padding-top: 6px;
 }
+
+nav a.button-collapse {
+    margin-left: 25px;
+}
