@@ -47,7 +47,7 @@ public class UserDAO{
 	 * @throws SQLException
 	 */
 	public void addUser(User user) throws SQLException {
-		final String SQL = "INSERT INTO user(full_name, age, gender, email, login, password, avatar_url) VALUES(?,?,?,?,?,?,?)";
+		final String SQL = "INSERT INTO user(full_name, age, gender, email, login, password) VALUES(?,?,?,?,?,?)";
 
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -62,7 +62,6 @@ public class UserDAO{
 			st.setString(4, user.getEmail());
 			st.setString(5, user.getLogin());
 			st.setString(6, user.getPassword());
-			st.setString(7, user.getAvatarUrl());
 
 			st.executeUpdate();
 		} finally {

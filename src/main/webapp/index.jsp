@@ -22,10 +22,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- Styles -->
-
-
         <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
         <link href="static/css/style.css" rel="stylesheet">
 
         <!-- LayerSlider stylesheet -->
@@ -197,7 +194,7 @@
 							durationout:750;
 							skewxout:60;"><a id="home_bet" href="#login-modal" class="waves-effect waves-light btn orange modal-trigger"><span class="grey-text text-darken-3">Make a Bet</span></a></div>
                                     <div class="ls-l nav-wrapper hide-on-large-only" style="top: 20px; left: 20px;">
-                                        <a href="#" data-activates="home-mobile" class="button-collapse"><i class="material-icons white-text" style="font-size: 3rem;">menu</i></a>
+                                        <a href="#" data-activates="sidebar-nav" class="button-collapse"><i class="material-icons white-text" style="font-size: 3rem;">menu</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -306,8 +303,8 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="transparent" style="height: 0;">
-                    <div class="">
-                        <ul id="home-mobile" class="side-nav grey darken-4">
+                    <div>
+                        <ul id="sidebar-nav" class="side-nav grey darken-4">
                             <li><a href="#home-matches">MATCHES</a></li>
                             <li><a href="#home-top-users">TOP USERS</a></li>
                             <li><a href="#contacts">CONTACTS</a></li>
@@ -316,7 +313,7 @@
                             <li><a href="logout">LOGOUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                             <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                         </ul>
-                        <ul id="languageDropdown" class="dropdown-content grey darken-3">
+                        <ul id="languageDropdown" class="dropdown-content sidebar grey darken-3">
                             <li><a href="?language=ua_UA" class="white-text">УКРАЇНСЬКА<i class="material-icons right green-text">language</i></a></li>
                             <li><a href="?language=en_EN" class="white-text">ENGLISH<i class="material-icons right green-text">language</i></a></li>
                         </ul>

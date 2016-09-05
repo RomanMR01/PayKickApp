@@ -2974,7 +2974,6 @@ ul.staggered-list li {
 
 footer.page-footer {
   margin-top: 0;
-  padding-top: 20px;
   background-color: #ee6e73;
 }
 
@@ -5075,7 +5074,7 @@ button.btn-floating {
   font-size: 16px;
   color: #FF9800;
   display: block;
-  line-height: 35px;
+  line-height: 22px;
   padding: 14px 16px;
 }
 
@@ -5086,7 +5085,7 @@ button.btn-floating {
 }
 
 .dropdown-content li > a > i {
-/*  height: inherit;*/
+  height: inherit;
   line-height: inherit;
 }
 
