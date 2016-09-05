@@ -36,5 +36,15 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>HomePageStatisticsServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.statitstics.HomePageStatisticsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>HomePageStatisticsServlet</servlet-name>
+    <url-pattern>/homeStatistics</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
