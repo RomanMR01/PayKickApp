@@ -1,19 +1,20 @@
 package com.epam.javalab13.model.statistics;
 
 /**
- * Created by Vikno on 9/5/2016.
+ * Represents upcoming match with title, names of teams
+ * and coefficients for game result.
  */
 public class UpcomingMatch {
     private String title;
     private String firstTeam;
     private String secondTeam;
 
-    private double c1;
-    private double c2;
-    private double cX;
-    private double c1X;
-    private double cX2;
-    private double c12;
+    private double c1;//First team win
+    private double c2;//Second team win
+    private double cX;//Draw
+    private double c1X;//First ream win or draw
+    private double cX2;//Second team win or draw
+    private double c12;//One team win (or first or second, but not DRAW!)
 
     public UpcomingMatch(){}
 
@@ -57,11 +58,11 @@ public class UpcomingMatch {
         this.c2 = c2;
     }
 
-    public double getcX() {
+    public double getCX() {
         return cX;
     }
 
-    public void setcX(double cX) {
+    public void setCX(double cX) {
         this.cX = cX;
     }
 
@@ -73,11 +74,11 @@ public class UpcomingMatch {
         this.c1X = c1X;
     }
 
-    public double getcX2() {
+    public double getCX2() {
         return cX2;
     }
 
-    public void setcX2(double cX2) {
+    public void setCX2(double cX2) {
         this.cX2 = cX2;
     }
 
