@@ -6,10 +6,7 @@ import com.epam.javalab13.util.PasswordHash;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 /**
@@ -19,6 +16,7 @@ public class LoginServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(LoginServlet.class);
     private String login;
     private String password;
+    private String rememberMe;
     private User user;
 
     @Override
@@ -26,6 +24,8 @@ public class LoginServlet extends HttpServlet {
         logger.info("LoginServlet homeStatistics");
         login = req.getParameter("login");
         password = req.getParameter("password");
+        rememberMe = req.getParameter("rememberMe");
+
 
         resp.setContentType("text/html;charset=UTF-8");
         try {
@@ -36,6 +36,16 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("login", login);
                 //session.setAttribute("role", user.getRole());
+                if("true".equals(rememberMe)) {
+                    Cookie cookieLogin = new Cookie("userLogin", login);
+                    Cookie cookiePassword = new Cookie("userPassword", password);
+
+                    cookieLogin.setMaxAge(60 * 60 * 24);
+                    cookiePassword.setMaxAge(60 * 60 * 24);
+
+                    resp.addCookie(cookieLogin);
+                    resp.addCookie(cookiePassword);
+                }
                 resp.getWriter().write("success");
                 return;
             }

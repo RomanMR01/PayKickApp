@@ -350,6 +350,23 @@
 
             </div>
         </div>
+        <%
+            String userLogin = "";
+            String userPassword = "";
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null)
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName() != null) {
+                        if (cookie.getName().equals("userLogin")) {
+                            userLogin = cookie.getValue();
+                        }
+                        if (cookie.getName().equals("userPassword")) {
+                            userPassword = cookie.getValue();
+                        }
+                    }
+
+                }
+        %>
 
         <!-- Modal Structure -->
         <div id="login-modal" class="modal">
@@ -360,16 +377,16 @@
                         <br>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="login" type="text" required>
+                                <input id="login" type="text" value="<%=userLogin%>" required>
                                 <label for="login">Login</label>
                             </div>
                             <div class="input-field col s12">
-                                <input id="password" type="password" required>
+                                <input id="password" type="password" value="<%=userPassword%>" required>
                                 <label for="password">Password</label>
                             </div>
                             <div class="col s12">
                                 <p>
-                                    <input type="checkbox" id="remember-me" />
+                                    <input type="checkbox" id="remember-me" value="rememberMe"/>
                                     <label for="remember-me">Remember Me</label>
                                 </p>
                             </div>

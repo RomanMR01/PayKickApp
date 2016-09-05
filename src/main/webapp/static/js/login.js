@@ -3,12 +3,13 @@ $('#loginBtn').on('click', function (e) {
     var login = $('#login').val();
     var password = $('#password').val();
     var messageLogin = $("#messageLogin");
+    var rememberMe = document.getElementById("remember-me").checked;
     console.log("+log");
     if (login && password) {
         $.ajax({
             type: "POST",
             url: "login",
-            data: {"login": login, "password": password},
+            data: {"login": login, "password": password,"rememberMe":rememberMe},
             success: function (data) {
                 if (data == 'success') {
                     messageLogin.text(" ");
