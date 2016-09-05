@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -63,5 +64,40 @@ public class ResultCoefficientDAO {
         }
 
         return resultCoefficients;
+    }
+
+    /**
+     * Add new ResultCoefficient into database
+     *
+     * @param resultCoefficient the ResultCoefficient object
+     * @throws SQLException
+     */
+    public void addResultCoefficient(ResultCoefficient resultCoefficient) throws SQLException {
+        final String SQL = "INSERT INTO result_coefficient(game_id, result, coefficient)VALUES(?,?,?)";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setInt(1,resultCoefficient.getGame().getId());
+            st.setString(2,resultCoefficient.getResult().toString());
+            st.setDouble(3,resultCoefficient.getCoefficient());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
     }
 }
