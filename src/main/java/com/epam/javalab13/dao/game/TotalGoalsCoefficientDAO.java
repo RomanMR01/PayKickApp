@@ -10,13 +10,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.DAO;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.TotalGoalsCoefficient;
 import com.epam.javalab13.transformer.Transformer;
 import com.epam.javalab13.transformer.game.TotalGoalsCoefficientTransformer;
 
-public class TotalGoalsCoefficientDAO implements DAO<TotalGoalsCoefficient> {
+public class TotalGoalsCoefficientDAO {
 
 	private Connection conn;
 	private Statement smt;
@@ -62,7 +61,6 @@ public class TotalGoalsCoefficientDAO implements DAO<TotalGoalsCoefficient> {
 		}
 	}
 
-	@Override
 	public TotalGoalsCoefficient findById(int id) {
 		conn = ConnectionPool.getConnection();
 		try {
@@ -90,7 +88,6 @@ public class TotalGoalsCoefficientDAO implements DAO<TotalGoalsCoefficient> {
 		}
 	}
 
-	@Override
 	public boolean update(TotalGoalsCoefficient tgc) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -121,13 +118,11 @@ public class TotalGoalsCoefficientDAO implements DAO<TotalGoalsCoefficient> {
 		}
 	}
 
-	@Override
 	public boolean delete(TotalGoalsCoefficient tgc) {
 		logger.info("deleting TotalGoalsCoefficient from database " + tgc);
 		return delete(tgc.getId());
 	}
 
-	@Override
 	public boolean delete(int id) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -156,7 +151,6 @@ public class TotalGoalsCoefficientDAO implements DAO<TotalGoalsCoefficient> {
 		}
 	}
 
-	@Override
 	public List<TotalGoalsCoefficient> findAll() {
 		conn = ConnectionPool.getConnection();
 		try {

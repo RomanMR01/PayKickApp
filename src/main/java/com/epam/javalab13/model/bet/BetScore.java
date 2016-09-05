@@ -5,13 +5,9 @@ public class BetScore {
 	private int firstTeamScore;
 	private int secondTeamScore;
 
-	public BetScore() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public BetScore(){}
 
 	public BetScore(SingleBet singleBet, int firstTeamScore, int secondTeamScore) {
-		super();
 		this.singleBet = singleBet;
 		this.firstTeamScore = firstTeamScore;
 		this.secondTeamScore = secondTeamScore;
@@ -42,33 +38,32 @@ public class BetScore {
 	}
 
 	@Override
-	public String toString() {
-		return "BetScore [firstTeamScore=" + firstTeamScore + ", secondTeamScore=" + secondTeamScore + "]";
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		BetScore betScore = (BetScore) o;
+
+		if (firstTeamScore != betScore.firstTeamScore) return false;
+		if (secondTeamScore != betScore.secondTeamScore) return false;
+		return singleBet != null ? singleBet.equals(betScore.singleBet) : betScore.singleBet == null;
+
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + firstTeamScore;
-		result = prime * result + secondTeamScore;
+		int result = singleBet != null ? singleBet.hashCode() : 0;
+		result = 31 * result + firstTeamScore;
+		result = 31 * result + secondTeamScore;
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BetScore other = (BetScore) obj;
-		if (firstTeamScore != other.firstTeamScore)
-			return false;
-		if (secondTeamScore != other.secondTeamScore)
-			return false;
-		return true;
+	public String toString() {
+		return "BetScore{" +
+				"singleBet=" + singleBet +
+				", firstTeamScore=" + firstTeamScore +
+				", secondTeamScore=" + secondTeamScore +
+				'}';
 	}
-
 }

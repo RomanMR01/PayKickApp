@@ -1,8 +1,6 @@
 import java.sql.SQLException;
 
-import com.epam.javalab13.dao.DAO;
-import com.epam.javalab13.dao.game.ResultCoefficientDAO;
-import com.epam.javalab13.model.game.ResultCoefficient;
+import com.epam.javalab13.dao.game.PlayerCoefficientDAO;
 
 /*
  * Test for checking sql query
@@ -29,9 +27,9 @@ public class Test {
 //		dao.update(game);
 //		System.out.println(game);
 		
-    	DAO<ResultCoefficient> dao = new ResultCoefficientDAO();
+    	PlayerCoefficientDAO dao = new PlayerCoefficientDAO();
 		
-    	System.out.println(dao.findById(1));
+    	System.out.println(dao.findAll());
     	
     }
 }

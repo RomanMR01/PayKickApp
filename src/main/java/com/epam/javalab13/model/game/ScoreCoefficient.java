@@ -6,102 +6,95 @@ public class ScoreCoefficient {
 	private double startCoefficient;
 	private double firstTeamCoefficient;
 	private double secondTeamCoefficient;
-	public ScoreCoefficient() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public ScoreCoefficient(Game game, double startCoefficient, double firstTeamCoefficient,
-			double secondTeamCoefficient) {
-		super();
-		this.game = game;
-		this.startCoefficient = startCoefficient;
-		this.firstTeamCoefficient = firstTeamCoefficient;
-		this.secondTeamCoefficient = secondTeamCoefficient;
-	}
-	public ScoreCoefficient(int id, Game game, double startCoefficient, double firstTeamCoefficient,
-			double secondTeamCoefficient) {
-		super();
+
+	public ScoreCoefficient(){}
+
+	public ScoreCoefficient(int id, Game game, double startCoefficient, double firstTeamCoefficient, double secondTeamCoefficient) {
 		this.id = id;
 		this.game = game;
 		this.startCoefficient = startCoefficient;
 		this.firstTeamCoefficient = firstTeamCoefficient;
 		this.secondTeamCoefficient = secondTeamCoefficient;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Game getGame() {
 		return game;
 	}
+
 	public void setGame(Game game) {
 		this.game = game;
 	}
+
 	public double getStartCoefficient() {
 		return startCoefficient;
 	}
+
 	public void setStartCoefficient(double startCoefficient) {
 		this.startCoefficient = startCoefficient;
 	}
+
 	public double getFirstTeamCoefficient() {
 		return firstTeamCoefficient;
 	}
+
 	public void setFirstTeamCoefficient(double firstTeamCoefficient) {
 		this.firstTeamCoefficient = firstTeamCoefficient;
 	}
+
 	public double getSecondTeamCoefficient() {
 		return secondTeamCoefficient;
 	}
+
 	public void setSecondTeamCoefficient(double secondTeamCoefficient) {
 		this.secondTeamCoefficient = secondTeamCoefficient;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		ScoreCoefficient that = (ScoreCoefficient) o;
+
+		if (id != that.id) return false;
+		if (Double.compare(that.startCoefficient, startCoefficient) != 0) return false;
+		if (Double.compare(that.firstTeamCoefficient, firstTeamCoefficient) != 0) return false;
+		if (Double.compare(that.secondTeamCoefficient, secondTeamCoefficient) != 0) return false;
+		return game != null ? game.equals(that.game) : that.game == null;
+
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		int result;
 		long temp;
-		temp = Double.doubleToLongBits(firstTeamCoefficient);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((game == null) ? 0 : game.hashCode());
-		result = prime * result + id;
-		temp = Double.doubleToLongBits(secondTeamCoefficient);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = id;
+		result = 31 * result + (game != null ? game.hashCode() : 0);
 		temp = Double.doubleToLongBits(startCoefficient);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(firstTeamCoefficient);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(secondTeamCoefficient);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ScoreCoefficient other = (ScoreCoefficient) obj;
-		if (Double.doubleToLongBits(firstTeamCoefficient) != Double.doubleToLongBits(other.firstTeamCoefficient))
-			return false;
-		if (game == null) {
-			if (other.game != null)
-				return false;
-		} else if (!game.equals(other.game))
-			return false;
-		if (id != other.id)
-			return false;
-		if (Double.doubleToLongBits(secondTeamCoefficient) != Double.doubleToLongBits(other.secondTeamCoefficient))
-			return false;
-		if (Double.doubleToLongBits(startCoefficient) != Double.doubleToLongBits(other.startCoefficient))
-			return false;
-		return true;
-	}
+
 	@Override
 	public String toString() {
-		return "ScoreCoefficient [id=" + id + ", game=" + game + ", startCoefficient=" + startCoefficient
-				+ ", firstTeamCoefficient=" + firstTeamCoefficient + ", secondTeamCoefficient=" + secondTeamCoefficient
-				+ "]";
+		return "ScoreCoefficient{" +
+				"id=" + id +
+				", game=" + game +
+				", startCoefficient=" + startCoefficient +
+				", firstTeamCoefficient=" + firstTeamCoefficient +
+				", secondTeamCoefficient=" + secondTeamCoefficient +
+				'}';
 	}
-	
-	
 }

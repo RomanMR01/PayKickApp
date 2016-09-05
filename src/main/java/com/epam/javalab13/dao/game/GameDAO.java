@@ -11,7 +11,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.DAO;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Status;
@@ -19,7 +18,7 @@ import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.transformer.Transformer;
 import com.epam.javalab13.transformer.game.GameTransformer;
 
-public class GameDAO implements DAO<Game> {
+public class GameDAO {
 
 	private Transformer<Game> gameTransformer;
 //	private DAO<Team> teamDAO;
@@ -31,7 +30,6 @@ public class GameDAO implements DAO<Game> {
 
 	private static Logger logger = Logger.getLogger(Game.class);
 
-	@Override
 	public Game findById(int id) {
 		conn = ConnectionPool.getConnection();
 		try {
@@ -40,24 +38,19 @@ public class GameDAO implements DAO<Game> {
 					+ "t2.id AS \"t2_id\",t2.name AS \"t2_name\",t2.location AS \"t2_location\",t2.emblem_url AS \"t2_emblem_url\",t2.total_wins AS \"t2_total_wins\",t2.total_loses AS \"t2_total_loses\",t2.total_draws AS \"t2_total_draws\","
 					+ "u.id AS \"u_id\",u.full_name,u.age,u.gender,u.email,u.login,u.password,u.balance,u.avatar_url,u.role,u.language,u.is_banned "
 					+ "FROM game g JOIN team t1 ON g.first_team_id = t1.id JOIN team t2 ON g.second_team_id = t2.id JOIN user u ON g.bookmaker_id = u.id WHERE g.id=?;";
-			// String sql="SELECT * FROM game g WHERE g.id=?;";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			gameTransformer = new GameTransformer();
 			Game game = gameTransformer.getOne(rs);
-			// int firstTeamId = rs.getInt("first_team_id");
-			// int secondTeamId = rs.getInt("second_team_id");
-			// int bookmakerId = rs.getInt("bookmaker_id");
-			// game.setFirstTeam(teamDAO.findById(firstTeamId));
-			// game.setSecondTeam(teamDAO.findById(secondTeamId));
-			// game.setBookmaker(userDAO.findById(bookmakerId));
 			return game;
 		} catch (SQLException e) {
 			logger.error("failed to find game with id "+id+" from database", e);
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -65,7 +58,6 @@ public class GameDAO implements DAO<Game> {
 		}
 	}
 
-	@Override
 	public boolean create(Game game) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -99,13 +91,14 @@ public class GameDAO implements DAO<Game> {
 		} finally {
 			try {
 				conn.close();
+				rs.close();
+				ps.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
 			}
 		}
 	}
 
-	@Override
 	public boolean update(Game game) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -145,13 +138,11 @@ public class GameDAO implements DAO<Game> {
 		}
 	}
 
-	@Override
 	public boolean delete(Game game) {
 		logger.info("deleting game from database "+game);
 		return delete(game.getId());
 	}
 
-	@Override
 	public boolean delete(int id) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -180,7 +171,6 @@ public class GameDAO implements DAO<Game> {
 		}
 	}
 
-	@Override
 	public List<Game> findAll() {
 		conn = ConnectionPool.getConnection();
 		try {

@@ -10,7 +10,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.DAO;
 import com.epam.javalab13.model.bet.Result;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.ResultCoefficient;
@@ -18,22 +17,21 @@ import com.epam.javalab13.model.game.ScoreCoefficient;
 import com.epam.javalab13.transformer.game.ResultCoefficientTransformer;
 import com.epam.javalab13.transformer.game.ScoreCoefficientTransformer;
 
-public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
+public class ResultCoefficientDAO {
 	private static final Logger logger = Logger.getLogger(ResultCoefficientDAO.class);
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
 	private ResultCoefficientTransformer scTransformer;
 
-	@Override
 	public ResultCoefficient findById(int id) {
 		conn = ConnectionPool.getConnection();
 		try {
 			String sql = "SELECT r.id AS \"result_id\", r.result, r.coefficient, g.id AS \"game_id\","
-					+ "g.title,g.location,g.date,g.first_goals,g.second_goals,g.status,g.profit,"
-					+ "t1.id AS \"t1_id\",t1.name AS \"t1_name\",t1.location AS \"t1_location\",t1.emblem_url AS \"t1_emblem_url\",t1.total_wins AS \"t1_total_wins\",t1.total_loses AS \"t1_total_loses\",t1.total_draws AS \"t1_total_draws\","
-					+ "t2.id AS \"t2_id\",t2.name AS \"t2_name\",t2.location AS \"t2_location\",t2.emblem_url AS \"t2_emblem_url\",t2.total_wins AS \"t2_total_wins\",t2.total_loses AS \"t2_total_loses\",t2.total_draws AS \"t2_total_draws\","
-					+ "u.id AS \"u_id\",u.full_name,u.age,u.gender,u.email,u.login,u.password,u.balance,u.avatar_url,u.role,u.language,u.is_banned "
+					+ "  g.title,g.location,g.date,g.first_goals,g.second_goals,g.status,g.profit,"
+					+ "  t1.id AS \"t1_id\",t1.name AS \"t1_name\",t1.location AS \"t1_location\", t1.emblem_url AS \"t1_emblem_url\",t1.total_wins AS \"t1_total_wins\",t1.total_loses AS \"t1_total_loses\",t1.total_draws AS \"t1_total_draws\","
+					+ "  t2.id AS \"t2_id\",t2.name AS \"t2_name\",t2.location AS \"t2_location\", t2.emblem_url AS \"t2_emblem_url\",t2.total_wins AS \"t2_total_wins\",t2.total_loses AS \"t2_total_loses\",t2.total_draws AS \"t2_total_draws\","
+					+ "  u.id AS \"u_id\",u.full_name,u.age,u.gender,u.email,u.login,u.password,u.balance,u.avatar_url,u.role,u.language,u.is_banned "
 					+ "FROM result_coefficient r JOIN game g ON r.game_id = g.id JOIN team t1 ON g.first_team_id = t1.id JOIN team t2 ON g.second_team_id = t2.id JOIN user u ON g.bookmaker_id = u.id WHERE r.id=?;";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -46,6 +44,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -53,7 +53,6 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 		}
 	}
 
-	@Override
 	public boolean create(ResultCoefficient rc) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -83,6 +82,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return false;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -90,7 +91,6 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 		}
 	}
 
-	@Override
 	public boolean update(ResultCoefficient rc) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -116,6 +116,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return false;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -123,13 +125,11 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 		}
 	}
 
-	@Override
 	public boolean delete(ResultCoefficient rc) {
 		logger.info("deleting ResultCoefficient from database "+ rc);
 		return false;
 	}
 
-	@Override
 	public boolean delete(int id) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -153,6 +153,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return false;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -160,7 +162,6 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 		}
 	}
 
-	@Override
 	public List<ResultCoefficient> findAll() {
 		conn = ConnectionPool.getConnection();
 		try {
@@ -179,6 +180,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -205,6 +208,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -231,6 +236,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -258,6 +265,8 @@ public class ResultCoefficientDAO implements DAO<ResultCoefficient> {
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);

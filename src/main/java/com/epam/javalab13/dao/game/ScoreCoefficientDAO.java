@@ -10,14 +10,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.DAO;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.ScoreCoefficient;
 import com.epam.javalab13.model.game.TotalGoalsCoefficient;
 import com.epam.javalab13.transformer.game.ScoreCoefficientTransformer;
 import com.epam.javalab13.transformer.game.TotalGoalsCoefficientTransformer;
 
-public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
+public class ScoreCoefficientDAO {
 
 	private static final Logger logger = Logger.getLogger(ScoreCoefficientDAO.class);
 	private Connection conn;
@@ -25,7 +24,6 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 	private ResultSet rs;
 	private ScoreCoefficientTransformer scTransformer;
 
-	@Override
 	public ScoreCoefficient findById(int id) {
 		conn = ConnectionPool.getConnection();
 		try {
@@ -46,6 +44,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -53,7 +53,6 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 		}
 	}
 
-	@Override
 	public boolean create(ScoreCoefficient sc) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -84,6 +83,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return false;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -91,7 +92,6 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 		}
 	}
 
-	@Override
 	public boolean update(ScoreCoefficient sc) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -118,6 +118,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return false;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -125,13 +127,11 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 		}
 	}
 
-	@Override
 	public boolean delete(ScoreCoefficient sc) {
 		logger.info("deleting ScoreCoefficient from database " + sc);
 		return delete(sc.getId());
 	}
 
-	@Override
 	public boolean delete(int id) {
 		try {
 			conn = ConnectionPool.getConnection();
@@ -153,6 +153,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return false;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -160,7 +162,6 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 		}
 	}
 
-	@Override
 	public List<ScoreCoefficient> findAll() {
 		conn = ConnectionPool.getConnection();
 		try {
@@ -180,6 +181,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -207,6 +210,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -235,6 +240,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -262,6 +269,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);
@@ -289,6 +298,8 @@ public class ScoreCoefficientDAO implements DAO<ScoreCoefficient>{
 			return null;
 		} finally {
 			try {
+				rs.close();
+				ps.close();
 				conn.close();
 			} catch (SQLException e) {
 				logger.error("failed to close connection", e);

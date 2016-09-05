@@ -26,7 +26,7 @@ public class ResultCoefficientTransformer implements Transformer<ResultCoefficie
 		} catch (SQLException e) {
 			logger.error("failed to instantiate ResultCoefficient from ResultSet",e);
 		}
-		return null;
+		return rc;
 	}
 
 	private ResultCoefficient createResultCoefficient(ResultSet rs) throws SQLException {
@@ -51,7 +51,7 @@ public class ResultCoefficientTransformer implements Transformer<ResultCoefficie
 		} catch (SQLException e) {
 			logger.error("failed to instantiate ResultCoefficient from ResultSet",e);
 		}
-		return null;
+		return rcList;
 	}
 
 }

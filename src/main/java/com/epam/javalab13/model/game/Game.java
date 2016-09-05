@@ -17,99 +17,9 @@ public class Game {
 	private User bookmaker;
 	private double profit;
 
-	public Game() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Game(){}
 
-	/**
-	 * 
-	 * @param title
-	 * @param location
-	 * @param date
-	 * @param firstTeam
-	 * @param secondTeam
-	 * @param status
-	 */
-	public Game(String title, String location, Date date, Team firstTeam, Team secondTeam, Status status) {
-		super();
-		this.title = title;
-		this.location = location;
-		this.date = date;
-		this.firstTeam = firstTeam;
-		this.secondTeam = secondTeam;
-		this.status = status;
-	}
-	
-	/**
-	 * 
-	 * @param title
-	 * @param location
-	 * @param date
-	 * @param firstTeam
-	 * @param secondTeam
-	 * @param status
-	 * @param bookmaker
-	 * @param profit
-	 */
-	public Game(String title, String location, Date date, Team firstTeam, Team secondTeam, Status status,
-			User bookmaker, double profit) {
-		super();
-		this.title = title;
-		this.location = location;
-		this.date = date;
-		this.firstTeam = firstTeam;
-		this.secondTeam = secondTeam;
-		this.status = status;
-		this.bookmaker = bookmaker;
-		this.profit = profit;
-	}
-	
-	/**
-	 * 
-	 * @param title
-	 * @param location
-	 * @param date
-	 * @param firstTeam
-	 * @param secondTeam
-	 * @param firstGoals
-	 * @param secondGoals
-	 * @param status
-	 * @param bookmaker
-	 * @param profit
-	 */
-	public Game(String title, String location, Date date, Team firstTeam, Team secondTeam, int firstGoals,
-			int secondGoals, Status status, User bookmaker, double profit) {
-		super();
-		this.title = title;
-		this.location = location;
-		this.date = date;
-		this.firstTeam = firstTeam;
-		this.secondTeam = secondTeam;
-		this.firstGoals = firstGoals;
-		this.secondGoals = secondGoals;
-		this.status = status;
-		this.bookmaker = bookmaker;
-		this.profit = profit;
-	}
-	
-	/**
-	 * 
-	 * @param id
-	 * @param title
-	 * @param location
-	 * @param date
-	 * @param firstTeam
-	 * @param secondTeam
-	 * @param firstGoals
-	 * @param secondGoals
-	 * @param status
-	 * @param bookmaker
-	 * @param profit
-	 */
-	public Game(int id, String title, String location, Date date, Team firstTeam, Team secondTeam, int firstGoals,
-			int secondGoals, Status status, User bookmaker, double profit) {
-		super();
+	public Game(int id, String title, String location, Date date, Team firstTeam, Team secondTeam, int firstGoals, int secondGoals, Status status, User bookmaker, double profit) {
 		this.id = id;
 		this.title = title;
 		this.location = location;
@@ -212,82 +122,59 @@ public class Game {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Game game = (Game) o;
+
+		if (id != game.id) return false;
+		if (firstGoals != game.firstGoals) return false;
+		if (secondGoals != game.secondGoals) return false;
+		if (Double.compare(game.profit, profit) != 0) return false;
+		if (title != null ? !title.equals(game.title) : game.title != null) return false;
+		if (location != null ? !location.equals(game.location) : game.location != null) return false;
+		if (date != null ? !date.equals(game.date) : game.date != null) return false;
+		if (firstTeam != null ? !firstTeam.equals(game.firstTeam) : game.firstTeam != null) return false;
+		if (secondTeam != null ? !secondTeam.equals(game.secondTeam) : game.secondTeam != null) return false;
+		if (status != game.status) return false;
+		return bookmaker != null ? bookmaker.equals(game.bookmaker) : game.bookmaker == null;
+
+	}
+
+	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((bookmaker == null) ? 0 : bookmaker.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + firstGoals;
-		result = prime * result + ((firstTeam == null) ? 0 : firstTeam.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		int result;
 		long temp;
+		result = id;
+		result = 31 * result + (title != null ? title.hashCode() : 0);
+		result = 31 * result + (location != null ? location.hashCode() : 0);
+		result = 31 * result + (date != null ? date.hashCode() : 0);
+		result = 31 * result + (firstTeam != null ? firstTeam.hashCode() : 0);
+		result = 31 * result + (secondTeam != null ? secondTeam.hashCode() : 0);
+		result = 31 * result + firstGoals;
+		result = 31 * result + secondGoals;
+		result = 31 * result + (status != null ? status.hashCode() : 0);
+		result = 31 * result + (bookmaker != null ? bookmaker.hashCode() : 0);
 		temp = Double.doubleToLongBits(profit);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + secondGoals;
-		result = prime * result + ((secondTeam == null) ? 0 : secondTeam.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Game other = (Game) obj;
-		if (bookmaker == null) {
-			if (other.bookmaker != null)
-				return false;
-		} else if (!bookmaker.equals(other.bookmaker))
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (firstGoals != other.firstGoals)
-			return false;
-		if (firstTeam == null) {
-			if (other.firstTeam != null)
-				return false;
-		} else if (!firstTeam.equals(other.firstTeam))
-			return false;
-		if (id != other.id)
-			return false;
-		if (location == null) {
-			if (other.location != null)
-				return false;
-		} else if (!location.equals(other.location))
-			return false;
-		if (Double.doubleToLongBits(profit) != Double.doubleToLongBits(other.profit))
-			return false;
-		if (secondGoals != other.secondGoals)
-			return false;
-		if (secondTeam == null) {
-			if (other.secondTeam != null)
-				return false;
-		} else if (!secondTeam.equals(other.secondTeam))
-			return false;
-		if (status != other.status)
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Game [id=" + id + ", title=" + title + ", location=" + location + ", date=" + date + ", firstTeam="
-				+ firstTeam + ", secondTeam=" + secondTeam + ", firstGoals=" + firstGoals + ", secondGoals="
-				+ secondGoals + ", status=" + status + ", bookmaker=" + bookmaker + ", profit=" + profit + "]";
+		return "Game{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", location='" + location + '\'' +
+				", date=" + date +
+				", firstTeam=" + firstTeam +
+				", secondTeam=" + secondTeam +
+				", firstGoals=" + firstGoals +
+				", secondGoals=" + secondGoals +
+				", status=" + status +
+				", bookmaker=" + bookmaker +
+				", profit=" + profit +
+				'}';
 	}
-
 }
