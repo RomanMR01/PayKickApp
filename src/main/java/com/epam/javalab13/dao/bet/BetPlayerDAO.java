@@ -1,6 +1,7 @@
 package com.epam.javalab13.dao.bet;
 
 import com.epam.javalab13.dao.ConnectionPool;
+import com.epam.javalab13.dao.game.PlayerDAO;
 import com.epam.javalab13.model.bet.BetPlayer;
 import com.epam.javalab13.model.bet.SingleBet;
 import com.epam.javalab13.model.game.Player;
@@ -73,7 +74,10 @@ public class BetPlayerDAO {
 
             while (rs.next()){
                 SingleBet sb = new SingleBetDAO().getSingleBetById(singleBet.getId());
-                Player player = null;//TODO get by PlayerDAO
+                PlayerDAO playerDAO = new PlayerDAO();
+                Player p = new Player();
+                p.setId(rs.getInt(""));
+                Player player = playerDAO.getPlayer(p,"id");
                 betPlayer = new BetPlayer(sb,player);
             }
         } finally {
