@@ -30,6 +30,91 @@
 
         <!-- LayerSlider stylesheet -->
         <link rel="stylesheet" href="static/css/layerslider.css" type="text/css">
+
+        <script src="static/js/jquery-2.1.1.min.js"></script>
+
+        <!-- Script for updating top users and upcoming matches with AJAX-->
+        <script>
+
+            //Method for getting top users with ajax
+            (function ($) {
+                $(document).ready(function () {
+                    var $container = $("#topUsers");
+                    var getTopUsers = function () {
+
+                        $.ajax({
+                            url: "homeStatistics",
+                            data: {type: 'topUsers'},
+                            type: "POST",
+                            success: function (responseText) {
+                                $container.find("tr").remove();
+                                var response = JSON.parse(responseText);
+
+                                /*
+                                Writing each table row element into #topUsers table
+                                 */
+                                $.each(response, function (i, item) {
+                                    var lastWin = response[i].lastBetSum;
+                                    var td = "";
+                                    if(lastWin>0){
+                                        td = '<td class="green-text">'  + "+" + lastWin  + " $"+ '</td>';
+
+                                    }else{
+                                        td = '<td class="red-text">'  + lastWin + " $" + '</td>';
+                                    }
+                                    $('<tr>').html("<td>" + response[i].login + "</td><td>" + response[i].awardSum + "</td>" + td).appendTo('#topUsers');
+                                });
+                            }
+
+                        });
+                    }
+                    getTopUsers();//First call when page ready
+                    setInterval(getTopUsers, 5000);//Interval call every 5 seconds
+                });
+            })(jQuery);
+
+            //Method for getting upcoming matches with ajax
+            (function ($) {
+                $(document).ready(function () {
+                    var $container = $("#newMatches");
+                    var getNewMatches = function () {
+                        $.ajax({
+                            url: "homeStatistics",
+                            data: {type: 'newMatches'},
+                            type: "POST",
+                            success: function (responseText) {
+                                $container.find("li").remove();
+                                var response = JSON.parse(responseText);
+
+                                /*
+                                Writing each collapsible into #newMatches
+                                 */
+                                $.each(response, function (i, item) {
+                                    console.log(response[i].title);
+                                    var header = '<div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>' + response[i].title + ':' + '</strong></span>' +  response[i].firstTeam + ' - ' + response[i].secondTeam + '</div>'
+                                    var body = '<div class="collapsible-body"> <table class="centered">'
+                                    var thead = '<thead> <tr> <th>1</th> <th>X</th> <th>2</th> <th>1X</th> <th>X2</th> <th>12</th> </tr> </thead>';
+                                    var coeff = '<tbody><tr> <td>' + response[i].c1 + '</td> <td>' + response[i].cX + '</td> <td>' + response[i].c2 + '</td> <td>' + response[i].c1X + '</td> <td>' + response[i].cX2 + '</td> <td>' + response[i].c12 + '</td> </tr></tbody>';
+                                    var full = header + body + thead + coeff + '</table></div>';
+
+                                    $('<li>').html(full).appendTo('#newMatches');
+                                });
+                                //expandAll();
+                            }
+
+                        });
+                    }
+                    getNewMatches();
+                    setInterval(getNewMatches, 20000);
+                });
+            })(jQuery);
+
+            //Open all collapsible
+            function expandAll(){
+                $(".collapsible-header").addClass("active");
+                $(".collapsible").collapsible({accordion: false});
+            }
+        </script>
     </head>
 
     <body>
@@ -128,91 +213,8 @@
                         <h4 class="center-align" style="margin-bottom: 10px;">Upcoming Matches</h4>
                         <div class="row">
                             <div class="col s12 m10 offset-m1 l8 offset-l2">
-                                <ul class="collapsible popout" data-collapsible="expandable">
-                                    <li>
-                                        <div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>1/8 of World Cup:</strong></span> Brazil - Belgium</div>
-                                        <div class="collapsible-body">
-                                            <table class="centered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>X</th>
-                                                        <th>2</th>
-                                                        <th>1X</th>
-                                                        <th>X2</th>
-                                                        <th>12</th>
-                                                    </tr>
-                                                </thead>
+                                <ul class="collapsible popout" data-collapsible="expandable" id="newMatches">
 
-                                                <tbody>
-                                                    <tr>
-                                                        <td>3.51</td>
-                                                        <td>1.32</td>
-                                                        <td>1.67</td>
-                                                        <td>1.15</td>
-                                                        <td>1.17</td>
-                                                        <td>1.27</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>English Premiere League:</strong></span> Manchester UTD - Arsenal</div>
-                                        <div class="collapsible-body">
-                                            <table class="centered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>X</th>
-                                                        <th>2</th>
-                                                        <th>1X</th>
-                                                        <th>X2</th>
-                                                        <th>12</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>3.51</td>
-                                                        <td>1.32</td>
-                                                        <td>1.67</td>
-                                                        <td>1.15</td>
-                                                        <td>1.17</td>
-                                                        <td>1.27</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>1/8 of Euro:</strong></span> France - Spain</div>
-                                        <div class="collapsible-body">
-                                            <table class="centered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>1</th>
-                                                        <th>X</th>
-                                                        <th>2</th>
-                                                        <th>1X</th>
-                                                        <th>X2</th>
-                                                        <th>12</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>3.51</td>
-                                                        <td>1.32</td>
-                                                        <td>1.67</td>
-                                                        <td>1.15</td>
-                                                        <td>1.17</td>
-                                                        <td>1.27</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -237,22 +239,8 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
-                                        <tr>
-                                            <td>bashmak125</td>
-                                            <td>$485.45</td>
-                                            <td class="green-text">+ $49.87</td>
-                                        </tr>
-                                        <tr>
-                                            <td>baton17</td>
-                                            <td>$395.15</td>
-                                            <td class="red-text">- $15.13</td>
-                                        </tr>
-                                        <tr>
-                                            <td>gosha</td>
-                                            <td>$315.42</td>
-                                            <td class="green-text">+ $19.12</td>
-                                        </tr>
+                                    <tbody id="topUsers">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -418,7 +406,7 @@
         </div>
 
         <!-- Scripts -->
-        <script src="static/js/jquery-2.1.1.min.js"></script>
+
         <script src="static/js/materialize.min.js"></script>
         <script src="static/js/init.js"></script>
 
