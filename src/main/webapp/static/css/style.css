@@ -190,7 +190,7 @@ h6 {
     }
 }
 
-#home-mobile a {
+#sidebar-nav a {
     color: #fff;
 }
 
@@ -234,4 +234,24 @@ h6 {
     background-color: #6E6E6E;
     background-position: center -50px;
     cursor: pointer;
+}
+
+#home footer.page-footer {
+    padding-top: 20px;
+}
+
+.dropdown-content.sidebar li > a, .dropdown-content.sidebar li > span {
+    line-height: 35px;
+}
+
+.dropdown-content.sidebar li > a {
+    padding: 14px 16px;
+}
+
+.dropdown-content.sidebar li > a > i {
+    height: auto;
+}
+
+#sidebar-nav li a.logo {
+    padding-top: 6px;
 }
