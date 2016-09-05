@@ -22,7 +22,21 @@ import java.util.List;
 public class ResultCoefficientTransformer implements Transformer<ResultCoefficient>{
     @Override
     public ResultCoefficient getOne(ResultSet rs) throws SQLException {
-        return null;
+        ResultCoefficient resultCoefficient  = new ResultCoefficient();
+        while (rs.next()) {
+            resultCoefficient.setId(rs.getInt("id"));
+
+            Game game = new Game();
+            GameDAO gameDAO = new GameDAO();
+            game = gameDAO.getGamesById(rs.getInt("game_id"));
+
+            resultCoefficient.setGame(game);
+            resultCoefficient.setResult(Result.valueOf(rs.getString("result")));
+            resultCoefficient.setCoefficient(rs.getDouble("coefficient"));
+
+        }
+        return resultCoefficient;
+
     }
 
     @Override
