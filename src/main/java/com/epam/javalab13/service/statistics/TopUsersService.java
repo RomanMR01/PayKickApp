@@ -22,7 +22,7 @@ public class TopUsersService {
      * Gets top five users by them awards int JSON format
      * @return json the String represents of JSON array
      */
-    public String getFirst5TopUsers(){
+    public String getTopTenUsers(){
 
         /*
         Getting all total bets
@@ -156,10 +156,10 @@ public class TopUsersService {
 
 
         /*
-        Getting only first five top users if in topUsers are more
+        Getting only first ten top users if in topUsers are more
          */
-        if(topUsers.size()>5){
-            topUsers = topUsers.subList(0,5);
+        if(topUsers.size()>10){
+            topUsers = topUsers.subList(0,10);
         }
 
         /*
