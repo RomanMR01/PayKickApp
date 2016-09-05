@@ -31,11 +31,45 @@
     <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>ChartServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.ChartServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>ChartServlet</servlet-name>
+    <url-pattern>/chart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.LogoutServlet</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>HomePageStatisticsServlet</servlet-name>
     <servlet-class>com.epam.javalab13.servlet.statitstics.HomePageStatisticsServlet</servlet-class>

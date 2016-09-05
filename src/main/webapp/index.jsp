@@ -350,9 +350,10 @@
                             </div>
                         </div>
                         <div id="home-submit" class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit">Log In</button>
+                            <button id="loginBtn" class="btn waves-effect waves-light">Log In</button>
                             <p class="message center-align">Still Not Registered? <a><span class="orange-text">Create an account!</span></a></p>
                         </div>
+                        <span id='messageLogin'></span>
                     </form>
 
                     <form id="home-registration-form" class="col s12">
@@ -397,7 +398,7 @@
                             </div>
                         </div>
                         <div id="home-submit" class="center-align">
-                            <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
+                            <button id="register" class="btn waves-effect waves-light">Sign Up</button>
                             <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a></p>
                         </div>
                     </form>
@@ -409,6 +410,7 @@
 
         <script src="static/js/materialize.min.js"></script>
         <script src="static/js/init.js"></script>
+        <script src="static/js/login.js"></script>
 
         <script src="static/js/layerslider/greensock.js" type="text/javascript"></script>
         <script src="static/js/layerslider/layerslider.transitions.js" type="text/javascript"></script>
