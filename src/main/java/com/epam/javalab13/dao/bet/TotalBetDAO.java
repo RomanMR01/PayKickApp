@@ -48,7 +48,7 @@ public class TotalBetDAO {
             st.setString(2, totalBet.getType().toString());
             st.setInt(3, totalBet.getAmount());
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY/MM/dd HH:MM:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
             String date = simpleDateFormat.format(totalBet.getDate());
             st.setString(4, date);
 
