@@ -36,8 +36,6 @@ public class TopUsersService {
             return "";
         }
 
-
-        System.out.println(allBets.size());
         /*
         Getting only clients
          */
@@ -50,9 +48,6 @@ public class TopUsersService {
         }
 
         allBets = onlyClients;
-
-        System.out.println(allBets.size());
-
 
         /*
         Getting all unique users

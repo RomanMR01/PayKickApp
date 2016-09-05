@@ -57,15 +57,19 @@
                                 Writing each table row element into #topUsers table
                                  */
                                 $.each(response, function (i, item) {
-                                    var lastWin = response[i].lastBetSum;
-                                    var td = "";
-                                    if(lastWin>0){
-                                        td = '<td class="green-text">'  + "+" + lastWin  + " $"+ '</td>';
+                                    var lastBet = Number(response[i].lastBetSum);
+                                    var award = Number(response[i].awardSum);
 
+                                    lastBet = lastBet.toFixed(2);
+                                    award = award.toFixed(2);
+                                    var td = "";
+                                    if(lastBet>0){
+                                        td = '<td class="green-text">'  + "+ $" + lastBet + '</td>';
                                     }else{
-                                        td = '<td class="red-text">'  + lastWin + " $" + '</td>';
+                                        lastBet = -lastBet;
+                                        td = '<td class="red-text">'  + '- $' + lastBet + '</td>';
                                     }
-                                    $('<tr>').html("<td>" + response[i].login + "</td><td>" + response[i].awardSum + "</td>" + td).appendTo('#topUsers');
+                                    $('<tr>').html("<td>" + response[i].login + "</td><td>" + award + "</td>" + td).appendTo('#topUsers');
                                 });
                             }
 
