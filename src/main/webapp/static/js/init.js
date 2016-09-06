@@ -4,6 +4,10 @@ $(document).ready(function () {
 
     $(".dropdown-button").dropdown();
 
+    $(document).ready(function () {
+        $('ul.tabs').tabs();
+    });
+
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal

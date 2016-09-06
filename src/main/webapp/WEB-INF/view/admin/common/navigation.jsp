@@ -29,7 +29,7 @@
                 <ul class="right hide-on-med-and-down">
 
                     <li><a class="dropdown-button" data-activates="userDropdown">Hello, Arsen Nikitenko<i class="material-icons right orange-text">perm_identity</i></a></li>
-                    <li><a href="" class="white-text">HOME<i class="material-icons right red-text text-accent-3">store</i></a></li>
+                    <li><a href="" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                     <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                 </ul>
                 <ul class="side-nav fixed grey darken-4" id="sidebar-nav">
@@ -43,7 +43,7 @@
                     <div class="hide-on-large-only">
                         <hr>
                         <li><a class="dropdown-button" data-activates="userSideDropdown">Arsen Nikitenko<i class="material-icons right orange-text">perm_identity</i></a></li>
-                        <li><a href="" class="white-text">HOME<i class="material-icons right red-text text-accent-3">store</i></a></li>
+                        <li><a href="" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                         <li><a class="dropdown-button" data-activates="languageSideDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                     </div>
                 </ul>
