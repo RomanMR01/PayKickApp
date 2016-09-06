@@ -1,4 +1,4 @@
-//Method for getting upcoming matches with ajax
+// /Method for getting upcoming matches with ajax
 (function ($) {
     $(document).ready(function () {
         var $container = $("#newMatches");
@@ -15,7 +15,6 @@
                      Writing each collapsible into #newMatches
                      */
                     $.each(response, function (i, item) {
-                        console.log(response[i].title);
                         var header = '<div class="collapsible-header center-align"><i class="material-icons">reorder</i><span class="orange-text"><strong>' + response[i].title + ':' + '</strong></span>' +  response[i].firstTeam + ' - ' + response[i].secondTeam + '</div>'
                         var body = '<div class="collapsible-body"> <table class="centered">'
                         var thead = '<thead> <tr> <th>1</th> <th>X</th> <th>2</th> <th>1X</th> <th>X2</th> <th>12</th> </tr> </thead>';

@@ -37,7 +37,7 @@
 
     <!-- Script for updating top users and upcoming matches with AJAX-->
     <script src="static/js/top-users.js"></script>
-    <script src="static/js/upcoming-matches.js.js"></script>
+    <script src="static/js/upcoming-matches.js"></script>
 </head>
 
 <body>
