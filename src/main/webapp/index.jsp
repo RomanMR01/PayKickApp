@@ -348,8 +348,8 @@
                     <button id="loginBtn" class="btn waves-effect waves-light">Log In</button>
                     <p class="message center-align">Still Not Registered? <a><span class="orange-text">Create an account!</span></a>
                     </p>
+                    <span class="center-align red-text" id="messageLogin"></span>
                 </div>
-                <span id='messageLogin'></span>
             </form>
 
             <form id="home-registration-form" class="col s12">
@@ -397,8 +397,8 @@
                     <button id="register" class="btn waves-effect waves-light">Sign Up</button>
                     <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a>
                     </p>
+                    <span class="center-align red-text" id="messageRegistration"></span>
                 </div>
-                <span id='messageRegistration'></span>
             </form>
         </div>
     </div>
@@ -479,57 +479,6 @@
         </ol>
     </div>
 </div>
-
-<!--
-Main terms and points
-•	Client (bettor) – a person who makes a bet with the Betting company.
-•	Wager – agreement between the Client and the Betting company where the loser must fulfill his obligations according to the rules set by the Betting company. The bets are accepted in accordance to the rules and odds made by the Betting company.
-•	Stake – the amount used for betting.
-•	Outcome – the result on which the bet has been placed.
-•	Odds to win – the quotation of the Betting company for outcomes of different events
-•	Service KickPay (hereinafter Service) – our bookmaker network service model.
-General terms
-1.	The Service will accept bets on sport events (hereinafter - Events). All stakes are accepted according to the current rules and the bettor must be familiar with all rules and must agree with them.
-2.	The Service can change odds, rules and payout methods without personal notice to the clients. The bets placed before the public notice are accepted according to the terms and rules valid before the notice, the bets placed after the public notice are accepted according to the terms and rules valid after the public notice.
-3.	Registration and beting is allowed only for persons that have minimum age of 18. The clients are responsible for checking that internet beting is allowed in the countries where they live. The clients are responsible for giving information about winnings and losses to their local authorities if necessary.
-4.	The Service trusts completely in the information given by the Client during registration. The Betting company accepts no responsiblity if the Client provides the Service with wrong information.
-5.	To be responsible to prevent cheating and other conflicts the betting company can demand the client to show personal identification (documents, passport) in order to verify the information the client has presented during registration. The Client agrees on presenting all necessary documentation during registration if demanded by the Betting company.
-6.	The payouts are made according to the appropriate rules.
-7.	The Client accepts complete responsibility for keeping his/her password and account information secret. The Service guarantees that the information concerning the Client is kept secret and the Betting company takes no responsibility if the information is spread to a third part.
-8.	All events confirmed with the login/email and the betting account holder`s password are valid and official. The only restriction is the saldo on the betting account. If the Client believes that the given information is lost he/she can contact the Service administrator and request for a change of the current password.
-9.	The Service does not accept any responsibility on damage or losses caused by use of the site or by the contents of the site
-10.	The same applies to the use or misuse of the site contents by any person, inability to be connected to the site, inability to use the site, delays in site functioning or data transmitting, failures in communication lines or to any mistakes, typing errors or misses in the maintanence of the site.
-11.	If there are differences in rules and regulations between the Ukrainian language site or the site in any other language, the rules in the Ukrainian language will apply.
-12.	The bets are accepted until the event starts. The bets that are placed after the start of the event are not valid and the stakes will be refunded. These bets are removed from multibets.
-13.	The date and the time for the event on the list is informative only. A wrong date is no reason to refund the bet if the bet has been placed before the start of the event. If there is a wrong time on the list, the correct time will be the time on official documents (sites used by the betting company) and the realistic starting time of the event.
-14.	The Service accepts no responsibilty for correct spelling of surnames, team names and names of places for the event.
-15.	The Service reserves the right to refuse and cancel bets caused by mistakes by employees or by the computer programmes (mistakes in odds and others) and other reasons causing incorrect bets. The management of the Service reserve the right to refuse and cancel all bets placed with incorrect odds or placed after the event has started.
-16.	The bets cannot be changed or cancelled after the Client has placed the bet and received a verification.
-17.	A connection failure and other techinal mistakes in communication are no reasons to change or cancel a bet if the bet has been registered in the server.
-18.	Loss of password is no reason to change or cancel a bet or to cancel a payout request.
-19.	The Client cannot give a permission to anybody else to use his/her betting account.
-20.	The Service reserves the right to refuse from accepting bets without written or verbal notice in advance regardless of the Client.
-21.	The Client must check that his/her betting slip is filled in according to the rules. If it has been filled in uncorrectly regardless of why and who is guilty for uncorrect filling, the Service reserves the right to refund the stakes and cancel the bet.
-The complaints will be accepted in written form 10 days after the result of the event has been registered. After 10 days no complaints are accepted. In the questionable situations, which do not have precedents, the final solution is taken by the Service.
-Types of bets
-The Service offers following types of bets:
-•	Singlebet – betting on a single event.
-•	Multibet – betting on many events not dependable on each other;
-Win on multinbet is the sum of stakes multiplied by multibet odd that is  obtained by multiplying the result odds of all events.The Client can include any events in multibet. Multibet is counted as winners if all events in multibet are predicted correctly. If at least one event is not predicted correctly, the multibet is losing.
-The bets on football are determined by the result of the match in regular playing time
-The Service allows next events:
-1)	Final score of the game
-2)	Game result – you can bet on each game result:
-•	First team will win (“1”)
-•	Second team will win (“2”)
-•	Draw (“X”)
-•	First team will win or draw (“1X”)
-•	Second team will win or draw (“X2”)
-•	First or Second team will win (“12”)
-3)	Final total score (sum of goals made by both teams during game)
-4)	Number of goals made by a footballer during game
--->
-
 
 <!-- Terms Modal Structure -->
 <div id="terms-modal" class="modal">
