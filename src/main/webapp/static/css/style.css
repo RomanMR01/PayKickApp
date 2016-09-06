@@ -125,16 +125,16 @@ a:visited {
     border-bottom: 2px solid #FF0019 !important;
 }
 
-.top-header .top-navigation .top-nav li a.green {
+.top-header .top-navigation .top-nav li a.my-green {
     color: #2ED01E !important;
 }
 
-.top-header .top-navigation .top-nav li a.green:hover {
+.top-header .top-navigation .top-nav li a.my-green:hover {
     color: #2ED01E !important;
     border-bottom: 2px solid #2ED01E !important;
 }
 
-.top-header .top-navigation .top-nav li a.blue {
+.top-header .top-navigation .top-nav li a.my-blue {
     color: #FF0000 !important;
 }
 
