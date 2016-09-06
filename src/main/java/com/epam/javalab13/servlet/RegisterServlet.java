@@ -39,15 +39,13 @@ public class RegisterServlet extends HttpServlet {
         email = request.getParameter("email");
         login = request.getParameter("login");
         password = request.getParameter("password");
-        gender = request.getParameter("sex");
+        gender = request.getParameter("gender");
         age = Integer.valueOf(request.getParameter("age"));
 
         response.setContentType("text/html;charset=UTF-8");
 
         UserService service = new UserService();
 
-        System.out.println("reg:"  + login);
-        System.out.println("email:"  + email);
         try {
             if (service.getUserByLogin(login)!=null) {
                 System.out.println("login is");
