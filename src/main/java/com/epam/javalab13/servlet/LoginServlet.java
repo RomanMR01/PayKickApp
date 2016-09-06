@@ -40,6 +40,10 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             if(user.getPassword().equals(PasswordHash.SHA_256(password))) {
+                if(user.isBanned()){
+                    resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are banned!\"}");
+                    return;
+                }
                 session.setAttribute("login", login);
                 if ("true".equals(rememberMe)) {
                     Cookie cookieLogin = new Cookie("userLogin", login);
