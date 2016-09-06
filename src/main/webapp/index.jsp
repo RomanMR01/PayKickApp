@@ -67,9 +67,19 @@
                                         td = '<td class="green-text">'  + "+ $" + lastBet + '</td>';
                                     }else{
                                         lastBet = -lastBet;
+                                        lastBet = lastBet.toFixed(2);
                                         td = '<td class="red-text">'  + '- $' + lastBet + '</td>';
                                     }
-                                    $('<tr>').html("<td>" + response[i].login + "</td><td>" + award + "</td>" + td).appendTo('#topUsers');
+
+                                    var td2 = "";
+                                    if(award>0){
+                                        td2 = '<td class="black-text">'  + "+ $" + award + '</td>';
+                                    }else{
+                                        award = -award;
+                                        award = award.toFixed(2);
+                                        td2 = '<td class="black-text">'  + '- $' + award + '</td>';
+                                    }
+                                    $('<tr>').html("<td>" + response[i].login + "</td>" + td2 + td).appendTo('#topUsers');
                                 });
                             }
 
