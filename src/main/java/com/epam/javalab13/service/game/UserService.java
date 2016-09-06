@@ -38,6 +38,63 @@ public class UserService {
         return user;
     }
 
+    public List<User> getAllUsersInRange(int startIndex,int endIndex){
+        List<User> allUsers = null;
+        try {
+            allUsers = userDAO.getAllUsersInRange(UserDAO.GetType.ALL,startIndex,endIndex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return allUsers;
+    }
+
+    public List<User> getBossesInRange(int startIndex,int endIndex){
+        List<User> bosses = null;
+        try {
+            bosses = userDAO.getAllUsersInRange(UserDAO.GetType.BOSS,startIndex,endIndex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bosses;
+    }
+
+    public List<User> getAdminsInRange(int startIndex,int endIndex){
+        List<User> admins = null;
+        try {
+            admins = userDAO.getAllUsersInRange(UserDAO.GetType.ADMIN,startIndex,endIndex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return admins;
+    }
+
+    public List<User> getBookmakersInRange(int startIndex,int endIndex){
+        List<User> bookmakers = null;
+        try {
+            bookmakers = userDAO.getAllUsersInRange(UserDAO.GetType.BOOKMAKER,startIndex,endIndex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bookmakers;
+    }
+
+    public List<User> getClientsInRange(int startIndex,int endIndex){
+        List<User> clients = null;
+        try {
+            clients = userDAO.getAllUsersInRange(UserDAO.GetType.CLIENT,startIndex,endIndex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return clients;
+    }
+
+
+
     public String getUserLanguage(String login){
         User u = new User();
         u.setLogin(login);
