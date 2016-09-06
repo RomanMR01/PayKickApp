@@ -4,20 +4,26 @@ $('#loginBtn').on('click', function (e) {
     var password = $('#password').val();
     var messageLogin = $("#messageLogin");
     var rememberMe = document.getElementById("remember-me").checked;
-    console.log("+log");
+
     if (login && password) {
         $.ajax({
             type: "POST",
             url: "login",
             data: {"login": login, "password": password,"rememberMe":rememberMe},
             success: function (data) {
-                if (data == 'success') {
-                    messageLogin.text(" ");
-                    $(location).attr('href', '/home');
-                    console.log("suc")
+                var response = JSON.parse(data);
+
+                var status = response.status;
+                var url = response.url;
+                var message = response.message;
+
+                if (status == 'OK') {
+                    messageLogin.text(message);
+                    $(location).attr('href', '/PayKick/' + url);
+                    console.log("success")
                 } else {
                     console.log("fail")
-                    messageLogin.text(data);
+                    messageLogin.text(message);
                 }
             }
         });
@@ -33,7 +39,7 @@ $('#register').on('click', function (e) {
     var age = $('#age').val();
     var passwordToRegister = $('#password-reg').val();
     var emailToRegister = $('#email').val();
-    var message = $("#message");
+    var messageReg = $("#messageRegistration");
     if (nameToRegister && passwordToRegister && emailToRegister) {
         $.ajax({
             type: "POST",
@@ -41,10 +47,10 @@ $('#register').on('click', function (e) {
             data: {"name": nameToRegister, "password": passwordToRegister, "email": emailToRegister, "surname": surnameToRegister, "login": loginToRegister, "sex":male, "age":age },
             success: function (data) {
                 if (data == 'True') {
-                    message.text(" ");
-                    $(location).attr('href', '/home');
+                    messageReg.text("Yor registered!");
+                    $(location).attr('href', '/PayKick/home');
                 } else {
-                    message.text(data);
+                    messageReg.text(data);
                 }
             }
         });

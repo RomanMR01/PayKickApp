@@ -21,22 +21,27 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         logger.info("LoginServlet homeStatistics");
+
         login = req.getParameter("login");
         password = req.getParameter("password");
         rememberMe = req.getParameter("rememberMe");
 
-
         resp.setContentType("text/html;charset=UTF-8");
-        try {
-            UserService service = new UserService();
-            user = service.findUserByLoginAndPassword(login, PasswordHash.SHA_256(password));
-            if (user != null && user.getEmail() != null) {
-                //here need to put all data that is needed about user
-                HttpSession session = req.getSession();
+
+        if(login==null || password==null){
+            resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are doing wrong things!\"}");
+            return;
+        }
+
+        UserService service = new UserService();
+        user = service.getUserByLogin(login);
+
+        if (user != null) {
+            if(user.getPassword().equals(PasswordHash.SHA_256(password))) {
                 session.setAttribute("login", login);
-                //session.setAttribute("role", user.getRole());
-                if("true".equals(rememberMe)) {
+                if ("true".equals(rememberMe)) {
                     Cookie cookieLogin = new Cookie("userLogin", login);
                     Cookie cookiePassword = new Cookie("userPassword", password);
 
@@ -46,12 +51,13 @@ public class LoginServlet extends HttpServlet {
                     resp.addCookie(cookieLogin);
                     resp.addCookie(cookiePassword);
                 }
-                resp.getWriter().write("success");
-                return;
+                String role = user.getRole().toString().toLowerCase();
+                resp.getWriter().write("{ \"status\": \"OK\", \"url\": \"" + role + "\", \"message\":\"Welcome!\"}");
+            }else{
+                resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"Incorrect password!\"}");
             }
-        } catch (Exception e) {
-            logger.warn("LoginServlet error: ", e);
+        }else{
+            resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"No such user!\"}");
         }
-        resp.getWriter().write("Login failed");
     }
 }

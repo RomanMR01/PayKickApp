@@ -37,26 +37,35 @@ public class RegisterServlet extends HttpServlet {
         name = request.getParameter("name");
         surName = request.getParameter("surname");
         email = request.getParameter("email");
-        login = request.getParameter("name");
+        login = request.getParameter("login");
         password = request.getParameter("password");
         gender = request.getParameter("sex");
         age = Integer.valueOf(request.getParameter("age"));
 
         response.setContentType("text/html;charset=UTF-8");
 
+        UserService service = new UserService();
+
+        System.out.println("reg:"  + login);
+        System.out.println("email:"  + email);
         try {
-            //todo check unique login value, need to finish User Service before
-            /*if (UserService.findUserByLogin(login)) {
-                //login already exist
-                logger.info("The login is already used");
-                response.getWriter().write("The login is already used");
+            if (service.getUserByLogin(login)!=null) {
+                System.out.println("login is");
+                response.getWriter().write("The login is already used!");
                 return;
-            }*/
+            }
+            if(service.getAllEmails().contains(email)){
+                System.out.println("email is");
+                response.getWriter().write("The email address is already used!");
+                return;
+            }
 
         } catch (Exception e) {
             logger.warn("RegisterServlet error: ", e);
             response.getWriter().write("Failed to register");
         }
+
+
 
         try {
             String encryptedPassword = "";
@@ -83,7 +92,7 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("role", user.getRole());
             response.getWriter().write("True");
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             logger.warn("Exception while inserting user: ", e);
             response.getWriter().write("Failed to register");
         }

@@ -398,6 +398,7 @@
                     <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a>
                     </p>
                 </div>
+                <span id='messageRegistration'></span>
             </form>
         </div>
     </div>
