@@ -332,26 +332,4 @@ public class UserDAO{
 
 		return users;
 	}
-
-	public User findUserByLoginAndPassword(String login, String password) throws SQLException {
-		logger.info("DAO findUserByLoginAndPassword entry");
-		Connection connection=ConnectionPool.getConnection();
-		//TODO what fields do we need to know about logged in user?
-		PreparedStatement preparedStatement = connection.prepareStatement("SELECT email FROM user WHERE login LIKE ? AND password LIKE ?");
-		preparedStatement.setString(1, login);
-		preparedStatement.setString(2, password);
-		ResultSet resultSet = preparedStatement.executeQuery();
-		User user = new User();
-
-		if (resultSet.next()) {
-			user.setLogin(login);
-			user.setPassword(password);
-			user.setEmail(resultSet.getString("email"));
-		}
-
-		preparedStatement.close();
-		resultSet.close();
-		logger.info("DAO findUserByLoginAndPassword exit");
-		return user;
-	}
 }
