@@ -6,6 +6,8 @@ import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Olga on 05.09.2016.
@@ -98,5 +100,23 @@ public class UserService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<String> getAllEmails(){
+        List<String> emails = new ArrayList<>();
+
+        List<User> allUsers = null;
+        try {
+             allUsers = userDAO.getAllUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        for(User user:allUsers){
+            emails.add(user.getEmail());
+        }
+
+        return emails;
     }
 }
