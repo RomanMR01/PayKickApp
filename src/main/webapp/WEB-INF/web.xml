@@ -26,6 +26,18 @@
     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>AccessFilter</filter-name>
+    <filter-class>com.epam.javalab13.filter.AccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AccessFilter</filter-name>
+    <url-pattern>/admin</url-pattern>
+    <url-pattern>/boss</url-pattern>
+    <url-pattern>/client</url-pattern>
+    <url-pattern>/bookmaker</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>

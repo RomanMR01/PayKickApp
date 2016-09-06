@@ -18,4 +18,19 @@ public class UserService {
     public User findUserByLoginAndPassword(String login, String password) throws SQLException {
         return userDAO.findUserByLoginAndPassword(login, password);
     }
+
+    public User getUserByLogin(String login){
+        User u = new User();
+        u.setLogin(login);
+
+        User user = null;
+
+        try {
+            user = userDAO.getUser(u, UserDAO.GetOneUserType.LOGIN);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
 }
