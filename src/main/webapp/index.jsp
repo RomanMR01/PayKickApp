@@ -344,7 +344,7 @@
                         </p>
                     </div>
                 </div>
-                <div id="home-submit" class="center-align">
+                <div id="home-submit-login" class="center-align">
                     <button id="loginBtn" class="btn waves-effect waves-light">Log In</button>
                     <p class="message center-align">Still Not Registered? <a><span class="orange-text">Create an account!</span></a>
                     </p>
@@ -393,7 +393,7 @@
                         <label for="password-reg">Password</label>
                     </div>
                 </div>
-                <div id="home-submit" class="center-align">
+                <div id="home-submit-reg" class="center-align">
                     <button id="register" class="btn waves-effect waves-light">Sign Up</button>
                     <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a>
                     </p>

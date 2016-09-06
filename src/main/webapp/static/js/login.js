@@ -47,7 +47,7 @@ $('#register').on('click', function (e) {
             data: {"name": nameToRegister, "password": passwordToRegister, "email": emailToRegister, "surname": surnameToRegister, "login": loginToRegister, "sex":male, "age":age },
             success: function (data) {
                 if (data == 'True') {
-                    messageReg.text("Yor registered!");
+                    messageReg.text("You are registered!");
                     $(location).attr('href', '/PayKick/home');
                 } else {
                     messageReg.text(data);

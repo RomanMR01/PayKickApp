@@ -204,11 +204,11 @@ h6 {
     color: #fff;
 }
 
-#home-submit {
+#home-submit-login, #home-submit-reg {
     margin-top: 0;
 }
 
-#home-submit button {
+#home-submit-login button,  #home-submit-reg button {
     padding: 0 14%;
 }
 
