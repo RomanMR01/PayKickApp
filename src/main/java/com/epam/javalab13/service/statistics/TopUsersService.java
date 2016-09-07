@@ -1,6 +1,7 @@
 package com.epam.javalab13.service.statistics;
 
 import com.epam.javalab13.dao.bet.TotalBetDAO;
+import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.statistics.TopUser;
@@ -35,6 +36,18 @@ public class TopUsersService {
             return "";
         }
 
+        /*
+        Getting only clients
+         */
+        List<TotalBet> onlyClients = new ArrayList<>();
+
+        for(TotalBet totalBet:allBets){
+            if(Role.CLIENT == totalBet.getUser().getRole()){
+                onlyClients.add(totalBet);
+            }
+        }
+
+        allBets = onlyClients;
 
         /*
         Getting all unique users

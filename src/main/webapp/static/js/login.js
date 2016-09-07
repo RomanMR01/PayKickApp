@@ -3,20 +3,27 @@ $('#loginBtn').on('click', function (e) {
     var login = $('#login').val();
     var password = $('#password').val();
     var messageLogin = $("#messageLogin");
-    console.log("+log");
-    if (login && password) {
+    var rememberMe = document.getElementById("remember-me").checked;
+
+    if (validateLogin(login,messageLogin) && validatePassword(password,messageLogin)) {
         $.ajax({
             type: "POST",
             url: "login",
-            data: {"login": login, "password": password},
+            data: {"login": login, "password": password, "rememberMe": rememberMe},
             success: function (data) {
-                if (data == 'success') {
-                    messageLogin.text(" ");
-                    $(location).attr('href', '/home');
-                    console.log("suc")
+                var response = JSON.parse(data);
+
+                var status = response.status;
+                var url = response.url;
+                var message = response.message;
+
+                if (status == 'OK') {
+                    messageLogin.text(message);
+                    $(location).attr('href', '/PayKick/' + url);
+                    console.log("success")
                 } else {
                     console.log("fail")
-                    messageLogin.text(data);
+                    messageLogin.text(message);
                 }
             }
         });
@@ -28,25 +35,37 @@ $('#register').on('click', function (e) {
     var nameToRegister = $('#fname').val();
     var surnameToRegister = $('#surname').val();
     var loginToRegister = $('#login-reg').val();
-    var male = $('input[name="sex"]:checked').val();
+    var gender = $('input[name="gender"]:checked').val();
     var age = $('#age').val();
     var passwordToRegister = $('#password-reg').val();
     var emailToRegister = $('#email').val();
-    var message = $("#message");
-    if (nameToRegister && passwordToRegister && emailToRegister) {
+    var messageReg = $("#messageRegistration");
+
+
+    if (validateName(nameToRegister, messageReg) && validateSurname(surnameToRegister, messageReg) && validateAge(age, messageReg)
+        && validateEmail(emailToRegister,messageReg) && validateLogin(loginToRegister,messageReg) && validatePassword(passwordToRegister,messageReg)) {
         $.ajax({
             type: "POST",
             url: "register",
-            data: {"name": nameToRegister, "password": passwordToRegister, "email": emailToRegister, "surname": surnameToRegister, "login": loginToRegister, "sex":male, "age":age },
+            data: {
+                "name": nameToRegister,
+                "password": passwordToRegister,
+                "email": emailToRegister,
+                "surname": surnameToRegister,
+                "login": loginToRegister,
+                "gender": gender,
+                "age": age
+            },
             success: function (data) {
                 if (data == 'True') {
-                    message.text(" ");
-                    $(location).attr('href', '/home');
+                    messageReg.text("You are registered!");
+                    $(location).attr('href', '/PayKick/home');
                 } else {
-                    message.text(data);
+                    messageReg.text(data);
                 }
             }
         });
     }
     e.preventDefault();
 });
+
