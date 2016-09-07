@@ -34,7 +34,7 @@
                 </ul>
                 <ul class="side-nav fixed grey darken-4" id="sidebar-nav">
                     <li>
-                        <a href="" class="center-align logo"><img src="static/img/logo.png" alt="PayKick Logo" width="60" height="54"></a>
+                        <a href="" class="center-align logo"><img src="static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                     </li>
                     <li><a href="">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
                     <li><a href="">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
