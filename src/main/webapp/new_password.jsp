@@ -53,9 +53,7 @@
                                         <button id="new-password-btn"class="btn waves-effect waves-light" type="submit" name="action">Confirm
                                             <i class="material-icons right">lock_outline</i>
                                         </button>
-                                        <br>
                                         <p class="center-align"><a href="home" class="orange-text">Home page!</a></p>
-                                        <br>
                                         <span id="messageNewPass" class="center-align red-text"></span>
                                         <br><br>
                                     </form>

@@ -54,7 +54,16 @@
                                 <br>
                                 <p class="center-align"><a href="home" class="orange-text">Home page</a></p>
                                 <span id="messageRestoreFail" class="center-align red-text"></span>
-                                <span id="messageRestoreOk" class="center-align green-text"></span>
+                                <br><br>
+                            </form>
+                            <form id="email-sent-form" class="col s8 offset-s2 m6 offset-m3 white center-align" style="display: none">
+                                <br><br>
+                                <div class="row">
+                                    <h5 class="center-align">Email sent successfully! Check your mailbox, please!</h5>
+                                </div>
+                                <div class="row">
+                                    <h5><a href="home" class="orange-text">Home page!</a></h5>
+                                </div>
                                 <br><br>
                             </form>
                         </div>

@@ -23,6 +23,8 @@ public class NewPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
+        System.out.println("get session" + session);
+
         System.out.println("new password servlet get:");
 
         Map<String,RestorePassword> restorePasswordMap = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
@@ -96,6 +98,8 @@ public class NewPasswordServlet extends HttpServlet {
         System.out.println("new password servlet post:");
 
         HttpSession session = req.getSession();
+
+        System.out.println("ses user:" + session.getAttribute("restoreUser"));
         if(session!=null){
             System.out.println("session: " + session);
 
@@ -108,8 +112,8 @@ public class NewPasswordServlet extends HttpServlet {
                 if(newPassword!=null){
                     System.out.println("new pass:" + newPassword);
 
+                    user.setPassword(newPassword);
                     user.setPassword(PasswordHash.SHA_256(newPassword));
-                    new UserService().updateUserPassword(user);
 
                     System.out.println("new user" + user);
 
@@ -120,6 +124,13 @@ public class NewPasswordServlet extends HttpServlet {
 
                     restorePasswordMap.remove(restoreUID);
                     getServletContext().setAttribute("restore", restorePasswordMap);
+
+                    if(session.getAttribute("restoreUID")!=null){
+                        session.removeAttribute("restoreUID");
+                    }
+                    if(session.getAttribute("restoreUser")!=null){
+                        session.removeAttribute("restoreUser");
+                    }
 
                     resp.setContentType("text/html;charset=UTF-8");
                     resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Password restored!Go to home page and log in with new password!\"}");
