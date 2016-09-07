@@ -42,17 +42,12 @@
                     <li>
                         <a href="" class="center-align logo"><img src="static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                     </li>
-<<<<<<< HEAD
-                    <li><a href="">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
-                    <li><a href="">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
-                    <li><a href="">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
-                    <li><a href="">STATISTICS<i class="material-icons right green-text text-accent-4">equalizer</i></a></li>
-=======
+
                     <li><a href="matches">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
                     <li><a href="teams">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
                     <li><a href="users">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
                     <li><a href="statistics">STATISTICS<i class="material-icons right green-text text-accent-4">trending_up</i></a></li>
->>>>>>> 7f0e615841aa5aa3b8ca019106930cb2f5e09871
+
                     <div class="hide-on-large-only">
                         <hr>
                         <li><a class="dropdown-button" data-activates="userSideDropdown">${name}<i class="material-icons right orange-text">perm_identity</i></a></li>
