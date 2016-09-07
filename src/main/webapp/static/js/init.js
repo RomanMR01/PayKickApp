@@ -5,6 +5,10 @@ $(document).ready(function () {
     $(".dropdown-button").dropdown();
 
     $(document).ready(function () {
+        $('select').material_select();
+    });
+
+    $(document).ready(function () {
         $('ul.tabs').tabs();
     });
 
@@ -16,6 +20,9 @@ $(document).ready(function () {
         out_duration: 200, // Transition out duration
         starting_top: '4%', // Starting top style attribute
         ending_top: '10%', // Ending top style attribute
+        ready: function () {
+            $('ul.tabs').tabs();
+        }
     });
 
     //scroll on click
