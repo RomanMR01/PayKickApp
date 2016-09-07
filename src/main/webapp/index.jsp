@@ -353,7 +353,7 @@
                     </p>
                     
                     <span class="center-align red-text" id="messageLogin"></span>
-                    <p class="center-align"><a href="" class="orange-text">Forgot a password?</a></p>
+                    <p class="center-align"><a href="" class="orange-text text-darken-3">Forgot a password?</a></p>
                 </div>
             </form>
 
