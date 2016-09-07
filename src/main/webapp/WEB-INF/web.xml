@@ -30,10 +30,21 @@
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>LiqpayCallbackServlet</display-name>
+  	<servlet-name>LiqpayCallbackServlet</servlet-name>
+  	<servlet-class>com.epam.javalab13.servlet.payment.LiqpayCallbackServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LiqpayCallbackServlet</servlet-name>
+  	<url-pattern>/LiqpayCallbackServlet</url-pattern>
   </servlet-mapping>
 
 

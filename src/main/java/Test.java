@@ -1,6 +1,7 @@
 import java.sql.SQLException;
 
 import com.epam.javalab13.dao.game.PlayerCoefficientDAO;
+import com.epam.javalab13.service.PaymentService;
 
 /*
  * Test for checking sql query
@@ -27,9 +28,13 @@ public class Test {
 //		dao.update(game);
 //		System.out.println(game);
 		
-    	PlayerCoefficientDAO dao = new PlayerCoefficientDAO();
-		
-    	System.out.println(dao.findAll());
+//    	PlayerCoefficientDAO dao = new PlayerCoefficientDAO();
+//		
+//    	System.out.println(dao.findAll());
+    	
+    	PaymentService pc = new PaymentService();
+//    	pc.refillAccount("1");
+//    	pc.p2pCredit("1","USD","4731195301524633");
     	
     }
 }
