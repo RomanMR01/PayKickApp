@@ -135,13 +135,13 @@ a:visited {
     border-bottom: 2px solid #FF0019 !important;
 }
 
-.top-header .top-navigation .top-nav li a.my-green {
-    color: #2ED01E !important;
+.top-header .top-navigation .top-nav li a.my-orange {
+    color: #FF9800 !important;
 }
 
-.top-header .top-navigation .top-nav li a.my-green:hover {
-    color: #2ED01E !important;
-    border-bottom: 2px solid #2ED01E !important;
+.top-header .top-navigation .top-nav li a.my-orange:hover {
+    color: #FF9800 !important;
+    border-bottom: 2px solid #FF9800 !important;
 }
 
 .top-header .top-navigation .top-nav li a.my-blue {
@@ -207,6 +207,10 @@ h6 {
     #reg-modal.modal {
         width: 30%;
     }
+}
+
+#login-modal.modal .modal-content {
+    padding-bottom: 1px;
 }
 
 #sidebar-nav a {

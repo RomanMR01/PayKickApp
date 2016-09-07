@@ -258,7 +258,8 @@
                                         <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
                                     </c:when>
                                     <c:otherwise>
-                                        <li><a href="cabinet" class="my-green modal-trigger">My Account</a></li>
+                                        <li><a href="cabinet" class="my-orange">My Account</a></li>
+                                        <li><a href="logout" class="my-red">Log Out</a></li>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -347,9 +348,12 @@
                 </div>
                 <div id="home-submit-login" class="center-align">
                     <button id="loginBtn" class="btn waves-effect waves-light">Log In</button>
-                    <p class="message center-align">Still Not Registered? <a><span class="orange-text">Create an account!</span></a>
+                    <br><br>
+                    <p class="message center-align">Still Not Registered? <a><span class="orange-text"><strong>Create an account!</strong></span></a>
                     </p>
+                    
                     <span class="center-align red-text" id="messageLogin"></span>
+                    <p class="center-align"><a href="" class="orange-text">Forgot a password?</a></p>
                 </div>
             </form>
 
