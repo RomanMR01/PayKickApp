@@ -1,238 +1,102 @@
 package com.epam.javalab13.dao.game;
 
+import com.epam.javalab13.dao.ConnectionPool;
+import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.model.game.PlayerCoefficient;
+import com.epam.javalab13.model.game.ResultCoefficient;
+import com.epam.javalab13.transformer.game.PlayerCoefficientTransformer;
+import com.epam.javalab13.transformer.game.ResultCoefficientTransformer;
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
-import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.model.game.Game;
-import com.epam.javalab13.model.game.Player;
-import com.epam.javalab13.model.game.PlayerCoefficient;
-import com.epam.javalab13.transformer.game.GameTransformer;
-import com.epam.javalab13.transformer.game.PlayerCoefficientTransformer;
-
+/**
+ * Created by Vikno on 9/5/2016.
+ */
 public class PlayerCoefficientDAO {
 
-	private static final Logger logger = Logger.getLogger(PlayerCoefficientDAO.class);
-	private Connection conn;
-	private PreparedStatement ps;
+    private static Logger logger = Logger.getLogger(PlayerCoefficientDAO.class);
 
-	private GameDAO gameDao;
-	private PlayerCoefficientTransformer pcTransformer;
-	private ResultSet rs;
-	private PlayerDAO playerDao;
+    /**
+     * Getting PlayerCoefficient list for one game
+     *
+     * @param game the Game object
+     * @return list of all PlayerCoefficient
+     * @throws SQLException
+     */
+    public List<PlayerCoefficient> getPlayerCoefficientByGame(Game game) throws SQLException {
+        final String SQL = "SELECT * FROM player_coefficient pc WHERE pc.game_id=?";
 
-	public boolean create(PlayerCoefficient pc) {
-		try {
-			conn = ConnectionPool.getConnection();
-			conn.setAutoCommit(false);
-			String sql = "insert into player_coefficient (game_id, player_id, coefficient) values (?,?,?);";
-			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, pc.getGame().getId());
-			ps.setInt(2, pc.getPlayer().getId());
-			ps.setDouble(3, pc.getCoefficient());
-			ps.executeUpdate();
-			conn.commit();
-			rs = ps.getGeneratedKeys();
-			if (rs.next()) {
-				int id = (int) rs.getLong(1);
-				pc.setId(id);
-			}
-			return true;
-		} catch (SQLException e) {
-			logger.error("failed to create PlayerCoefficient " + pc, e);
-			return false;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	
-	public boolean update(PlayerCoefficient pc) {
-		try {
-			conn = ConnectionPool.getConnection();
-			conn.setAutoCommit(false);
-			String sql = "update player_coefficient set game_id=?, player_id=?, coefficient=? where id=?);";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, pc.getGame().getId());
-			ps.setInt(2, pc.getPlayer().getId());
-			ps.setDouble(3, pc.getCoefficient());
-			ps.setInt(4, pc.getId());
-			ps.executeUpdate();
-			conn.commit();
-			return true;
-		} catch (SQLException e) {
-			logger.error("failed to update PlayerCoefficient " + pc, e);
-			return false;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	
-	public PlayerCoefficient findById(int id){
-		conn = ConnectionPool.getConnection();
-		try {
-			String sql = "select * from player_coefficient where id = ?";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			rs = ps.executeQuery();
-			pcTransformer=new PlayerCoefficientTransformer();
-			PlayerCoefficient pc = pcTransformer.getOne(rs);
-			gameDao=new GameDAO();
-			pc.setGame(gameDao.findById(pc.getGame().getId()));
-			playerDao=new PlayerDAO();
-			pc.setPlayer(playerDao.getPlayer(pc.getPlayer(), "id"));
-			return pc;
-		} catch (SQLException e) {
-			logger.error("failed to find game with id "+id+" from database", e);
-			return null;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	
-	public List<PlayerCoefficient> findAll(){
-		conn = ConnectionPool.getConnection();
-		try {
-			String sql = "select * from player_coefficient ;";
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			pcTransformer=new PlayerCoefficientTransformer();
-			List<PlayerCoefficient> pcList = pcTransformer.getAll(rs);
-			for (PlayerCoefficient pc : pcList) {
-				gameDao=new GameDAO();
-				pc.setGame(gameDao.findById(pc.getGame().getId()));
-				playerDao = new PlayerDAO();
-				pc.setPlayer(playerDao.getPlayer(pc.getPlayer(), "id"));
-			}
-			return pcList;
-		} catch (SQLException e) {
-			logger.error("failed to find all PlayerCoefficient from database", e);
-			return null;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	public List<PlayerCoefficient> findAllByGame(Game game){
-		conn = ConnectionPool.getConnection();
-		try {
-			String sql = "select * from player_coefficient where game_id=?;";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, game.getId());
-			rs = ps.executeQuery();
-			pcTransformer=new PlayerCoefficientTransformer();
-			List<PlayerCoefficient> pcList = pcTransformer.getAll(rs);
-			for (PlayerCoefficient pc : pcList) {
-				gameDao=new GameDAO();
-				pc.setGame(gameDao.findById(pc.getGame().getId()));
-				playerDao = new PlayerDAO();
-				pc.setPlayer(playerDao.getPlayer(pc.getPlayer(), "id"));
-			}
-			return pcList;
-		} catch (SQLException e) {
-			logger.error("failed to find all PlayerCoefficient from database", e);
-			return null;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	public List<PlayerCoefficient> findAllByPlayer(Player player){
-		conn = ConnectionPool.getConnection();
-		try {
-			String sql = "select * from player_coefficient where player_id=?;";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, player.getId());
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			pcTransformer=new PlayerCoefficientTransformer();
-			List<PlayerCoefficient> pcList = pcTransformer.getAll(rs);
-			for (PlayerCoefficient pc : pcList) {
-				gameDao=new GameDAO();
-				pc.setGame(gameDao.findById(pc.getGame().getId()));
-				playerDao = new PlayerDAO();
-				pc.setPlayer(playerDao.getPlayer(pc.getPlayer(), "id"));
-			}
-			return pcList;
-		} catch (SQLException e) {
-			logger.error("failed to find all PlayerCoefficient from database", e);
-			return null;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	public List<PlayerCoefficient> findAllCoefficient(double min,double max){
-		conn = ConnectionPool.getConnection();
-		try {
-			String sql = "select * from player_coefficient where coefficient betwen ? and ?;";
-			ps = conn.prepareStatement(sql);
-			ps.setDouble(1, min);
-			ps.setDouble(2, max);
-			rs = ps.executeQuery();
-			pcTransformer=new PlayerCoefficientTransformer();
-			List<PlayerCoefficient> pcList = pcTransformer.getAll(rs);
-			for (PlayerCoefficient pc : pcList) {
-				gameDao=new GameDAO();
-				pc.setGame(gameDao.findById(pc.getGame().getId()));
-				playerDao = new PlayerDAO();
-				pc.setPlayer(playerDao.getPlayer(pc.getPlayer(), "id"));
-			}
-			return pcList;
-		} catch (SQLException e) {
-			logger.error("failed to find all PlayerCoefficient from database", e);
-			return null;
-		} finally {
-			try {
-				conn.close();
-				rs.close();
-				ps.close();
-			} catch (SQLException e) {
-				logger.error("failed to close connection", e);
-			}
-		}
-	}
-	
-	
 
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+
+
+        PlayerCoefficientTransformer playerCoefficientTransformer = new PlayerCoefficientTransformer();
+        List<PlayerCoefficient> playerCoefficients = null;
+
+
+        try {
+            st = conn.prepareStatement(SQL);
+            st.setInt(1,game.getId());
+
+            ResultSet rs = st.executeQuery();
+
+            playerCoefficients = playerCoefficientTransformer.getAll(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return playerCoefficients;
+    }
+
+    /**
+     * Add new PlayerCoefficient into database
+     *
+     * @param playerCoefficient the PlayerCoefficient object
+     * @throws SQLException
+     */
+    public void addPlayerCoefficient(PlayerCoefficient playerCoefficient) throws SQLException {
+        final String SQL = "INSERT INTO player_coefficient(game_id, player_id, coefficient)VALUES(?,?,?)";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setInt(1,playerCoefficient.getGame().getId());
+            st.setInt(2,playerCoefficient.getPlayer().getId());
+            st.setDouble(3,playerCoefficient.getCoefficient());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
+    }
 }

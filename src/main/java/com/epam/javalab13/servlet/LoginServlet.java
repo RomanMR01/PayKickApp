@@ -1,0 +1,67 @@
+package com.epam.javalab13.servlet;
+
+import com.epam.javalab13.model.User;
+import com.epam.javalab13.service.game.UserService;
+import com.epam.javalab13.util.PasswordHash;
+import org.apache.log4j.Logger;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+/**
+ * Created by Olga on 05.09.2016.
+ */
+public class LoginServlet extends HttpServlet {
+    private static Logger logger = Logger.getLogger(LoginServlet.class);
+    private String login;
+    private String password;
+    private String rememberMe;
+    private User user;
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        logger.info("LoginServlet homeStatistics");
+
+        login = req.getParameter("login");
+        password = req.getParameter("password");
+        rememberMe = req.getParameter("rememberMe");
+
+        resp.setContentType("text/html;charset=UTF-8");
+
+        if(login==null || password==null){
+            resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are doing wrong things!\"}");
+            return;
+        }
+
+        UserService service = new UserService();
+        user = service.getUserByLogin(login);
+
+        if (user != null) {
+            if(user.getPassword().equals(PasswordHash.SHA_256(password))) {
+                if(user.isBanned()){
+                    resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are banned!\"}");
+                    return;
+                }
+                session.setAttribute("login", login);
+                if ("true".equals(rememberMe)) {
+                    Cookie cookieLogin = new Cookie("userLogin", login);
+                    Cookie cookiePassword = new Cookie("userPassword", password);
+
+                    cookieLogin.setMaxAge(60 * 60 * 24);
+                    cookiePassword.setMaxAge(60 * 60 * 24);
+
+                    resp.addCookie(cookieLogin);
+                    resp.addCookie(cookiePassword);
+                }
+                String role = user.getRole().toString().toLowerCase();
+                resp.getWriter().write("{ \"status\": \"OK\", \"url\": \"" + role + "\", \"message\":\"Welcome!\"}");
+            }else{
+                resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"Incorrect password!\"}");
+            }
+        }else{
+            resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"No such user!\"}");
+        }
+    }
+}

@@ -1,53 +1,51 @@
 package com.epam.javalab13.transformer.game;
 
+import com.epam.javalab13.dao.game.GameDAO;
+import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.model.game.TotalGoalsCoefficient;
+import com.epam.javalab13.transformer.Transformer;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+/**
+ * Created by Vikno on 9/5/2016.
+ */
+public class TotalGoalsCoefficientTransformer implements Transformer<TotalGoalsCoefficient>{
+    @Override
+    public TotalGoalsCoefficient getOne(ResultSet rs) throws SQLException {
+        TotalGoalsCoefficient totalGoalsCoefficient = new TotalGoalsCoefficient();
 
-import com.epam.javalab13.model.game.TotalGoalsCoefficient;
-import com.epam.javalab13.transformer.Transformer;
+        if(rs.next()){
+            totalGoalsCoefficient.setId(rs.getInt("id"));
 
-public class TotalGoalsCoefficientTransformer implements Transformer<TotalGoalsCoefficient> {
+            GameDAO gameDAO = new GameDAO();
+            Game game = gameDAO.getGamesById(rs.getInt("game_id"));
+            totalGoalsCoefficient.setGame(game);
 
-	private static final Logger logger = Logger.getLogger(TotalGoalsCoefficientTransformer.class);
-	private GameTransformer gameTransformer;
+            totalGoalsCoefficient.setGoalCoefficient(rs.getDouble("goal_coefficient"));
+        }
+        return totalGoalsCoefficient;
+    }
 
-	@Override
-	public TotalGoalsCoefficient getOne(ResultSet rs) {
-		TotalGoalsCoefficient tgc=null;
-		try {
-			if(rs.next()){
-				tgc=createTotalGoalsCoefficient(rs);
-			}
-		} catch (SQLException e) {
-			logger.error("failed to instantiate TotalGoalsCoefficient from ResultSet", e);
-		}
-		return tgc;
-	}
+    @Override
+    public List<TotalGoalsCoefficient> getAll(ResultSet rs) throws SQLException {
+        List<TotalGoalsCoefficient> totalGoalsCoefficients = new ArrayList<>();
 
-	private TotalGoalsCoefficient createTotalGoalsCoefficient(ResultSet rs) throws SQLException {
-		TotalGoalsCoefficient tgc = new TotalGoalsCoefficient();
-		tgc.setId(rs.getInt("id"));
-		tgc.setGoalCoefficient(rs.getDouble("goal_coefficient"));
-		tgc.setGame(gameTransformer.createGame(rs));
-		return tgc;
-	}
-	
-	@Override
-	public List<TotalGoalsCoefficient> getAll(ResultSet rs) {
-		List<TotalGoalsCoefficient> tgcoefficients = new ArrayList<>();
-		try {
-			while(rs.next()){
-				tgcoefficients.add(createTotalGoalsCoefficient(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return tgcoefficients;
-	}
+        while (rs.next()){
+            TotalGoalsCoefficient totalGoalsCoefficient = new TotalGoalsCoefficient();
+            totalGoalsCoefficient.setId(rs.getInt("id"));
 
+            GameDAO gameDAO = new GameDAO();
+            Game game = gameDAO.getGamesById(rs.getInt("game_id"));
+            totalGoalsCoefficient.setGame(game);
+
+            totalGoalsCoefficient.setGoalCoefficient(rs.getDouble("goal_coefficient"));
+
+            totalGoalsCoefficients.add(totalGoalsCoefficient);
+        }
+        return totalGoalsCoefficients;
+    }
 }

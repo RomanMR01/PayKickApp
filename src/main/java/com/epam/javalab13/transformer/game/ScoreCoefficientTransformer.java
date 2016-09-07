@@ -1,59 +1,57 @@
 package com.epam.javalab13.transformer.game;
 
+import com.epam.javalab13.dao.game.GameDAO;
+import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.model.game.ScoreCoefficient;
+import com.epam.javalab13.transformer.Transformer;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+/**
+ * Created by Vikno on 9/5/2016.
+ */
+public class ScoreCoefficientTransformer implements Transformer<ScoreCoefficient>{
+    @Override
+    public ScoreCoefficient getOne(ResultSet rs) throws SQLException {
+        ScoreCoefficient scoreCoefficient = new ScoreCoefficient();
 
-import com.epam.javalab13.model.game.Game;
-import com.epam.javalab13.model.game.ScoreCoefficient;
-import com.epam.javalab13.transformer.Transformer;
+        if(rs.next()){
+            scoreCoefficient.setId(rs.getInt("id"));
 
-public class ScoreCoefficientTransformer implements Transformer<ScoreCoefficient> {
-	
-	private static final Logger logger = Logger.getLogger(ScoreCoefficientTransformer.class);
-	private GameTransformer gameTransformer;
-	
-	@Override
-	public ScoreCoefficient getOne(ResultSet rs) {
-		ScoreCoefficient sc= null;
-		try {
-			if(rs.next()){
-				sc=createScoreCoefficient(rs);
-			}
-		} catch (SQLException e) {
-			logger.error("failed to instantiate ScoreCoefficient from ResultSet", e);
-		}
-		return sc;
-	}
-	
-	
-	private ScoreCoefficient createScoreCoefficient(ResultSet rs) throws SQLException {
-		ScoreCoefficient sc = new ScoreCoefficient();
-		sc.setId(rs.getInt("score_id"));
-		sc.setStartCoefficient(rs.getDouble("start_coefficient"));
-		sc.setFirstTeamCoefficient(rs.getDouble("first_team_coefficient"));
-		sc.setSecondTeamCoefficient(rs.getDouble("second_team_coefficient"));
-		gameTransformer=new GameTransformer();
-		Game game = gameTransformer.createGame(rs);
-		sc.setGame(game);
-		return sc;
-	}
+            GameDAO gameDAO = new GameDAO();
+            Game game = gameDAO.getGamesById(rs.getInt("game_id"));
 
+            scoreCoefficient.setGame(game);
 
+            scoreCoefficient.setStartCoefficient(rs.getDouble("start_coefficient"));
+            scoreCoefficient.setFirstTeamCoefficient(rs.getDouble("first_team_coefficient"));
+            scoreCoefficient.setSecondTeamCoefficient(rs.getDouble("second_team_coefficient"));
+        }
+        return scoreCoefficient;
+    }
 
-	@Override
-	public List<ScoreCoefficient> getAll(ResultSet rs) {
-		List<ScoreCoefficient> scoreCoefficients = new ArrayList<>();
-		try {
-			while(rs.next()){
-				scoreCoefficients.add(createScoreCoefficient(rs));
-			}
-		} catch (SQLException e) {
-			logger.error("failed to instantiate ScoreCoefficient from ResultSet", e);
-		}
-		return scoreCoefficients;
-	}
+    @Override
+    public List<ScoreCoefficient> getAll(ResultSet rs) throws SQLException {
+        List<ScoreCoefficient> scoreCoefficients = new ArrayList<>();
+
+        while (rs.next()){
+            ScoreCoefficient scoreCoefficient = new ScoreCoefficient();
+            scoreCoefficient.setId(rs.getInt("id"));
+
+            GameDAO gameDAO = new GameDAO();
+            Game game = gameDAO.getGamesById(rs.getInt("game_id"));
+
+            scoreCoefficient.setGame(game);
+
+            scoreCoefficient.setSecondTeamCoefficient(rs.getDouble("start_coefficient"));
+            scoreCoefficient.setFirstTeamCoefficient(rs.getDouble("first_team_coefficient"));
+            scoreCoefficient.setSecondTeamCoefficient(rs.getDouble("second_team_coefficient"));
+
+            scoreCoefficients.add(scoreCoefficient);
+        }
+        return scoreCoefficients;
+    }
 }

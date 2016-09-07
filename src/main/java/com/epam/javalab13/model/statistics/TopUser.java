@@ -1,19 +1,22 @@
 package com.epam.javalab13.model.statistics;
 
-import com.epam.javalab13.model.User;
-
 /**
  * Represents user awards for all time
  */
 public class TopUser {
     private String login;
     private double awardSum;
-    private double lastWin;
+
+    /*
+    If status WON it will be AWARD;
+    If status LOST it will be AMOUNT
+     */
+    private double lastBetSum;
 
     public TopUser(){}
 
     public TopUser(double lastWin, String login, double awardSum) {
-        this.lastWin = lastWin;
+        this.lastBetSum = lastWin;
         this.login = login;
         this.awardSum = awardSum;
     }
@@ -35,11 +38,11 @@ public class TopUser {
     }
 
     public double getLastWin() {
-        return lastWin;
+        return lastBetSum;
     }
 
     public void setLastWin(double lastWin) {
-        this.lastWin = lastWin;
+        this.lastBetSum = lastWin;
     }
 
     @Override
@@ -50,7 +53,7 @@ public class TopUser {
         TopUser topUser = (TopUser) o;
 
         if (Double.compare(topUser.awardSum, awardSum) != 0) return false;
-        if (Double.compare(topUser.lastWin, lastWin) != 0) return false;
+        if (Double.compare(topUser.lastBetSum, lastBetSum) != 0) return false;
         return login != null ? login.equals(topUser.login) : topUser.login == null;
 
     }
@@ -62,7 +65,7 @@ public class TopUser {
         result = login != null ? login.hashCode() : 0;
         temp = Double.doubleToLongBits(awardSum);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(lastWin);
+        temp = Double.doubleToLongBits(lastBetSum);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -72,7 +75,7 @@ public class TopUser {
         return "TopUser{" +
                 "login='" + login + '\'' +
                 ", awardSum=" + awardSum +
-                ", lastWin=" + lastWin +
+                ", lastWin=" + lastBetSum +
                 '}';
     }
 }

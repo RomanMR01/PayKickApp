@@ -7,6 +7,16 @@ body {
     margin: 0;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 html,
 body {
     height: 100%;
@@ -81,7 +91,7 @@ a:hover {
 }
 
 .top-header .top-navigation .top-nav li a img {
-    margin-bottom: -31px;
+    margin-bottom: -21px;
 }
 
 .top-header .top-navigation .top-nav li.active a,
@@ -125,16 +135,16 @@ a:visited {
     border-bottom: 2px solid #FF0019 !important;
 }
 
-.top-header .top-navigation .top-nav li a.green {
-    color: #2ED01E !important;
+.top-header .top-navigation .top-nav li a.my-orange {
+    color: #FF9800 !important;
 }
 
-.top-header .top-navigation .top-nav li a.green:hover {
-    color: #2ED01E !important;
-    border-bottom: 2px solid #2ED01E !important;
+.top-header .top-navigation .top-nav li a.my-orange:hover {
+    color: #FF9800 !important;
+    border-bottom: 2px solid #FF9800 !important;
 }
 
-.top-header .top-navigation .top-nav li a.blue {
+.top-header .top-navigation .top-nav li a.my-blue {
     color: #FF0000 !important;
 }
 
@@ -179,26 +189,41 @@ h6 {
 }
 
 @media only screen and (min-width: 601px) {
-    #login-modal.modal {
+    #login-modal.modal,
+    #reg-modal.modal {
         width: 60%;
     }
 }
 
 @media only screen and (min-width: 993px) {
-    #login-modal.modal {
+    main,
+    footer {
+        padding-left: 240px;
+    }
+    #home footer {
+        padding-left: 0;
+    }
+    #login-modal.modal,
+    #reg-modal.modal {
         width: 30%;
     }
 }
 
-#home-mobile a {
+#login-modal.modal .modal-content {
+    padding-bottom: 1px;
+}
+
+#sidebar-nav a {
     color: #fff;
 }
 
-#home-submit {
+#home-submit-login,
+#home-submit-reg {
     margin-top: 0;
 }
 
-#home-submit button {
+#home-submit-login button,
+#home-submit-reg button {
     padding: 0 14%;
 }
 
@@ -208,4 +233,111 @@ h6 {
 
 #home-registration-form p.big {
     font-size: 1.2rem;
+}
+
+.lang {
+    margin-right: 20px;
+}
+
+.lang div {
+    width: 48px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    display: inline-block;
+}
+
+.lang a div#ua {
+    background-image: url('../img/ua-icon.png');
+}
+
+.lang a div#gb {
+    background-image: url('../img/gb-icon.png');
+}
+
+.lang div:hover {
+    background-color: #6E6E6E;
+    background-position: center -50px;
+    cursor: pointer;
+}
+
+#home footer.page-footer {
+    padding-top: 20px;
+}
+
+.dropdown-content.sidebar li > a,
+.dropdown-content.sidebar li > span {
+    line-height: 35px;
+}
+
+.dropdown-content.sidebar li > a {
+    padding: 14px 16px;
+}
+
+.dropdown-content.sidebar li > a > i {
+    height: auto;
+}
+
+#sidebar-nav li a.logo {
+    padding-top: 10px;
+}
+
+nav a.button-collapse {
+    margin-left: 25px;
+}
+
+#reg-form [type="radio"]:checked + label:after,
+#reg-form [type="radio"].with-gap:checked + label:before,
+#reg-form [type="radio"].with-gap:checked + label:after {
+    border: 2px solid #4CAF50;
+}
+
+#reg-form [type="radio"]:checked + label:after,
+#reg-form [type="radio"].with-gap:checked + label:after {
+    background-color: #4CAF50;
+}
+
+#reg-form input[type=range] + .thumb {
+    background-color: #4CAF50;
+}
+
+#reg-form input[type=range]::-webkit-slider-thumb {
+    background-color: #4CAF50;
+}
+
+#reg-form .input-field .prefix.active {
+    color: #4CAF50;
+}
+
+#reg-form input:not([type]):focus:not([readonly]),
+#reg-form input[type=text]:focus:not([readonly]),
+#reg-form input[type=password]:focus:not([readonly]),
+#reg-form input[type=email]:focus:not([readonly]),
+#reg-form input[type=url]:focus:not([readonly]),
+#reg-form input[type=time]:focus:not([readonly]),
+#reg-form input[type=date]:focus:not([readonly]),
+#reg-form input[type=datetime]:focus:not([readonly]),
+#reg-form input[type=datetime-local]:focus:not([readonly]),
+#reg-form input[type=tel]:focus:not([readonly]),
+#reg-form input[type=number]:focus:not([readonly]),
+#reg-form input[type=search]:focus:not([readonly]),
+#reg-form textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #4CAF50;
+    box-shadow: 0 1px 0 0 #4CAF50;
+}
+
+#reg-form input:not([type]):focus:not([readonly]) + label,
+#reg-form input[type=text]:focus:not([readonly]) + label,
+#reg-form input[type=password]:focus:not([readonly]) + label,
+#reg-form input[type=email]:focus:not([readonly]) + label,
+#reg-form input[type=url]:focus:not([readonly]) + label,
+#reg-form input[type=time]:focus:not([readonly]) + label,
+#reg-form input[type=date]:focus:not([readonly]) + label,
+#reg-form input[type=datetime]:focus:not([readonly]) + label,
+#reg-form input[type=datetime-local]:focus:not([readonly]) + label,
+#reg-form input[type=tel]:focus:not([readonly]) + label,
+#reg-form input[type=number]:focus:not([readonly]) + label,
+#reg-form input[type=search]:focus:not([readonly]) + label,
+#reg-form textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #4CAF50;
 }

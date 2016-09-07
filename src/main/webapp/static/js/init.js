@@ -4,6 +4,14 @@ $(document).ready(function () {
 
     $(".dropdown-button").dropdown();
 
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+
+    $(document).ready(function () {
+        $('ul.tabs').tabs();
+    });
+
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -12,11 +20,14 @@ $(document).ready(function () {
         out_duration: 200, // Transition out duration
         starting_top: '4%', // Starting top style attribute
         ending_top: '10%', // Ending top style attribute
+        ready: function () {
+            $('ul.tabs').tabs();
+        }
     });
 
     //scroll on click
     $(function () {
-        $('a[href*=#]:not([href=#]):not([href=#login-modal])').click(function () {
+        $('a[href*=#]:not([href=#]):not([href=#login-modal]):not([href=#policy-modal]):not([href=#terms-modal])').click(function () {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');

@@ -1,6 +1,7 @@
 package com.epam.javalab13.transformer.bet;
 
 import com.epam.javalab13.dao.bet.TotalBetDAO;
+import com.epam.javalab13.dao.game.GameDAO;
 import com.epam.javalab13.model.bet.*;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.transformer.Transformer;
@@ -24,7 +25,8 @@ public class SingleBetTransformer implements Transformer<SingleBet> {
             singleBet = new SingleBet();
             singleBet.setId(rs.getInt("id"));
             singleBet.setTotalBet(totalBet);
-            singleBet.setGame(new Game());//TODO Need GameDAO
+            Game game = new GameDAO().getGamesById(rs.getInt("game_id"));
+            singleBet.setGame(game);
             singleBet.setCategory(Category.valueOf(rs.getString("category")));
             singleBet.setCoefficient(rs.getDouble("coefficient"));
             singleBet.setStatus(Status.valueOf(rs.getString("status")));
@@ -48,7 +50,8 @@ public class SingleBetTransformer implements Transformer<SingleBet> {
             singleBet = new SingleBet();
             singleBet.setId(rs.getInt("id"));
             singleBet.setTotalBet(totalBet);
-            singleBet.setGame(new Game());//TODO Need GameDAO
+            Game game = new GameDAO().getGamesById(rs.getInt("game_id"));
+            singleBet.setGame(game);
             singleBet.setCategory(Category.valueOf(rs.getString("category")));
             singleBet.setCoefficient(rs.getDouble("coefficient"));
             singleBet.setStatus(Status.valueOf(rs.getString("status")));

@@ -48,7 +48,7 @@ public class TotalBetDAO {
             st.setString(2, totalBet.getType().toString());
             st.setInt(3, totalBet.getAmount());
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY/MM/dd HH:MM:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
             String date = simpleDateFormat.format(totalBet.getDate());
             st.setString(4, date);
 
@@ -226,55 +226,6 @@ public class TotalBetDAO {
         }
 
         return totalBets;
-    }
-
-    /**
-     * Getting top users bets by award sum for statistics
-     * @return list of top users total bets
-     * @throws SQLException
-     */
-    //TODO Modify
-    public List<TopUser> getTopUsersBets() throws SQLException {
-        final String SQL = "SELECT tb.user_id,SUM(tb.award),COUNT(tb.user_id)" +
-                           "FROM totalizator.total_bet tb WHERE tb.status LIKE" +
-                           " 'WON' GROUP BY tb.user_id ORDER BY SUM(tb.award) DESC";
-
-        List<TopUser> awards = new ArrayList<>();
-
-//        Connection conn = ConnectionPool.getConnection();
-//        Statement st = null;
-//        ResultSet rs = null;
-//        Award award = null;
-//
-//        try {
-//            st = conn.createStatement();
-//            rs = st.executeQuery(SQL);
-//
-//            while (rs.next()){
-//                int userId = rs.getInt("user_id");
-//                User u = new User();
-//                u.setId(userId);
-//                User user = new UserDAO().getUser(u, UserDAO.GetOneUserType.ID);
-//
-//                award = new Award(user,rs.getDouble(2),rs.getInt(3));
-//                awards.add(award);
-//            }
-//
-//        } finally {
-//            if (st != null) try {
-//                st.close();
-//            } catch (Exception e) {
-//                logger.warn("Exception while close statement:", e);
-//            }
-//            if (conn != null) try {
-//                conn.close();
-//            } catch (Exception e) {
-//                logger.warn("Exception while close connection:", e);
-//            }
-//
-//        }
-
-        return awards;
     }
 
     /**
