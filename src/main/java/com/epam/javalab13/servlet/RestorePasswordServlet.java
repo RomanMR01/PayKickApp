@@ -27,6 +27,8 @@ public class RestorePasswordServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("restore password servlet");
+
+        System.out.println(req.getSession());
         req.getRequestDispatcher("restore_password.jsp").forward(req,resp);
     }
 
@@ -50,7 +52,7 @@ public class RestorePasswordServlet extends HttpServlet{
                 Date current = new Date();
                 //TODO return this
 //                Date end = new Date(current.getTime() + (1000 * 60 * 60 * 24));//For one day!
-                Date end = new Date(current.getTime() + (1000 * 60));//For one minute! For
+                Date end = new Date(current.getTime() + (1000 * 60 *2));//For one minute! For
 
                 String uid = UrlGenerator.getFixedUrl(user.getLogin(),current);
 
