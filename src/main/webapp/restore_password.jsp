@@ -31,6 +31,7 @@
                 <link href="static/css/style.css" rel="stylesheet">
 
                 <script src="static/js/jquery-2.1.1.min.js"></script>
+                <script src="static/js/validation.js"></script>
 
             </head>
 
@@ -38,20 +39,21 @@
                 <main class="valign-wrapper no-padding">
                     <div class="container valign">
                         <div class="row">
-                            <form class="col s8 offset-s2 m6 offset-m3 white center-align">
+                            <form id="restore-password-form" class="col s8 offset-s2 m6 offset-m3 white center-align">
                                 <br><br>
                                 <h5 class="center-align">Restoring Password:</h5>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate">
-                                        <label class="left-align" for="email" data-error="wrong" data-success="right">Email</label>
+                                        <input id="restore-email" type="email" class="validate">
+                                        <label class="left-align" for="restore-email" data-error="wrong" data-success="right">Email</label>
                                     </div>
                                 </div>
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Restore
+                                <button id="restore-email-btn" class="btn waves-effect waves-light" type="submit" name="action">Restore
                                     <i class="material-icons right">lock_outline</i>
                                 </button>
                                 <br><br>
-                                <span class="center-align red-text"></span>
+                                <p class="center-align"><a href="home" class="orange-text">Home page</a></p>
+                                <span id="messageRestore" class="center-align red-text"></span>
                                 <br><br>
                             </form>
                         </div>
@@ -61,6 +63,7 @@
                 <script src="static/js/materialize.min.js"></script>
                 <script src="static/js/init.js"></script>
                 <script src="static/js/login.js"></script>
+                <script src="static/js/restore-password.js"></script>
 
             </body>
 

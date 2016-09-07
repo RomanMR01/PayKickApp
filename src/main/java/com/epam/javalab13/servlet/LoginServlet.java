@@ -35,7 +35,8 @@ public class LoginServlet extends HttpServlet {
         User user = service.getUserByLogin(login);
 
         if (user != null) {
-            if(user.getPassword().equals(PasswordHash.SHA_256(password))) {
+//            if(user.getPassword().equals(PasswordHash.SHA_256(password))) {
+            if(user.getPassword().equals(password)) {
                 if(user.isBanned()){
                     resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are banned!\"}");
                     return;

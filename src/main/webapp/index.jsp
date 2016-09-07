@@ -351,7 +351,7 @@
                     <br><br>
                     <p class="message center-align">Still Not Registered? <a><span class="orange-text"><strong>Create an account!</strong></span></a>
                     </p>
-                    <p class="center-align"><a href="newPassword" class="orange-text">Forgot a password?</a></p>
+                    <p class="center-align"><a href="restorePassword" class="orange-text">Forgot a password?</a></p>
                     <span class="center-align red-text" id="messageLogin"></span>
                 </div>
             </form>

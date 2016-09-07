@@ -15,11 +15,13 @@ public class MailSender {
 
     private static Logger logger = Logger.getLogger(MailSender.class);
 
-    /*test git commit*/
     private String username;
     private String password;
     private Properties props;
 
+    /*
+    Initialization mail server
+     */
     public MailSender(String username, String password) {
         this.username = username;
         this.password = password;
@@ -32,12 +34,12 @@ public class MailSender {
     }
 
     /**
-     * Send mails for users
+     * Send mails for list of users
      * @param subject the subject of mail
      * @param text the main content of mail
      * @param emails list of users emails for sending
      */
-    public void sendEmail(String subject, String text, ArrayList<String> emails){
+    public void sendEmailsBatch(String subject, String text, ArrayList<String> emails){
 
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -53,12 +55,48 @@ public class MailSender {
             for(String email:emails) {
                 message.addRecipient(Message.RecipientType.CC, new InternetAddress(email));
             }
-                message.setSubject(subject);
+
+            message.setSubject(subject);
             message.setContent(
                     "<h3>"+ text + "</h3></br> <a href=\"http://localhost:8080/PayKick\">PayKick</a>",
                     "text/html;charset=utf-8");
 
-                Transport.send(message);
+
+            Transport.send(message);
+            logger.info("Emails sent successfully!");
+        } catch (Exception e) {
+            logger.error("Cant send emails:",e);
+        }
+    }
+
+    /**
+     * Send email for one user
+     * @param subject the subject of mail
+     * @param text the main content of mail
+     * @param email the user email address
+     */
+    public void sendEmail(String subject, String text, String email){
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+
+
+            message.addRecipient(Message.RecipientType.CC, new InternetAddress(email));
+
+            message.setSubject(subject);
+            message.setContent(
+                    "<h3>"+ text + "</h3></br> <a href=\"http://localhost:8080/PayKick\">PayKick</a>",
+                    "text/html;charset=utf-8");
+
+
+            Transport.send(message);
             logger.info("Emails sent successfully!");
         } catch (Exception e) {
             logger.error("Cant send emails:",e);
