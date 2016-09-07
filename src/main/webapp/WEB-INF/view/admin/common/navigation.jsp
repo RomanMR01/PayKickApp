@@ -34,13 +34,13 @@
                 <a href="#" data-activates="sidebar-nav" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
 
-                    <li><a class="dropdown-button" data-activates="userDropdown">Hello, ${name}<i class="material-icons right orange-text" style="padding-left:2em;">perm_identity</i></a></li>
+                    <li><a class="dropdown-button" data-activates="userDropdown">Hello, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
                     <li><a href="home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                     <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                 </ul>
                 <ul class="side-nav fixed grey darken-4" id="sidebar-nav">
                     <li>
-                        <a href="" class="center-align logo"><img src="static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
+                        <a href="home" class="center-align logo"><img src="static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                     </li>
 
                     <li><a href="matches">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
@@ -50,7 +50,7 @@
 
                     <div class="hide-on-large-only">
                         <hr>
-                        <li><a class="dropdown-button" data-activates="userSideDropdown">${name}<i class="material-icons right orange-text">perm_identity</i></a></li>
+                        <li><a class="dropdown-button" data-activates="userSideDropdown">${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
                         <li><a href="home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                         <li><a class="dropdown-button" data-activates="languageSideDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                     </div>

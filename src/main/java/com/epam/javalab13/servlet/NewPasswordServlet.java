@@ -112,8 +112,8 @@ public class NewPasswordServlet extends HttpServlet {
                 if(newPassword!=null){
                     System.out.println("new pass:" + newPassword);
 
-                    user.setPassword(newPassword);
                     user.setPassword(PasswordHash.SHA_256(newPassword));
+                    new UserService().updateUserPassword(user);
 
                     System.out.println("new user" + user);
 
