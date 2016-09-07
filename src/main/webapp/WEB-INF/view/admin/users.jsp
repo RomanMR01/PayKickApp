@@ -11,7 +11,7 @@
 
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PayKick. One bet - one hit!</title>
+        <title>Admin - Manage Users</title>
 
         <jsp:include page="common/styles.jsp"></jsp:include>
     </head>
@@ -150,10 +150,12 @@
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs transparent">
-                            <li class="tab col s6"><a href="">Chart</a></li>
-                            <li class="tab col s6"><a href="" class="active">Diagram</a></li>
+                            <li class="tab col s6"><a href="#chart" class="active">Chart</a></li>
+                            <li class="tab col s6"><a  href="#diagram">Diagram</a></li>
                         </ul>
                     </div>
+                    <div id="chart" class="col s12">Code 1</div>
+                    <div id="diagram" class="col s12">Code 2</div>
                 </div>
             </div>
         </div>

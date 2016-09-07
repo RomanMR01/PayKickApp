@@ -193,6 +193,9 @@ h6 {
     #reg-modal.modal {
         width: 60%;
     }
+    .modal.my-narrow {
+        width: 60%;
+    }
 }
 
 @media only screen and (min-width: 993px) {
@@ -205,6 +208,9 @@ h6 {
     }
     #login-modal.modal,
     #reg-modal.modal {
+        width: 30%;
+    }
+    .modal.my-narrow {
         width: 30%;
     }
 }
