@@ -43,8 +43,6 @@
     <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
   </servlet>
 
-  
-
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/home</url-pattern>
@@ -54,19 +52,79 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+
 <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>NewPassword</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.NewPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewPassword</servlet-name>
+    <url-pattern>/newPassword</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RestorePassword</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.RestorePasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RestorePassword</servlet-name>
+    <url-pattern>/restorePassword</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminMatches</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.MatchesDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminMatches</servlet-name>
+    <url-pattern>/matches</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminStatistics</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.StatisticsDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminStatistics</servlet-name>
+    <url-pattern>/statistics</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminTeams</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.TeamsDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminTeams</servlet-name>
+    <url-pattern>/teams</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminUsers</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.UsersDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUsers</servlet-name>
+    <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+
+
+
+  <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.epam.javalab13.servlet.RegisterServlet</servlet-class>
   </servlet>
+
+
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.epam.javalab13.servlet.LoginServlet</servlet-class>
