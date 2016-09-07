@@ -39,7 +39,7 @@
                     <li><a href="">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
                     <li><a href="">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
                     <li><a href="">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
-                    <li><a href="">STATISTICS<i class="material-icons right green-text text-accent-4">trending_up</i></a></li>
+                    <li><a href="">STATISTICS<i class="material-icons right green-text text-accent-4">equalizer</i></a></li>
                     <div class="hide-on-large-only">
                         <hr>
                         <li><a class="dropdown-button" data-activates="userSideDropdown">Arsen Nikitenko<i class="material-icons right orange-text">perm_identity</i></a></li>

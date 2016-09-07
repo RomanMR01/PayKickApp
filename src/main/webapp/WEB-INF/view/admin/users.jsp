@@ -11,7 +11,7 @@
 
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PayKick. One bet - one hit!</title>
+        <title>Admin - Manage Users</title>
 
         <jsp:include page="common/styles.jsp"></jsp:include>
     </head>

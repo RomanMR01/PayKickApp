@@ -5554,8 +5554,8 @@ input[type=search]:disabled,
 input[type=search][readonly="readonly"],
 textarea.materialize-textarea:disabled,
 textarea.materialize-textarea[readonly="readonly"] {
-  color: rgba(0, 0, 0, 0.26);
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.26);
+  color: rgba(0, 0, 0, 0.46);
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.46);
 }
 
 input:not([type]):disabled + label,
@@ -5584,7 +5584,7 @@ input[type=search]:disabled + label,
 input[type=search][readonly="readonly"] + label,
 textarea.materialize-textarea:disabled + label,
 textarea.materialize-textarea[readonly="readonly"] + label {
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba(0, 0, 0, 0.56);
 }
 
 input:not([type]):focus:not([readonly]),
@@ -8179,4 +8179,24 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .picker--time .picker__box {
     margin-bottom: 5em;
   }
+}
+.input-field .prefix ~ .autocomplete-content {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem)
+}
+.autocomplete-content {
+    margin-top: -15px;
+    display: block;
+    opacity: 1;
+    position: static
+}
+.autocomplete-content li .highlight {
+    color: #444
+}
+
+.autocomplete-content li img {
+    height: 40px;
+    width: 40px;
+    margin: 5px 15px
 }

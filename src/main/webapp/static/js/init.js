@@ -12,6 +12,8 @@ $(document).ready(function () {
         $('ul.tabs').tabs();
     });
 
+
+
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -54,6 +56,14 @@ $(document).ready(function () {
         responsive: false,
         responsiveUnder: 1280,
         layersContainer: 1280,
+    });
+
+    $('input.autocomplete').autocomplete({
+        data: {
+            "Apple": null,
+            "Microsoft": null,
+            "Google": 'http://placehold.it/250x250'
+        }
     });
 
 });
