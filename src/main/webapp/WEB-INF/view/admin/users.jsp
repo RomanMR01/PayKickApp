@@ -37,7 +37,7 @@
                     <li>
                         <div class="collapsible-header center-align"><i class="material-icons green-text">person_pin</i><span class="green-text"><strong>markiss111</strong></span></div>
                         <div class="collapsible-body center-align">
-                            <table class="centered">
+                            <table class="centered responsive-table">
                                 <thead>
                                     <tr>
                                         <th>Full Name</th>
@@ -56,20 +56,36 @@
                                         <td>23</td>
                                         <td>markiss.nikita@mail.ru</td>
                                         <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>No</td>
+                                        <td>
+                                            <div class="input-field col l1">
+                                                <select>
+                                                    <option value="user" selected>User</option>
+                                                    <option value="bookmaker">Bookmaker</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="switch">
+                                                <label>
+                                                    No
+                                                    <input type="checkbox">
+                                                    <span class="lever"></span> Yes
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
+                            <a class="waves-effect waves-light modal-trigger btn green" href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
                             <br>
                             <br>
                         </div>
                     </li>
                     <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">perm_identity</i><span class="green-text"><strong>bodya12</strong></span></div>
+                        <div class="collapsible-header center-align"><i class="material-icons red-text">perm_identity</i><span class="red-text"><strong>bodya12</strong></span></div>
                         <div class="collapsible-body center-align">
-                            <table class="centered">
+                            <table class="centered responsive-table">
                                 <thead>
                                     <tr>
                                         <th>Full Name</th>
@@ -88,268 +104,28 @@
                                         <td>23</td>
                                         <td>markiss.nikita@mail.ru</td>
                                         <td>$535.00</td>
-                                        <td>Bookmaker</td>
-                                        <td>No</td>
+                                        <td>
+                                            <div class="input-field col l1">
+                                                <select>
+                                                    <option value="user">User</option>
+                                                    <option value="bookmaker" selected>Bookmaker</option>
+                                                    <option value="admin">Admin</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="switch">
+                                                <label>
+                                                    No
+                                                    <input type="checkbox" checked>
+                                                    <span class="lever"></span> Yes
+                                                </label>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons red-text">person_pin</i><span class="red-text"><strong>legit25</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn green"><i class="material-icons right">done</i>Unban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">person_pin</i><span class="green-text"><strong>seppy</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>No</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons red-text">perm_identity</i><span class="red-text"><strong>dolmen24</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>Bookmaker</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn green"><i class="material-icons right">done</i>Unban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">person_pin</i><span class="green-text"><strong>kastor-black</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>No</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons red-text">person_pin</i><span class="red-text"><strong>big-george</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>Yes</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn green"><i class="material-icons right">done</i>Unban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">person_pin</i><span class="green-text"><strong>batman</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>No</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">person_pin</i><span class="green-text"><strong>unnamed</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>User</td>
-                                        <td>No</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
-                            <br>
-                            <br>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">perm_identity</i><span class="green-text"><strong>mark-twen</strong></span></div>
-                        <div class="collapsible-body center-align">
-                            <table class="centered">
-                                <thead>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <th>Sex</th>
-                                        <th>Age</th>
-                                        <th>E-Mail</th>
-                                        <th>Balance</th>
-                                        <th>Role</th>
-                                        <th>Banned</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Arsen Nikitenko</td>
-                                        <td>Male</td>
-                                        <td>23</td>
-                                        <td>markiss.nikita@mail.ru</td>
-                                        <td>$535.00</td>
-                                        <td>Bookmaker</td>
-                                        <td>No</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a class="waves-effect waves-light btn red"><i class="material-icons right">not_interested</i>Ban</a>
+                            <a class="waves-effect waves-light modal-trigger btn green" href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
                             <br>
                             <br>
                         </div>
@@ -364,12 +140,23 @@
                     <li class="waves-effect"><a href="#!">5</a></li>
                     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                 </ul>
-                <a class="waves-effect waves-light btn right green modal-trigger" href="#reg-modal"><i class="material-icons right">person_add</i>New Bookmaker</a>
-                <br>
-                <br>
                 <br>
             </div>
         </main>
+
+        <!-- Statistics Modal Structure -->
+        <div id="modal-stats" class="modal my-stats">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="tabs transparent">
+                            <li class="tab col s6"><a href="">Chart</a></li>
+                            <li class="tab col s6"><a href="" class="active">Diagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <jsp:include page="common/footer.jsp"></jsp:include>
         <jsp:include page="common/scripts.jsp"></jsp:include>

@@ -5058,7 +5058,7 @@ button.btn-floating {
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
-  background-color: #777;
+  background-color: #eee;
 }
 
 .dropdown-content li.active.selected {
@@ -6257,11 +6257,11 @@ form p:last-child {
 }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #84c7c1;
+  background-color: #F47369;
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: #FF9800;
+  background-color: #F44336;
   left: 24px;
 }
 
