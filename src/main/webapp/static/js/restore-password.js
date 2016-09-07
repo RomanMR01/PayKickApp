@@ -1,8 +1,9 @@
 $('#restore-email-btn').on('click', function (e) {
     var emailAddress = $('#restore-email').val();
-    var messageRestore = $("#messageRestore");
-    
-    if (validateEmail(emailAddress,messageRestore)) {
+    var messageRestoreFail = $("#messageRestoreFail");
+    var messageRestoreOk = $("#messageRestoreOk");
+
+    if (validateEmail(emailAddress,messageRestoreFail)) {
         $.ajax({
             type: "POST",
             url: "restorePassword",
@@ -15,9 +16,13 @@ $('#restore-email-btn').on('click', function (e) {
                 var message = response.message;
 
                 if (status == 'OK') {
-                    messageRestore.text(message);
+                    messageRestoreFail.hide();
+                    messageRestoreOk.show();
+                    messageRestoreOk.text(message);
                 } else {
-                    messageRestore.text(message);
+                    messageRestoreOk.hide();
+                    messageRestoreFail.show();
+                    messageRestoreFail.text(message);
                 }
             }
         });

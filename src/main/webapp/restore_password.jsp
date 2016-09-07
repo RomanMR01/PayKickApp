@@ -44,16 +44,17 @@
                                 <h5 class="center-align">Restoring Password:</h5>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="restore-email" type="email" class="validate">
+                                        <input id="restore-email" type="email">
                                         <label class="left-align" for="restore-email" data-error="wrong" data-success="right">Email</label>
                                     </div>
                                 </div>
                                 <button id="restore-email-btn" class="btn waves-effect waves-light" type="submit" name="action">Restore
                                     <i class="material-icons right">lock_outline</i>
                                 </button>
-                                <br><br>
+                                <br>
                                 <p class="center-align"><a href="home" class="orange-text">Home page</a></p>
-                                <span id="messageRestore" class="center-align red-text"></span>
+                                <span id="messageRestoreFail" class="center-align red-text"></span>
+                                <span id="messageRestoreOk" class="center-align green-text"></span>
                                 <br><br>
                             </form>
                         </div>

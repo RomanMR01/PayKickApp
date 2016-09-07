@@ -1,10 +1,7 @@
 $('#new-password-btn').on('click', function (e) {
     var newPassword = $('#new-password-input').val();
     var messageNewPass = $("#messageNewPass");
-    var homePage = $("#homePage");
-    
-    var formInput =$("#formInput");
-    var btn = $("#new-password-btn");
+
 
     if (validatePassword(newPassword,messageNewPass)) {
         $.ajax({
@@ -18,10 +15,8 @@ $('#new-password-btn').on('click', function (e) {
                 var message = response.message;
 
                 if (status == 'OK') {
-                    messageNewPass.text(message);
-                    formInput.hide();
-                    btn.hide();
-                    homePage.show();
+                    $("#new-password-form").hide();
+                    $("#go-home-form").show();
                 } else {
                     messageNewPass.text(message);
                 }

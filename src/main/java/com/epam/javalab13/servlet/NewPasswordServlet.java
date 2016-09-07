@@ -21,6 +21,8 @@ import java.util.Map;
 public class NewPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+
         System.out.println("new password servlet get:");
 
         Map<String,RestorePassword> restorePasswordMap = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
@@ -31,17 +33,36 @@ public class NewPasswordServlet extends HttpServlet {
             String uid = req.getParameter("uid");
             System.out.println(uid);
 
-            if(uid!=null && uid.length()==5) {
+            if(uid!=null && uid.length()==64) {
                 System.out.println("uid:" + uid);
                 System.out.println("restore uid:" + restorePasswordMap.get(uid));
 
                 RestorePassword restorePassword = restorePasswordMap.get(uid);
 
-                Date today = new Date();
 
                  if(restorePassword!=null) {
+                     Date today = new Date();
+                     long now = today.getTime();
+                     long end = restorePassword.getEndTime().getTime();
+
+                     System.out.println("time: " + (end-now));
                      if(today.getTime()>restorePassword.getEndTime().getTime()){
-                         req.setAttribute("message","Time has passed!Try again");
+                         req.setAttribute("hideForm","hideForm");
+
+                         if(session.getAttribute("restoreUID")!=null){
+                             session.removeAttribute("restoreUID");
+                         }
+                         if(session.getAttribute("restoreUser")!=null){
+                             session.removeAttribute("restoreUser");
+                         }
+
+                         System.out.println("size1:" + restorePasswordMap.size());
+                         restorePasswordMap.remove(uid);
+                         getServletContext().setAttribute("restore", restorePasswordMap);
+
+                         Map<String,RestorePassword> restorePasswordMap2 = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
+                         System.out.println("size2" + restorePasswordMap2.size());
+
                          req.getRequestDispatcher("new_password.jsp").forward(req, resp);
                      }else{
                          UserService service = new UserService();
@@ -50,7 +71,7 @@ public class NewPasswordServlet extends HttpServlet {
                          if(user!=null){
                              System.out.println(user);
 
-                             HttpSession session = req.getSession();
+
                              session.setAttribute("restoreUID", uid);
                              session.setAttribute("restoreUser", user);
                              req.getRequestDispatcher("new_password.jsp").forward(req, resp);
@@ -87,8 +108,7 @@ public class NewPasswordServlet extends HttpServlet {
                 if(newPassword!=null){
                     System.out.println("new pass:" + newPassword);
 
-//                    user.setPassword(PasswordHash.SHA_256(newPassword));
-                    user.setPassword(newPassword);
+                    user.setPassword(PasswordHash.SHA_256(newPassword));
                     new UserService().updateUserPassword(user);
 
                     System.out.println("new user" + user);
@@ -108,10 +128,10 @@ public class NewPasswordServlet extends HttpServlet {
                 }
 
             }else{
-                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Try again!\"}");
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Go to home page and try again!\"}");
             }
         }else{
-            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Try again!\"}");
+            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Go to home page and try again!\"}");
         }
 
     }
