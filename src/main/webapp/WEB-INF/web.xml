@@ -43,20 +43,13 @@
     <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
   </servlet>
 
-  <servlet>
-    <servlet-name>ChartServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.ChartServlet</servlet-class>
-  </servlet>
+  
 
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>ChartServlet</servlet-name>
-    <url-pattern>/chart</url-pattern>
-  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/register</url-pattern>
@@ -90,6 +83,16 @@
   <servlet-mapping>
     <servlet-name>HomePageStatisticsServlet</servlet-name>
     <url-pattern>/homeStatistics</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Admin</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.AdminDispatcher</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Admin</servlet-name>
+    <url-pattern>/admin</url-pattern>
   </servlet-mapping>
 
 

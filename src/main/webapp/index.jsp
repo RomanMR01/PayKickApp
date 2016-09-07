@@ -40,6 +40,7 @@
     <!-- Script for updating top users and upcoming matches with AJAX-->
     <script src="static/js/top-users.js"></script>
     <script src="static/js/upcoming-matches.js"></script>
+    <script src="static/js/validation.js"></script>
 </head>
 
 <body>
@@ -331,11 +332,11 @@
                 <br>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="login" type="text" value="<%=userLogin%>" required>
+                        <input id="login" type="text" length="50" value="<%=userLogin%>"  required>
                         <label for="login">Login</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="password" type="password" value="<%=userPassword%>" required>
+                        <input id="password" type="password"  length="50" value="<%=userPassword%>" required>
                         <label for="password">Password</label>
                     </div>
                     <div class="col s12">
@@ -360,21 +361,21 @@
                 <h5 class="center-align">Registration</h5>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="fname" type="text" required>
+                        <input id="fname" type="text" length="100" required>
                         <label for="fname">Name</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="surname" type="text" required>
+                        <input id="surname" type="text" length="100" required>
                         <label for="surname">Surname</label>
                     </div>
                     <div class="col s12">
                         <p class="big">Sex:</p>
                         <p>
-                            <input name="sex" type="radio" id="male" value="male" required checked/>
+                            <input name="gender" type="radio" id="male" value="male" required checked/>
                             <label for="male">Male</label>
                         </p>
                         <p>
-                            <input name="sex" type="radio" id="female" value="female"/>
+                            <input name="gender" type="radio" id="female" value="female"/>
                             <label for="female">Female</label>
                         </p>
                     </div>
@@ -385,15 +386,15 @@
                         </p>
                     </div>
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate" required>
+                        <input id="email" type="email"  required>
                         <label for="email">Email</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="login-reg" type="text" required>
+                        <input id="login-reg" type="text" length="50" required>
                         <label for="login-reg">Login</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="password-reg" type="password" required>
+                        <input id="password-reg" type="password" length="50" required>
                         <label for="password-reg">Password</label>
                     </div>
                 </div>
