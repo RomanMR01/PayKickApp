@@ -35,7 +35,7 @@
                 </div>
                 <ul class="collapsible popout" data-collapsible="expandable">
                     <li>
-                        <div class="collapsible-header center-align"><i class="material-icons green-text">list</i><span class="orange-text">1/8 Euro Cup: </span><span class="green-text"><strong>Barcelona - Real Madrid</strong></span></div>
+                        <div class="collapsible-header center-align"><i class="material-icons green-text">list</i><span class="grey-text">1/8 Euro Cup: </span><span class="green-text"><strong>Barcelona - Real Madrid</strong></span></div>
                         <div class="collapsible-body center-align">
                             <div class="row">
                                 <table class="centered responsive-table col s6 offset-s3">
@@ -71,7 +71,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <a class="waves-effect waves-light btn red" href="#"><i class="material-icons right">block</i>Cancel</a>
                             <a class="waves-effect waves-light btn green" href="#"><i class="material-icons right">done</i>Confirm</a>
+                            
                             <br>
                             <br>
                         </div>
