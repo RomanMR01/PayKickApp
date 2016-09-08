@@ -15,6 +15,7 @@
     <title>Admin - Manage Teams</title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
+    <jsp:include page="common/scripts.jsp"></jsp:include>
 </head>
 
 <body>
@@ -188,7 +189,7 @@
 </div>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
-<jsp:include page="common/scripts.jsp"></jsp:include>
+
 
 <!-- Here must be generated all the players -->
 <script>
