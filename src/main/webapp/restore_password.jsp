@@ -44,16 +44,26 @@
                                 <h5 class="center-align">Restoring Password:</h5>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="restore-email" type="email" class="validate">
+                                        <input id="restore-email" type="email">
                                         <label class="left-align" for="restore-email" data-error="wrong" data-success="right">Email</label>
                                     </div>
                                 </div>
                                 <button id="restore-email-btn" class="btn waves-effect waves-light" type="submit" name="action">Restore
                                     <i class="material-icons right">lock_outline</i>
                                 </button>
+                                <br>
+                                <p class="center-align"><a href="home" class="orange-text">Home page</a></p>
+                                <span id="messageRestoreFail" class="center-align red-text"></span>
                                 <br><br>
-                                <p class="center-align"><a href="home" class="orange-text">Back to Home page</a></p>
-                                <span id="messageRestore" class="center-align red-text"></span>
+                            </form>
+                            <form id="email-sent-form" class="col s8 offset-s2 m6 offset-m3 white center-align" style="display: none">
+                                <br><br>
+                                <div class="row">
+                                    <h5 class="center-align">Email sent successfully! Check your mailbox, please!</h5>
+                                </div>
+                                <div class="row">
+                                    <h5><a href="home" class="orange-text">Home page!</a></h5>
+                                </div>
                                 <br><br>
                             </form>
                         </div>

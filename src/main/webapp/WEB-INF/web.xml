@@ -89,6 +89,14 @@
     <servlet-name>AdminMatches</servlet-name>
     <url-pattern>/matches</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ChartServlet</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.ChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChartServlet</servlet-name>
+    <url-pattern>/chart</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>AdminStatistics</servlet-name>

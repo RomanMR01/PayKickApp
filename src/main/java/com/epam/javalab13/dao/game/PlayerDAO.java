@@ -95,6 +95,8 @@ public class PlayerDAO {
         }
     }
 
+
+
     public Player getPlayer(Player player, String type) throws SQLException {
         final String SQL_ID = "SELECT * FROM player u WHERE u.id = ?";
         final String SQL_NAME = "SELECT * FROM player u WHERE u.full_name LIKE ?";
@@ -208,5 +210,33 @@ public class PlayerDAO {
         }
 
         return players;
+    }
+
+    public void updatePlayersTotalGamesByTeams(Team one,Team second) throws SQLException {
+        final String SQL = "UPDATE player p SET p.total_games=(p.total_games+1) WHERE p.team_id=? OR p.team_id=?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setInt(1,one.getId());
+            st.setInt(2,second.getId());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
     }
 }

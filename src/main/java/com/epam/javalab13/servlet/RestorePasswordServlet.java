@@ -5,6 +5,7 @@ import com.epam.javalab13.model.common.RestorePassword;
 import com.epam.javalab13.service.game.UserService;
 import com.epam.javalab13.util.MailSender;
 import com.epam.javalab13.util.PasswordHash;
+import com.epam.javalab13.util.UrlGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -26,6 +27,8 @@ public class RestorePasswordServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("restore password servlet");
+
+        System.out.println(req.getSession());
         req.getRequestDispatcher("restore_password.jsp").forward(req,resp);
     }
 
@@ -43,10 +46,15 @@ public class RestorePasswordServlet extends HttpServlet{
 
             if (user != null) {
                 Map<String, RestorePassword> restorePasswordMap = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
-                Date current = new Date();
-                Date end = new Date(current.getTime() + (1000 * 20));//For one day!
 
-                String uid = "abc12";//TODO generate
+                System.out.println(restorePasswordMap.size());
+
+                Date current = new Date();
+                //TODO return this
+//                Date end = new Date(current.getTime() + (1000 * 60 * 60 * 24));//For one day!
+                Date end = new Date(current.getTime() + (1000 * 60 *2));//For one minute! For
+
+                String uid = UrlGenerator.getFixedUrl(user.getLogin(),current);
 
                 restorePasswordMap.put(uid, new RestorePassword(current, end, user.getLogin()));
                 getServletContext().setAttribute("restore", restorePasswordMap);
@@ -60,10 +68,10 @@ public class RestorePasswordServlet extends HttpServlet{
                     }
                 }).start();
 
-                resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Email was sent! Check your mailbox, please!\"}");
+                resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Email are sent! Check your mailbox, please!\"}");
 
             } else {
-                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"No such email registered!!\"}");
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"No such email address in db!\"}");
             }
         }else{
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Try again!\"}");

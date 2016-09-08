@@ -10,13 +10,19 @@ import java.io.IOException;
  * Created by Vikno on 9/6/2016.
  */
 public class AdminDispatcher extends HttpServlet{
-    @Override
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5921562331762724105L;
+
+	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/admin/admin.jsp").forward(req,resp);
+		req.getRequestDispatcher("/WEB-INF/view/admin/admin.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    	doGet(req,resp);
     }
 }

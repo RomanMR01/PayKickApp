@@ -39,24 +39,52 @@
                 <main class="valign-wrapper no-padding">
                     <div class="container valign">
                         <div class="row">
-                            <form id="new-password-form" class="col s8 offset-s2 m6 offset-m3 white center-align">
+                            <c:choose>
+                                <c:when test="${hideForm==null}">
+                                    <form id="new-password-form"class="col s8 offset-s2 m6 offset-m3 white center-align">
+                                        <br><br>
+                                        <h5 class="center-align">Enter New Password:</h5>
+                                        <div id="formInput" class="row">
+                                            <div class="input-field col s12">
+                                                <input id="new-password-input" type="password">
+                                                <label class="left-align" for="new-password-input">New Password</label>
+                                            </div>
+                                        </div>
+                                        <button id="new-password-btn"class="btn waves-effect waves-light" type="submit" name="action">Confirm
+                                            <i class="material-icons right">lock_outline</i>
+                                        </button>
+                                        <p class="center-align"><a href="home" class="orange-text">Home page!</a></p>
+                                        <span id="messageNewPass" class="center-align red-text"></span>
+                                        <br><br>
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <form class="col s8 offset-s2 m6 offset-m3 white center-align">
+                                        <br><br>
+                                        <div class="row">
+                                            <h5 class="center-align">Link not valid!</h5>
+                                        </div>
+                                        <div class="row">
+                                            <h5 class="center-align">The link is active for 24 hours!</h5>
+                                        </div>
+                                        <div class="row">
+                                            <h5><a href="home" class="orange-text">Home page!</a></h5>
+                                            <br><br>
+                                        </div>
+                                    </form>
+                                </c:otherwise>
+                            </c:choose>
+
+                            <form id="go-home-form" class="col s8 offset-s2 m6 offset-m3 white center-align" style="display: none">
                                 <br><br>
-                                <h5 class="center-align">Enter New Password:</h5>
-                                <div id="formInput" class="row">
-                                    <div class="input-field col s12">
-                                        <input id="new-password-input" type="password">
-                                        <label class="left-align" for="new-password-input">New Password</label>
-                                    </div>
+                                <div class="row">
+                                    <h5 class="center-align">Password restored successfully!</h5>
                                 </div>
-                                <button id="new-password-btn"class="btn waves-effect waves-light" type="submit" name="action">Confirm
-                                    <i class="material-icons right">lock_outline</i>
-                                </button>
+                               <div class="row">
+                                   <h5><a href="home" class="orange-text">Home page!</a></h5>
+                               </div>
                                 <br><br>
-                                <span id="messageNewPass" class="center-align red-text"></span>
-                                <p id="homePage" class="center-align"><a href="home" class="orange-text">Home page</a></p>
-                                <br>
                             </form>
-                            
                         </div>
                     </div>
                 </main>
@@ -65,13 +93,6 @@
                 <script src="static/js/init.js"></script>
                 <script src="static/js/login.js"></script>
                 <script src="static/js/new-password.js"></script>
-            <script>
-                <c:choose>
-                <c:when test="${message!=null}">
-                Materialize.toast('${message}', 3000);
-                </c:when>
-                </c:choose>
-            </script>
 
             </body>
 
