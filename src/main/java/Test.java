@@ -1,7 +1,12 @@
 import com.epam.javalab13.dao.ConnectionPool;
+import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.util.DateConverter;
-
+import com.epam.javalab13.util.PasswordHash;
 import com.epam.javalab13.dao.game.PlayerCoefficientDAO;
+import com.epam.javalab13.model.Gender;
+import com.epam.javalab13.model.Language;
+import com.epam.javalab13.model.Role;
+import com.epam.javalab13.model.User;
 import com.epam.javalab13.service.PaymentService;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,6 +56,11 @@ public class Test {
 //            System.out.println(set.getInt("user_id") + "\t" + set.getString("award"));//1 1000 for 3:00 PM
 //
 //        }
+    	
+    	UserDAO udao = new UserDAO();
+    	User user = new User(0, "peter", 18, Gender.MALE, "kotpein@gmail.com", "petroadmin", PasswordHash.SHA_256("12345"), 0, "none", Role.ADMIN, Language.en_EN, false);
+		udao.addUser(user );
+		System.out.println(user);
 
     }
 }
