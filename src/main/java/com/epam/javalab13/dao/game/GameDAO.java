@@ -2,6 +2,7 @@ package com.epam.javalab13.dao.game;
 
 import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.model.User;
+import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.transformer.game.GameTransformer;
 import org.apache.log4j.Logger;
@@ -26,6 +27,13 @@ public class GameDAO {
         CANCELED,
         NEW,
         FINISHED
+    }
+
+    public enum UpdateGameType{
+        GAME_ACTIVE,
+        GAME_CANCELED,
+        GAME_FINISHED,
+        GAME_PROFIT
     }
 
     /**
@@ -215,5 +223,60 @@ public class GameDAO {
         }
 
         return games;
+    }
+
+    /**
+     * Update game table by type
+     *
+     * @param game the Game object
+     * @param type the type of game update: ACTIVE, FINISHED, CANCELED
+     * @throws SQLException
+     */
+    public void updateGameByType(Game game,UpdateGameType type) throws SQLException {
+        final String SQL_ACTIVE = "UPDATE game g SET g.status='ACTIVE' WHERE g.id=?";
+        final String SQL_CANCELED = "UPDATE game g SET g.status='CANCELED' WHERE g.id=?";
+        final String SQL_FINISHED = "UPDATE game g SET g.status='FINISHED', g.first_goals=?,g.second_goals=? WHERE g.id=?";
+        final String SQL_PROFIT = "UPDATE game g SET g.profit=? WHERE g.id=?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            switch (type){
+                case GAME_ACTIVE:
+                    st = conn.prepareStatement(SQL_ACTIVE);
+                    st.setInt(1,game.getId());
+                    break;
+                case GAME_CANCELED:
+                    st = conn.prepareStatement(SQL_CANCELED);
+                    st.setInt(1,game.getId());
+                    break;
+                case GAME_FINISHED:
+                    st = conn.prepareStatement(SQL_FINISHED);
+                    st.setInt(1,game.getFirstGoals());
+                    st.setInt(2,game.getSecondGoals());
+                    st.setInt(3,game.getId());
+                    break;
+                case GAME_PROFIT:
+                    st = conn.prepareStatement(SQL_PROFIT);
+                    st.setDouble(1,game.getProfit());
+                    st.setInt(2,game.getId());
+                    break;
+            }
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
     }
 }
