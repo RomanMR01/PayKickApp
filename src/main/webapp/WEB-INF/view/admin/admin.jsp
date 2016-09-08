@@ -17,7 +17,7 @@
 
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PayKick. One bet - one hit!</title>
+        <title>Admin - Home</title>
 
         <jsp:include page="common/styles.jsp"></jsp:include>
     </head>
@@ -26,8 +26,7 @@
         <jsp:include page="common/navigation.jsp"></jsp:include>
         
         <!-- Main Content -->
-		<br>
-        <br>
+		<main class="valign-wrapper grey lighten-3"></main>
         
         <jsp:include page="common/footer.jsp"></jsp:include>
         <jsp:include page="common/scripts.jsp"></jsp:include>
