@@ -92,6 +92,42 @@
     <url-pattern>/restorePassword</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AdminMatches</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.MatchesDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminMatches</servlet-name>
+    <url-pattern>/matches</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminStatistics</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.StatisticsDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminStatistics</servlet-name>
+    <url-pattern>/statistics</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminTeams</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.TeamsDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminTeams</servlet-name>
+    <url-pattern>/teams</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminUsers</servlet-name>
+    <servlet-class>com.epam.javalab13.servlet.admin.UsersDispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUsers</servlet-name>
+    <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+
 
 
   <servlet>

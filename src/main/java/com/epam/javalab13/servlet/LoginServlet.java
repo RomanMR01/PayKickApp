@@ -14,29 +14,25 @@ import java.io.IOException;
  */
 public class LoginServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(LoginServlet.class);
-    private String login;
-    private String password;
-    private String rememberMe;
-    private User user;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        logger.info("LoginServlet homeStatistics");
 
-        login = req.getParameter("login");
-        password = req.getParameter("password");
-        rememberMe = req.getParameter("rememberMe");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        String rememberMe = req.getParameter("rememberMe");
 
         resp.setContentType("text/html;charset=UTF-8");
 
-        if(login==null || password==null){
+        if(login ==null || password ==null){
+            logger.warn("Something going wrong: " + " login = " + login + "; password = " + password);
             resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are doing wrong things!\"}");
             return;
         }
 
         UserService service = new UserService();
-        user = service.getUserByLogin(login);
+        User user = service.getUserByLogin(login);
 
         if (user != null) {
             if(user.getPassword().equals(PasswordHash.SHA_256(password))) {
@@ -44,18 +40,23 @@ public class LoginServlet extends HttpServlet {
                     resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"You are banned!\"}");
                     return;
                 }
+
                 session.setAttribute("login", login);
+                session.setAttribute("fullName", user.getFullName());
+
                 if ("true".equals(rememberMe)) {
                     Cookie cookieLogin = new Cookie("userLogin", login);
                     Cookie cookiePassword = new Cookie("userPassword", password);
 
-                    cookieLogin.setMaxAge(60 * 60 * 24);
-                    cookiePassword.setMaxAge(60 * 60 * 24);
+                    //Cookies for 31 day
+                    cookieLogin.setMaxAge(60 * 60 * 24 * 31);
+                    cookiePassword.setMaxAge(60 * 60 * 24 * 31);
 
                     resp.addCookie(cookieLogin);
                     resp.addCookie(cookiePassword);
                 }
-                String role = user.getRole().toString().toLowerCase();
+
+                String role = user.getRole().toString().toLowerCase();//URL for by user role
                 resp.getWriter().write("{ \"status\": \"OK\", \"url\": \"" + role + "\", \"message\":\"Welcome!\"}");
             }else{
                 resp.getWriter().write("{ \"status\": \"FAIL\", \"url\": \"fail\", \"message\":\"Incorrect password!\"}");

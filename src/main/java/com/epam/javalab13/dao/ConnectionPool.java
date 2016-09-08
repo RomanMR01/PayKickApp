@@ -25,6 +25,7 @@ public class ConnectionPool {
         p.setDriverClassName("com.mysql.jdbc.Driver");//Class for JDBC
         p.setUsername("root");//Connection username
         p.setPassword("root");//Connection password
+//        p.setPassword("password");//Connection password
         p.setValidationQuery("SELECT 1");//For some ? validation
         p.setMaxActive(100);//Maximum number of active connections
         p.setInitialSize(5);//Number of created connections on pool start

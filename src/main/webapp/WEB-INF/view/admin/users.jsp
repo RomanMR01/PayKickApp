@@ -12,7 +12,7 @@
 
 <!-- Mobile Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayKick. One bet - one hit!</title>
+<title>Admin - Manage Users</title>
 
 <jsp:include page="common/styles.jsp"></jsp:include>
 </head>
@@ -27,29 +27,30 @@
 		<br>
 		<div class="row">
 			<div class="col s12 l6 offset-l3">
-				<ul class=" transparent">
+				<ul class="tabs transparent">
 					<c:choose>
-						<c:when test="${param.type == 'ALL'}">
-							<li class="tab col s4 l2"><a class="active" href="">ALL</a></li>
+						
+						<c:when test="${type == 'CLIENT'}">
 							<li class="tab col s4 l2"><a
-								href="UsersPagination?type=CLIENT&page=1">CLIENTS</a></li>
+								href="users?type=ALL&page=1" target="_self">ALL</a></li>
+							<li class="tab col s4 l2"><a class="active" href="" target="_self">CLIENTS</a></li>
 							<li class="tab col s4 l2"><a
-								href="UsersPagination?type=BOOKMAKER&page=1">BOOKMAKERS</a></li>
+								href="users?type=BOOKMAKER&page=1" target="_self">BOOKMAKERS</a></li>
 						</c:when>
-						<c:when test="${param.type == 'CLIENT'}">
+						<c:when test="${type == 'BOOKMAKER'}">
 							<li class="tab col s4 l2"><a
-								href="UsersPagination?type=ALL&page=1">ALL</a></li>
-							<li class="tab col s4 l2"><a class="active" href="">CLIENTS</a></li>
+								href="users?type=ALL&page=1" target="_self">ALL</a></li>
 							<li class="tab col s4 l2"><a
-								href="UsersPagination?type=BOOKMAKER&page=1">BOOKMAKERS</a></li>
+								href="users?type=CLIENT&page=1" target="_self">CLIENTS</a></li>
+							<li class="tab col s4 l2"><a class="active" href="" target="_self">BOOKMAKERS</a></li>
 						</c:when>
-						<c:when test="${param.type == 'BOOKMAKER'}">
+						<c:otherwise>
+							<li class="tab col s4 l2"><a class="active" href="" target="_self">ALL</a></li>
 							<li class="tab col s4 l2"><a
-								href="UsersPagination?type=ALL&page=1">ALL</a></li>
+								href="users?type=CLIENT&page=1" target="_self">CLIENTS</a></li>
 							<li class="tab col s4 l2"><a
-								href="UsersPagination?type=CLIENT&page=1">CLIENTS</a></li>
-							<li class="tab col s4 l2"><a class="active" href="">BOOKMAKERS</a></li>
-						</c:when>
+								href="users?type=BOOKMAKER&page=1" target="_self">BOOKMAKERS</a></li>
+						</c:otherwise>
 					</c:choose>
 				</ul>
 			</div>
@@ -57,20 +58,45 @@
 
 		<ul class="collapsible popout" data-collapsible="expandable">
 			<c:forEach var="user" items="${requestScope.users}">
-				<li><c:choose>
+				<li id="u_${user.id}"><c:choose>
 						<c:when test="${user.isBanned()}">
 							<div class="collapsible-header center-align">
-								<i class="material-icons red-text">perm_identity</i><span
-									class="red-text"><strong><c:out value="${user.login}"></c:out></strong></span>
+								<i class="material-icons red-text">
+								 <c:choose>
+										<c:when test="${user.role=='CLIENT'}">person_pin</c:when>
+										<c:otherwise>perm_identity</c:otherwise>
+									</c:choose>
+								</i><span class="red-text"><strong><c:out
+											value="${user.login}"></c:out></strong></span>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="collapsible-header center-align">
-								<i class="material-icons green-text">person_pin</i><span
-									class="green-text"><strong><c:out value="${user.login}"></c:out></strong></span>
+								<i class="material-icons green-text">
+								 <c:choose>
+										<c:when test="${user.role=='CLIENT'}">person_pin</c:when>
+										<c:otherwise>perm_identity</c:otherwise>
+									</c:choose>
+								</i><span
+									class="green-text"><strong><c:out
+											value="${user.login}"></c:out></strong></span>
 							</div>
 						</c:otherwise>
-					</c:choose>
+					</c:choose> <!-- Statistics Modal Structure -->
+					<div id="modal-stats" class="modal my-stats">
+						<div class="modal-content">
+							<div class="row">
+								<div class="col s12">
+									<ul class="tabs transparent">
+										<li class="tab col s6"><a href="#chart" class="active">Chart</a></li>
+										<li class="tab col s6"><a href="#diagram">Diagram</a></li>
+									</ul>
+								</div>
+								<div id="chart" class="col s12">Code 1</div>
+								<div id="diagram" class="col s12">Code 2</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="collapsible-body center-align">
 						<table class="centered responsive-table">
@@ -146,13 +172,13 @@
 		<ul class="pagination center-align">
 
 			<c:choose>
-				<c:when test="${param.page <= 1}">
+				<c:when test="${page <= 1}">
 					<li class="disabled"><a href="#!"><i
 							class="material-icons">chevron_left</i></a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="material-icons"><a
-						href="UsersPagination?type=${param.type}&page=${param.page-1}"><i
+						href="users?type=${type}&page=${page-1}&itemsOnPage=${itemsOnPage}"><i
 							class="material-icons">chevron_left</i></a></li>
 				</c:otherwise>
 			</c:choose>
@@ -160,25 +186,25 @@
 			<c:forEach var="i" begin="1" end="${requestScope.pages}">
 
 				<c:choose>
-					<c:when test="${i == param.page}">
-						<li class="active green"><a href="#!"></a></li>
+					<c:when test="${i == page}">
+						<li class="active green"><a href="#!">${i}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="active green"><a
-							href="UsersPagination?type=${param.type}&page=${i}"><c:out
+						<li class="waves-effect"><a
+							href="users?type=${type}&page=${i}&itemsOnPage=${itemsOnPage}"><c:out
 									value="${i}"></c:out></a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 
 			<c:choose>
-				<c:when test="${param.page == pages}">
+				<c:when test="${page == pages}">
 					<li class="disabled"><a href="#!"><i
 							class="material-icons">chevron_right</i></a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="material-icons"><a
-						href="UsersPagination?type=${param.type}&page=${param.page+1}"><i
+						href="users?type=${type}&page=${page+1}&itemsOnPage=${itemsOnPage}"><i
 							class="material-icons">chevron_right</i></a></li>
 				</c:otherwise>
 			</c:choose>

@@ -38,6 +38,29 @@ public class UserService {
         return user;
     }
 
+    public User getUserByEmail(String email){
+        User u = new User();
+        u.setEmail(email);
+
+        User user = null;
+
+        try {
+            user = userDAO.getUser(u, UserDAO.GetOneUserType.EMAIL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
+    public void updateUserPassword(User user){
+        try {
+            userDAO.updateUser(user, UserDAO.UpdateUserType.PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<User> getAllUsersInRange(int startIndex,int endIndex){
         List<User> allUsers = null;
         try {

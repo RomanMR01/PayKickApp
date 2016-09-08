@@ -127,6 +127,7 @@
                                     style="font-family: 'Open Sans'; font-size: 2em; letter-spacing: 0px; color: #FF0000;">$1</span>
                                 per bet
                             </h6>
+                            <c:if test="${login==null}">
                             <div class="ls-l"
                                  style="top: 565.148px; left: 258.359px; font-size: 1.2em; font-weight: bold;" data-ls="
 							offsetxin:0;
@@ -139,7 +140,7 @@
 							durationout:750;
 							skewxout:60;"><a id="home_bet" href="#login-modal"
                                              class="waves-effect waves-light btn orange modal-trigger"><span
-                                    class="grey-text text-darken-3">Make a Bet</span></a></div>
+                                    class="grey-text text-darken-3">Make a Bet</span></a></div></c:if>
                             <div class="ls-l nav-wrapper hide-on-large-only" style="top: 20px; left: 20px;">
                                 <a href="#" data-activates="sidebar-nav" class="button-collapse"><i
                                         class="material-icons white-text" style="font-size: 3rem;">menu</i></a>
@@ -351,8 +352,8 @@
                     <br><br>
                     <p class="message center-align">Still Not Registered? <a><span class="orange-text"><strong>Create an account!</strong></span></a>
                     </p>
-                    <p class="center-align"><a href="newPassword" class="orange-text">Forgot a password?</a></p>
                     <span class="center-align red-text" id="messageLogin"></span>
+                    <p class="center-align"><a href="restorePassword" class="orange-text text-darken-3">Forgot a password?</a></p>
                 </div>
             </form>
 

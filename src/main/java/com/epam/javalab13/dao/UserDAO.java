@@ -435,7 +435,7 @@ public class UserDAO {
 	 * @throws SQLException
 	 */
 	public List<User> getAllUsersByType(GetType type) throws SQLException {
-		final String SQL_ALL = "SELECT * FROM user u;";
+		final String SQL_ALL = "SELECT * FROM user u WHERE u.role IN ('CLIENT','BOOKMAKER');";
 		final String SQL_OTHER = "SELECT * FROM user u WHERE u.role=?;";
 
 		List<User> users = null;
