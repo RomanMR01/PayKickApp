@@ -39,7 +39,7 @@
                 <main class="valign-wrapper no-padding">
                     <div class="container valign">
                         <div class="row">
-                            <form id="new-password-form"class="col s8 offset-s2 m6 offset-m3 white center-align">
+                            <form id="new-password-form" class="col s8 offset-s2 m6 offset-m3 white center-align">
                                 <br><br>
                                 <h5 class="center-align">Enter New Password:</h5>
                                 <div id="formInput" class="row">
@@ -53,9 +53,10 @@
                                 </button>
                                 <br><br>
                                 <span id="messageNewPass" class="center-align red-text"></span>
-                                <br><br>
-                                <p id="homePage" style="display: none" class="center-align"><a href="home" class="orange-text">Home page</a></p>
+                                <p id="homePage" class="center-align"><a href="home" class="orange-text">Home page</a></p>
+                                <br>
                             </form>
+                            
                         </div>
                     </div>
                 </main>

@@ -26,8 +26,7 @@
         <jsp:include page="common/navigation.jsp"></jsp:include>
         
         <!-- Main Content -->
-		<br>
-        <br>
+		<main class="valign-wrapper grey lighten-3"></main>
         
         <jsp:include page="common/footer.jsp"></jsp:include>
         <jsp:include page="common/scripts.jsp"></jsp:include>

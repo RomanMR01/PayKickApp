@@ -117,7 +117,7 @@
                     </li>
                 </ul>
                 <br>
-                <a class="waves-effect waves-light modal-trigger btn right green" href="#new-match-modal"><i class="material-icons right">add</i>New Match</a>
+                <a class="waves-effect waves-light modal-trigger btn right green" href="#new-match-modal"><i class="material-icons right">playlist_add</i>New Match</a>
                 <br>
                 <ul class="pagination center-align">
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>

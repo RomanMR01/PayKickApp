@@ -102,7 +102,7 @@ public class NewPasswordServlet extends HttpServlet {
                     getServletContext().setAttribute("restore", restorePasswordMap);
 
                     resp.setContentType("text/html;charset=UTF-8");
-                    resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Password restored!Go to home page and log in with new password!\"}");
+                    resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Password restored! Go to home page and log in with new password!\"}");
                 }else{
 
                 }

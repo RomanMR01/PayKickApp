@@ -52,7 +52,7 @@
                                     <i class="material-icons right">lock_outline</i>
                                 </button>
                                 <br><br>
-                                <p class="center-align"><a href="home" class="orange-text">Home page</a></p>
+                                <p class="center-align"><a href="home" class="orange-text">Back to Home page</a></p>
                                 <span id="messageRestore" class="center-align red-text"></span>
                                 <br><br>
                             </form>

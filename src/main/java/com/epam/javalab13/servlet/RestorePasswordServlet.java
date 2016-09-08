@@ -60,10 +60,10 @@ public class RestorePasswordServlet extends HttpServlet{
                     }
                 }).start();
 
-                resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Email are sent! Check your mailbox, please!\"}");
+                resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Email was sent! Check your mailbox, please!\"}");
 
             } else {
-                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"No such email address in db!\"}");
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"No such email registered!!\"}");
             }
         }else{
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Try again!\"}");
