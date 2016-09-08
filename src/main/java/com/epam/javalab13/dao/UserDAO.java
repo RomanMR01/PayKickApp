@@ -418,4 +418,51 @@ public class UserDAO {
     }
 
 
+    public List<User> getAllUsersByType(GetType type) throws SQLException {
+        final String SQL_ALL = "SELECT * FROM user u WHERE u.role IN ('CLIENT','BOOKMAKER');";
+        final String SQL_OTHER = "SELECT * FROM user u WHERE u.role=?;";
+
+        List<User> users = null;
+        UserTransformer userTransformer = new UserTransformer();
+
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            switch (type) {
+                case ALL: {
+                    st = conn.prepareStatement(SQL_ALL);
+                    break;
+                }
+                default: {
+                    st = conn.prepareStatement(SQL_OTHER);
+                    st.setString(1, type.name());
+                    break;
+                }
+            }
+            rs = st.executeQuery();
+            users = userTransformer.getAll(rs);
+        } finally {
+            if (st != null)
+                try {
+                    st.close();
+                } catch (Exception e) {
+                    logger.warn("Exception while close statement:", e);
+                }
+            if (conn != null)
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                    logger.warn("Exception while close connection:", e);
+                }
+
+        }
+
+        return users;
+    }
+
+
+
 }

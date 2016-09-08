@@ -1,5 +1,7 @@
 package com.epam.javalab13.model.game;
 
+import java.util.List;
+
 public class Team {
 
 	private int id;
@@ -9,6 +11,8 @@ public class Team {
 	private int totalWins;
 	private int totalLoses;
 	private int totalDraws;
+
+	private List<Player> players;
 
 	public Team(){}
 
@@ -118,5 +122,13 @@ public class Team {
 				", totalLoses=" + totalLoses +
 				", totalDraws=" + totalDraws +
 				'}';
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 }

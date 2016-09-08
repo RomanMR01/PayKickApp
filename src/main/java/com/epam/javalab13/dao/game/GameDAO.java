@@ -279,4 +279,66 @@ public class GameDAO {
             }
         }
     }
+
+    public enum Type{
+        ALL,
+        ACTIVE,
+        PAST,
+        CANCELED,
+        NEW;
+    }
+    public List<Game> getGamesByType(Type type) throws SQLException {
+        final String SQL_ALL = "SELECT * FROM game";
+        final String SQL_ACTIVE = "SELECT * FROM game g WHERE g.status LIKE 'ACTIVE'";
+        final String SQL_NEW = "SELECT * FROM game g WHERE g.status LIKE 'NEW'";
+        final String SQL_PAST = "SELECT * FROM game g WHERE g.status LIKE 'FINISHED'";
+        final String SQL_CANCELED = "SELECT * FROM game g WHERE g.status LIKE 'CANCELED'";
+
+        List<Game> games = null;
+
+        GameTransformer gameTransformer = new GameTransformer();
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            switch (type) {
+                case ALL:
+                    st = conn.prepareStatement(SQL_ALL);
+                    break;
+                case ACTIVE:
+                    st = conn.prepareStatement(SQL_ACTIVE);
+                    break;
+                case NEW:
+                    st = conn.prepareStatement(SQL_NEW);
+                    break;
+                case PAST:
+                    st = conn.prepareStatement(SQL_PAST);
+                    break;
+                case CANCELED:
+                    st = conn.prepareStatement(SQL_CANCELED);
+                    break;
+
+            }
+
+            rs = st.executeQuery();
+            games = gameTransformer.getAll(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return games;
+    }
 }
