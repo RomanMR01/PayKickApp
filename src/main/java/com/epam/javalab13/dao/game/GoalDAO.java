@@ -92,4 +92,60 @@ public class GoalDAO {
             }
         }
     }
+
+    public List<Goal> getAllGoalsByGame(Game game) throws SQLException {
+        final String SQL = "SELECT * FROM goal g WHERE g.game_id=?";
+
+        List<Goal> goals = new ArrayList<>();
+
+        Connection conn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setInt(1,game.getId());
+
+            rs = st.executeQuery();
+
+            while (rs.next()){
+                Goal goal = new Goal();
+
+                Player p = new Player();
+                p.setId(rs.getInt("player_id"));
+                Player player = new PlayerDAO().getPlayer(p,"id");
+
+                Team t = new Team();
+                t.setId(rs.getInt("team_id"));
+                Team team = new TeamDAO().getTeam(t,"id");
+
+
+                Game g = new GameDAO().getGamesById(game.getId());
+
+                goal.setId(rs.getInt("id"));
+                goal.setPlayer(player);
+                goal.setTeam(team);
+                goal.setGame(g);
+                goal.setMinute(rs.getInt("minute"));
+
+                goals.add(goal);
+            }
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:",e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:",e);
+            }
+        }
+
+        return goals;
+    }
 }

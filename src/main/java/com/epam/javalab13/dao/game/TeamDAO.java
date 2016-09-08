@@ -1,6 +1,7 @@
 package com.epam.javalab13.dao.game;
 
 import com.epam.javalab13.dao.ConnectionPool;
+import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.transformer.game.TeamTransformer;
 import org.apache.log4j.Logger;
@@ -14,6 +15,12 @@ import java.util.List;
  */
 public class TeamDAO {
     private static Logger logger = Logger.getLogger(TeamDAO.class);
+
+    public enum UpdateTeamType{
+        WINS,
+        LOSES,
+        DRAWS
+    }
 
     public void addTeam(Team team) throws SQLException {
         logger.info("DAO addTeam entry");
@@ -127,5 +134,52 @@ public class TeamDAO {
         }
 
         return returnTeam;
+    }
+
+    /**
+     * Update teams wins,losses or draws count
+     *
+     * @param team the Team object
+     * @param type the type of team update: WINS, LOSES, DRAWS
+     * @throws SQLException
+     */
+    public void updateTeamsByType(Team team, UpdateTeamType type) throws SQLException {
+        final String SQL_WINS = "UPDATE team t SET t.total_wins=(t.total_wins+1) WHERE t.id=?";
+        final String SQL_LOSES = "UPDATE team t SET t.total_loses=(t.total_loses+1) WHERE t.id=?";
+        final String SQL_DRAWS = "UPDATE team t SET t.total_draws=(t.total_draws+1) WHERE t.id=?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            switch (type){
+                case WINS:
+                    st = conn.prepareStatement(SQL_WINS);
+                    st.setInt(1,team.getId());
+                    break;
+                case LOSES:
+                    st = conn.prepareStatement(SQL_LOSES);
+                    st.setInt(1,team.getId());
+                    break;
+                case DRAWS:
+                    st = conn.prepareStatement(SQL_DRAWS);
+                    st.setInt(1,team.getId());
+                    break;
+            }
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
     }
 }

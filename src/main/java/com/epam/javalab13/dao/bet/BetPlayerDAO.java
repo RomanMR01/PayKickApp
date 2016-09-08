@@ -76,7 +76,7 @@ public class BetPlayerDAO {
                 SingleBet sb = new SingleBetDAO().getSingleBetById(singleBet.getId());
                 PlayerDAO playerDAO = new PlayerDAO();
                 Player p = new Player();
-                p.setId(rs.getInt(""));
+                p.setId(rs.getInt("player_id"));
                 Player player = playerDAO.getPlayer(p,"id");
                 betPlayer = new BetPlayer(sb,player);
             }
