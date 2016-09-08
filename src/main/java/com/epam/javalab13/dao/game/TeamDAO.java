@@ -81,6 +81,40 @@ public class TeamDAO {
 
         return teams;
     }
+    
+    public List<Team> getAllTeamsWithPlayers() throws SQLException {
+        List<Team> teams = new ArrayList<>();
+        final String SQL = "SELECT * FROM team";
+
+        TeamTransformer transformer = new TeamTransformer();
+
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery(SQL);
+
+            teams = transformer.getAllTeamsWithPlayers(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return teams;
+    }
 
     public Team getTeam(Team team, String type) throws SQLException {
         final String SQL_ID = "SELECT * FROM team t WHERE t.id = ?";

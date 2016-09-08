@@ -36,10 +36,12 @@ public class MatchesDispatcher extends HttpServlet {
 		page=page==null?"1":page;
 		itemsOnPage=itemsOnPage==null?"10":itemsOnPage;
 		pages=paginationService.getPagesForGames(type,page,itemsOnPage,games);
+		int intPage = Integer.valueOf(page);
+		intPage=intPage>pages?pages:Integer.valueOf(page);
 		request.setAttribute("pages", pages);
 		request.setAttribute("games", games);
 		request.setAttribute("type", type);
-		request.setAttribute("page", page);
+		request.setAttribute("page", intPage);
 		request.setAttribute("itemsOnPage", itemsOnPage);
     	request.getRequestDispatcher("/WEB-INF/view/admin/matches.jsp").forward(request,response);
         
