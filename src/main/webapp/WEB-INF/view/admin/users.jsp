@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>--%>
+
+<jsp:include page="common/scripts.jsp"></jsp:include>
 
     <html>
 
     <head>
-
         <!-- Meta -->
         <meta charset="utf-8">
-
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PayKick. One bet - one hit!</title>
@@ -77,7 +78,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a class="waves-effect waves-light modal-trigger btn green" href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
+                            <a id="statistics" class="waves-effect waves-light modal-trigger btn green" href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
                             <br>
                             <br>
                         </div>
@@ -150,16 +151,22 @@
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs transparent">
-                            <li class="tab col s6"><a href="">Chart</a></li>
-                            <li class="tab col s6"><a href="" class="active">Diagram</a></li>
+                            <li class="tab col s6"><a href="#tabChart" class="active">Chart</a></li>
+                            <li class="tab col s6"><a href="#tabDiagram">Diagram</a></li>
                         </ul>
+                    </div>
+                    <div id="tabChart" class="col s12">
+                        <div id="chart" style="height: 400px"></div>
+                    </div>
+                    <div id="tabDiagram" class="col s12">
+                        <div id="diagram" style="height: 400px"></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <jsp:include page="common/footer.jsp"></jsp:include>
-        <jsp:include page="common/scripts.jsp"></jsp:include>
+
 
     </body>
 
