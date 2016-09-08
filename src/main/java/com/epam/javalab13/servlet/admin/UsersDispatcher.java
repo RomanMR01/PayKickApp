@@ -24,6 +24,8 @@ public class UsersDispatcher extends HttpServlet {
 	
 	private PaginationService paginationService = new PaginationService();
 	
+	
+	//handle params type, page, itemsOnPage
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String type = request.getParameter("type");

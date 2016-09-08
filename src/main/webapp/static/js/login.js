@@ -19,7 +19,8 @@ $('#loginBtn').on('click', function (e) {
 
                 if (status == 'OK') {
                     messageLogin.text(message);
-                    $(location).attr('href', '/PayKick/' + url);
+                    window.location=url;
+//                    $(location).attr('href', '/PayKick/' + url);
                     console.log("success")
                 } else {
                     console.log("fail")
@@ -59,7 +60,8 @@ $('#register').on('click', function (e) {
             success: function (data) {
                 if (data == 'True') {
                     messageReg.text("You are registered!");
-                    $(location).attr('href', '/PayKick/home');
+                    window.location="home";
+//                    $(location).attr('href', '/PayKick/home');
                 } else {
                     messageReg.text(data);
                 }

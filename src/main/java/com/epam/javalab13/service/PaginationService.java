@@ -9,6 +9,7 @@ import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.dao.UserDAO.GetType;
 import com.epam.javalab13.dao.game.GameDAO;
 import com.epam.javalab13.dao.game.GameDAO.GetGamesType;
+import com.epam.javalab13.dao.game.GameDAO.Type;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.game.Game;
 
@@ -33,7 +34,7 @@ public class PaginationService {
 			GetType enumType=type==null?GetType.ALL:GetType.valueOf(type);
 			userDao= new UserDAO();
 			allUsers = userDao.getAllUsersByType(enumType);
-			pages=1+allUsers.size()/items;
+			pages=1+(allUsers.size()-1)/items;
 			int start =allUsers.size()<items*(pageNumber-1)?(allUsers.size()-allUsers.size()/items):items*(pageNumber-1);
 			int end = allUsers.size()<items*pageNumber?allUsers.size():items*pageNumber;
 			users.addAll(allUsers.subList(start, end));
@@ -43,23 +44,24 @@ public class PaginationService {
 		}
 		return pages;
 	}
+	
 	public int getPagesForGames(String type, String page,String itemsOnPage, List<Game> games) {
 		List<Game> allGames =null;
 		int pages=1;
 		try {
 			int pageNumber=page==null||page.equals("")?1:Integer.valueOf(page);
 			int items=itemsOnPage==null||itemsOnPage.equals("")?10:Integer.valueOf(itemsOnPage);
-			GetGamesType enumType=type==null||type.equals("")?GetGamesType.ALL:GetGamesType.valueOf(type);
+			Type enumType=type==null||type.equals("")?Type.ACTIVE:Type.valueOf(type);
 			gameDao=new GameDAO();
-			allGames = gameDao.getGamesByStatus(enumType);
+			allGames = gameDao.getGamesByType(enumType);
 			
-			pages=1+allGames.size()/items;
+			pages=1+(allGames.size()-1)/items;
 			int start =allGames.size()<items*(pageNumber-1)?(allGames.size()-allGames.size()/items):items*(pageNumber-1);
 			int end = allGames.size()<items*pageNumber?allGames.size():items*pageNumber;
 			games.addAll(allGames.subList(start, end));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			loger.error("failed to find users by type = " + type, e);
+			loger.error("failed to find games by type = " + type, e);
 		}
 		return pages;
 	}
