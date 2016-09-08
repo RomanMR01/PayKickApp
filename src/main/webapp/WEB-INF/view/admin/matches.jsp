@@ -11,7 +11,7 @@
 
         <!-- Mobile Metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PayKick. One bet - one hit!</title>
+        <title>Admin - Manage Matches</title>
 
         <jsp:include page="common/styles.jsp"></jsp:include>
     </head>
@@ -166,18 +166,14 @@
                                 <input type="text" id="bookmaker" class="autocomplete bookmaker-input" autocomplete="off">
                                 <label for="bookmaker">Bookmaker</label>
                             </div>
+                        </div>
+                        <div class="col s12 center-align">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Confirm
+                                <i class="material-icons right">done</i>
+                            </button>
                             <br>
                             <br>
-                            <br>
-                            <br>
-                            <div class="col s12 center-align">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Confirm
-                                    <i class="material-icons right">done</i>
-                                </button>
-                                <br>
-                                <br>
-                                <span class="center-align red-text" id="messageRegistration"></span>
-                            </div>
+                            <span class="center-align red-text" id="messageRegistration"></span>
                         </div>
                     </form>
                 </div>
@@ -186,7 +182,7 @@
 
         <jsp:include page="common/footer.jsp"></jsp:include>
         <jsp:include page="common/scripts.jsp"></jsp:include>
-        
+
         <!-- Here must be generated all the teams; Second parameter - logo of the team -->
         <script>
             $(function () {
