@@ -1,5 +1,6 @@
 package com.epam.javalab13.transformer.game;
 
+import com.epam.javalab13.dao.game.TeamDAO;
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.transformer.Transformer;
@@ -17,9 +18,9 @@ public class PlayerTransformer implements Transformer<Player> {
     public Player getOne(ResultSet rs) throws SQLException {
         Player player = null;
         while (rs.next()) {
-            //todo add inner query for team?
-            Team team = new Team();
-            team.setId(rs.getInt("team_id"));
+            Team t = new Team();
+            t.setId(rs.getInt("team_id"));
+            Team team = new TeamDAO().getTeam(t,"id");
             player = new Player(
                     rs.getInt("id"),
                     rs.getString("full_name"),
