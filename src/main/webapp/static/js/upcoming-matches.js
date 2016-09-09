@@ -1,5 +1,5 @@
 // /Method for getting upcoming matches with ajax
-(function ($) {
+
     $(document).ready(function () {
         var $container = $("#newMatches");
         var getNewMatches = function () {
@@ -31,7 +31,7 @@
         getNewMatches();
         setInterval(getNewMatches, 20000);
     });
-})(jQuery);
+
 
 //Open all collapsible
 function expandAll(){

@@ -1,5 +1,4 @@
-(function ($) {
-    $(document).ready(function () {
+$(document).ready(function () {
         var $container = $("#topUsers");
         var getTopUsers = function () {
 
@@ -45,5 +44,4 @@
         }
         getTopUsers();//First call when page ready
         setInterval(getTopUsers, 5000);//Interval call every 5 seconds
-    });
-})(jQuery);
+});
