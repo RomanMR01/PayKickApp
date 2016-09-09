@@ -27,6 +27,95 @@ public class GameService {
     private static Logger logger = Logger.getLogger(GameService.class);
 
     /**
+     * Updating game status to CANCELED by gameId
+     * @param gameId the unique game id
+     * @return true if game canceled successfully, otherwise false if are throwing
+     * some exception or game not found bu id (go to logs for more details)
+     */
+    public boolean cancelGame(int gameId){
+        try {
+            return resetGame(gameId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("Exception while canceled game " + gameId + " !",e);
+            return false;
+        }
+    }
+
+    /**
+     * Setting results for game by game id and score
+     * @param gameId
+     * @param firstTeamScore
+     * @param secondTeamScore
+     * @return true if everything okay
+     */
+    public boolean setGameScore(int gameId,int firstTeamScore, int secondTeamScore){
+        try {
+            setResults(gameId,firstTeamScore,secondTeamScore);
+            return true;
+        } catch (SQLException e) {
+            logger.error("Exception while updating game " + gameId +" result with score " + firstTeamScore + ":" + secondTeamScore + " !",e);
+            return false;
+        }
+    }
+
+    /**
+     * ! PRIVATE ! For cancelGame() only
+     * Updating game status to CANCELED by gameId
+     * @param gameId the unique game id
+     * @return true if game canceled successfully, otherwise false if are throwing
+     * some exception or game not found bu id (go to logs for more details)
+     */
+    private boolean resetGame(int gameId) throws SQLException {
+        logger.info("Admin set game status CANCELED for game: " + gameId);
+        GameDAO gameDAO = new GameDAO();
+        Game game = gameDAO.getGamesById(gameId);
+
+        //If game exist
+        if(game!=null) {
+            //Update game status to canceled
+            gameDAO.updateGameByType(game, GameDAO.UpdateGameType.GAME_CANCELED);
+
+            //Gets all single bets by game
+            SingleBetDAO singleBetDAO = new SingleBetDAO();
+            List<SingleBet> singleBets = singleBetDAO.getSingleBetsByGame(game);
+
+            //Update single bets status to canceled
+            for (SingleBet singleBet : singleBets) {
+                singleBet.setStatus(Status.CANCELED);
+                singleBetDAO.updateSingleBetStatus(singleBet);
+            }
+
+            //Group single bets by total bet id
+            //Unique total bet id in single bets
+            Set<Integer> totalBetIdList = new HashSet<>();
+
+            //Get unique totalBetsIDs
+            for (SingleBet singleBet : singleBets) {
+                totalBetIdList.add(singleBet.getTotalBet().getId());
+            }
+
+            //Gets all total bets by single bets
+            TotalBetDAO totalBetDAO = new TotalBetDAO();
+            List<TotalBet> totalBets = new ArrayList<>();
+            for (Integer totalBetId : totalBetIdList) {
+                TotalBet totalBet = totalBetDAO.getTotalBetById(totalBetId);
+                totalBets.add(totalBet);
+            }
+
+            //Update total bets status to canceled
+            for (TotalBet totalBet : totalBets) {
+                totalBet.setStatus(Status.CANCELED);
+                totalBetDAO.updateTotalBetStatus(totalBet);
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * ! PRIVATE ! For setGameScore() only
      * Setting results for game by game id and score
      * Usage: setResult(12,2,3) game by id 12, score 2:3
      * @param gameId the Game id
@@ -248,6 +337,7 @@ public class GameService {
         UserDAO userDAO = new UserDAO();
 
         //TODO add email sending
+        //TODO sort users by language and status
         //Updating balances of users
         for(TotalBet totalBet:totalBets){
             int amount = totalBet.getAmount();
@@ -269,18 +359,7 @@ public class GameService {
             }
         }
 
-
         game.setProfit(profit);
         gameDAO.updateGameByType(game, GameDAO.UpdateGameType.GAME_PROFIT);
-    }
-
-    public boolean setGameScore(int gameId,int firstTeamScore, int secondTeamScore){
-        try {
-            setResults(gameId,firstTeamScore,secondTeamScore);
-            return true;
-        } catch (SQLException e) {
-            logger.error("Exception while updating game " + gameId +" result with score " + firstTeamScore + ":" + secondTeamScore + " !",e);
-            return false;
-        }
     }
 }
