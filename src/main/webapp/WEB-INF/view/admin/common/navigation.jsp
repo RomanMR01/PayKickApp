@@ -44,7 +44,7 @@
                 </li>
 
                 <li><a href="${pageContext.request.contextPath}/admin/matches">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/teams">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/teams">MANAGE TEAMS<i class="material-icons right orange-text">group</i></a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/users">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/statistics">STATISTICS<i class="material-icons right green-text text-accent-4">trending_up</i></a></li>
 
