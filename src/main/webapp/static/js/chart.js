@@ -18,7 +18,7 @@ $(".button1").click(function (event) {
                     win = win + value.award;
                     console.log("win" + win);
                 } else if (value.status === "LOST") {
-                    loss = loss + value.award;
+                    loss = loss + value.amount;
                     console.log("loss" + loss);
                 }
             });

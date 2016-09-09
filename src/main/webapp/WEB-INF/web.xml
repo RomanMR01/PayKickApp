@@ -151,7 +151,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ChartServlet</servlet-name>
-        <url-pattern>/chart</url-pattern>
+        <url-pattern>/admin/chart</url-pattern>
     </servlet-mapping>
     <!-- END CHARTS -->
 
