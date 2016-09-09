@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 
                 session.setAttribute("login", login);
                 session.setAttribute("fullName", user.getFullName());
+                session.setAttribute("role", user.getRole().toString().toLowerCase());
 
                 if ("true".equals(rememberMe)) {
                     Cookie cookieLogin = new Cookie("userLogin", login);
