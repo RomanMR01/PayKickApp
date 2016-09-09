@@ -15,7 +15,7 @@
     <title>Admin - Manage Users</title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
-    <jsp:include page="common/scripts.jsp"></jsp:include>
+
 </head>
 
 <body>
@@ -23,6 +23,7 @@
 
 <!-- Main Content -->
 <main class="valign-wrapper grey lighten-3">
+
     <div class="container valign" style="margin-top: 20px;">
         <h4 class="center-align">Users:</h4>
         <br>
@@ -93,8 +94,8 @@
                                         <li class="tab col s6"><a href="#diagram">Diagram</a></li>
                                     </ul>
                                 </div>
-                                <div id="chart" class="col s12">Code 1</div>
-                                <div id="diagram" class="col s12">Code 2</div>
+                                <div id="chart" style="height: 400px" class="col s12"></div>
+                                <div id="diagram" style="height: 400px" class="col s12"></div>
                             </div>
                         </div>
                     </div>
@@ -163,8 +164,9 @@
 
                             </tbody>
                         </table>
+                        <input id="hiddenId" type="hidden" name="data-id" value="${user.id}" />
                         <a class="waves-effect waves-light modal-trigger btn green"
-                           href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
+                           href="#modal-stats"><div class="button1" id="${user.id}"><i class="material-icons right">timeline</i>Statistics</div>></a>
                         <br> <br>
                     </div></li>
             </c:forEach>
@@ -215,22 +217,8 @@
     </div>
 </main>
 
-<!-- Statistics Modal Structure -->
-<div id="modal-stats" class="modal my-stats">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs transparent">
-                    <li class="tab col s6"><a href="">Chart</a></li>
-                    <li class="tab col s6"><a href="" class="active">Diagram</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
 <jsp:include page="common/footer.jsp"></jsp:include>
-
+<jsp:include page="common/scripts.jsp"></jsp:include>
 
 </body>
 

@@ -6,5 +6,7 @@ pageEncoding="UTF-8" %>
 <script src="static/js/login.js"></script>
 <script src="static/js/highcharts.js"></script>
 <script src="static/js/highcharts-3d.js"></script>
+<script src="http://code.highcharts.com/modules/no-data-to-display.js"></script>
 <script src="static/js/chart.js"></script>
+<script src="static/js/adminChart.js"></script>
 

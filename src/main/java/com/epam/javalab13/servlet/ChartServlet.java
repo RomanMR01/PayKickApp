@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -32,6 +33,7 @@ public class ChartServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         TeamService teamService=new TeamService();
         TotalBetDAO totalBetDAO = new TotalBetDAO();
 
@@ -49,7 +51,6 @@ public class ChartServlet extends HttpServlet {
                     if (req.getParameter("id")!=null){
                         user.setId(Integer.valueOf(req.getParameter("id")));
                     }
-                    user.setId(6);
 
                     allBets = totalBetDAO.getTotalBetsForUser(TotalBetDAO.GetTotalBetsType.ALL, user);
                     json = gson.toJson(allBets);
@@ -68,6 +69,15 @@ public class ChartServlet extends HttpServlet {
                     }
                     json = gson.toJson(resultTeam);
                     break;
+                case "all_bats":
+                    List<TotalBet> all;
+                    try {
+                        all = totalBetDAO.getAllTotalBets(TotalBetDAO.GetTotalBetsType.ALL);
+                        Collections.sort(all);
+                        json = gson.toJson(all);
+                    } catch (SQLException e) {
+                        logger.warn("Exception while getting all TotalBets:",e);
+                    }
             }
         }
         resp.setContentType("application/json");// set content to json

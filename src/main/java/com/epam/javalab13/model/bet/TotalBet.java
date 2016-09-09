@@ -3,7 +3,7 @@ package com.epam.javalab13.model.bet;
 import com.epam.javalab13.model.User;
 import java.util.Date;
 
-public class TotalBet {
+public class TotalBet implements Comparable<TotalBet> {
 	private int id;
 	private User user;
 	private Type type;
@@ -124,5 +124,10 @@ public class TotalBet {
 				", award=" + award +
 				", status=" + status +
 				'}';
+	}
+
+	@Override
+	public int compareTo(TotalBet o) {
+		return getDate().compareTo(o.getDate());
 	}
 }
