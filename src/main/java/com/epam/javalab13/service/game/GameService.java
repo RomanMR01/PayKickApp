@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import com.epam.javalab13.model.game.Team;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Vikno on 9/8/2016.
@@ -442,4 +446,52 @@ public class GameService {
             }
         }).start();
     }
+
+    /**
+     	 * Creates new instance of Game inserts it into database and returns it with
+      * teams and generated id;
+     	 *
+     	 * @param title
+     	 * @param location
+     	 * @param stringDate
+     	 * @param firstTeamName
+     	 * @param secondTeamName
+     	 * @return Game game with generated id
+     	 */
+    public Game addNewGame(String title, String location, String stringDate, String firstTeamName,
+                                			String secondTeamName) {
+        		GameDAO gameDao;
+        		TeamDAO teamDao = new TeamDAO();
+        		Team team = new Team();
+        		Team firstTeam = null;
+        		Team secondTeam = null;
+        		try {
+            			team.setName(firstTeamName);
+            			firstTeam = teamDao.getTeam(team, "name");
+            			team.setName(secondTeamName);
+            			secondTeam = teamDao.getTeam(team, "name");
+            		} catch (SQLException e2) {
+            			logger.error("failed to instantiate team by name from database " + team, e2);
+            		}
+        		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd'T'HH:mm");
+        		Date date = null;
+        		try {
+            			date = sdf.parse(stringDate);
+            		} catch (ParseException e1) {
+            			logger.error("failed to parse date from request " + stringDate, e1);
+            		}
+        		Game game = new Game();
+        		game.setTitle(title);
+        		game.setLocation(location);
+        		game.setDate(date);
+        		game.setFirstTeam(firstTeam);
+        		game.setSecondTeam(secondTeam);
+        		try {
+            			gameDao = new GameDAO();
+            			gameDao.addGame(game);
+            		} catch (SQLException e) {
+            			logger.error("failed to create add new game to database " + game, e);
+            		}
+        		return game;
+        	}
 }
