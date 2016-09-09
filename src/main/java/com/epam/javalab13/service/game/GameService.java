@@ -106,11 +106,19 @@ public class GameService {
             }
 
             List<User> usersInTotalBet = new ArrayList<>();
-            //Update total bets status to canceled
+            //Update total bets status to canceled and return money to users
+            UserDAO userDAO = new UserDAO();
             for (TotalBet totalBet : totalBets) {
                 totalBet.setStatus(Status.CANCELED);
                 usersInTotalBet.add(totalBet.getUser());
                 totalBetDAO.updateTotalBetStatus(totalBet);
+
+                //Updating user balance (return amount)
+                User user = totalBet.getUser();
+                double balance = user.getBalance()+totalBet.getAmount();
+                user.setBalance(balance);
+
+                userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
             }
             //Sending emails
             ArrayList<String> usersUA = new ArrayList<>();
