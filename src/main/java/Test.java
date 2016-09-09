@@ -1,7 +1,4 @@
 import com.epam.javalab13.dao.ConnectionPool;
-import com.epam.javalab13.dao.game.GameDAO;
-import com.epam.javalab13.model.game.Game;
-import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.util.DateConverter;
 
 import java.sql.PreparedStatement;
@@ -17,22 +14,13 @@ import java.util.Date;
  */
 public class Test {
     public static void main(String[] args) throws SQLException {
-        Game game = new Game();
-        game.setTitle("G1");
-        game.setLocation("L1");
-        game.setDate(new Date());
-        Team team = new Team();
-        team.setId(5);
-        game.setFirstTeam(team);
+        Statement statement = ConnectionPool.getConnection().createStatement();
+        ResultSet set = statement.executeQuery("SELECT tb.user_id,tb.award FROM totalizator.total_bet tb JOIN totalizator.single_bet sb ON sb.total_bet_id=tb.id WHERE sb.game_id=1");
 
-        Team team2 = new Team();
-        team2.setId(6);
-        game.setSecondTeam(team2);
+        while (set.next()){
+            System.out.println(set.getInt("user_id") + "\t" + set.getString("award"));//1 1000 for 3:00 PM
 
-        System.out.println(game);
+        }
 
-        new GameDAO().addGame(game);
-
-        System.out.println(game);
     }
 }
