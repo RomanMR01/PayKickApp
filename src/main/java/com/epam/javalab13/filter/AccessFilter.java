@@ -28,7 +28,12 @@ public class AccessFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse)servletResponse;
 
         String uri = request.getRequestURI();
-        System.out.println(uri);
+        String url = request.getRequestURL().toString();
+        String path = request.getServletContext().getContextPath();
+
+        System.out.println("uri" + uri);
+        System.out.println("path" + url);
+        System.out.println("url" + path);
 
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
@@ -39,39 +44,39 @@ public class AccessFilter implements Filter {
 
             switch (user.getRole()){
                 case CLIENT:
-                    if("/PayKick/client".equals(uri)) {
+                    if(uri.contains("client")) {
                         filterChain.doFilter(request, response);
                     }else {
-                        response.sendRedirect("/PayKick/home");
+                        response.sendRedirect(path + "/home");
                     }
                     break;
                 case BOOKMAKER:
-                    if("/PayKick/bookmaker".equals(uri)) {
+                    if(uri.contains("bookmaker")) {
                         filterChain.doFilter(request, response);
                     }else {
-                        response.sendRedirect("/PayKick/home");
+                        response.sendRedirect(path + "/home");
                     }
                     break;
                 case ADMIN:
-                    if("/PayKick/admin".equals(uri)) {
+                    if(uri.contains("admin")) {
                         filterChain.doFilter(request, response);
                     }else {
-                        response.sendRedirect("/PayKick/home");
+                        response.sendRedirect(path + "/home");
                     }
                     break;
                 case BOSS:
-                    if("/PayKick/boss".equals(uri)) {
+                    if(uri.contains("boss")) {
                         filterChain.doFilter(request, response);
                     }else {
-                        response.sendRedirect("/PayKick/home");
+                        response.sendRedirect(path + "/home");
                     }
                     break;
                 default:
-                    response.sendRedirect("/PayKick/home");
+                    response.sendRedirect(path + "/home");
                     break;
             }
         }else {
-            response.sendRedirect("/PayKick/home");
+            response.sendRedirect(path + "/home");
         }
     }
 
