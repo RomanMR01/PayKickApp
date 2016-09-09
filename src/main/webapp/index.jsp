@@ -20,7 +20,7 @@
     <title>PayKick. One bet - one hit!</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="static/img/favicon.ico">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/img/favicon.ico">
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet'
@@ -29,18 +29,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="static/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="${pageContext.request.contextPath}/static/css/style.css" rel="stylesheet">
 
     <!-- LayerSlider stylesheet -->
-    <link rel="stylesheet" href="static/css/layerslider.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layerslider.css" type="text/css">
 
     <script src="static/js/jquery-2.1.1.min.js"></script>
 
     <!-- Script for updating top users and upcoming matches with AJAX-->
-    <script src="static/js/top-users.js"></script>
-    <script src="static/js/upcoming-matches.js"></script>
-    <script src="static/js/validation.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/top-users.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/upcoming-matches.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/validation.js"></script>
 </head>
 
 <body>
@@ -227,7 +227,7 @@
 
             <div class="footer-copyright grey darken-3">
                 <div class="center-align">
-                    <a href=""><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 All rights Reserved
+                    <a href="${pageContext.request.contextPath}/home"><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 All rights Reserved
                     <div class="right lang">
                         <a href="?language=ua_UA">
                             <div id="ua"></div>
@@ -251,7 +251,7 @@
                                 <li><a href="#home-matches">Matches</a></li>
                                 <li><a href="#home-top-users">Top Users</a></li>
                                 <li>
-                                    <a href=""><img src="static/img/logo.png" alt="PayKick Logo"/></a>
+                                    <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo"/></a>
                                 </li>
                                 <li><a href="#contacts">Contacts</a></li>
                                 <c:choose>
@@ -259,8 +259,8 @@
                                         <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
                                     </c:when>
                                     <c:otherwise>
-                                        <li><a href="cabinet" class="my-orange">My Account</a></li>
-                                        <li><a href="logout" class="my-red">Log Out</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/${role}" class="my-orange">My Account</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/logout" class="my-red">Log Out</a></li>
                                     </c:otherwise>
                                 </c:choose>
 

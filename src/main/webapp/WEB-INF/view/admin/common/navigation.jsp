@@ -15,8 +15,8 @@
     </ul>
 
     <ul id="userDropdown" class="dropdown-content grey darken-3">
-        <li><a href="" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
-        <li><a href="logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
     </ul>
 
     <!-- Sidebar Dropdowns -->
@@ -26,8 +26,8 @@
     </ul>
 
     <ul id="userSideDropdown" class="dropdown-content sidebar grey darken-3">
-        <li><a href="" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
-        <li><a href="logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
     </ul>
     <nav>
         <div class="nav-wrapper grey darken-3">
@@ -35,23 +35,23 @@
             <ul class="right hide-on-med-and-down">
 
                 <li><a class="dropdown-button" data-activates="userDropdown">Hello, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                <li><a href="home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                 <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
             </ul>
             <ul class="side-nav fixed grey darken-4" id="sidebar-nav">
                 <li>
-                    <a href="home" class="center-align logo"><img src="static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
+                    <a href="${pageContext.request.contextPath}/home" class="center-align logo"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                 </li>
 
-                <li><a href="matches">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
-                <li><a href="teams">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
-                <li><a href="users">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
-                <li><a href="statistics">STATISTICS<i class="material-icons right green-text text-accent-4">trending_up</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/matches">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/teams">MANAGE TEAMS<i class="material-icons right orange-text">supervisor_account</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/users">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/statistics">STATISTICS<i class="material-icons right green-text text-accent-4">trending_up</i></a></li>
 
                 <div class="hide-on-large-only">
                     <hr>
                     <li><a class="dropdown-button" data-activates="userSideDropdown">${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                    <li><a href="home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                     <li><a class="dropdown-button" data-activates="languageSideDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                 </div>
             </ul>

@@ -2,164 +2,210 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          id="WebApp_ID" version="3.1">
-<display-name>PayKick App</display-name>
+    <display-name>PayKick App</display-name>
 
-<welcome-file-list>
-  <welcome-file>index.jsp</welcome-file>
-</welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
-  <filter>
-    <filter-name>EncodingFilter</filter-name>
-    <filter-class>com.epam.javalab13.filter.EncodingFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>EncodingFilter</filter-name>
-    <url-pattern>*</url-pattern>
-  </filter-mapping>
+    <!-- FILTERS -->
 
-  <filter>
-    <filter-name>JSPFilter</filter-name>
-    <filter-class>com.epam.javalab13.filter.JSPFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>JSPFilter</filter-name>
-    <url-pattern>*.jsp</url-pattern>
-  </filter-mapping>
+    <!-- ENCODING for all pages -->
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.epam.javalab13.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
 
-  <filter>
-    <filter-name>AccessFilter</filter-name>
-    <filter-class>com.epam.javalab13.filter.AccessFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>AccessFilter</filter-name>
-    <url-pattern>/admin</url-pattern>
-    <url-pattern>/boss</url-pattern>
-    <url-pattern>/client</url-pattern>
-    <url-pattern>/bookmaker</url-pattern>
-  </filter-mapping>
+    <!-- For all pages with extension .jsp -->
+    <filter>
+        <filter-name>JSPFilter</filter-name>
+        <filter-class>com.epam.javalab13.filter.JSPFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>JSPFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
 
-  <servlet>
-    <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
-  </servlet>
+    <!-- By user roles -->
+    <filter>
+        <filter-name>AccessFilter</filter-name>
+        <filter-class>com.epam.javalab13.filter.AccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessFilter</filter-name>
+        <url-pattern>/admin</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/boss</url-pattern>
+        <url-pattern>/boss/*</url-pattern>
+        <url-pattern>/client</url-pattern>
+        <url-pattern>/client/*</url-pattern>
+        <url-pattern>/bookmaker</url-pattern>
+        <url-pattern>/bookmaker/*</url-pattern>
+        <url-pattern>/edit</url-pattern>
+    </filter-mapping>
 
-  <servlet-mapping>
-    <servlet-name>HomeServlet</servlet-name>
-    <url-pattern>/home</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
-  </servlet-mapping>
+    <!-- END FILTERS -->
 
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
 
-<servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logout</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>EditAccount</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.EditAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditAccount</servlet-name>
+        <url-pattern>/admin/edit</url-pattern>
+        <url-pattern>/client/edit</url-pattern>
+        <url-pattern>/bookmaker/edit</url-pattern>
+        <url-pattern>/boss/edit</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>NewPassword</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.NewPasswordServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NewPassword</servlet-name>
-    <url-pattern>/newPassword</url-pattern>
-  </servlet-mapping>
+    <!-- HOME PAGE -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>RestorePassword</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.RestorePasswordServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RestorePassword</servlet-name>
-    <url-pattern>/restorePassword</url-pattern>
-  </servlet-mapping>
+    <!-- STATISTICS -->
+    <servlet>
+        <servlet-name>HomePageStatisticsServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.statitstics.HomePageStatisticsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomePageStatisticsServlet</servlet-name>
+        <url-pattern>/homeStatistics</url-pattern>
+    </servlet-mapping>
 
-  <servlet>
-    <servlet-name>AdminMatches</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.admin.MatchesDispatcher</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminMatches</servlet-name>
-    <url-pattern>/matches</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ChartServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.ChartServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ChartServlet</servlet-name>
-    <url-pattern>/chart</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>AdminStatistics</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.admin.StatisticsDispatcher</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminStatistics</servlet-name>
-    <url-pattern>/statistics</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>AdminTeams</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.admin.TeamsDispatcher</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminTeams</servlet-name>
-    <url-pattern>/teams</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>AdminUsers</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.admin.UsersDispatcher</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminUsers</servlet-name>
-    <url-pattern>/users</url-pattern>
-  </servlet-mapping>
+    <!-- END HOME PAGE -->
 
 
 
-  <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.RegisterServlet</servlet-class>
-  </servlet>
+
+    <!-- REGISTRATION -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <!-- END REGISTRATION -->
 
 
-  <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>HomePageStatisticsServlet</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.statitstics.HomePageStatisticsServlet</servlet-class>
-  </servlet>
+    <!-- LOGIN -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <!-- END LOGIN -->
 
-  <servlet-mapping>
-    <servlet-name>HomePageStatisticsServlet</servlet-name>
-    <url-pattern>/homeStatistics</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>Admin</servlet-name>
-    <servlet-class>com.epam.javalab13.servlet.admin.AdminDispatcher</servlet-class>
-  </servlet>
+    <!-- LOGOUT -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <!-- END LOGOUT -->
 
-  <servlet-mapping>
-    <servlet-name>Admin</servlet-name>
-    <url-pattern>/admin</url-pattern>
-  </servlet-mapping>
+    <!-- NEW PASSWORD -->
+    <servlet>
+        <servlet-name>NewPassword</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.NewPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewPassword</servlet-name>
+        <url-pattern>/newPassword</url-pattern>
+    </servlet-mapping>
+    <!-- END NEW PASSWORD -->
+
+    <!-- RESTORING PASSWORD -->
+    <servlet>
+        <servlet-name>RestorePassword</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.RestorePasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RestorePassword</servlet-name>
+        <url-pattern>/restorePassword</url-pattern>
+    </servlet-mapping>
+    <!-- END RESTORING PASSWORD -->
+
+    <!-- CHARTS -->
+    <servlet>
+        <servlet-name>ChartServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.ChartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChartServlet</servlet-name>
+        <url-pattern>/chart</url-pattern>
+    </servlet-mapping>
+    <!-- END CHARTS -->
+
+    <!-- ADMINS PAGES -->
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.AdminDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <!-- MATCHES -->
+    <servlet>
+        <servlet-name>AdminMatches</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.MatchesDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminMatches</servlet-name>
+        <url-pattern>/admin/matches</url-pattern>
+    </servlet-mapping>
 
 
+    <!-- STATISTICS -->
+    <servlet>
+        <servlet-name>AdminStatistics</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.StatisticsDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminStatistics</servlet-name>
+        <url-pattern>/admin/statistics</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- TEAMS -->
+    <servlet>
+        <servlet-name>AdminTeams</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.TeamsDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminTeams</servlet-name>
+        <url-pattern>/admin/teams</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- USERS -->
+    <servlet>
+        <servlet-name>AdminUsers</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.UsersDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUsers</servlet-name>
+        <url-pattern>/admin/users</url-pattern>
+    </servlet-mapping>
+    <!-- END ADMIN -->
 </web-app>
