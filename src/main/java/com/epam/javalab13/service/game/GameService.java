@@ -11,6 +11,7 @@ import com.epam.javalab13.model.bet.*;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Goal;
 import com.epam.javalab13.model.game.Player;
+import com.epam.javalab13.util.MailSender;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
@@ -25,6 +26,7 @@ import java.util.Set;
 public class GameService {
 
     private static Logger logger = Logger.getLogger(GameService.class);
+    private MailSender sender = new MailSender("***","***");
 
     /**
      * Updating game status to CANCELED by gameId
@@ -103,11 +105,37 @@ public class GameService {
                 totalBets.add(totalBet);
             }
 
+            List<User> usersInTotalBet = new ArrayList<>();
             //Update total bets status to canceled
             for (TotalBet totalBet : totalBets) {
                 totalBet.setStatus(Status.CANCELED);
+                usersInTotalBet.add(totalBet.getUser());
                 totalBetDAO.updateTotalBetStatus(totalBet);
             }
+            //Sending emails
+            ArrayList<String> usersUA = new ArrayList<>();
+            ArrayList<String> usersEN = new ArrayList<>();
+
+            for(User user:usersInTotalBet){
+                switch (user.getLanguage()){
+                    case ua_UA:
+                        usersUA.add(user.getEmail());
+                        break;
+                    case en_EN:
+                        usersEN.add(user.getEmail());
+                        break;
+                }
+            }
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    sender.sendEmailsBatch("Game canceled","game canceled",usersEN);
+                    sender.sendEmailsBatch("Гру відмінено","Відмінено",usersUA);
+                }
+            }).start();
+
+
             return true;
         }else{
             return false;
@@ -336,8 +364,10 @@ public class GameService {
 
         UserDAO userDAO = new UserDAO();
 
-        //TODO add email sending
-        //TODO sort users by language and status
+        //Lists for users by result status
+        List<User> wonUsers = new ArrayList<>();
+        List<User> lostUsers = new ArrayList<>();
+
         //Updating balances of users
         for(TotalBet totalBet:totalBets){
             int amount = totalBet.getAmount();
@@ -347,19 +377,61 @@ public class GameService {
             double userBalance = user.getBalance();
 
             if(status == Status.WON){
-                profit -=(award-amount);
+                profit -= (award-amount);
                 userBalance+=award;
                 user.setBalance(userBalance);
                 userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
-                //TODO send email tha user won
+
+                wonUsers.add(user);
             }
             if(status == Status.LOST){
-                profit +=amount;
-                //TODO send email that user lost
+                profit += amount;
+                lostUsers.add(user);
             }
         }
 
+        //Updating game profit
         game.setProfit(profit);
         gameDAO.updateGameByType(game, GameDAO.UpdateGameType.GAME_PROFIT);
+
+        //List for users by result status and languages for EMAIL SENDING
+        ArrayList<String> wonUsersUA = new ArrayList<>();
+        ArrayList<String> wonUsersEN = new ArrayList<>();
+        ArrayList<String> lostUsersUA = new ArrayList<>();
+        ArrayList<String> lostUsersEN = new ArrayList<>();
+
+        //Initialization all won users by them language
+        for(User user:wonUsers){
+            switch (user.getLanguage()){
+                case ua_UA:
+                    wonUsersUA.add(user.getEmail());
+                    break;
+                case en_EN:
+                    wonUsersEN.add(user.getEmail());
+                    break;
+            }
+        }
+
+        //Initialization all lost users by them language
+        for(User user:lostUsers){
+            switch (user.getLanguage()){
+                case en_EN:
+                    lostUsersEN.add(user.getEmail());
+                    break;
+                case ua_UA:
+                    lostUsersUA.add(user.getEmail());
+                    break;
+            }
+        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sender.sendEmailsBatch("You lost","Some money",lostUsersEN);
+                sender.sendEmailsBatch("Ви програли гроші","Програли",lostUsersUA);
+                sender.sendEmailsBatch("You won","Won",wonUsersEN);
+                sender.sendEmailsBatch("Ви виграли","Виграли",wonUsersUA);
+            }
+        }).start();
     }
 }
