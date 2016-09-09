@@ -21,8 +21,9 @@
 <jsp:include page="common/navigation.jsp"></jsp:include>
 
 <!-- Main Content -->
-<br>
-<br>
+<main>
+<div id="admin_diagram" style="height: 400px" class="col s12"></div>
+    </main>>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
 

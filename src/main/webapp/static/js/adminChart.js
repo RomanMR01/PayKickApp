@@ -1,15 +1,12 @@
-console.log("chart js init");
-
-$(".button1").click(function (event) {
-    var id = event.target.id;
-    console.log("id" + id);
+$(document).ready(function () {
+    console.log("admin js");
     var diagram_info = [];
-    var chart_info = [];
+
     var win = 0;
     var loss = 0;
     $.ajax({
         type: "POST",
-        data: {"type": "user_bat", "id": id},
+        data: {"type": "all_bats"},
         url: "chart",
         success: function (data) {
             $.each(data, function (index, value) {
@@ -18,7 +15,7 @@ $(".button1").click(function (event) {
                     win = win + value.award;
                     console.log("win" + win);
                 } else if (value.status === "LOST") {
-                    loss = loss + value.award;
+                    loss = loss - value.award;
                     console.log("loss" + loss);
                 }
             });
@@ -26,51 +23,9 @@ $(".button1").click(function (event) {
                 ['Wins', win],
                 ['Loss', loss],
             ];
-            if (win===0&&loss===0){
-                chart_info=[];
-                diagram_info=[];
-            }
-            /*chart*/
-            $('#chart').highcharts({
-                chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: true,
-                        alpha: 45,
-                        beta: 0
-                    }
-                },
-                title: {
-                    text: 'Game results'
-                },/*
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },*/
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        depth: 35,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}'
-                        }
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    name: 'ammount',
-                    colors: ['#FF5722', '#64DD17'],
-                    colorByPoint: true,
-                    data: chart_info
-                }]
-            });
-
 
             /*diagram*/
-            $('#diagram').highcharts({
+            $('#admin_diagram').highcharts({
                 chart: {
                     zoomType: 'x'
                 },
