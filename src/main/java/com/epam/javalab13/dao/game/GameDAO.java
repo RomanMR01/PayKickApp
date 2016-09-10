@@ -8,10 +8,7 @@ import com.epam.javalab13.service.game.GameService;
 import com.epam.javalab13.transformer.game.GameTransformer;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +83,53 @@ public class GameDAO {
                 logger.warn("Exception while close connection:", e);
             }
         }
+    }
+
+    public int countAllProfit(){
+        final String SQL="SELECT SUM(profit) as total FROM game";
+        Connection conn = ConnectionPool.getConnection();
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL);
+            int result=0;
+            while(resultSet.next()){
+                result = resultSet.getInt("total");
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Game> getFinishedGamesByBookmaker(int id) throws SQLException {
+        final String SQL_FINISHED = "SELECT * FROM game g WHERE g.status LIKE 'FINISHED' AND g.bookmaker_id LIKE ?";
+
+        List<Game> games = null;
+
+        GameTransformer gameTransformer = new GameTransformer();
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        st = conn.prepareStatement(SQL_FINISHED);
+        st.setInt(1,id);
+        ResultSet rs = null;
+        try {
+            rs = st.executeQuery();
+            games=gameTransformer.getAll(rs);
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
+        return games;
     }
 
     /**
