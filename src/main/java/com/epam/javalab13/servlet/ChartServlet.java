@@ -78,7 +78,7 @@ public class ChartServlet extends HttpServlet {
                         Collections.sort(finishedGames, new Comparator<Game>() {
                             @Override
                             public int compare(Game o1, Game o2) {
-                                return (int)(o1.getProfit()-o2.getProfit());
+                                return o1.getDate().compareTo(o2.getDate());
                             }
                         });
                         json = gson.toJson(finishedGames);
