@@ -18,7 +18,7 @@ public class AdminDispatcher extends HttpServlet{
 
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/view/admin/admin.jsp").forward(req,resp);
+		resp.sendRedirect(getServletContext().getContextPath() + "/admin/statistics");
     }
 
     @Override

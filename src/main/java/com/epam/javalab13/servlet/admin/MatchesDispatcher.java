@@ -60,6 +60,8 @@ public class MatchesDispatcher extends HttpServlet {
 
 		//END pagination
 
+
+		//TODO add services instead DAOs
 		TeamService teamService = new TeamService();
 		List<Team> teams = null;
 		try {

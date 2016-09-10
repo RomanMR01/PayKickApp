@@ -343,9 +343,6 @@
         var secondTeamName = $('#second-team').val();
         var bookmaker = $('#bookmaker').val();
 
-        //TODO validation
-
-
         $.ajax({
             type: "POST",
             url: "addGame",
