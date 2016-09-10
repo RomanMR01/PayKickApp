@@ -218,6 +218,16 @@
         <url-pattern>/admin/addGame</url-pattern>
     </servlet-mapping>
 
+    <!-- CANCEL GAME -->
+    <servlet>
+        <servlet-name>CancelGame</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.CancelGameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelGame</servlet-name>
+        <url-pattern>/admin/cancelGame</url-pattern>
+    </servlet-mapping>
+
     <!-- END ADMIN -->
 
 

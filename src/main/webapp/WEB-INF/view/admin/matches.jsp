@@ -153,15 +153,15 @@
                             </div>
                         </div>
                         <c:if test="${game.status=='NEW'}">
-                            <a class="waves-effect waves-light btn red" href="#"><i
-                                    class="material-icons right">block</i>Cancel</a>
+                            <a class="waves-effect waves-light btn red" href="#" id="${game.id}"><i
+                                    class="material-icons right" >block</i>Cancel</a>
                             <br>
                             <br>
                         </c:if>
 
                         <c:if test="${game.status=='ACTIVE'}">
-                            <a class="waves-effect waves-light btn red" href="#"><i
-                                    class="material-icons right">block</i>Cancel</a>
+                            <a class="waves-effect waves-light btn red" href="#" id="${game.id}"><i
+                                    class="material-icons right" >block</i>Cancel</a>
                             <a class="waves-effect waves-light btn green" href="#"
                                id="g_${game.id}_ft_${game.firstTeam.id}_st_${game.secondTeam.id}"><i
                                     class="material-icons right">done</i>Confirm</a>
@@ -273,7 +273,28 @@
 <jsp:include page="common/footer.jsp"></jsp:include>
 
 
+<script>
+    //Canceling game
+    $("a.btn.red").click(function(){
 
+        alert($(this).attr("id"));
+
+        var gameId = $(this).attr("id");
+        //Canceling game
+
+        $.ajax({
+            type: "POST",
+            url: "cancelGame",
+            data: {
+                "gameID": gameId
+            },
+            success: function (data) {
+                var val = $("li a.active").text();//Active tab
+                window.location = 'matches?type=' + val;//Reopen this tab
+            }
+        });
+                            });
+</script>
 <script>
     $(function () {
         $('input.autocomplete.team-input').autocomplete({

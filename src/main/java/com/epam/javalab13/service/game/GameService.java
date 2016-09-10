@@ -147,8 +147,12 @@ public class GameService {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    sender.sendEmailsBatch("Game canceled", "game canceled", usersEN);
-                    sender.sendEmailsBatch("Гру відмінено", "Відмінено", usersUA);
+                    if(usersEN.size()>0) {
+                        sender.sendEmailsBatch("Game canceled", "game canceled", usersEN);
+                    }
+                    if(usersUA.size()>0) {
+                        sender.sendEmailsBatch("Гру відмінено", "Відмінено", usersUA);
+                    }
                 }
             }).start();
 
@@ -445,10 +449,18 @@ public class GameService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                sender.sendEmailsBatch("You lost", "Some money", lostUsersEN);
-                sender.sendEmailsBatch("Ви програли гроші", "Програли", lostUsersUA);
-                sender.sendEmailsBatch("You won", "Won", wonUsersEN);
-                sender.sendEmailsBatch("Ви виграли", "Виграли", wonUsersUA);
+                if(lostUsersEN.size()>0) {
+                    sender.sendEmailsBatch("You lost", "Some money", lostUsersEN);
+                }
+                if(lostUsersUA.size()>0) {
+                    sender.sendEmailsBatch("Ви програли гроші", "Програли", lostUsersUA);
+                }
+                if(wonUsersEN.size()>0) {
+                    sender.sendEmailsBatch("You won", "Won", wonUsersEN);
+                }
+                if(wonUsersUA.size()>0) {
+                    sender.sendEmailsBatch("Ви виграли", "Виграли", wonUsersUA);
+                }
             }
         }).start();
     }
