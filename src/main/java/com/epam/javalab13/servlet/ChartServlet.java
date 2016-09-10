@@ -43,21 +43,21 @@ public class ChartServlet extends HttpServlet {
 
         if (chartType!=null){
             switch (chartType){
-                case "user_bat":
-                    List<TotalBet> allBets;
-                    try {
+            case "user_bat":
+                List<TotalBet> allBets;
+                try {
 
-                        User user=new User();
-                        if (req.getParameter("id")!=null){
-                            user.setId(Integer.valueOf(req.getParameter("id")));
-                        }
-
-                        allBets = totalBetDAO.getTotalBetsForUser(TotalBetDAO.GetTotalBetsType.ALL, user);
-                        json = gson.toJson(allBets);
-                    } catch (SQLException e) {
-                        logger.warn("Exception while getting all TotalBets:",e);
+                    User user=new User();
+                    if (req.getParameter("id")!=null){
+                        user.setId(Integer.valueOf(req.getParameter("id")));
                     }
-                    break;
+
+                    allBets = totalBetDAO.getTotalBetsForUser(TotalBetDAO.GetTotalBetsType.ALL, user);
+                    json = gson.toJson(allBets);
+                } catch (SQLException e) {
+                    logger.warn("Exception while getting all TotalBets:",e);
+                }
+                break;
                 case "team_win":
                     Team team=new Team();
                     team.setName("Динамо");

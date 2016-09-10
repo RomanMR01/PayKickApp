@@ -3,6 +3,18 @@ console.log("chart js init");
 $(".button1").click(function (event) {
     var id = event.target.id;
     console.log("id" + id);
+    var values = id.split('/');
+
+    id = values[0];
+    var role = values[1];
+    console.log("id" + id);
+    console.log("role" + role);
+    var chartType;
+    if (role === "BOOKMAKER") {
+        chartType = 'bookmaker_games';
+    } else {
+        chartType = 'user_bat';
+    }
     var diagram_info = [];
     var chart_info = [];
     var win = 0;
@@ -11,28 +23,54 @@ $(".button1").click(function (event) {
         $.ajax({
             type: "POST",
             data: {
-                "type": "user_bat",
+                "type": chartType,
                 "id": id
             },
             url: "chart",
             success: function (data) {
+                var allProfit = 0;
+                var currentBookmakerProfit = 0;
                 $.each(data, function (index, value) {
-                    diagram_info.push([Date.parse(value.date), value.award]);
-                    if (value.status === "WON") {
-                        win = win + value.award;
-                        console.log("win" + win);
-                    } else if (value.status === "LOST") {
-                        loss = loss + value.amount;
-                        console.log("loss" + loss);
+                    if (value.id === -1) {
+                        allProfit = value.profit;
+                    } else {
+                        if (role === "BOOKMAKER") {
+                            diagram_info.push([Date.parse(value.date), value.profit]);
+                            currentBookmakerProfit = currentBookmakerProfit + value.profit;
+                        } else {
+                            diagram_info.push([Date.parse(value.date), value.award]);
+                            if (value.status === "WON") {
+                                win = win + value.award;
+                                console.log("win" + win);
+                            } else if (value.status === "LOST") {
+                                loss = loss + value.award;
+                                console.log("loss" + loss);
+                            }
+                        }
                     }
                 });
-                chart_info = [
-                    ['Wins', win],
-                    ['Loss', loss],
+                console.log("all profit" + allProfit);
+                console.log("current profit" + currentBookmakerProfit);
+                if (role === "BOOKMAKER") {
+                    chart_info = [
+                    ['All profit', allProfit-currentBookmakerProfit],
+                    ['Current bookmaker profit', currentBookmakerProfit]
                 ];
-                if (win === 0 && loss === 0) {
-                    chart_info = [];
-                    diagram_info = [];
+                } else {
+                    chart_info = [
+                ['Wins', win],
+                ['Loss', loss]
+            ];
+                }
+                var title;
+                if (role !== "BOOKMAKER") {
+                    title = "Bets Results";
+                    if (win === 0 && loss === 0) {
+                        chart_info = [];
+                        diagram_info = [];
+                    }
+                } else {
+                    title = "Games Results";
                 }
                 /*diagram*/
                 $('#diagram').highcharts({
@@ -41,12 +79,12 @@ $(".button1").click(function (event) {
                         backgroundColor: '#FAFAFA',
                     },
                     title: {
-                        text: 'Game results'
+                        text: title
                     },
                     /*
-                     tooltip: {
-                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                     },*/
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                    },*/
                     plotOptions: {
                         pie: {
                             allowPointSelect: true,
@@ -66,7 +104,7 @@ $(".button1").click(function (event) {
                         colors: ['#64DD17', '#FF5722'],
                         colorByPoint: true,
                         data: chart_info
-                    }]
+                }]
                 });
 
 
@@ -105,9 +143,9 @@ $(".button1").click(function (event) {
                                     y2: 1
                                 },
                                 stops: [
-                                    [0, '#FF9800'],
-                                    [1, '#FF9800']
-                                ]
+                                [0, '#FF9800'],
+                                [1, '#FF9800']
+                            ]
                             },
                             marker: {
                                 radius: 2
@@ -133,7 +171,7 @@ $(".button1").click(function (event) {
                         color: '#FF9800',
                         name: 'win amount',
                         data: diagram_info
-                    }]
+                }]
                 });
             }
         });
@@ -142,8 +180,9 @@ $(".button1").click(function (event) {
     $('ul.tabs').tabs({
         onShow: function () {
             var b = $(this).attr("href");
-            $(b).fadeOut(1).fadeIn(1);
+            $(b).fadeOut(1).fadeIn(30);
             drawCh();
         }
     });
+
 });

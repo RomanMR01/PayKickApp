@@ -7,24 +7,13 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         data: {
-            "type": "all_bats"
+            "type": "all_games"
         },
         url: "chart",
         success: function (data) {
             $.each(data, function (index, value) {
-                diagram_info.push([Date.parse(value.date), value.award]);
-                if (value.status === "WON") {
-                    win = win + value.award;
-                    console.log("win" + win);
-                } else if (value.status === "LOST") {
-                    loss = loss - value.award;
-                    console.log("loss" + loss);
-                }
+                diagram_info.push([Date.parse(value.date), value.profit]);
             });
-            chart_info = [
-                ['Wins', win],
-                ['Loss', loss],
-            ];
 
             /*diagram*/
             $('#admin_diagram').highcharts({
@@ -41,7 +30,7 @@ $(document).ready(function () {
                         'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
                 },
                 xAxis: {
-                    /* type: 'datetime'*/
+                    type: 'datetime'
                 },
                 yAxis: {
                     type: 'logarithmic',

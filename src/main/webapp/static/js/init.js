@@ -56,13 +56,6 @@ $(document).ready(function () {
         }, "slow");
     });
 
-    //slider init
-    jQuery("#layerslider").layerSlider({
-        responsive: false,
-        responsiveUnder: 1280,
-        layersContainer: 1280,
-    });
-
     $('input.autocomplete').autocomplete({
         data: {
             "Apple": null,
