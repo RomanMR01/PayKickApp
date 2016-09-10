@@ -26,9 +26,9 @@
     <div class="container valign" style="margin-top: 20px;">
         <h4 class="center-align">Teams:</h4>
         <br>
-        <ul class="collapsible popout" data-collapsible="expandable">
+        <ul class="collapsible popout" data-collapsible="expandable" id="allTeams">
             <c:forEach var="team" items="${teams}">
-                <li>
+                <li id="${team.id}">
                     <div class="collapsible-header center-align"><i class="material-icons green-text">group</i><span class="green-text"><strong><c:out value="${team.name}"></c:out></strong></span></div>
                     <div class="collapsible-body center-align">
                         <div class="row">
@@ -46,7 +46,7 @@
                             </ul>
 
                         </div>
-                        <a class="waves-effect waves-light btn modal-trigger green" href="#add-player-modal" target="_self"><i class="material-icons right">person_add</i>Add Player</a>
+                        <a class="waves-effect waves-light btn modal-trigger green" href="#add-player-modal" target="_self" id="addPlayer_team_${team.id}"><i class="material-icons right">person_add</i>Add Player</a>
                         <br>
                         <br>
                     </div>
@@ -135,7 +135,7 @@
                     </button>
                     <br>
                     <br>
-                    <span class="center-align red-text" id="messageRegistration"></span>
+                    <span class="center-align red-text" id="newPlayerFormMessage"></span>
                 </div>
             </form>
             <form id="existing-player-form" class="col s12">
@@ -151,7 +151,7 @@
                     </button>
                     <br>
                     <br>
-                    <span class="center-align red-text" id="messageRegistration"></span>
+                    <span class="center-align red-text" id="existingPlayerFormMessage"></span>
                 </div>
             </form>
         </div>
@@ -181,7 +181,7 @@
                     </button>
                     <br>
                     <br>
-                    <span class="center-align red-text" id="messageRegistration"></span>
+                    <span class="center-align red-text" id="newTeamFormMessage"></span>
                 </div>
             </form>
         </div>
@@ -193,14 +193,13 @@
 
 <!-- Here must be generated all the players -->
 <script>
+
     $(function () {
         $('input.autocomplete.player-input').autocomplete({
             data: {
-                "Andrew Bright": null,
-                "Jim Carey": null,
-                "Adam Beast": null,
-                "Jessica Alba": null,
-                "Bald From Brazzers": null
+                <c:forEach var="player" items="${allPlayers}">
+                "${player.getFulName()}": null,
+                </c:forEach>
             }
         });
     });
@@ -212,6 +211,8 @@
         var removeBtnId = $(this).attr("id");
         removeBtnId = "#" + removeBtnId + "-container";
         $(removeBtnId).slideUp(300);
+
+        alert(removeBtnId);
         //Here must be appended ajax for unbinding player from team
     });
 </script>
