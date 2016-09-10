@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.epam.javalab13.model.User;
 
-public class Game {
+public class Game implements Comparable<Game> {
 	private int id;
 	private String title;
 	private String location;
@@ -176,5 +176,10 @@ public class Game {
 				", bookmaker=" + bookmaker +
 				", profit=" + profit +
 				'}';
+	}
+
+	@Override
+	public int compareTo(Game o) {
+		return getDate().compareTo(o.getDate());
 	}
 }

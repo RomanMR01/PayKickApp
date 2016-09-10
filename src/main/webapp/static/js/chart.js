@@ -3,6 +3,18 @@ console.log("chart js init");
 $(".button1").click(function (event) {
     var id = event.target.id;
     console.log("id" + id);
+    var values = id.split('/');
+
+    id = values[0];
+    var role = values[1];
+    console.log("id" + id);
+    console.log("role" + role);
+    var chartType;
+    if (role === "BOOKMAKER") {
+        chartType = 'bookmaker_games';
+    } else {
+        chartType = 'user_bat';
+    }
     var diagram_info = [];
     var chart_info = [];
     var win = 0;
@@ -11,28 +23,54 @@ $(".button1").click(function (event) {
         $.ajax({
             type: "POST",
             data: {
-                "type": "user_bat",
+                "type": chartType,
                 "id": id
             },
             url: "chart",
             success: function (data) {
+                var allProfit = 0;
+                var currentBookmakerProfit = 0;
                 $.each(data, function (index, value) {
-                    diagram_info.push([Date.parse(value.date), value.award]);
-                    if (value.status === "WON") {
-                        win = win + value.award;
-                        console.log("win" + win);
-                    } else if (value.status === "LOST") {
-                        loss = loss + value.amount;
-                        console.log("loss" + loss);
+                    if (value.id === -1) {
+                        allProfit = value.profit;
+                    } else {
+                        if (role === "BOOKMAKER") {
+                            diagram_info.push([Date.parse(value.date), value.profit]);
+                            currentBookmakerProfit = currentBookmakerProfit + value.profit;
+                        } else {
+                            diagram_info.push([Date.parse(value.date), value.award]);
+                            if (value.status === "WON") {
+                                win = win + value.award;
+                                console.log("win" + win);
+                            } else if (value.status === "LOST") {
+                                loss = loss + value.award;
+                                console.log("loss" + loss);
+                            }
+                        }
                     }
                 });
-                chart_info = [
+                console.log("all profit" + allProfit);
+                console.log("current profit" + currentBookmakerProfit);
+                if (role === "BOOKMAKER") {
+                    chart_info = [
+                    ['All profit', allProfit-currentBookmakerProfit],
+                    ['Current bookmaker profit', currentBookmakerProfit]
+                ];
+                } else {
+                    chart_info = [
                 ['Wins', win],
-                ['Loss', loss],
+                ['Loss', loss]
             ];
-                if (win === 0 && loss === 0) {
-                    chart_info = [];
-                    diagram_info = [];
+                }
+                var title;
+                if (role !== "BOOKMAKER") {
+                    title = "Bets Results";
+                    if (win === 0 && loss === 0) {
+                        chart_info = [];
+                        diagram_info = [];
+                    }
+                } else {
+                    title = "Games Results";
                 }
                 /*diagram*/
                 $('#diagram').highcharts({
@@ -41,7 +79,7 @@ $(".button1").click(function (event) {
                         backgroundColor: '#FAFAFA',
                     },
                     title: {
-                        text: 'Game results'
+                        text: title
                     },
                     /*
                                     tooltip: {
@@ -142,8 +180,9 @@ $(".button1").click(function (event) {
     $('ul.tabs').tabs({
         onShow: function () {
             var b = $(this).attr("href");
-            $(b).fadeOut(1).fadeIn(1);
+            $(b).fadeOut(1).fadeIn(30);
             drawCh();
         }
     });
+
 });
