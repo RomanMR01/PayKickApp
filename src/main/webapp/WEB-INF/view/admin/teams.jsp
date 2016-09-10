@@ -46,7 +46,7 @@
                             </ul>
 
                         </div>
-                        <a class="waves-effect waves-light btn modal-trigger green" href="#add-player-modal" target="_self" id="addPlayer_team_${team.id}"><i class="material-icons right">person_add</i>Add Player</a>
+                        <a class="waves-effect waves-light btn modal-trigger green darken-1" href="#add-player-modal" target="_self" id="addPlayer_team_${team.id}"><i class="material-icons right">person_add</i>Add Player</a>
                         <br>
                         <br>
                     </div>
@@ -54,7 +54,7 @@
             </c:forEach>
         </ul>
         <br>
-        <a class="waves-effect waves-light modal-trigger btn right green" href="#new-team-modal"><i class="material-icons right">group_add</i>New Team</a>
+        <a class="waves-effect waves-light modal-trigger btn right green darken-2" href="#new-team-modal"><i class="material-icons right">group_add</i>New Team</a>
         <br>
         <ul class="pagination center-align">
             <c:choose>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col s12 center-align">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Add Player
+                    <button class="btn waves-effect waves-light" type="submit" name="action" id="addNewPlayer">Add Player
                         <i class="material-icons right">person_add</i>
                     </button>
                     <br>
@@ -215,6 +215,19 @@
         alert(removeBtnId);
         //Here must be appended ajax for unbinding player from team
     });
+
+    $("a.btn.green.darken-1").click(function () {
+        var addPlayer = $(this).attr("id");
+        alert(addPlayer);
+
+        $("#addNewPlayer").click(function () {
+            alert($("#fname").val() + addPlayer);
+        });
+
+
+    });
+
+
 </script>
 
 </body>
