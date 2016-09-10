@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import com.epam.javalab13.model.game.Team;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,37 +32,39 @@ import java.util.Date;
 public class GameService {
 
     private static Logger logger = Logger.getLogger(GameService.class);
-    private MailSender sender = new MailSender("***","***");
+    private MailSender sender = new MailSender("***", "***");
 
     /**
      * Updating game status to CANCELED by gameId
+     *
      * @param gameId the unique game id
      * @return true if game canceled successfully, otherwise false if are throwing
      * some exception or game not found bu id (go to logs for more details)
      */
-    public boolean cancelGame(int gameId){
+    public boolean cancelGame(int gameId) {
         try {
             return resetGame(gameId);
         } catch (SQLException e) {
             e.printStackTrace();
-            logger.error("Exception while canceled game " + gameId + " !",e);
+            logger.error("Exception while canceled game " + gameId + " !", e);
             return false;
         }
     }
 
     /**
      * Setting results for game by game id and score
+     *
      * @param gameId
      * @param firstTeamScore
      * @param secondTeamScore
      * @return true if everything okay
      */
-    public boolean setGameScore(int gameId,int firstTeamScore, int secondTeamScore){
+    public boolean setGameScore(int gameId, int firstTeamScore, int secondTeamScore) {
         try {
-            setResults(gameId,firstTeamScore,secondTeamScore);
+            setResults(gameId, firstTeamScore, secondTeamScore);
             return true;
         } catch (SQLException e) {
-            logger.error("Exception while updating game " + gameId +" result with score " + firstTeamScore + ":" + secondTeamScore + " !",e);
+            logger.error("Exception while updating game " + gameId + " result with score " + firstTeamScore + ":" + secondTeamScore + " !", e);
             return false;
         }
     }
@@ -68,6 +72,7 @@ public class GameService {
     /**
      * ! PRIVATE ! For cancelGame() only
      * Updating game status to CANCELED by gameId
+     *
      * @param gameId the unique game id
      * @return true if game canceled successfully, otherwise false if are throwing
      * some exception or game not found bu id (go to logs for more details)
@@ -78,7 +83,7 @@ public class GameService {
         Game game = gameDAO.getGamesById(gameId);
 
         //If game exist
-        if(game!=null) {
+        if (game != null) {
             //Update game status to canceled
             gameDAO.updateGameByType(game, GameDAO.UpdateGameType.GAME_CANCELED);
 
@@ -119,7 +124,7 @@ public class GameService {
 
                 //Updating user balance (return amount)
                 User user = totalBet.getUser();
-                double balance = user.getBalance()+totalBet.getAmount();
+                double balance = user.getBalance() + totalBet.getAmount();
                 user.setBalance(balance);
 
                 userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
@@ -128,8 +133,8 @@ public class GameService {
             ArrayList<String> usersUA = new ArrayList<>();
             ArrayList<String> usersEN = new ArrayList<>();
 
-            for(User user:usersInTotalBet){
-                switch (user.getLanguage()){
+            for (User user : usersInTotalBet) {
+                switch (user.getLanguage()) {
                     case ua_UA:
                         usersUA.add(user.getEmail());
                         break;
@@ -142,14 +147,14 @@ public class GameService {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    sender.sendEmailsBatch("Game canceled","game canceled",usersEN);
-                    sender.sendEmailsBatch("Гру відмінено","Відмінено",usersUA);
+                    sender.sendEmailsBatch("Game canceled", "game canceled", usersEN);
+                    sender.sendEmailsBatch("Гру відмінено", "Відмінено", usersUA);
                 }
             }).start();
 
 
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -158,8 +163,9 @@ public class GameService {
      * ! PRIVATE ! For setGameScore() only
      * Setting results for game by game id and score
      * Usage: setResult(12,2,3) game by id 12, score 2:3
-     * @param gameId the Game id
-     * @param firstGoals the goals of first team
+     *
+     * @param gameId      the Game id
+     * @param firstGoals  the goals of first team
      * @param secondGoals the goals of second team
      * @throws SQLException
      */
@@ -212,7 +218,7 @@ public class GameService {
 
         //5.Update teams wins etc.
         TeamDAO teamDAO = new TeamDAO();
-        switch (gameResult){
+        switch (gameResult) {
             case C1:
                 teamDAO.updateTeamsByType(game.getFirstTeam(), TeamDAO.UpdateTeamType.WINS);
                 teamDAO.updateTeamsByType(game.getSecondTeam(), TeamDAO.UpdateTeamType.LOSES);
@@ -288,7 +294,7 @@ public class GameService {
 
                     if ((firstTeamScore == first) && (secondTeamScore == second)) {
                         status = Status.WON;
-                    }else{
+                    } else {
                         status = Status.LOST;
                     }
                     break;
@@ -320,26 +326,26 @@ public class GameService {
         Set<Integer> totalBetIdList = new HashSet<>();
 
         //8.2 Get unique totalBetsIDs
-        for(SingleBet singleBet:singleBets){
+        for (SingleBet singleBet : singleBets) {
             totalBetIdList.add(singleBet.getTotalBet().getId());
         }
 
         //8.3 Gets total bets by unique ids
         TotalBetDAO totalBetDAO = new TotalBetDAO();
         List<TotalBet> totalBets = new ArrayList<>();
-        for(Integer totalBetId:totalBetIdList){
+        for (Integer totalBetId : totalBetIdList) {
             TotalBet totalBet = totalBetDAO.getTotalBetById(totalBetId);
             totalBets.add(totalBet);
         }
 
         //8.4 Updating status of total bets
-        for(TotalBet totalBet:totalBets){
+        for (TotalBet totalBet : totalBets) {
             Type type = totalBet.getType();
 
-            switch (type){
+            switch (type) {
                 case SINGLE:
-                    for(SingleBet singleBet:singleBets){
-                        if(singleBet.getTotalBet().getId() == totalBet.getId()){
+                    for (SingleBet singleBet : singleBets) {
+                        if (singleBet.getTotalBet().getId() == totalBet.getId()) {
                             Status status = singleBet.getStatus();
                             totalBet.setStatus(status);
                             break;
@@ -348,11 +354,11 @@ public class GameService {
                     break;
                 case MULTIPLE:
                     Status totalBetStatus = Status.WON;
-                    for(SingleBet singleBet:singleBets){
-                        if(singleBet.getTotalBet().getId() == totalBet.getId()){
+                    for (SingleBet singleBet : singleBets) {
+                        if (singleBet.getTotalBet().getId() == totalBet.getId()) {
                             Status status = singleBet.getStatus();
                             //If one from multiple bet has status LOST, then TotalBet will have status LOST
-                            if(status == Status.LOST){
+                            if (status == Status.LOST) {
                                 totalBetStatus = Status.LOST;
                                 break;
                             }
@@ -366,7 +372,7 @@ public class GameService {
         }
 
         //8.5 Update DB
-        for(TotalBet totalBet:totalBets){
+        for (TotalBet totalBet : totalBets) {
             totalBetDAO.updateTotalBetStatus(totalBet);
         }
 
@@ -381,22 +387,22 @@ public class GameService {
         List<User> lostUsers = new ArrayList<>();
 
         //Updating balances of users
-        for(TotalBet totalBet:totalBets){
+        for (TotalBet totalBet : totalBets) {
             int amount = totalBet.getAmount();
             double award = totalBet.getAward();
             Status status = totalBet.getStatus();
             User user = totalBet.getUser();
             double userBalance = user.getBalance();
 
-            if(status == Status.WON){
-                profit -= (award-amount);
-                userBalance+=award;
+            if (status == Status.WON) {
+                profit -= (award - amount);
+                userBalance += award;
                 user.setBalance(userBalance);
                 userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
 
                 wonUsers.add(user);
             }
-            if(status == Status.LOST){
+            if (status == Status.LOST) {
                 profit += amount;
                 lostUsers.add(user);
             }
@@ -413,8 +419,8 @@ public class GameService {
         ArrayList<String> lostUsersEN = new ArrayList<>();
 
         //Initialization all won users by them language
-        for(User user:wonUsers){
-            switch (user.getLanguage()){
+        for (User user : wonUsers) {
+            switch (user.getLanguage()) {
                 case ua_UA:
                     wonUsersUA.add(user.getEmail());
                     break;
@@ -425,8 +431,8 @@ public class GameService {
         }
 
         //Initialization all lost users by them language
-        for(User user:lostUsers){
-            switch (user.getLanguage()){
+        for (User user : lostUsers) {
+            switch (user.getLanguage()) {
                 case en_EN:
                     lostUsersEN.add(user.getEmail());
                     break;
@@ -439,59 +445,99 @@ public class GameService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                sender.sendEmailsBatch("You lost","Some money",lostUsersEN);
-                sender.sendEmailsBatch("Ви програли гроші","Програли",lostUsersUA);
-                sender.sendEmailsBatch("You won","Won",wonUsersEN);
-                sender.sendEmailsBatch("Ви виграли","Виграли",wonUsersUA);
+                sender.sendEmailsBatch("You lost", "Some money", lostUsersEN);
+                sender.sendEmailsBatch("Ви програли гроші", "Програли", lostUsersUA);
+                sender.sendEmailsBatch("You won", "Won", wonUsersEN);
+                sender.sendEmailsBatch("Ви виграли", "Виграли", wonUsersUA);
             }
         }).start();
     }
 
     /**
-     	 * Creates new instance of Game inserts it into database and returns it with
-      * teams and generated id;
-     	 *
-     	 * @param title
-     	 * @param location
-     	 * @param stringDate
-     	 * @param firstTeamName
-     	 * @param secondTeamName
-     	 * @return Game game with generated id
-     	 */
+     * Creates new instance of Game inserts it into database and returns it with
+     * teams and generated id;
+     *
+     * @param title
+     * @param location
+     * @param stringDate
+     * @param firstTeamName
+     * @param secondTeamName
+     * @return Game game with generated id
+     */
     public Game addNewGame(String title, String location, String stringDate, String firstTeamName,
-                                			String secondTeamName) {
-        		GameDAO gameDao;
-        		TeamDAO teamDao = new TeamDAO();
-        		Team team = new Team();
-        		Team firstTeam = null;
-        		Team secondTeam = null;
-        		try {
-            			team.setName(firstTeamName);
-            			firstTeam = teamDao.getTeam(team, "name");
-            			team.setName(secondTeamName);
-            			secondTeam = teamDao.getTeam(team, "name");
-            		} catch (SQLException e2) {
-            			logger.error("failed to instantiate team by name from database " + team, e2);
-            		}
-        		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd'T'HH:mm");
-        		Date date = null;
-        		try {
-            			date = sdf.parse(stringDate);
-            		} catch (ParseException e1) {
-            			logger.error("failed to parse date from request " + stringDate, e1);
-            		}
-        		Game game = new Game();
-        		game.setTitle(title);
-        		game.setLocation(location);
-        		game.setDate(date);
-        		game.setFirstTeam(firstTeam);
-        		game.setSecondTeam(secondTeam);
-        		try {
-            			gameDao = new GameDAO();
-            			gameDao.addGame(game);
-            		} catch (SQLException e) {
-            			logger.error("failed to create add new game to database " + game, e);
-            		}
-        		return game;
-        	}
+                           String secondTeamName,String bookmakerName) {
+
+        System.out.println("service 1");
+        GameDAO gameDao;
+        TeamDAO teamDao = new TeamDAO();
+        Team team = new Team();
+        Team firstTeam = null;
+        Team secondTeam = null;
+        try {
+            team.setName(firstTeamName);
+            firstTeam = teamDao.getTeam(team, "name");
+            team.setName(secondTeamName);
+            secondTeam = teamDao.getTeam(team, "name");
+        } catch (Exception e) {
+            System.out.println("ext t");
+            logger.error("failed to instantiate team by name from database " + team, e);
+        }
+
+        System.out.println("sd" + stringDate);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Date date = null;
+        try {
+            date = sdf.parse(stringDate);
+        } catch (Exception e) {
+            System.out.println("date ex");
+            logger.error("failed to parse date from request " + stringDate, e);
+        }
+
+        if(date!=null){
+            Date current = new Date();
+
+            System.out.println(current);
+            System.out.println(date);
+            long added = date.getTime();
+            long curr = current.getTime();
+
+            if((added-curr)<(86400_000)){//less than 1 day
+                System.out.println("1" + (added-curr)/(1000*60*60*24));
+                date=null;
+            }
+            if((added-curr)>(5_356_800_000L)){//more than 2 month
+                System.out.println("2:" + (added-curr)/(1000*60*60*24));
+                date = null;
+            }
+        }
+        Game game = new Game();
+        game.setTitle(title);
+        game.setLocation(location);
+        game.setDate(date);
+        game.setFirstTeam(firstTeam);
+        game.setSecondTeam(secondTeam);
+
+        UserDAO userDAO = new UserDAO();
+        User u = new User();
+        u.setFullName(bookmakerName);
+        User user = null;
+        try {
+            user = userDAO.getUser(u, UserDAO.GetOneUserType.NAME);
+        } catch (Exception e) {
+            System.out.println("user ex");
+        }
+        game.setBookmaker(user);
+
+
+        try {
+            gameDao = new GameDAO();
+            gameDao.addGame(game);
+        } catch (Exception e) {
+            System.out.println("game ex");
+            logger.error("failed to create add new game to database " + game, e);
+        }
+
+        System.out.println("gg" + game);
+        return game;
+    }
 }
