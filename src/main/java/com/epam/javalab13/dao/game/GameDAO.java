@@ -4,6 +4,7 @@ import com.epam.javalab13.dao.ConnectionPool;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.service.game.GameService;
 import com.epam.javalab13.transformer.game.GameTransformer;
 import org.apache.log4j.Logger;
 
@@ -36,6 +37,7 @@ public class GameDAO {
         GAME_PROFIT
     }
 
+
     /**
      * Add new Game into database
      * <p>
@@ -45,7 +47,7 @@ public class GameDAO {
      * @throws SQLException
      */
     public void addGame(Game game) throws SQLException {
-        final String SQL = "INSERT INTO game(title, location, date, first_team_id, second_team_id) VALUES(?,?,?,?,?)";
+        final String SQL = "INSERT INTO game(title, location, date, first_team_id, second_team_id,bookmaker_id) VALUES(?,?,?,?,?,?)";
 
         Connection conn = null;
         PreparedStatement st = null;
@@ -64,6 +66,7 @@ public class GameDAO {
 
             st.setInt(4, game.getFirstTeam().getId());
             st.setInt(5, game.getSecondTeam().getId());
+            st.setInt(6, game.getBookmaker().getId());
             st.executeUpdate();
 
             rs = st.getGeneratedKeys();
