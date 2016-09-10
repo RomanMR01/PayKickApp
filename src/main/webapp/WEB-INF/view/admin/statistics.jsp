@@ -21,9 +21,9 @@
 <jsp:include page="common/navigation.jsp"></jsp:include>
 
 <!-- Main Content -->
-<main>
-<div id="admin_diagram" style="height: 400px" class="col s12"></div>
-    </main>>
+<main class="valign-wrapper grey lighten-3">
+    <div id="admin_diagram" style="width: 100%;" class="col s12 valign"></div>
+</main>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
 

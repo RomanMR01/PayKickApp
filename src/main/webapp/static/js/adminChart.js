@@ -6,7 +6,9 @@ $(document).ready(function () {
     var loss = 0;
     $.ajax({
         type: "POST",
-        data: {"type": "all_bats"},
+        data: {
+            "type": "all_bats"
+        },
         url: "chart",
         success: function (data) {
             $.each(data, function (index, value) {
@@ -27,7 +29,9 @@ $(document).ready(function () {
             /*diagram*/
             $('#admin_diagram').highcharts({
                 chart: {
-                    zoomType: 'x'
+                    zoomType: 'x',
+                    type: 'line',
+                    backgroundColor: '#EEEEEE'
                 },
                 title: {
                     text: 'Profits'
@@ -37,9 +41,10 @@ $(document).ready(function () {
                         'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
                 },
                 xAxis: {
-                    type: 'datetime'
+                    /* type: 'datetime'*/
                 },
                 yAxis: {
+                    type: 'logarithmic',
                     title: {
                         text: '$'
                     }
@@ -47,38 +52,17 @@ $(document).ready(function () {
                 legend: {
                     enabled: false
                 },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        marker: {
-                            radius: 2
-                        },
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
+                
                 credits: {
                     enabled: false
                 },
                 series: [{
-                    type: 'area',
-                    name: 'win amount',
+                    marker: {
+                        enabled: true,
+                        radius: 5
+                    },
+                    color: '#00C853',
+                    name: 'Profit',
                     data: diagram_info
                 }]
             });

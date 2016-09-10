@@ -90,12 +90,15 @@
                             <div class="row">
                                 <div class="col s12">
                                     <ul class="tabs transparent">
-                                        <li class="tab col s6"><a href="#chart" class="active">Chart</a></li>
-                                        <li class="tab col s6"><a href="#diagram">Diagram</a></li>
+                                        <li class="tab col s6"><a href="#chart" >Chart</a></li>
+                                        <li class="tab col s6"><a href="#diagram" >Diagram</a></li>
                                     </ul>
                                 </div>
-                                <div id="chart" style="height: 400px" class="col s12"></div>
-                                <div id="diagram" style="height: 400px" class="col s12"></div>
+                                <div class="col s12">
+                                    <div id="chart" style="width: 100%;"></div>
+                                    <div id="diagram" style="width: 100%;"></div>    
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
