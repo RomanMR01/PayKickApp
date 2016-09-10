@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.PaginationService;
+import com.epam.javalab13.service.game.PlayerService;
 
 /**
  * Created by Vikno on 9/7/2016.
@@ -24,12 +26,12 @@ public class TeamsDispatcher extends HttpServlet {
 
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String type = request.getParameter("type");
+
+		//START PAGINATION
 		String page = request.getParameter("page");
 		String itemsOnPage=request.getParameter("itemsOnPage");
 		int pages = 0;
 		List<Team>teams = new ArrayList<>();
-//		type=type==null?"ACTIVE":type;
 		page=page==null?"1":page;
 		itemsOnPage=itemsOnPage==null?"10":itemsOnPage;
 		paginationService=new PaginationService();
@@ -38,9 +40,16 @@ public class TeamsDispatcher extends HttpServlet {
 		intPage=intPage>pages?pages:Integer.valueOf(page);
 		request.setAttribute("pages", pages);
 		request.setAttribute("teams", teams);
-//		request.setAttribute("type", type);
 		request.setAttribute("page", intPage);
 		request.setAttribute("itemsOnPage", itemsOnPage);
+		//END PAGINATION
+
+		PlayerService playerService = new PlayerService();
+		List<Player> allPlayers = playerService.getAllPlayers();
+
+		request.setAttribute("allPlayers",allPlayers);
+
+
     	request.getRequestDispatcher("/WEB-INF/view/admin/teams.jsp").forward(request,response); 
     }
 
