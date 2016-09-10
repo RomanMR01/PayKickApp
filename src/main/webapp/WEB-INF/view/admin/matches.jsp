@@ -154,15 +154,15 @@
                         </div>
                         <c:if test="${game.status=='NEW'}">
                             <a class="waves-effect waves-light btn red" href="#" id="${game.id}"><i
-                                    class="material-icons right" >block</i>Cancel</a>
+                                    class="material-icons right">block</i>Cancel</a>
                             <br>
                             <br>
                         </c:if>
 
                         <c:if test="${game.status=='ACTIVE'}">
                             <a class="waves-effect waves-light btn red" href="#" id="${game.id}"><i
-                                    class="material-icons right" >block</i>Cancel</a>
-                            <a class="waves-effect waves-light btn green" href="#"
+                                    class="material-icons right">block</i>Cancel</a>
+                            <a class="waves-effect waves-light btn green darken-1" href="#"
                                id="g_${game.id}_ft_${game.firstTeam.id}_st_${game.secondTeam.id}"><i
                                     class="material-icons right">done</i>Confirm</a>
                             <br>
@@ -271,13 +271,67 @@
 </div>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
-
-
 <script>
-    //Canceling game
-    $("a.btn.red").click(function(){
+    //Setting game results
+    $("a.btn.green.darken-1").click(function () {
 
-        alert($(this).attr("id"));
+        var chipId = $(this).attr("id");
+        var values = chipId.split("_");
+
+        var gameID = values[1];
+        var firstTeamID = values[3];
+        var secondTeamID = values[5];
+
+        var firstInputId = "input#g_" + gameID + "_t_" + firstTeamID;
+        var secondInputId = "input#g_" + gameID + "_t_" + secondTeamID;
+
+        var firstTeamScore = parseInt($(firstInputId).val());
+        var secondTeamScore = parseInt($(secondInputId).val());
+
+        var firstTeamPlayers = "";
+        var secondTeamPlayers = "";
+
+        $("#chip_" + gameID + "_" + firstTeamID).find(".chip").each(function () {
+            var txt = $(this).text();
+            firstTeamPlayers += txt.substring(0, txt.length - 5) + ";";
+        });
+
+        $("#chip_" + gameID + "_" + secondTeamID).find(".chip").each(function () {
+            var txt = $(this).text();
+            secondTeamPlayers += txt.substring(0, txt.length - 5) + ";";
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "addWinner",
+            data: {
+                "gameID": gameID,
+                "firstTeamID": firstTeamID,
+                "secondTeamID": secondTeamID,
+                "firstTeamScore": firstTeamScore,
+                "secondTeamScore": secondTeamScore,
+                "firstTeamPlayers": firstTeamPlayers,
+                "secondTeamPlayers": secondTeamPlayers
+            },
+            success: function (data) {
+                var response = JSON.parse(data);
+
+                var status = response.status;
+                var message = response.message;
+
+                if (status == 'OK') {
+                    Materialize.toast(message,5000);
+                    $("li#"+gameID + "").hide();
+                } else {
+                    Materialize.toast(message,5000);
+                }
+
+            }
+        });
+    });
+
+    //Canceling game
+    $("a.btn.red").click(function () {
 
         var gameId = $(this).attr("id");
         //Canceling game
@@ -293,9 +347,11 @@
                 window.location = 'matches?type=' + val;//Reopen this tab
             }
         });
-                            });
+    });
 </script>
 <script>
+
+    <%-- Generating teams names --%>
     $(function () {
         $('input.autocomplete.team-input').autocomplete({
             data: {
@@ -305,7 +361,8 @@
             }
         });
     });
-    <!-- BOOKMAKERS -->
+
+    <%-- Generating bookmakers names --%>
     $(function () {
         $('input.autocomplete.bookmaker-input').autocomplete({
             data: {
@@ -317,8 +374,9 @@
     });
 </script>
 <script>
-    <!-- Players 12 -gameId; 5 teamId -->
     $(function () {
+
+        <%--Generating players for autocomplete for evety team --%>
         <c:forEach var="game" items="${games2}">
         $('#chip_${game.getId()}_${game.getFirstTeam().getId()} input.autocomplete').autocomplete({
             data: {
@@ -356,6 +414,7 @@
         });
     });
 
+    //Add new game
     $('#addGameBtn').on('click', function (e) {
         var title = $('#title').val();
         var location = $('#location').val();

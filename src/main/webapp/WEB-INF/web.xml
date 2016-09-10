@@ -218,6 +218,16 @@
         <url-pattern>/admin/addGame</url-pattern>
     </servlet-mapping>
 
+    <!-- ADD WINNER -->
+    <servlet>
+        <servlet-name>AddWinner</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.AddWinnerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddWinner</servlet-name>
+        <url-pattern>/admin/addWinner</url-pattern>
+    </servlet-mapping>
+
     <!-- CANCEL GAME -->
     <servlet>
         <servlet-name>CancelGame</servlet-name>

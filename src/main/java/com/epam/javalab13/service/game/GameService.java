@@ -33,6 +33,7 @@ public class GameService {
 
     private static Logger logger = Logger.getLogger(GameService.class);
     private MailSender sender = new MailSender("***", "***");
+    private GameDAO gameDAO = new GameDAO();
 
     /**
      * Updating game status to CANCELED by gameId
@@ -70,6 +71,21 @@ public class GameService {
     }
 
     /**
+     * Getting game by id
+     * @param gameId
+     * @return Game object if game exist, otherwise null
+     */
+    public Game getGameById(int gameId){
+        try {
+            return gameDAO.getGamesById(gameId);
+        } catch (SQLException e) {
+           logger.error("Can't get game by id " + gameId,e);
+        }
+
+        return null;
+    }
+
+    /**
      * ! PRIVATE ! For cancelGame() only
      * Updating game status to CANCELED by gameId
      *
@@ -79,7 +95,7 @@ public class GameService {
      */
     private boolean resetGame(int gameId) throws SQLException {
         logger.info("Admin set game status CANCELED for game: " + gameId);
-        GameDAO gameDAO = new GameDAO();
+
         Game game = gameDAO.getGamesById(gameId);
 
         //If game exist
@@ -176,7 +192,6 @@ public class GameService {
     private void setResults(int gameId, int firstGoals, int secondGoals) throws SQLException {
 
         logger.info("Admin set result score " + firstGoals + ":" + secondGoals + " for game:" + gameId);
-        GameDAO gameDAO = new GameDAO();
 
         //1. Get game by id
         Game game = gameDAO.getGamesById(gameId);
@@ -480,7 +495,6 @@ public class GameService {
                            String secondTeamName,String bookmakerName) {
 
         System.out.println("service 1");
-        GameDAO gameDao;
         TeamDAO teamDao = new TeamDAO();
         Team team = new Team();
         Team firstTeam = null;
@@ -542,8 +556,7 @@ public class GameService {
 
 
         try {
-            gameDao = new GameDAO();
-            gameDao.addGame(game);
+            gameDAO.addGame(game);
         } catch (Exception e) {
             System.out.println("game ex");
             logger.error("failed to create add new game to database " + game, e);

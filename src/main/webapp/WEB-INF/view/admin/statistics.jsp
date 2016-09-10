@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -14,22 +14,17 @@
     <title>PayKick. One bet - one hit!</title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
-    <script src="${pageContext.request.contextPath}/static/js/Chart.min.js"></script>
-
+    <jsp:include page="common/scripts.jsp"></jsp:include>
 </head>
 
 <body>
 <jsp:include page="common/navigation.jsp"></jsp:include>
 
 <!-- Main Content -->
-<main>
-    <div>
-        <canvas id="mainChart"></canvas>
-    </div>
+<main class="valign-wrapper grey lighten-3">
+    <div id="admin_diagram" style="width: 100%;" class="col s12 valign"></div>
 </main>
->
 
-<jsp:include page="common/scripts.jsp"></jsp:include>
 <jsp:include page="common/footer.jsp"></jsp:include>
 
 
