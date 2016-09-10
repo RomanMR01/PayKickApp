@@ -26,7 +26,8 @@ public class UserDAO {
     public enum GetOneUserType {
         ID,
         LOGIN,
-        EMAIL
+        EMAIL,
+        NAME
     }
 
     public enum GetUsersType {
@@ -173,6 +174,7 @@ public class UserDAO {
         final String SQL_ID = "SELECT * FROM user u WHERE u.id = ?";
         final String SQL_LOGIN = "SELECT * FROM user u WHERE u.login LIKE ?";
         final String SQL_EMAIL = "SELECT * FROM user u WHERE u.email LIKE ?";
+        final String SQL_NAME = "SELECT * FROM user u WHERE u.full_name LIKE ?";
 
         User returnUser = null;
         UserTransformer userTransformer = new UserTransformer();
@@ -201,6 +203,13 @@ public class UserDAO {
                 case EMAIL:
                     st = conn.prepareStatement(SQL_EMAIL);
                     st.setString(1, user.getEmail());
+                    rs = st.executeQuery();
+
+                    returnUser = userTransformer.getOne(rs);
+                    break;
+                case NAME:
+                    st = conn.prepareStatement(SQL_NAME);
+                    st.setString(1, user.getFullName());
                     rs = st.executeQuery();
 
                     returnUser = userTransformer.getOne(rs);
