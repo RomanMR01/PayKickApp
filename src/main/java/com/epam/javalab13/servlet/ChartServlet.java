@@ -1,8 +1,10 @@
 package com.epam.javalab13.servlet;
 
 import com.epam.javalab13.dao.bet.TotalBetDAO;
+import com.epam.javalab13.dao.game.GameDAO;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
+import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.game.TeamService;
 import com.google.gson.Gson;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -29,8 +32,6 @@ public class ChartServlet extends HttpServlet {
         requestDispatcher = req.getRequestDispatcher("chart.jsp");
         requestDispatcher.forward(req, resp);
     }
-
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -69,17 +70,27 @@ public class ChartServlet extends HttpServlet {
                     }
                     json = gson.toJson(resultTeam);
                     break;
-                case "all_bats":
-                    List<TotalBet> all;
+                case "MAIN_CHART":
+                    List<Game> finishedGames;
+                    GameDAO gameDAO = new GameDAO();
                     try {
-                        all = totalBetDAO.getAllTotalBets(TotalBetDAO.GetTotalBetsType.ALL);
-                        Collections.sort(all);
-                        json = gson.toJson(all);
+                        finishedGames = gameDAO.getGamesByStatus(GameDAO.GetGamesType.FINISHED);
+                        Collections.sort(finishedGames, new Comparator<Game>() {
+                            @Override
+                            public int compare(Game o1, Game o2) {
+                                return (int)(o1.getProfit()-o2.getProfit());
+                            }
+                        });
+                        json = gson.toJson(finishedGames);
+
+                        System.out.println(json);
                     } catch (SQLException e) {
-                        logger.warn("Exception while getting all TotalBets:",e);
+                        logger.warn("Exception while getting finished games:",e);
                     }
             }
         }
+
+        System.out.println(json);
         resp.setContentType("application/json");// set content to json
         resp.getWriter().write(json);
     }
