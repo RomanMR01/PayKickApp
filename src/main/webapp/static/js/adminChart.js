@@ -1,91 +1,71 @@
 $(document).ready(function () {
     console.log("admin js");
+    var diagram_info = [];
 
-    var dateLabels = [];
-    var  backgroundColors = [];
-    var  borderColors = [];
-    var  profitData = [];
-    var  hoverBackgroundColors = [];
+    var win = 0;
+    var loss = 0;
     $.ajax({
         type: "POST",
-        data: {"type": "MAIN_CHART"},
+        data: {
+            "type": "all_bats"
+        },
         url: "chart",
-        success: function (resp) {
-            $.each(resp, function (index, value) {
-                var time = new Date(Date.parse(value.date));
-                dateLabels.push(time.getDate() + "." + (time.getMonth()+1) + "." + time.getFullYear());
-
-                var profit = value.profit;
-
-                if(profit==0){
-                    backgroundColors.push('rgba(0, 0, 255, 0.3)');
-                    borderColors.push('rgba(0,0,200,0.5)');
-                    hoverBackgroundColors.push('rgba(0,0,200,0.5)');
-                }else if(profit>0){
-                    backgroundColors.push('rgba(0, 255, 0, 0.3)');
-                    borderColors.push('rgba(0,200,0,0.5)');
-                    hoverBackgroundColors.push('rgba(0,200,0,0.5)');
-                }else if(profit<0){
-                    backgroundColors.push('rgba(255, 0, 0, 0.3)');
-                    borderColors.push('rgba(200, 0, 0, 0.5)');
-                    hoverBackgroundColors.push('rgba(200, 0, 0, 0.5)');
+        success: function (data) {
+            $.each(data, function (index, value) {
+                diagram_info.push([Date.parse(value.date), value.award]);
+                if (value.status === "WON") {
+                    win = win + value.award;
+                    console.log("win" + win);
+                } else if (value.status === "LOST") {
+                    loss = loss - value.award;
+                    console.log("loss" + loss);
                 }
-
-                profitData.push(profit);
-                // console.log(value.profit)
-                // if (value.status === "WON") {
-                //     win = win + value.award;
-                //     console.log("win" + win);
-                // } else if (value.status === "LOST") {
-                //     loss = loss - value.award;
-                //     console.log("loss" + loss);
-                // }
             });
+            chart_info = [
+                ['Wins', win],
+                ['Loss', loss],
+            ];
 
-            var ctx = document.getElementById("mainChart");
-            
-            var data = {
-                labels: dateLabels,
-                datasets: [
-                    {
-                        label: "Profit: ",
-                        backgroundColor: backgroundColors,
-                        borderColor: borderColors,
-                        hoverBackgroundColor:hoverBackgroundColors,
-                        borderWidth: 3,
-                        data: profitData,
-                    },
-                ]
-            };
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    legend: {
-                        display: false,
-                    },
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'DATE'
-                            }
-                        }],
-                        yAxes: [{
-                            stacked: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'PROFIT'
-                            }
-                        }],
-
+            /*diagram*/
+            $('#admin_diagram').highcharts({
+                chart: {
+                    zoomType: 'x',
+                    type: 'line',
+                    backgroundColor: '#EEEEEE'
+                },
+                title: {
+                    text: 'Profits'
+                },
+                subtitle: {
+                    text: document.ontouchstart === undefined ?
+                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                },
+                xAxis: {
+                    /* type: 'datetime'*/
+                },
+                yAxis: {
+                    type: 'logarithmic',
+                    title: {
+                        text: '$'
                     }
+                },
+                legend: {
+                    enabled: false
+                },
 
-                }
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    marker: {
+                        enabled: true,
+                        radius: 5
+                    },
+                    color: '#00C853',
+                    name: 'Profit',
+                    data: diagram_info
+                }]
             });
-
-
         }
     });
 });
