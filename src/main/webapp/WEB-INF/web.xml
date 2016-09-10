@@ -207,5 +207,18 @@
         <servlet-name>AdminUsers</servlet-name>
         <url-pattern>/admin/users</url-pattern>
     </servlet-mapping>
+
+    <!-- ADD NEW GAME -->
+    <servlet>
+        <servlet-name>AddNewGame</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.AddNewGameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNewGame</servlet-name>
+        <url-pattern>/admin/addGame</url-pattern>
+    </servlet-mapping>
+
     <!-- END ADMIN -->
+
+
 </web-app>
