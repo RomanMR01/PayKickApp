@@ -33,7 +33,7 @@
                     <div class="collapsible-body center-align">
                         <div class="row">
                             <br>
-                            <ul class="collection col s10 offset-s1">
+                            <ul class="collection col s10 offset-s1" id="playersInTeam">
 
                                 <c:forEach var="player" items="${team.players}">
                                     <li id="player_id_${player.id}-container" class="collection-item player"><i class="material-icons left green-text">person</i><c:out value="${player.fulName}"></c:out><a id="player_id_${player.id}" href="#"><i class="material-icons right red-text">clear</i></a></li>
@@ -138,7 +138,7 @@
                     <span class="center-align red-text" id="newPlayerFormMessage"></span>
                 </div>
             </form>
-            <form id="existing-player-form" class="col s12">
+            <div id="existing-player-form" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="text" id="existing-player" class="autocomplete player-input" autocomplete="off">
@@ -146,14 +146,14 @@
                     </div>
                 </div>
                 <div class="col s12 center-align">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Add Player
+                    <button class="btn waves-effect waves-light" id="addExistingPlayer">Add Player
                         <i class="material-icons right">person_add</i>
                     </button>
                     <br>
                     <br>
                     <span class="center-align red-text" id="existingPlayerFormMessage"></span>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -207,6 +207,9 @@
 
 
 <script>
+
+    //Remove player
+    //Update player team to fake (temp)
     $("li.player a").on('click', function () {
         var removeBtnId = $(this).attr("id");
         removeBtnId = "#" + removeBtnId + "-container";
@@ -216,18 +219,31 @@
         //Here must be appended ajax for unbinding player from team
     });
 
+
+    //Add player to game
     $("a.btn.green.darken-1").click(function () {
         var addPlayer = $(this).attr("id");
         alert(addPlayer);
 
         $("#addNewPlayer").click(function () {
             alert($("#fname").val() + addPlayer);
+
+            //Get player data and add him to team
+            //Draw
         });
 
+        $("#addExistingPlayer").click(function () {
+            alert($("#existing-player").val() + addPlayer);
+
+            //Drawing player
+            $('<li>').html($("#existing-player").val()).appendTo('#playersInTeam');
+
+            //Update player team
+        });
 
     });
 
-
+    //Ad new Team
 </script>
 
 </body>

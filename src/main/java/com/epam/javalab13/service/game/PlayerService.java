@@ -58,7 +58,13 @@ public class PlayerService {
         return playerDAO.getPlayersByTeam(team);
     }
 
-    public List<Player> getAllPlayers() throws SQLException {
-        return playerDAO.getAllPlayers();
+    public List<Player> getAllPlayers() {
+        try {
+            return playerDAO.getAllPlayers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

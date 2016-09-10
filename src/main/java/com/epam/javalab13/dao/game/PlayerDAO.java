@@ -17,7 +17,7 @@ public class PlayerDAO {
 
     public void addPlayer(Player player) throws SQLException {
         logger.info("DAO addPlayer entry");
-        final String SQL = "INSERT INTO player(full_name, age, total_games, team_id) VALUES(?,?,?,?)";
+        final String SQL = "INSERT INTO player(full_name, age, total_games) VALUES(?,?,?)";
 
         Connection conn = null;
         PreparedStatement st = null;
@@ -29,7 +29,6 @@ public class PlayerDAO {
             st.setString(1, player.getFulName());
             st.setInt(2, player.getAge());
             st.setInt(3, player.getTotalGames());
-            st.setInt(4, player.getTeam().getId());
 
             st.executeUpdate();
         } finally {
@@ -46,11 +45,13 @@ public class PlayerDAO {
         }
     }
 
+
     public void updatePlayer(Player player, String type) throws SQLException {
         logger.info("DAO updatePlayer entry");
         final String SQL_NAME = "UPDATE player u SET u.full_name = ? WHERE u.id=?";
         final String SQL_TOTAL_GAMES = "UPDATE player u SET u.total_games = ? WHERE u.id=?";
         final String SQL_TEAM = "UPDATE player u SET u.team_id = ? WHERE u.id=?";
+        final String SQL_REMOVE = "UPDATE player p SET p.team_id=NULL WHERE p.id=?";
 
         Connection conn = null;
         PreparedStatement st = null;
@@ -76,6 +77,12 @@ public class PlayerDAO {
 
                     st.setInt(1, player.getTeam().getId());
                     st.setInt(2, player.getId());
+
+                    break;
+                case "remove":
+                    st = conn.prepareStatement(SQL_REMOVE);
+
+                    st.setInt(1, player.getId());
 
                     break;
             }
