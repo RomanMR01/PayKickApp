@@ -63,12 +63,8 @@ public class MatchesDispatcher extends HttpServlet {
 
 		//TODO add services instead DAOs
 		TeamService teamService = new TeamService();
-		List<Team> teams = null;
-		try {
-			teams = teamService.getAllTeams();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		List<Team> teams =  teamService.getAllTeams();
+
 
 		GameDAO gameDAO = new GameDAO();
 		List<Game> games1 = null;
