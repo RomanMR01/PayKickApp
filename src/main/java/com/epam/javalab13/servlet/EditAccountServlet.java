@@ -54,14 +54,11 @@ public class EditAccountServlet extends HttpServlet {
                 if (fullName.equalsIgnoreCase(user.getFullName())) {
                     if (userID == user.getId()) {
                         //The same user
-                        //update
                         userService.updateUser(userID, fullName, Integer.parseInt(age), Gender.valueOf(gender.toUpperCase()));
-
                         resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Saved!\"}");
                         return;
                     } else {
                         //User with such name exist
-
                         resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Error, such user name already exist!\"}");
                         return;
                     }

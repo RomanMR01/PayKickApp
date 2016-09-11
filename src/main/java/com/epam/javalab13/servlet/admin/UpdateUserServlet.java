@@ -25,13 +25,15 @@ public class UpdateUserServlet  extends HttpServlet{
 
         UserService userService = new UserService();
 
+        resp.setCharacterEncoding("UTF-8");
+
         if(updateType!=null && updateType.length()>0){
             if(updateType.equalsIgnoreCase("ROLE")){
                 String userId = req.getParameter("userID");
                 String role = req.getParameter("role");
 
                 userService.changeUserRole(Integer.parseInt(userId),role.toUpperCase());
-
+                resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Saved!\"}");
                 logger.info("Admin " + session.getAttribute("login") + " change role to " + role + " for user " + userId);
                 return;
 
@@ -45,17 +47,18 @@ public class UpdateUserServlet  extends HttpServlet{
 
                 if(Boolean.valueOf(bann)){
                     userService.setUserBan(Integer.parseInt(userId));
+                    resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Saved!\"}");
                 }else{
                     userService.resetUserBan(Integer.parseInt(userId));
+                    resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Saved!\"}");
                 }
                 return;
             }
 
-            resp.setCharacterEncoding("UTF-8");
+
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Refresh the page, please!\"}");
             return;
         }else{
-            resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Incorrect data! Try again!\"}");
             return;
         }

@@ -68,8 +68,6 @@
                         <i class="material-icons right">done</i>
                     </button>
                     <br>
-                    <br>
-                    <span class="center-align green-text" id="message">Saved</span>
                 </div>
             </div>
         </div>
@@ -99,8 +97,6 @@
                         <i class="material-icons right">done</i>
                     </button>
                     <br>
-                    <br>
-                    <span class="center-align green-text" id="messageForPassword">Saved</span>
                 </div>
             </div>
         </div>
@@ -109,7 +105,7 @@
 
 <jsp:include page="common/footer.jsp"></jsp:include>
 
-<script src="${pageContext.request.contextPath}/static/js/validation.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/validatorToasts.js"></script>
 <script>
 $("#saveChanges").click(function () {
     var userID = "${user.id}";
@@ -118,20 +114,16 @@ $("#saveChanges").click(function () {
     var age = $("#age").val();
     var gender = $('input[name=gender]:checked', '#genderForm').val()
 
-    var infoMessage = $("#message");
-
-
-    if(!validateName(name,infoMessage)){
+    if(!validateName(name)){
         return;
     }
-    if(!validateSurname(surname,infoMessage)){
+    if(!validateSurname(surname)){
         return;
     }
-    if(!validateAge(age,infoMessage)){
+    if(!validateAge(age)){
         return;
     }
 
-    //Ajax check full name
     $.ajax({
         type: "POST",
         url: "edit",
@@ -148,20 +140,10 @@ $("#saveChanges").click(function () {
             var status = response.status;
             var message = response.message;
 
-            if (status == 'OK') {
-                Materialize.toast(message,5000);
-            }else{
-                Materialize.toast(message,5000);
-            }
+            Materialize.toast(message,5000);
+
         }
     });
-
-//    alert(userID);
-//    alert(name);
-//    alert(surname);
-//    alert(age);
-//    alert(gender);
-
 
 });
 
@@ -170,16 +152,10 @@ $("#saveNewPassword").click(function () {
     var currentPassword = $("#currentPassword").val();
     var newPassword = $("#newPassword").val();
     var repeatPassword = $("#repeatPassword").val();
-    var infoMessage = $("#messageForPassword");
 
 
-    if(validatePassword(currentPassword,infoMessage) && validateName(newPassword,infoMessage) && validatePassword(repeatPassword,infoMessage)){
-        alert('ok');
-
+    if(validatePassword(currentPassword) && validatePassword(newPassword) && validatePassword(repeatPassword)){
         if(newPassword==repeatPassword){
-            alert("pass confirm");
-            //Change password
-            //Or if cuuren not ok ba
             $.ajax({
                 type: "POST",
                 url: "changePassword",
@@ -194,24 +170,15 @@ $("#saveNewPassword").click(function () {
                     var status = response.status;
                     var message = response.message;
 
-                    if (status == 'OK') {
-                        Materialize.toast(message,5000);
-                    }else{
-                        Materialize.toast(message,5000);
-                    }
+                    Materialize.toast(message,5000);
+
                 }
             });
 
         }else{
-            alert("passwords do not confirm");
+            Materialize.toast("Passwords do not match!",5000);
         }
-    }else{
-        alert('fail');
     }
-    alert(userID);
-    alert(currentPassword);
-    alert(newPassword);
-    alert(repeatPassword);
 
 
 });

@@ -163,10 +163,10 @@
                                         <label id="${user.id}"> No
                                             <c:choose>
                                                 <c:when test="${user.isBanned()}">
-                                                    <input id="checkIt" type="checkbox" checked>
+                                                    <input id="checkIt_${user.id}" type="checkbox" checked>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <input id="checkIt" type="checkbox">
+                                                    <input id="checkIt_${user.id}" type="checkbox">
                                                 </c:otherwise>
                                             </c:choose> <span class="lever"></span> Yes
                                         </label>
@@ -256,16 +256,16 @@
                 var status = response.status;
                 var message = response.message;
 
-                if (status == 'FAIL') {
-                    Materialize.toast(message,5000);
-                }
+
+                Materialize.toast(message,5000);
+
             }
         });
     });
 
     $(".switch label").on('change',function(){
         var userID = $(this).attr("id");
-        var isBanned = $("#checkIt").is(':checked');
+        var isBanned = $("#checkIt_"+userID).is(':checked');
 
         $.ajax({
             type: "POST",
@@ -281,30 +281,12 @@
                 var status = response.status;
                 var message = response.message;
 
-                if (status == 'FAIL') {
-                    Materialize.toast(message,5000);
-                }
+                Materialize.toast(message,5000);
+
             }
         });
     });
 
-
-//    $("li.player a").on('click', function () {
-//        var removeBtnId = $(this).attr("id");
-//
-//        $('#' + removeBtnId).slideUp(300);
-//        var values = removeBtnId.split("_");
-//        var playerID = values[2];
-//
-//        $.ajax({
-//            type: "POST",
-//            url: "removePlayer",
-//            data: {
-//                "playerID": playerID
-//            }
-//        });
-//
-//    });
 </script>
 
 </body>
