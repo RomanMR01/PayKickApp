@@ -51,6 +51,8 @@
     <!-- END FILTERS -->
 
 
+
+    <!-- EDIT ACCOUNT -->
     <servlet>
         <servlet-name>EditAccount</servlet-name>
         <servlet-class>com.epam.javalab13.servlet.EditAccountServlet</servlet-class>
@@ -61,6 +63,19 @@
         <url-pattern>/client/edit</url-pattern>
         <url-pattern>/bookmaker/edit</url-pattern>
         <url-pattern>/boss/edit</url-pattern>
+    </servlet-mapping>
+
+    <!-- CHANGE PASSWORD -->
+    <servlet>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangePassword</servlet-name>
+        <url-pattern>/admin/changePassword</url-pattern>
+        <url-pattern>/client/changePassword</url-pattern>
+        <url-pattern>/bookmaker/changePassword</url-pattern>
+        <url-pattern>/boss/changePassword</url-pattern>
     </servlet-mapping>
 
     <!-- HOME PAGE -->

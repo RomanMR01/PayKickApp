@@ -1,5 +1,6 @@
 package com.epam.javalab13.servlet;
 
+import com.epam.javalab13.model.Gender;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.service.game.UserService;
 
@@ -17,7 +18,6 @@ import java.util.List;
 public class EditAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("EDIT");
         HttpSession session = req.getSession(false);
 
         String userRole = (String) session.getAttribute("role");
@@ -39,42 +39,42 @@ public class EditAccountServlet extends HttpServlet {
         String age = req.getParameter("age");
         String gender = req.getParameter("gender");
 
-        System.out.println("uid: " + userId);
-        System.out.println("name: " + name);
-        System.out.println("surname: " + surname);
-        System.out.println("age: " + age);
-        System.out.println("gender: " + gender);
+        resp.setCharacterEncoding("UTF-8");
 
-        UserService userService = new UserService();
-        List<User> allUsers = userService.getAllUsers();
+        if(userId!=null && name!=null && surname!=null && age!=null && gender!=null) {
 
-        int userID = Integer.parseInt(userId);
-        String fullName = name + " " + surname;
+            UserService userService = new UserService();
+            List<User> allUsers = userService.getAllUsers();
 
-        for(User user:allUsers){
-            //If user with the same exist
-            if(fullName.equalsIgnoreCase(user.getFullName())){
-                if(userID == user.getId()){
-                    //The same user
-                    //update
-                    System.out.println("the same user");
-                    //OK
-                    return;
-                }else{
-                    //User with such name exist
-                    System.out.println("user exist");
-                    //FAIL
-                    return;
+            int userID = Integer.parseInt(userId);
+            String fullName = name + " " + surname;
+
+            for (User user : allUsers) {
+                //If user with the same exist
+                if (fullName.equalsIgnoreCase(user.getFullName())) {
+                    if (userID == user.getId()) {
+                        //The same user
+                        //update
+                        userService.updateUser(userID, fullName, Integer.parseInt(age), Gender.valueOf(gender.toUpperCase()));
+
+                        resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Saved!\"}");
+                        return;
+                    } else {
+                        //User with such name exist
+
+                        resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Error, such user name already exist!\"}");
+                        return;
+                    }
                 }
             }
+
+            //If we are here than such name unique
+            //update user
+            userService.updateUser(userID, fullName, Integer.parseInt(age), Gender.valueOf(gender.toUpperCase()));
+            resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Saved!\"}");
+            return;
+        }else{
+            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Something going wrong! Try again!\"}");
         }
-
-
-        System.out.println("name unique");
-        //If we are here than such name unique
-        //update user
-        //OK
-        return;
-        //if no such name we update this
     }
 }

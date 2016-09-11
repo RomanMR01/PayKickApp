@@ -1,6 +1,7 @@
 package com.epam.javalab13.service.game;
 
 import com.epam.javalab13.dao.UserDAO;
+import com.epam.javalab13.model.Gender;
 import com.epam.javalab13.model.Language;
 import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
@@ -23,6 +24,20 @@ public class UserService {
         }
     }
 
+    public void updateUser(int userId, String fullName, int age, Gender gender){
+        User user = new User();
+        user.setId(userId);
+        user.setFullName(fullName);
+        user.setAge(age);
+        user.setGender(gender);
+
+        try {
+            userDAO.updateUser(user, UserDAO.UpdateUserType.SQL_NAME_GENDER_AGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<User> getAllUsers(){
         try {
             return userDAO.getAllUsers();
@@ -31,6 +46,22 @@ public class UserService {
         }
 
         return null;
+    }
+
+
+    public User getUserById(int userId){
+        User u = new User();
+        u.setId(userId);
+
+        User user = null;
+
+        try {
+            user = userDAO.getUser(u, UserDAO.GetOneUserType.ID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
     public User getUserByLogin(String login){
@@ -77,6 +108,7 @@ public class UserService {
 
         return user;
     }
+
 
     public void updateUserPassword(User user){
         try {

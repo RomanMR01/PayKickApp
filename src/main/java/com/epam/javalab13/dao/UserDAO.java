@@ -19,7 +19,11 @@ public class UserDAO {
         BALANCE,
         ROLE,
         BAN,
-        LANGUAGE
+        LANGUAGE,
+        NAME,
+        AGE,
+        GENDER,
+        SQL_NAME_GENDER_AGE
     }
 
 
@@ -98,6 +102,10 @@ public class UserDAO {
         final String SQL_ROLE = "UPDATE user u SET u.role = ? WHERE u.id=?";
         final String SQL_BANN = "UPDATE user u SET u.is_banned = ? WHERE u.id=?";
         final String SQL_LANGUAGE = "UPDATE user u SET u.language = ? WHERE u.id=?";
+        final String SQL_NAME = "UPDATE user u SET u.full_name = ? WHERE u.id=?";
+        final String SQL_GENDER = "UPDATE user u SET u.gender = ? WHERE u.id=?";
+        final String SQL_AGE = "UPDATE user u SET u.age = ? WHERE u.id=?";
+        final String SQL_NAME_GENDER_AGE = "UPDATE user u SET u.full_name = ?,u.gender=?,u.age=? WHERE u.id=?";
 
         Connection conn = null;
         PreparedStatement st = null;
@@ -144,6 +152,35 @@ public class UserDAO {
                     st.setString(1, user.getLanguage().toString());
                     st.setInt(2, user.getId());
 
+                    break;
+                case NAME:
+                    st = conn.prepareStatement(SQL_NAME);
+
+                    st.setString(1, user.getFullName());
+                    st.setInt(2, user.getId());
+
+                    break;
+                case GENDER:
+                    st = conn.prepareStatement(SQL_GENDER);
+
+                    st.setString(1, user.getGender().toString());
+                    st.setInt(2, user.getId());
+
+                    break;
+                case AGE:
+                    st = conn.prepareStatement(SQL_AGE);
+
+                    st.setInt(1, user.getAge());
+                    st.setInt(2, user.getId());
+
+                    break;
+                case SQL_NAME_GENDER_AGE:
+                    st = conn.prepareStatement(SQL_NAME_GENDER_AGE);
+
+                    st.setString(1, user.getFullName());
+                    st.setString(2, user.getGender().toString());
+                    st.setInt(3, user.getAge());
+                    st.setInt(4,user.getId());
                     break;
             }
 

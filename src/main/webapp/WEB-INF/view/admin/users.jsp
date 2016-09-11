@@ -163,10 +163,10 @@
                                         <label id="${user.id}"> No
                                             <c:choose>
                                                 <c:when test="${user.isBanned()}">
-                                                    <input type="checkbox" checked>
+                                                    <input id="checkIt" type="checkbox" checked>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <input type="checkbox">
+                                                    <input id="checkIt" type="checkbox">
                                                 </c:otherwise>
                                             </c:choose> <span class="lever"></span> Yes
                                         </label>
@@ -265,7 +265,7 @@
 
     $(".switch label").on('change',function(){
         var userID = $(this).attr("id");
-        var isBanned = $("input").is(':checked');
+        var isBanned = $("#checkIt").is(':checked');
 
         $.ajax({
             type: "POST",

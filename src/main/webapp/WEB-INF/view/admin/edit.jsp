@@ -148,19 +148,19 @@ $("#saveChanges").click(function () {
             var status = response.status;
             var message = response.message;
 
-            if (status == 'FAIL') {
-              alert('ff');
+            if (status == 'OK') {
+                Materialize.toast(message,5000);
             }else{
-                alert('okkk');
+                Materialize.toast(message,5000);
             }
         }
     });
 
-    alert(userID);
-    alert(name);
-    alert(surname);
-    alert(age);
-    alert(gender);
+//    alert(userID);
+//    alert(name);
+//    alert(surname);
+//    alert(age);
+//    alert(gender);
 
 
 });
@@ -178,6 +178,29 @@ $("#saveNewPassword").click(function () {
 
         if(newPassword==repeatPassword){
             alert("pass confirm");
+            //Change password
+            //Or if cuuren not ok ba
+            $.ajax({
+                type: "POST",
+                url: "changePassword",
+                data: {
+                    "userID":userID,
+                    "currentPassword":currentPassword,
+                    "newPassword":newPassword,
+                },
+                success: function (data) {
+                    var response = JSON.parse(data);
+
+                    var status = response.status;
+                    var message = response.message;
+
+                    if (status == 'OK') {
+                        Materialize.toast(message,5000);
+                    }else{
+                        Materialize.toast(message,5000);
+                    }
+                }
+            });
 
         }else{
             alert("passwords do not confirm");
