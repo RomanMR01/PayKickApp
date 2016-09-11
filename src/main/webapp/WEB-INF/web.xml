@@ -278,6 +278,16 @@
         <url-pattern>/admin/addNewPlayer</url-pattern>
     </servlet-mapping>
 
+    <!-- UPDATE USER -->
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.UpdateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/admin/updateUser</url-pattern>
+    </servlet-mapping>
+
     <!-- END ADMIN -->
 
 
