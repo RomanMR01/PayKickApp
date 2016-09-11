@@ -19,38 +19,43 @@ import com.epam.javalab13.service.game.PlayerService;
  */
 public class TeamsDispatcher extends HttpServlet {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private PaginationService paginationService;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private PaginationService paginationService;
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//START PAGINATION
-		String page = request.getParameter("page");
-		String itemsOnPage=request.getParameter("itemsOnPage");
-		int pages = 0;
-		List<Team>teams = new ArrayList<>();
-		page=page==null?"1":page;
-		itemsOnPage=itemsOnPage==null?"10":itemsOnPage;
-		paginationService=new PaginationService();
-		pages=paginationService.getPagesForTeams(page,itemsOnPage,teams);
-		int intPage = Integer.valueOf(page);
-		intPage=intPage>pages?pages:Integer.valueOf(page);
-		request.setAttribute("pages", pages);
-		request.setAttribute("teams", teams);
-		request.setAttribute("page", intPage);
-		request.setAttribute("itemsOnPage", itemsOnPage);
-		//END PAGINATION
-
-		PlayerService playerService = new PlayerService();
-		List<Player> allPlayers = playerService.getAllPlayers();
-
-		request.setAttribute("allPlayers",allPlayers);
+        //START PAGINATION
+        String page = request.getParameter("page");
+        String itemsOnPage = request.getParameter("itemsOnPage");
+        int pages = 0;
+        List<Team> teams = new ArrayList<>();
+        page = page == null ? "1" : page;
+        itemsOnPage = itemsOnPage == null ? "10" : itemsOnPage;
+        paginationService = new PaginationService();
+        pages = paginationService.getPagesForTeams(page, itemsOnPage, teams);
+        int intPage = Integer.valueOf(page);
+        intPage = intPage > pages ? pages : Integer.valueOf(page);
 
 
-    	request.getRequestDispatcher("/WEB-INF/view/admin/teams.jsp").forward(request,response); 
+        if(pages==-1){
+            response.sendRedirect(getServletContext().getContextPath() + "/admin/teams");
+        }else {
+            request.setAttribute("pages", pages);
+            request.setAttribute("teams", teams);
+            request.setAttribute("page", intPage);
+            request.setAttribute("itemsOnPage", itemsOnPage);
+            //END PAGINATION
+
+            PlayerService playerService = new PlayerService();
+            List<Player> allPlayers = playerService.getAllPlayers();
+            request.setAttribute("allPlayers", allPlayers);
+
+            request.getRequestDispatcher("/WEB-INF/view/admin/teams.jsp").forward(request, response);
+        }
+
     }
 
     @Override

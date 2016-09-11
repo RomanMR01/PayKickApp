@@ -24,7 +24,7 @@ public class TeamDAO {
 
     public void addTeam(Team team) throws SQLException {
         logger.info("DAO addTeam entry");
-        final String SQL = "INSERT INTO team(name, location, emblem_url, total_wins, total_loses, total_draws) VALUES(?,?,?,?,?,?)";
+        final String SQL = "INSERT INTO team(name, location, emblem_url) VALUES(?,?,?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -36,9 +36,6 @@ public class TeamDAO {
             preparedStatement.setString(1, team.getName());
             preparedStatement.setString(2, team.getLocation());
             preparedStatement.setString(3, team.getEmblemUrl());
-            preparedStatement.setInt(4, team.getTotalWins());
-            preparedStatement.setInt(5, team.getTotalLoses());
-            preparedStatement.setInt(6, team.getTotalDraws());
 
             preparedStatement.executeUpdate();
         } finally {

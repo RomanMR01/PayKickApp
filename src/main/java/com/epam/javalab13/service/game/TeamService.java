@@ -28,8 +28,17 @@ public class TeamService {
         }
     }
 
-    public Team getTeamById(Team team) throws SQLException {
-        return teamDAO.getTeam(team,"id");
+    public Team getTeamById(int teamId)  {
+        Team team = new Team();
+        team.setId(teamId);
+
+        try {
+            return teamDAO.getTeam(team,"id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public Team getTeamByName(Team team) throws SQLException {

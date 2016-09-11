@@ -42,9 +42,25 @@ public class PlayerService {
         playerDAO.updatePlayer(player, "games");
     }
 
-    public void updatePlayerTeam(Player player) throws SQLException {
-        playerDAO.updatePlayer(player, "team");
+    public void updatePlayerTeam(String playerName,int teamId){
+        Player p = new Player();
+        p.setFulName(playerName);
+        Player player = null;
+        try {
+            player = playerDAO.getPlayer(p,"name");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Team team = new Team();
+        team.setId(teamId);
+        player.setTeam(team);
+        try {
+            playerDAO.updatePlayer(player, "team");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     public Player getPlayerById(Player player) throws SQLException {
         return playerDAO.getPlayer(player, "id");
@@ -63,8 +79,14 @@ public class PlayerService {
         return player;
     }
 
-    public List<Player> getPlayersByTeam(Team team) throws SQLException {
-        return playerDAO.getPlayersByTeam(team);
+    public List<Player> getPlayersByTeam(Team team){
+        try {
+            return playerDAO.getPlayersByTeam(team);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public List<Player> getAllPlayers() {

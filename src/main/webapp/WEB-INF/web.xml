@@ -258,6 +258,26 @@
         <url-pattern>/admin/createTeam</url-pattern>
     </servlet-mapping>
 
+    <!-- ADD EXISTING PLAYER TO TEAM -->
+    <servlet>
+        <servlet-name>AddExistingPlayerToTeam</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.AddExistingPlayerToTeamServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddExistingPlayerToTeam</servlet-name>
+        <url-pattern>/admin/addExistingPlayer</url-pattern>
+    </servlet-mapping>
+
+    <!-- ADD NEW PLAYER TO TEAM -->
+    <servlet>
+        <servlet-name>AddNewPlayer</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.AddNewPlayer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNewPlayer</servlet-name>
+        <url-pattern>/admin/addNewPlayer</url-pattern>
+    </servlet-mapping>
+
     <!-- END ADMIN -->
 
 

@@ -84,9 +84,10 @@ public class PaginationService {
             int start =allTeams.size()<items*(pageNumber-1)?(allTeams.size()-allTeams.size()/items):items*(pageNumber-1);
             int end = allTeams.size()<items*pageNumber?allTeams.size():items*pageNumber;
             teams.addAll(allTeams.subList(start, end));
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
+            System.out.println(teams);
             logger.error("failed to find all teams with players", e);
+            return -1;
         }
         return pages;
     }
