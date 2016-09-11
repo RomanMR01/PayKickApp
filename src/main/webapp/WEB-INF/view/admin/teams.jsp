@@ -36,7 +36,7 @@
                             <ul class="collection col s10 offset-s1" id="playersInTeam">
 
                                 <c:forEach var="player" items="${team.players}">
-                                    <li id="player_id_${player.id}-container" class="collection-item player"><i class="material-icons left green-text">person</i><c:out value="${player.fulName}"></c:out><a id="player_id_${player.id}" href="#"><i class="material-icons right red-text">clear</i></a></li>
+                                    <li id="player_id_${player.id}" class="collection-item player"><i class="material-icons left green-text">person</i><c:out value="${player.fulName}"></c:out><a id="player_id_${player.id}" href="#"><i class="material-icons right red-text">clear</i></a></li>
                                 </c:forEach>
                                 <!--                                     <li id="lionel-messi-container" class="collection-item player"><i class="material-icons left green-text">person</i>Lionel Messi<a id="lionel-messi" href="#"><i class="material-icons right red-text">clear</i></a></li> -->
                                 <!--                                     <li id="machen-drachen-container" class="collection-item player"><i class="material-icons left green-text">person</i>Machen Drachen<a id="machen-drachen" href="#"><i class="material-icons right red-text">clear</i></a></li> -->
@@ -164,26 +164,26 @@
         <div class="row">
             <h5 class="center-align">New Team</h5>
             <br>
-            <form class="col s12">
+            <div class="col s12" id="createNewTeam">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="title" type="text">
-                        <label for="title">Name</label>
+                        <input id="teamTitle" type="text" required>
+                        <label for="teamTitle">Name</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="location" type="text">
-                        <label for="location">Location</label>
+                        <input id="teamLocation" type="text" required>
+                        <label for="teamLocation">Location</label>
                     </div>
                 </div>
                 <div class="col s12 center-align">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Create Team
+                    <button class="btn waves-effect waves-light" id="createTeamBtn">Create Team
                         <i class="material-icons right">group_add</i>
                     </button>
                     <br>
                     <br>
                     <span class="center-align red-text" id="newTeamFormMessage"></span>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -209,14 +209,21 @@
 <script>
 
     //Remove player
-    //Update player team to fake (temp)
+    //Update player team to null
     $("li.player a").on('click', function () {
         var removeBtnId = $(this).attr("id");
-        removeBtnId = "#" + removeBtnId + "-container";
-        $(removeBtnId).slideUp(300);
+        $('#' + removeBtnId).slideUp(300);
+        var values = removeBtnId.split("_");
+        var playerID = values[2];
 
-        alert(removeBtnId);
-        //Here must be appended ajax for unbinding player from team
+        $.ajax({
+            type: "POST",
+            url: "removePlayer",
+            data: {
+                "playerID": playerID
+            }
+        });
+
     });
 
 
@@ -243,7 +250,38 @@
 
     });
 
-    //Ad new Team
+    //Add new Team
+    $("#createTeamBtn").click(function () {
+        var teamName = $("#teamTitle").val();
+        var teamLocation = $("#teamLocation").val();
+
+        var infoMessage = $('#newTeamFormMessage');
+        if(teamName.length==0 || teamLocation.length==0){
+            infoMessage.text("Fields can't be empty!");
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "createTeam",
+                data: {
+                    "teamName": teamName,
+                    "teamLocation":teamLocation
+                },
+                success:function (data) {
+                    var response = JSON.parse(data);
+
+                    var status = response.status;
+                    var message = response.message;
+
+                    if (status == 'OK') {
+                        $('#new-team-modal').closeModal();
+                           window.location = 'teams';
+                    } else {
+                        infoMessage.text(message);
+                    }
+                }
+            });
+        }
+    });
 </script>
 
 </body>
