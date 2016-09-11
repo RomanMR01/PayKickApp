@@ -47,6 +47,7 @@ public class RegisterServlet extends HttpServlet {
         UserService service = new UserService();
 
         try {
+            String fullName = name + " " + surName;
             if (service.getUserByLogin(login)!=null) {
                 System.out.println("login is");
                 response.getWriter().write("The login is already used!");
@@ -55,6 +56,11 @@ public class RegisterServlet extends HttpServlet {
             if(service.getAllEmails().contains(email)){
                 System.out.println("email is");
                 response.getWriter().write("The email address is already used!");
+                return;
+            }
+            if (service.getUserByFullName(fullName)!=null) {
+                System.out.println("name is");
+                response.getWriter().write("The name is already used!");
                 return;
             }
 

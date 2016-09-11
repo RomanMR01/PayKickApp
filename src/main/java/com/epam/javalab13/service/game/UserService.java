@@ -53,6 +53,21 @@ public class UserService {
         return user;
     }
 
+    public User getUserByFullName(String fullName){
+        User u = new User();
+        u.setFullName(fullName);
+
+        User user = null;
+
+        try {
+            user = userDAO.getUser(u, UserDAO.GetOneUserType.NAME);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
     public void updateUserPassword(User user){
         try {
             userDAO.updateUser(user, UserDAO.UpdateUserType.PASSWORD);
