@@ -238,6 +238,26 @@
         <url-pattern>/admin/cancelGame</url-pattern>
     </servlet-mapping>
 
+    <!-- REMOVE PLAYER -->
+    <servlet>
+        <servlet-name>RemovePlayer</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.RemovePlayerFromTeamServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemovePlayer</servlet-name>
+        <url-pattern>/admin/removePlayer</url-pattern>
+    </servlet-mapping>
+
+    <!-- CREATE TEAM -->
+    <servlet>
+        <servlet-name>CreateTeam</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.admin.CreateTeamServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateTeam</servlet-name>
+        <url-pattern>/admin/createTeam</url-pattern>
+    </servlet-mapping>
+
     <!-- END ADMIN -->
 
 
