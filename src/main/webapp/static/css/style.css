@@ -360,3 +360,36 @@ nav a.button-collapse {
 #reg-form textarea.materialize-textarea:focus:not([readonly]) + label {
     color: #4CAF50;
 }
+
+.switch.my-green label input[type=checkbox]:checked + .lever {
+  background-color: #6CCF70;
+}
+
+.switch.my-green label input[type=checkbox]:checked + .lever:after {
+  background-color: #4CAF50;
+}
+
+td.green-hover:hover {
+    cursor: pointer;
+    background-color: rgba(137,249,141,0.3);
+}
+
+td.green-active {
+    background-color: rgba(137,249,141,0.7);
+}
+
+td.green-active:hover {
+    background-color: rgba(137,249,141,0.7);
+}
+
+td.green-disabled {
+    background-color: rgba(113,113,113,0.3);
+}
+
+td.green-disabled:hover {
+    background-color: rgba(113,113,113,0.3);
+}
+
+.my-disabled {
+    color: #A3A3A3;
+}
