@@ -16,12 +16,21 @@ public class PlayerService {
 
     private static Logger logger = Logger.getLogger(PlayerService.class);
 
-    //todo ask if need to add synchronization on dao???
     public void addPlayer(Player player)  {
         try {
             playerDAO.addPlayer(player);
         } catch (SQLException e) {
             logger.error("Can't add new player:" + player,e);
+        }
+    }
+
+    public void removePlayerFromTeam(int playerId){
+        Player player = new Player();
+        player.setId(playerId);
+        try {
+            playerDAO.updatePlayer(player,"remove");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
