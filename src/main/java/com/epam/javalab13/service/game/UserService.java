@@ -23,6 +23,16 @@ public class UserService {
         }
     }
 
+    public List<User> getAllUsers(){
+        try {
+            return userDAO.getAllUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public User getUserByLogin(String login){
         User u = new User();
         u.setLogin(login);
