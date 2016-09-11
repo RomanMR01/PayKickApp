@@ -6,6 +6,7 @@ import com.epam.javalab13.service.game.UserService;
 import com.epam.javalab13.util.MailSender;
 import com.epam.javalab13.util.PasswordHash;
 import com.epam.javalab13.util.UrlGenerator;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -19,6 +20,7 @@ import java.util.Map;
  */
 public class RestorePasswordServlet extends HttpServlet{
     private Map<String,RestorePassword> restorePasswordMap = new HashMap<>();
+    private static Logger logger = Logger.getLogger(RestorePasswordServlet.class);
 
     @Override
     public void init() throws ServletException {
@@ -26,9 +28,6 @@ public class RestorePasswordServlet extends HttpServlet{
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("restore password servlet");
-
-        System.out.println(req.getSession());
         req.getRequestDispatcher("restore_password.jsp").forward(req,resp);
     }
 
@@ -37,8 +36,6 @@ public class RestorePasswordServlet extends HttpServlet{
         String email = req.getParameter("email");
 
         if(email!=null) {
-            System.out.println("rest pass:" + email);
-
             resp.setContentType("text/html;charset=UTF-8");
 
             UserService service = new UserService();
@@ -47,12 +44,10 @@ public class RestorePasswordServlet extends HttpServlet{
             if (user != null) {
                 Map<String, RestorePassword> restorePasswordMap = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
 
-                System.out.println(restorePasswordMap.size());
-
                 Date current = new Date();
                 //TODO return this
 //                Date end = new Date(current.getTime() + (1000 * 60 * 60 * 24));//For one day!
-                Date end = new Date(current.getTime() + (1000 * 60 *2));//For one minute! For
+                Date end = new Date(current.getTime() + (1000 * 60 *2));//For two minute!
 
                 String uid = UrlGenerator.getFixedUrl(user.getLogin(),current);
 
@@ -62,8 +57,10 @@ public class RestorePasswordServlet extends HttpServlet{
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        MailSender sender = new MailSender("paykick.team@gmail.com", "paykickteam5");//server parameters
+                        //TODO add properties
+                        MailSender sender = new MailSender("paykick.team@gmail.com", "paykickteam01");//server parameters
                         String restorePasswordMessage = "For restoring your password follow <a href='http://localhost:8080/PayKick/newPassword?uid=" + uid + "'>this</a> link!";
+                        logger.info("Restore password mail are sent to user " + user.getId());
                         sender.sendEmail("Restoring password.", restorePasswordMessage, user.getEmail());
                     }
                 }).start();

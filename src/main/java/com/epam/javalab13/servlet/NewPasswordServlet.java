@@ -4,6 +4,7 @@ import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.common.RestorePassword;
 import com.epam.javalab13.service.game.UserService;
 import com.epam.javalab13.util.PasswordHash;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,25 +20,18 @@ import java.util.Map;
  * Created by Vikno on 9/7/2016.
  */
 public class NewPasswordServlet extends HttpServlet {
+
+    private static Logger logger = Logger.getLogger(NewPasswordServlet.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-
-        System.out.println("get session" + session);
-
-        System.out.println("new password servlet get:");
-
         Map<String,RestorePassword> restorePasswordMap = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
 
         if(restorePasswordMap!=null) {
-            System.out.println(restorePasswordMap.size());
 
             String uid = req.getParameter("uid");
-            System.out.println(uid);
 
             if(uid!=null && uid.length()==64) {
-                System.out.println("uid:" + uid);
-                System.out.println("restore uid:" + restorePasswordMap.get(uid));
 
                 RestorePassword restorePassword = restorePasswordMap.get(uid);
 
@@ -47,7 +41,6 @@ public class NewPasswordServlet extends HttpServlet {
                      long now = today.getTime();
                      long end = restorePassword.getEndTime().getTime();
 
-                     System.out.println("time: " + (end-now));
                      if(today.getTime()>restorePassword.getEndTime().getTime()){
                          req.setAttribute("hideForm","hideForm");
 
@@ -58,22 +51,16 @@ public class NewPasswordServlet extends HttpServlet {
                              session.removeAttribute("restoreUser");
                          }
 
-                         System.out.println("size1:" + restorePasswordMap.size());
                          restorePasswordMap.remove(uid);
                          getServletContext().setAttribute("restore", restorePasswordMap);
 
                          Map<String,RestorePassword> restorePasswordMap2 = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
-                         System.out.println("size2" + restorePasswordMap2.size());
-
                          req.getRequestDispatcher("new_password.jsp").forward(req, resp);
                      }else{
                          UserService service = new UserService();
                          User user = service.getUserByLogin(restorePassword.getUserLogin());
 
                          if(user!=null){
-                             System.out.println(user);
-
-
                              session.setAttribute("restoreUID", uid);
                              session.setAttribute("restoreUser", user);
                              req.getRequestDispatcher("new_password.jsp").forward(req, resp);
@@ -95,32 +82,21 @@ public class NewPasswordServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("new password servlet post:");
-
         HttpSession session = req.getSession();
 
-        System.out.println("ses user:" + session.getAttribute("restoreUser"));
         if(session!=null){
-            System.out.println("session: " + session);
-
             User user = (User) session.getAttribute("restoreUser");
-            System.out.println("user" + user);
 
             if(user!=null){
                 String newPassword = req.getParameter("newPassword");
 
                 if(newPassword!=null){
-                    System.out.println("new pass:" + newPassword);
-
                     user.setPassword(PasswordHash.SHA_256(newPassword));
                     new UserService().updateUserPassword(user);
-
-                    System.out.println("new user" + user);
-
+                    logger.info("User "+ user.getId() + " has successfully restore password!");
                     Map<String,RestorePassword> restorePasswordMap = (Map<String, RestorePassword>) getServletContext().getAttribute("restore");
 
                     String restoreUID = (String) session.getAttribute("restoreUID");
-                    System.out.println(restoreUID);
 
                     restorePasswordMap.remove(restoreUID);
                     getServletContext().setAttribute("restore", restorePasswordMap);
