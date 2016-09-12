@@ -93,4 +93,31 @@ public class TotalGoalsCoefficientDAO {
             }
         }
     }
+
+    public void updateByGame(TotalGoalsCoefficient totalGoalsCoefficient) throws SQLException {
+        final String SQL = "UPDATE total_goals_coefficient tgc SET tgc.goal_coefficient=? WHERE tgc.game_id=?";
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setDouble(1,totalGoalsCoefficient.getGoalCoefficient());
+            st.setInt(2,totalGoalsCoefficient.getGame().getId());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
+    }
 }

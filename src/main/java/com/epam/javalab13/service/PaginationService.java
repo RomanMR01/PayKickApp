@@ -3,6 +3,7 @@ package com.epam.javalab13.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.epam.javalab13.model.Role;
 import org.apache.log4j.Logger;
 
 import com.epam.javalab13.dao.UserDAO;
@@ -88,6 +89,30 @@ public class PaginationService {
             System.out.println(teams);
             logger.error("failed to find all teams with players", e);
             return -1;
+        }
+        return pages;
+    }
+
+    public int getPagesForGamesByBookmaker(String type, String page, String itemsOnPage, List<Game> games, User bookmaker) {
+        List<Game> allGames = null;
+        int pages = 1;
+        try {
+            int pageNumber = page == null || page.equals("") ? 1 : Integer.valueOf(page);
+            int items = itemsOnPage == null || itemsOnPage.equals("") ? DEFAULT_ITEMS_ON_PAGE
+                    : Integer.valueOf(itemsOnPage);
+            Type enumType = type == null || type.equals("") ? Type.ACTIVE : Type.valueOf(type);
+            gameDao = new GameDAO();
+            if(bookmaker.getRole().equals(Role.BOOKMAKER)){
+                allGames = gameDao.getGamesByBookmakerAndStatus(bookmaker, enumType);
+            }
+            pages = 1 + (allGames.size() - 1) / items;
+            int start = allGames.size() < items * (pageNumber - 1) ? (allGames.size() - allGames.size() / items)
+                    : items * (pageNumber - 1);
+            int end = allGames.size() < items * pageNumber ? allGames.size() : items * pageNumber;
+            games.addAll(allGames.subList(start, end));
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            logger.error("failed to find games by type = " + type, e);
         }
         return pages;
     }

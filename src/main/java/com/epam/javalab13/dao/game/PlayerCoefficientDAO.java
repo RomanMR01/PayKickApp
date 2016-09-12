@@ -99,4 +99,33 @@ public class PlayerCoefficientDAO {
             }
         }
     }
+
+    public void updateByGameAndPlayer(PlayerCoefficient playerCoefficient) throws SQLException {
+        final String SQL = "UPDATE player_coefficient pc SET pc.coefficient=? WHERE pc.game_id=? AND pc.player_id=?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setDouble(1,playerCoefficient.getCoefficient());
+            st.setInt(2,playerCoefficient.getGame().getId());
+            st.setInt(3,playerCoefficient.getPlayer().getId());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
+    }
 }

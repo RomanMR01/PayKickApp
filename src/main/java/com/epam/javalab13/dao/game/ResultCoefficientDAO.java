@@ -100,4 +100,34 @@ public class ResultCoefficientDAO {
             }
         }
     }
+
+    public void updateByGame(ResultCoefficient resultCoefficient) throws SQLException {
+        final String SQL = "UPDATE result_coefficient rc SET rc.coefficient=? WHERE rc.game_id=? AND rc.result LIKE ?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setDouble(1,resultCoefficient.getCoefficient());
+            st.setInt(2,resultCoefficient.getGame().getId());
+            st.setString(3,resultCoefficient.getResult().name());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
+
+    }
 }

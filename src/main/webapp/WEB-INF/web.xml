@@ -308,7 +308,31 @@
     <!-- CLIENT PAGES -->
 
     <!-- BOOKMAKER PAGES -->
-
+    <servlet>
+        <servlet-name>BookmakerMatches</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.bookmaker.BookmakerMatchesDispatcherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookmakerServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.bookmaker.BookmakerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmCoefficientsServlet</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.bookmaker.ConfirmCoefficientsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookmakerMatches</servlet-name>
+        <url-pattern>/bookmaker/matches</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookmakerServlet</servlet-name>
+        <url-pattern>/bookmaker</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmCoefficientsServlet</servlet-name>
+        <url-pattern>/bookmaker/ConfirmCoefficients</url-pattern>
+    </servlet-mapping>
+    <!-- END BOOKMAKER -->
 
 
 </web-app>

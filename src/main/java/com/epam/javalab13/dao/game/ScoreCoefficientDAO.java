@@ -97,4 +97,34 @@ public class ScoreCoefficientDAO {
             }
         }
     }
+
+    public void updateByGame(ScoreCoefficient scoreCoefficient) throws SQLException {
+        final String SQL = "UPDATE score_coefficient sc SET sc.start_coefficient=? , sc.first_team_coefficient=? , sc.second_team_coefficient=? WHERE sc.game_id=?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try {
+            conn = ConnectionPool.getConnection();
+            st = conn.prepareStatement(SQL);
+
+            st.setDouble(1,scoreCoefficient.getStartCoefficient());
+            st.setDouble(2,scoreCoefficient.getFirstTeamCoefficient());
+            st.setDouble(3,scoreCoefficient.getSecondTeamCoefficient());
+            st.setInt(4,scoreCoefficient.getGame().getId());
+
+            st.executeUpdate();
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+        }
+    }
 }

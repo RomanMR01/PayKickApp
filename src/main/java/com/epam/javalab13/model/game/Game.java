@@ -1,6 +1,7 @@
 package com.epam.javalab13.model.game;
 
 import java.util.Date;
+import java.util.List;
 
 import com.epam.javalab13.model.User;
 
@@ -16,6 +17,11 @@ public class Game implements Comparable<Game> {
 	private Status status;
 	private User bookmaker;
 	private double profit;
+
+	private List<ResultCoefficient> resultCoefficients;
+	private ScoreCoefficient scoreCoefficient;
+	private List<PlayerCoefficient> firstTeamPlayerCoefficients;
+	private List<PlayerCoefficient> secondTeamPlayerCoefficients;
 
 	public Game(){}
 
@@ -181,5 +187,37 @@ public class Game implements Comparable<Game> {
 	@Override
 	public int compareTo(Game o) {
 		return getDate().compareTo(o.getDate());
+	}
+
+	public List<ResultCoefficient> getResultCoefficients() {
+		return resultCoefficients;
+	}
+
+	public void setResultCoefficients(List<ResultCoefficient> resultCoefficients) {
+		this.resultCoefficients = resultCoefficients;
+	}
+
+	public ScoreCoefficient getScoreCoefficient() {
+		return scoreCoefficient;
+	}
+
+	public void setScoreCoefficient(ScoreCoefficient scoreCoefficient) {
+		this.scoreCoefficient = scoreCoefficient;
+	}
+
+	public List<PlayerCoefficient> getFirstTeamPlayerCoefficients() {
+		return firstTeamPlayerCoefficients;
+	}
+
+	public void setFirstTeamPlayerCoefficients(List<PlayerCoefficient> firstTeamPlayerCoefficients) {
+		this.firstTeamPlayerCoefficients = firstTeamPlayerCoefficients;
+	}
+
+	public List<PlayerCoefficient> getSecondTeamPlayerCoefficients() {
+		return secondTeamPlayerCoefficients;
+	}
+
+	public void setSecondTeamPlayerCoefficients(List<PlayerCoefficient> secondTeamPlayerCoefficients) {
+		this.secondTeamPlayerCoefficients = secondTeamPlayerCoefficients;
 	}
 }
