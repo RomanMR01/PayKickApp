@@ -375,12 +375,19 @@ public class GameService {
                     Status totalBetStatus = Status.WON;
                     for (SingleBet singleBet : singleBets) {
                         if (singleBet.getTotalBet().getId() == totalBet.getId()) {
+                            //If total bet already canceled we skip the cycle
+                            //And will not return many to client or to game profit
+                            if(totalBet.getStatus()==Status.CANCELED){
+                                totalBetStatus = Status.CANCELED;
+                                break;
+                            }
                             Status status = singleBet.getStatus();
                             //If one from multiple bet has status LOST, then TotalBet will have status LOST
                             if (status == Status.LOST) {
                                 totalBetStatus = Status.LOST;
                                 break;
                             }
+
                         }
                     }
                     totalBet.setStatus(totalBetStatus);
@@ -528,11 +535,11 @@ public class GameService {
             long curr = current.getTime();
 
             if((added-curr)<(86400_000)){//less than 1 day
-                System.out.println("1" + (added-curr)/(1000*60*60*24));
+                System.out.println("to late" + (added-curr)/(1000*60*60*24));
                 date=null;
             }
             if((added-curr)>(5_356_800_000L)){//more than 2 month
-                System.out.println("2:" + (added-curr)/(1000*60*60*24));
+                System.out.println("to soon:" + (added-curr)/(1000*60*60*24));
                 date = null;
             }
         }
@@ -546,11 +553,13 @@ public class GameService {
         UserDAO userDAO = new UserDAO();
         User u = new User();
         u.setFullName(bookmakerName);
+
+        System.out.println("bn:" + bookmakerName);
         User user = null;
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.NAME);
         } catch (Exception e) {
-            System.out.println("user ex");
+            logger.error("can't get find user by name " + bookmakerName, e);
         }
         game.setBookmaker(user);
 
