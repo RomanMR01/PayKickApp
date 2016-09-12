@@ -35,7 +35,7 @@
 		<div class="row">
 			<div class="col s12 l8 offset-l2">
 				<ul class="tabs transparent">
-					<c:forTokens var="status" items="ALL,NEW,ACTIVE"
+					<c:forTokens var="status" items="NEW,ACTIVE"
 						delims=",">
 						<li class="tab col s4 l2"><c:choose>
 								<c:when test="${status==type}">

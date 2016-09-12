@@ -19,6 +19,7 @@
                 </ul>
 
                 <ul id="userDropdown" class="dropdown-content grey darken-3">
+                    <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
                     <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
                     <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                 </ul>
@@ -30,6 +31,7 @@
                 </ul>
 
                 <ul id="userSideDropdown" class="dropdown-content sidebar grey darken-3">
+                    <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
                     <li><a href="${pageContext.request.contextPath}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
                     <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                 </ul>
