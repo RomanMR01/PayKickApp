@@ -7,6 +7,7 @@ import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.game.GameService;
 import com.epam.javalab13.service.game.TeamService;
 import com.epam.javalab13.service.game.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +21,10 @@ import java.util.List;
  */
 public class AddNewGameServlet extends HttpServlet {
 
+    private static Logger logger = Logger.getLogger(AddNewGameServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("add game servlet" + Thread.currentThread());
         GameService gameService = new GameService();
         String title = req.getParameter("title");
         String location = req.getParameter("location");
@@ -39,13 +40,6 @@ public class AddNewGameServlet extends HttpServlet {
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Some fields are empty!\"}");
         }
 
-        System.out.println(title);
-        System.out.println(location);
-        System.out.println("dt:" + stringDate);
-        System.out.println(firstTeamName);
-        System.out.println(secondTeamName);
-        System.out.println(bookmakerName);
-
         UserService userService = new UserService();
         List<User> userList = userService.getAllUsers();
 
@@ -54,7 +48,6 @@ public class AddNewGameServlet extends HttpServlet {
         for (User user : userList) {
             if (bookmakerName.equals(user.getFullName())) {
                 if (user.getRole() != Role.BOOKMAKER) {
-                    System.out.println("user are not bookmaker");
 
                     resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Not bookmaker!\"}");
                     return;
@@ -77,7 +70,6 @@ public class AddNewGameServlet extends HttpServlet {
                     secondTeamExist = true;
                 }
             } else {
-                System.out.println("teams find");
                 break;
             }
         }
@@ -85,18 +77,17 @@ public class AddNewGameServlet extends HttpServlet {
         if (firstTeamExist && secondTeamExist) {
             if (userExists) {
                 Game game = gameService.addNewGame(title, location, stringDate, firstTeamName, secondTeamName, bookmakerName);
-                System.out.println("game:" + game);
 
                 //If game will be null or have id 0 than something going wong at game service (likely date is wrong)
                 if (game == null || game.getId() == 0) {
                     resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Incorrect date! Try again!\"}");
                     return;
                 } else {
+                    logger.info("Admin add new game with id:" + game.getId());
                     resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Game added!\"}");
                     return;
                 }
             } else {
-                System.out.println("no such user");
                 resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"No such user\"}");
                 return;
             }

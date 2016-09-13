@@ -627,4 +627,16 @@ public class GameService {
         System.out.println("gg" + game);
         return game;
     }
+
+    public List<Game> getActiveGames(){
+        GameDAO gameDAO = new GameDAO();
+        List<Game> activeGames = null;
+        try {
+            activeGames = gameDAO.getGamesByStatus(GameDAO.GetGamesType.ACTIVE);
+        } catch (SQLException e) {
+           logger.error("Some error while getting active games!",e);
+        }
+
+        return activeGames;
+    }
 }

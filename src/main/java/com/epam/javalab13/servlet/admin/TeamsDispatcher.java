@@ -18,9 +18,7 @@ import com.epam.javalab13.service.game.PlayerService;
  * Created by Vikno on 9/7/2016.
  */
 public class TeamsDispatcher extends HttpServlet {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     private PaginationService paginationService;
 
