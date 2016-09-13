@@ -20,14 +20,16 @@ public class CreateTeamServlet extends HttpServlet{
         String teamName = req.getParameter("teamName");
         String teamLocation = req.getParameter("teamLocation");
 
+        resp.setCharacterEncoding("UTF-8");
+
         if(teamName!=null && teamLocation!=null && teamName.length()>0 && teamLocation.length()>0){
             TeamService teamService = new TeamService();
             List<Team> teamList = teamService.getAllTeams();
+
+            //Search team on existing
             for(Team team:teamList){
                 if(teamName.equals(team.getName())){
                     System.out.println("team exist");
-
-                    resp.setCharacterEncoding("UTF-8");
                     resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Such team exist!\"}");
                     return;
                 }

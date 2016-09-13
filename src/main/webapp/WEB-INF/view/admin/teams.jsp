@@ -202,7 +202,6 @@
 
 <!-- Here must be generated all the players -->
 <script>
-
     $(function () {
         $('input.autocomplete.player-input').autocomplete({
             data: {
@@ -213,8 +212,6 @@
         });
     });
 </script>
-
-
 <script>
 
     //Remove player
@@ -252,8 +249,12 @@
             var infoMessage = $('#newPlayerFormMessage');
 
             if(firstName.length==0 || surname.length==0 || age.length==0){
-                infoMessage.text("Fields can't be empty!");
-            }else{
+                Materialize.toast("Fields can't be empty!",5000);
+                return;
+            }if(age<1 || age>100){
+                Materialize.toast("Wrong age!",5000);
+                return;
+            } else{
                 var playerName = firstName + " " + surname;
 
                 $.ajax({
@@ -275,7 +276,7 @@
                             var list = '<li class="collection-item player"><i class="material-icons left green-text">person</i>' + playerName + '<a href="#"><i class="material-icons right red-text">clear</i></a></li>';
                             $("ul #playersInTeam_" + teamID).append(list);
                         } else {
-                            infoMessage.text(message);
+                            Materialize.toast(message,5000);
                         }
                     }
                 });
@@ -291,7 +292,8 @@
             var playerName = $("#existing-player").val();
 
             if (playerName.length == 0) {
-                infoMessage.text("Fields can't be empty!");
+                Materialize.toast("Fields can't be empty!",5000);
+                return;
             }else {
                 $.ajax({
                     type: "POST",
@@ -311,7 +313,7 @@
                             var list = '<li class="collection-item player"><i class="material-icons left green-text">person</i>' + playerName + '<a href="#"><i class="material-icons right red-text">clear</i></a></li>';
                             $("ul #playersInTeam_" + teamID).append(list);
                         } else {
-                            infoMessage.text(message);
+                            Materialize.toast(message,5000);
                         }
                     }
                 });
@@ -328,7 +330,7 @@
 
         var infoMessage = $('#newTeamFormMessage');
         if (teamName.length == 0 || teamLocation.length == 0) {
-            infoMessage.text("Fields can't be empty!");
+            Materialize.toast("Fields can't be empty!",5000);
         } else {
             $.ajax({
                 type: "POST",
@@ -347,7 +349,7 @@
                         $('#new-team-modal').closeModal();
                         window.location = 'teams';
                     } else {
-                        infoMessage.text(message);
+                        Materialize.toast(message,5000);
                     }
                 }
             });

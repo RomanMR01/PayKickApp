@@ -27,12 +27,14 @@ public class AddNewPlayer extends HttpServlet{
         System.out.println("n: " + playerName);
         System.out.println("a: " + playerAge);
 
+        resp.setCharacterEncoding("UTF-8");
         if(teamId!=null && playerName!=null && playerAge!=null && teamId.length()>0 && playerName.length()>0  && playerAge.length()>0){
 
             System.out.println("one");
             PlayerService playerService = new PlayerService();
             List<Player> existingPlayers = playerService.getAllPlayers();
 
+            //Search player on existing
             for(Player player:existingPlayers){
                 if(playerName.equals(player.getFulName())){
                     System.out.println("player exist");
@@ -51,6 +53,8 @@ public class AddNewPlayer extends HttpServlet{
             System.out.println("after team" + team);
             System.out.println("players in team" + playersInTeam);
 
+
+            //Search player in team
             for(Player player:playersInTeam){
                 if(playerName.equals(player.getFulName())){
                     System.out.println("player in team");
@@ -62,6 +66,8 @@ public class AddNewPlayer extends HttpServlet{
 
             System.out.println("before team!=null" + playerName);
 
+            //If team are not null (exists)
+            //We add new player to db and add him to team
             if(team!=null){
                 Player player = new Player();
                 player.setFulName(playerName);
@@ -72,19 +78,16 @@ public class AddNewPlayer extends HttpServlet{
 
                 System.out.println("player added");
 
-                resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Player added!\"}");
                 return;
             }else{
                 System.out.println("empty team");
-                resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Such player or game not exist!\"}");
                 return;
             }
 
         }else{
             System.out.println("wrong data");
-            resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Incorrect data! Try again!\"}");
             return;
         }

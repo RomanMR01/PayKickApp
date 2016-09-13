@@ -65,7 +65,6 @@ public class MatchesDispatcher extends HttpServlet {
 		TeamService teamService = new TeamService();
 		List<Team> teams =  teamService.getAllTeams();
 
-
 		GameDAO gameDAO = new GameDAO();
 		List<Game> games1 = null;
 		try {
@@ -109,10 +108,5 @@ public class MatchesDispatcher extends HttpServlet {
 		request.setAttribute("bookmakers",bookmakers);
 
 		request.getRequestDispatcher("/WEB-INF/view/admin/matches.jsp").forward(request,response);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 	}
 }

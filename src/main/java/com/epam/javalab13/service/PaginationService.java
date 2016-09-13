@@ -44,9 +44,9 @@ public class PaginationService {
             int start =allUsers.size()<items*(pageNumber-1)?(allUsers.size()-allUsers.size()/items):items*(pageNumber-1);
             int end = allUsers.size()<items*pageNumber?allUsers.size():items*pageNumber;
             users.addAll(allUsers.subList(start, end));
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             logger.error("failed to find users by type = " + type, e);
+            return -1;
         }
         return pages;
     }
