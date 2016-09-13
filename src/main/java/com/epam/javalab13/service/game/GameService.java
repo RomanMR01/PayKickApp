@@ -186,7 +186,7 @@ public class GameService {
      * ! PRIVATE ! For setGameScore() only
      * Setting results for game by game id and score
      * Usage: setResult(12,2,3) game by id 12, score 2:3
-     *
+     * !! DO NOT TOUCH ANYTHING HERE (very bad code)!!
      * @param gameId      the Game id
      * @param firstGoals  the goals of first team
      * @param secondGoals the goals of second team
@@ -442,13 +442,13 @@ public class GameService {
         //Updating money for multiple bet type if all single bets are status WON
         for (TotalBet totalBet : totalBets) {
             if (totalBet.getType() == Type.MULTIPLE) {
+
                 List<SingleBet> singleBetList = singleBetDAO.getSingleBetsByTotal(totalBet);
                 boolean isAllWon = true;//If all single bets are with status WON
 
                 Set<Status> wonOrLost = new HashSet<>();//Mast contains only WON or LOST statuses
 
-
-                //Check if all single bets are with WON statu
+                //Check if all single bets are with WON status
                 for (SingleBet singleBet : singleBetList) {
                     wonOrLost.add(singleBet.getStatus());
                     if (singleBet.getStatus() != Status.WON) {
@@ -483,6 +483,15 @@ public class GameService {
                     for (Status status : wonOrLost) {
                         if (status == Status.CANCELED || status == Status.ACTIVE) {
                             containsOnly = false;
+                            break;
+                        }
+                    }
+
+                    //If one of single bets already have status LOST, then client money are in game profit
+                    //And we do not have do this again
+                    for(SingleBet singleBet:singleBetList){
+                        if(singleBet.getGame().getId()!=gameId && singleBet.getStatus()==Status.LOST){
+                            containsOnly=false;
                             break;
                         }
                     }
