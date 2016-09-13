@@ -5,6 +5,7 @@ import com.epam.javalab13.model.Gender;
 import com.epam.javalab13.model.Language;
 import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
+import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,12 +16,13 @@ import java.util.List;
  */
 public class UserService {
     UserDAO userDAO=new UserDAO();
+    private static Logger logger = Logger.getLogger(UserService.class);
 
     public void addUser(User user){
         try {
             userDAO.addUser(user);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't add new user: " +user,e);
         }
     }
 
@@ -34,7 +36,7 @@ public class UserService {
         try {
             userDAO.updateUser(user, UserDAO.UpdateUserType.SQL_NAME_GENDER_AGE);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't update user: " + user,e);
         }
     }
 
@@ -42,7 +44,17 @@ public class UserService {
         try {
             return userDAO.getAllUsers();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get all users! ",e);
+        }
+
+        return null;
+    }
+
+    public List<User> getAllUsersByType(UserDAO.GetType type){
+        try {
+            return userDAO.getAllUsersByType(type);
+        } catch (SQLException e) {
+            logger.error("Can't get all users by type:" + type,e);
         }
 
         return null;
@@ -58,7 +70,7 @@ public class UserService {
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.ID);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get user by id:" + userId,e);
         }
 
         return user;
@@ -73,7 +85,7 @@ public class UserService {
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.LOGIN);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get user by login: " + login,e);
         }
 
         return user;
@@ -88,7 +100,7 @@ public class UserService {
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.EMAIL);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get user by email: " + email,e);
         }
 
         return user;
@@ -103,7 +115,7 @@ public class UserService {
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.NAME);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get user by full name: " + fullName,e);
         }
 
         return user;
@@ -114,7 +126,7 @@ public class UserService {
         try {
             userDAO.updateUser(user, UserDAO.UpdateUserType.PASSWORD);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't update password for user:" + user,e);
         }
     }
 
@@ -123,7 +135,7 @@ public class UserService {
         try {
             allUsers = userDAO.getAllUsersInRange(UserDAO.GetType.ALL,startIndex,endIndex);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get users by int range:" + startIndex + " - " + endIndex,e);
         }
 
         return allUsers;
@@ -134,7 +146,7 @@ public class UserService {
         try {
             bosses = userDAO.getAllUsersInRange(UserDAO.GetType.BOSS,startIndex,endIndex);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get bosses by int range:" + startIndex + " - " + endIndex,e);
         }
 
         return bosses;
@@ -145,7 +157,7 @@ public class UserService {
         try {
             admins = userDAO.getAllUsersInRange(UserDAO.GetType.ADMIN,startIndex,endIndex);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get admins by int range:" + startIndex + " - " + endIndex,e);
         }
 
         return admins;
@@ -156,7 +168,7 @@ public class UserService {
         try {
             bookmakers = userDAO.getAllUsersInRange(UserDAO.GetType.BOOKMAKER,startIndex,endIndex);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get bookmakers by int range:" + startIndex + " - " + endIndex,e);
         }
 
         return bookmakers;
@@ -167,7 +179,7 @@ public class UserService {
         try {
             clients = userDAO.getAllUsersInRange(UserDAO.GetType.CLIENT,startIndex,endIndex);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get clients by int range:" + startIndex + " - " + endIndex,e);
         }
 
         return clients;
@@ -196,7 +208,7 @@ public class UserService {
         try {
             userDAO.updateUser(u, UserDAO.UpdateUserType.LANGUAGE);
         } catch (SQLException e) {
-           e.printStackTrace();
+            logger.error("Can't change user:" + login + " language to "+ lang,e);
         }
     }
 
@@ -209,7 +221,7 @@ public class UserService {
             userDAO.updateUser(user, UserDAO.UpdateUserType.BAN);
 
         } catch (SQLException e) {
-         e.getStackTrace();
+            logger.error("Can't set bann for user: " +userId,e);
         }
     }
 
@@ -223,7 +235,7 @@ public class UserService {
             userDAO.updateUser(user, UserDAO.UpdateUserType.BAN);
 
         } catch (SQLException e) {
-            e.getStackTrace();
+            logger.error("Can't reset bann for user: " + userId,e);
         }
     }
 
@@ -235,7 +247,7 @@ public class UserService {
         try {
             userDAO.updateUser(user, UserDAO.UpdateUserType.ROLE);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't change user role to:" + role + " for user " + userId,e);
         }
     }
 
@@ -246,7 +258,7 @@ public class UserService {
         try {
              allUsers = userDAO.getAllUsers();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get all emails!",e);
             return null;
         }
 
