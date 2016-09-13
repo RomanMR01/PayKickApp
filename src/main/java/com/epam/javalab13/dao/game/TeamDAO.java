@@ -88,7 +88,7 @@ public class TeamDAO {
     
     public List<Team> getAllTeamsWithPlayers() throws SQLException {
         List<Team> teams = new ArrayList<>();
-        final String SQL = "SELECT * FROM team";
+        final String SQL = "SELECT * FROM team t ORDER BY t.id DESC";
 
         TeamTransformer transformer = new TeamTransformer();
 
