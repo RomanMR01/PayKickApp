@@ -131,6 +131,12 @@ public class GameService {
             //Update total bets status to canceled and return money to users
             UserDAO userDAO = new UserDAO();
             for (TotalBet totalBet : totalBets) {
+
+                //If total bet already have status lost or canceled we skip cycle
+                //Because money already are returned to game profit(if LOST) or to client(if canceled)
+                if(totalBet.getStatus()==Status.LOST || totalBet.getStatus()==Status.CANCELED ){
+                    break;
+                }
                 totalBet.setStatus(Status.CANCELED);
                 usersInTotalBet.add(totalBet.getUser());
                 totalBetDAO.updateTotalBetStatus(totalBet);
