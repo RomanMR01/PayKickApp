@@ -483,6 +483,8 @@ public class GameService {
                     if (containsOnly) {
                         profit += totalBet.getAmount();
                         lostUsers.add(totalBet.getUser());
+                        totalBet.setStatus(Status.LOST);
+                        totalBetDAO.updateTotalBetStatus(totalBet);
                     }
                 }
             }
