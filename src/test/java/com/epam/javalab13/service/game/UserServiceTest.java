@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by Vikno on 9/14/2016.
+ * Testing adding new user and getting him by login and id
  */
 public class UserServiceTest {
 
