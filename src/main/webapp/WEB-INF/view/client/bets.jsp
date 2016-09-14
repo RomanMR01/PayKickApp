@@ -74,8 +74,8 @@
                                                     <td>1.50</td>
                                                     <td>—</td>
                                                 </tr>
-                                                <tr class="orange-text">
-                                                    <td ><strong>Total</strong></td>
+                                                <tr class="orange-text" style="border-top: 1px solid #d0d0d0;">
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -123,8 +123,8 @@
                                                     <td>1.50</td>
                                                     <td>—</td>
                                                 </tr>
-                                                <tr class="green-text">
-                                                    <td><strong>Total</strong></td>
+                                                <tr class="green-text" style="border-top: 1px solid #d0d0d0;">
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -172,8 +172,8 @@
                                                     <td>1.50</td>
                                                     <td>—</td>
                                                 </tr>
-                                                <tr class="red-text">
-                                                    <td ><strong>Total</strong></td>
+                                                <tr class="red-text" style="border-top: 1px solid #d0d0d0;">
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -221,8 +221,8 @@
                                                     <td>1.50</td>
                                                     <td>—</td>
                                                 </tr>
-                                                <tr class="grey-text">
-                                                    <td ><strong>Total</strong></td>
+                                                <tr class="grey-text" style="border-top: 1px solid #d0d0d0;">
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
