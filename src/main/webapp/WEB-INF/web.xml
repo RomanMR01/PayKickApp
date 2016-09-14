@@ -334,5 +334,25 @@
     </servlet-mapping>
     <!-- END BOOKMAKER -->
 
+    <!-- CLIENT -->
+    <servlet>
+        <servlet-name>Client</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.client.ClientDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Client</servlet-name>
+        <url-pattern>/client</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientMatches</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.client.MatchesDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientMatches</servlet-name>
+        <url-pattern>/client/matches</url-pattern>
+    </servlet-mapping>
+    <!-- END CLIENT-->
+
 
 </web-app>
