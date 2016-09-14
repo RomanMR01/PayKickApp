@@ -40,7 +40,7 @@
                         </div>
                         <ul class="collapsible popout" data-collapsible="expandable">
                             <li>
-                                <div class="collapsible-header center-align"><i class="material-icons green-text">receipt</i><span class="orange-text"><strong>#0532412 - ACTIVE</strong></span></div>
+                                <div class="collapsible-header center-align"><i class="material-icons orange-text">receipt</i><span class="orange-text"><strong>#0532412 - ACTIVE</strong></span></div>
                                 <div class="collapsible-body center-align">
                                     <div class="row">
                                         <table class="centered responsive-table col s10 offset-s1">
@@ -89,7 +89,7 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="collapsible-header center-align"><i class="material-icons orange-text">receipt</i><span class="green-text"><strong>#0938911 - WON</strong></span></div>
+                                <div class="collapsible-header center-align"><i class="material-icons green-text">receipt</i><span class="green-text"><strong>#0938911 - WON</strong></span></div>
                                 <div class="collapsible-body center-align">
                                     <div class="row">
                                         <table class="centered responsive-table col s10 offset-s1">
