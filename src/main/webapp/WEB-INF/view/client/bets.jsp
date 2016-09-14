@@ -75,7 +75,7 @@
                                                     <td>—</td>
                                                 </tr>
                                                 <tr class="orange-text">
-                                                    <td ><strong>25.10.2016</strong></td>
+                                                    <td ><strong>Total</strong></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -124,7 +124,7 @@
                                                     <td>—</td>
                                                 </tr>
                                                 <tr class="green-text">
-                                                    <td ><strong>25.10.2016</strong></td>
+                                                    <td><strong>Total</strong></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -173,7 +173,7 @@
                                                     <td>—</td>
                                                 </tr>
                                                 <tr class="red-text">
-                                                    <td ><strong>25.10.2016</strong></td>
+                                                    <td ><strong>Total</strong></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -222,7 +222,7 @@
                                                     <td>—</td>
                                                 </tr>
                                                 <tr class="grey-text">
-                                                    <td ><strong>25.10.2016</strong></td>
+                                                    <td ><strong>Total</strong></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
