@@ -577,7 +577,6 @@ public class GameService {
     public Game addNewGame(String title, String location, String stringDate, String firstTeamName,
                            String secondTeamName, String bookmakerName) {
 
-        System.out.println("service 1");
         TeamDAO teamDao = new TeamDAO();
         Team team = new Team();
         Team firstTeam = null;
@@ -588,34 +587,30 @@ public class GameService {
             team.setName(secondTeamName);
             secondTeam = teamDao.getTeam(team, "name");
         } catch (Exception e) {
-            System.out.println("ext t");
             logger.error("failed to instantiate team by name from database " + team, e);
         }
 
-        System.out.println("sd" + stringDate);
+//        System.out.println("sd" + stringDate);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = null;
         try {
             date = sdf.parse(stringDate);
         } catch (Exception e) {
-            System.out.println("date ex");
             logger.error("failed to parse date from request " + stringDate, e);
         }
 
         if (date != null) {
             Date current = new Date();
 
-            System.out.println(current);
-            System.out.println(date);
+//            System.out.println(current);
+//            System.out.println(date);
             long added = date.getTime();
             long curr = current.getTime();
 
             if ((added - curr) < (86400_000)) {//less than 1 day
-                System.out.println("to late" + (added - curr) / (1000 * 60 * 60 * 24));
                 date = null;
             }
             if ((added - curr) > (5_356_800_000L)) {//more than 2 month
-                System.out.println("to soon:" + (added - curr) / (1000 * 60 * 60 * 24));
                 date = null;
             }
         }
@@ -630,7 +625,6 @@ public class GameService {
         User u = new User();
         u.setFullName(bookmakerName);
 
-        System.out.println("bn:" + bookmakerName);
         User user = null;
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.NAME);
@@ -643,11 +637,9 @@ public class GameService {
         try {
             gameDAO.addGame(game);
         } catch (Exception e) {
-            System.out.println("game ex");
             logger.error("failed to create add new game to database " + game, e);
         }
 
-        System.out.println("gg" + game);
         return game;
     }
 
