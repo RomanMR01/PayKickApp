@@ -35,14 +35,22 @@ public class TeamService {
         try {
             return teamDAO.getTeam(team,"id");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get get team by id:" + teamId);
         }
 
         return null;
     }
 
-    public Team getTeamByName(Team team) throws SQLException {
-        return teamDAO.getTeam(team,"name");
+    public Team getTeamByName(String teamName){
+        Team team = new Team();
+        team.setName(teamName);
+        try {
+            return teamDAO.getTeam(team,"name");
+        } catch (SQLException e) {
+            logger.error("Can't get get team by name:" + team.getName());
+        }
+
+        return null;
     }
 
     public List<Team> getAllTeams(){
