@@ -27,8 +27,9 @@ import java.text.SimpleDateFormat;
  */
 public class GameService {
 
+    //TODO ADD PROPERTIES FOR EMAIL
     private static Logger logger = Logger.getLogger(GameService.class);
-    private MailSender sender = new MailSender("***", "***");
+    private MailSender sender = new MailSender("paykick.team@gmail.com", "paykickteam01");
     private GameDAO gameDAO = new GameDAO();
 
     /**
@@ -537,6 +538,11 @@ public class GameService {
                     break;
             }
         }
+
+        System.out.println("w_UA" + wonUsersUA);
+        System.out.println("l_UA" + lostUsersUA);
+        System.out.println("w_EN" + wonUsersEN);
+        System.out.println("l_EN" + lostUsersEN);
 
         new Thread(new Runnable() {
             @Override
