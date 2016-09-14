@@ -15,16 +15,12 @@ import com.epam.javalab13.util.MailSender;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.epam.javalab13.model.game.Team;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Vikno on 9/8/2016.
@@ -72,14 +68,15 @@ public class GameService {
 
     /**
      * Getting game by id
+     *
      * @param gameId
      * @return Game object if game exist, otherwise null
      */
-    public Game getGameById(int gameId){
+    public Game getGameById(int gameId) {
         try {
             return gameDAO.getGamesById(gameId);
         } catch (SQLException e) {
-           logger.error("Can't get game by id " + gameId,e);
+            logger.error("Can't get game by id " + gameId, e);
         }
 
         return null;
@@ -163,10 +160,10 @@ public class GameService {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if(usersEN.size()>0) {
+                    if (usersEN.size() > 0) {
                         sender.sendEmailsBatch("Game canceled", "game canceled", usersEN);
                     }
-                    if(usersUA.size()>0) {
+                    if (usersUA.size() > 0) {
                         sender.sendEmailsBatch("Гру відмінено", "Відмінено", usersUA);
                     }
                 }
@@ -375,12 +372,19 @@ public class GameService {
                     Status totalBetStatus = Status.WON;
                     for (SingleBet singleBet : singleBets) {
                         if (singleBet.getTotalBet().getId() == totalBet.getId()) {
+                            //If total bet already canceled we skip the cycle
+                            //And will not return many to client or to game profit
+                            if (totalBet.getStatus() == Status.CANCELED || totalBet.getStatus() == Status.LOST) {
+                                totalBetStatus = Status.CANCELED;
+                                break;
+                            }
                             Status status = singleBet.getStatus();
                             //If one from multiple bet has status LOST, then TotalBet will have status LOST
                             if (status == Status.LOST) {
                                 totalBetStatus = Status.LOST;
                                 break;
                             }
+
                         }
                     }
                     totalBet.setStatus(totalBetStatus);
@@ -405,28 +409,84 @@ public class GameService {
         List<User> wonUsers = new ArrayList<>();
         List<User> lostUsers = new ArrayList<>();
 
-        //Updating balances of users
+        //Updating balances of users for single bet type
         for (TotalBet totalBet : totalBets) {
-            int amount = totalBet.getAmount();
-            double award = totalBet.getAward();
-            Status status = totalBet.getStatus();
-            User user = totalBet.getUser();
-            double userBalance = user.getBalance();
+            if (totalBet.getType() == Type.SINGLE) {
+                int amount = totalBet.getAmount();
+                double award = totalBet.getAward();
+                Status status = totalBet.getStatus();
+                User user = totalBet.getUser();
+                double userBalance = user.getBalance();
 
-            if (status == Status.WON) {
-                profit -= (award - amount);
-                userBalance += award;
-                user.setBalance(userBalance);
-                userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
+                if (status == Status.WON) {
+                    profit -= (award - amount);
+                    userBalance += award;
+                    user.setBalance(userBalance);
+                    userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
 
-                wonUsers.add(user);
-            }
-            if (status == Status.LOST) {
-                profit += amount;
-                lostUsers.add(user);
+                    wonUsers.add(user);
+                }
+                if (status == Status.LOST) {
+                    profit += amount;
+                    lostUsers.add(user);
+                }
             }
         }
 
+        //Updating money for multiple bet type if all single bets are status WON
+        for (TotalBet totalBet : totalBets) {
+            if (totalBet.getType() == Type.MULTIPLE) {
+                List<SingleBet> singleBetList = singleBetDAO.getSingleBetsByTotal(totalBet);
+                boolean isAllWon = true;//If all single bets are with status WON
+
+                Set<Status> wonOrLost = new HashSet<>();//Mast contains only WON or LOST statuses
+
+
+                //Check if all single bets are with WON statu
+                for (SingleBet singleBet : singleBetList) {
+                    wonOrLost.add(singleBet.getStatus());
+                    if (singleBet.getStatus() != Status.WON) {
+                        System.out.println(singleBet.getStatus());
+                        isAllWon = false;
+                        break;
+                    }
+                }
+
+                //If all single bets are with won status we update user balance and profit for game
+                if (isAllWon) {
+                    double amount = totalBet.getAmount();
+                    double award = totalBet.getAward();
+
+                    User user = totalBet.getUser();
+
+                    System.out.println("usr:" + user);
+                    double userBalance = user.getBalance();
+                    userBalance += award;
+                    user.setBalance(userBalance);
+                    userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
+                    wonUsers.add(user);
+
+                    profit -= (award - amount);
+                }
+
+                //If some of single bets are not WON, we check if it has only LOST and WON
+                //And the update game profit
+                if (!isAllWon) {
+                    boolean containsOnly = true;
+
+                    for (Status status : wonOrLost) {
+                        if (status == Status.CANCELED || status == Status.ACTIVE) {
+                            containsOnly = false;
+                            break;
+                        }
+                    }
+                    if (containsOnly) {
+                        profit += totalBet.getAmount();
+                        lostUsers.add(totalBet.getUser());
+                    }
+                }
+            }
+        }
         //Updating game profit
         game.setProfit(profit);
         gameDAO.updateGameByType(game, GameDAO.UpdateGameType.GAME_PROFIT);
@@ -464,16 +524,16 @@ public class GameService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if(lostUsersEN.size()>0) {
+                if (lostUsersEN.size() > 0) {
                     sender.sendEmailsBatch("You lost", "Some money", lostUsersEN);
                 }
-                if(lostUsersUA.size()>0) {
+                if (lostUsersUA.size() > 0) {
                     sender.sendEmailsBatch("Ви програли гроші", "Програли", lostUsersUA);
                 }
-                if(wonUsersEN.size()>0) {
+                if (wonUsersEN.size() > 0) {
                     sender.sendEmailsBatch("You won", "Won", wonUsersEN);
                 }
-                if(wonUsersUA.size()>0) {
+                if (wonUsersUA.size() > 0) {
                     sender.sendEmailsBatch("Ви виграли", "Виграли", wonUsersUA);
                 }
             }
@@ -492,7 +552,7 @@ public class GameService {
      * @return Game game with generated id
      */
     public Game addNewGame(String title, String location, String stringDate, String firstTeamName,
-                           String secondTeamName,String bookmakerName) {
+                           String secondTeamName, String bookmakerName) {
 
         System.out.println("service 1");
         TeamDAO teamDao = new TeamDAO();
@@ -519,7 +579,7 @@ public class GameService {
             logger.error("failed to parse date from request " + stringDate, e);
         }
 
-        if(date!=null){
+        if (date != null) {
             Date current = new Date();
 
             System.out.println(current);
@@ -527,12 +587,12 @@ public class GameService {
             long added = date.getTime();
             long curr = current.getTime();
 
-            if((added-curr)<(86400_000)){//less than 1 day
-                System.out.println("1" + (added-curr)/(1000*60*60*24));
-                date=null;
+            if ((added - curr) < (86400_000)) {//less than 1 day
+                System.out.println("to late" + (added - curr) / (1000 * 60 * 60 * 24));
+                date = null;
             }
-            if((added-curr)>(5_356_800_000L)){//more than 2 month
-                System.out.println("2:" + (added-curr)/(1000*60*60*24));
+            if ((added - curr) > (5_356_800_000L)) {//more than 2 month
+                System.out.println("to soon:" + (added - curr) / (1000 * 60 * 60 * 24));
                 date = null;
             }
         }
@@ -546,11 +606,13 @@ public class GameService {
         UserDAO userDAO = new UserDAO();
         User u = new User();
         u.setFullName(bookmakerName);
+
+        System.out.println("bn:" + bookmakerName);
         User user = null;
         try {
             user = userDAO.getUser(u, UserDAO.GetOneUserType.NAME);
         } catch (Exception e) {
-            System.out.println("user ex");
+            logger.error("can't get find user by name " + bookmakerName, e);
         }
         game.setBookmaker(user);
 
@@ -564,5 +626,17 @@ public class GameService {
 
         System.out.println("gg" + game);
         return game;
+    }
+
+    public List<Game> getActiveGames(){
+        GameDAO gameDAO = new GameDAO();
+        List<Game> activeGames = null;
+        try {
+            activeGames = gameDAO.getGamesByStatus(GameDAO.GetGamesType.ACTIVE);
+        } catch (SQLException e) {
+           logger.error("Some error while getting active games!",e);
+        }
+
+        return activeGames;
     }
 }

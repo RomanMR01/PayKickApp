@@ -21,13 +21,14 @@ public class AddExistingPlayerToTeamServlet extends HttpServlet{
         String teamID = req.getParameter("teamID");
         String playerName = req.getParameter("playerName");
 
-        System.out.println(teamID);
-        System.out.println(playerName);
+        resp.setCharacterEncoding("UTF-8");
 
+        //If input fields are not empty
         if(teamID!=null && playerName!=null && teamID.length()>0 && playerName.length()>0){
             PlayerService playerService = new PlayerService();
             List<Player> existingPlayers = playerService.getAllPlayers();
 
+            //Search if player really exists
             boolean isSuchPlayer = false;
             for(Player player:existingPlayers){
                 if(playerName.equals(player.getFulName())){
@@ -40,30 +41,25 @@ public class AddExistingPlayerToTeamServlet extends HttpServlet{
             Team team = teamService.getTeamById(Integer.parseInt(teamID));
             List<Player> playersInTeam = playerService.getPlayersByTeam(team);
 
+            //If player already are in this team
             for(Player player:playersInTeam){
                 if(playerName.equals(player.getFulName())){
-                    resp.setCharacterEncoding("UTF-8");
                     resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Such player already is in this team!\"}");
                     return;
                 }
             }
 
+            //If player exists in system and not in team (and team is'n null)
             if(isSuchPlayer && team!=null){
                 playerService.updatePlayerTeam(playerName,Integer.parseInt(teamID));
-
-                System.out.println("player updated");
-
-                resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Player added!\"}");
                 return;
             }else{
-                resp.setCharacterEncoding("UTF-8");
                 resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Such player or game not exist!\"}");
                 return;
             }
 
         }else{
-            resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Incorrect data! Try again!\"}");
             return;
         }

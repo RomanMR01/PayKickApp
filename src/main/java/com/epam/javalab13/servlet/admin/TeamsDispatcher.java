@@ -18,9 +18,7 @@ import com.epam.javalab13.service.game.PlayerService;
  * Created by Vikno on 9/7/2016.
  */
 public class TeamsDispatcher extends HttpServlet {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     private PaginationService paginationService;
 
@@ -36,12 +34,20 @@ public class TeamsDispatcher extends HttpServlet {
         itemsOnPage = itemsOnPage == null ? "10" : itemsOnPage;
         paginationService = new PaginationService();
         pages = paginationService.getPagesForTeams(page, itemsOnPage, teams);
-        int intPage = Integer.valueOf(page);
-        intPage = intPage > pages ? pages : Integer.valueOf(page);
+
+        int intPage = 0;
+        try {
+            intPage = Integer.valueOf(page);
+            intPage = intPage > pages ? pages : Integer.valueOf(page);
+        }catch (Exception e){
+            response.sendRedirect(getServletContext().getContextPath() + "/admin/teams");
+            return;
+        }
 
 
         if(pages==-1){
             response.sendRedirect(getServletContext().getContextPath() + "/admin/teams");
+            return;
         }else {
             request.setAttribute("pages", pages);
             request.setAttribute("teams", teams);

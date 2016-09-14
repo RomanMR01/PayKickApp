@@ -10,10 +10,7 @@ import java.io.IOException;
  * Created by Vikno on 9/6/2016.
  */
 public class AdminDispatcher extends HttpServlet{
-	
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5921562331762724105L;
 
 	@Override
