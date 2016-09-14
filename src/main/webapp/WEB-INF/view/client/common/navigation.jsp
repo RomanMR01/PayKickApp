@@ -56,15 +56,15 @@
                                 <a href="${pageContext.request.contextPath}/home" class="center-align logo"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                             </li>
 
-                            <li><a href="${pageContext.request.contextPath}/admin/matches">MY BETS<i class="material-icons right yellow-text text-accent-3">receipt</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/matches">MY BETS<i class="material-icons right green-text text-accent-4">library_books</i></a></li>
                             <li><a href="${pageContext.request.contextPath}/admin/teams">ACTIVE MATCHES<i class="material-icons right green-text text-accent-4">list</i></a></li>
-                            <li><a href="${pageContext.request.contextPath}/admin/statistics">STATISTICS<i class="material-icons right red-text text-accent-4">equalizer</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/statistics">STATISTICS<i class="material-icons right light-blue-text text-accent-2">equalizer</i></a></li>
 
                             <div class="hide-on-large-only">
                                 <hr>
                                 <li><a class="dropdown-button" data-activates="userSideDropdown">${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
                                 <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
-                                <li><a class="dropdown-button" data-activates="balanceSideDropdown">Balance: $1000.00</a></li>
+                                <li><a class="dropdown-button" data-activates="balanceSideDropdown">Balance: $1000.00<i class="material-icons right green-text">attach_money</i></a></li>
                                 <li><a class="dropdown-button" data-activates="languageSideDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                             </div>
                         </ul>
