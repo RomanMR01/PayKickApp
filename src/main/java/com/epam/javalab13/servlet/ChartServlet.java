@@ -65,11 +65,9 @@ public class ChartServlet extends HttpServlet {
                     Team team=new Team();
                     team.setName("Р”РёРЅР°РјРѕ");
                     Team resultTeam=null;
-                    try {
+
                         resultTeam=teamService.getTeamByName(team);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+
                     json = gson.toJson(resultTeam);
                     break;
                 case "all_bats":
