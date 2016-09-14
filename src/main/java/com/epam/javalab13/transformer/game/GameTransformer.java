@@ -169,7 +169,7 @@ public class GameTransformer implements Transformer<Game>{
             PlayerCoefficientDAO pcDao = new PlayerCoefficientDAO();
             List<PlayerCoefficient> plcList = pcDao.getPlayerCoefficientByGame(game);
             List<PlayerCoefficient> plcList1 = plcList.stream()
-                    .filter(playerCoef -> first.getId() == playerCoef.getPlayer().getTeam().getId())
+                    .filter(playerCoef -> first.getId() == playerCoef.getPlayer().getTeam().getId())//Bug here, add checking on playerCoef.getPlayer().getTeam()==null
                     .collect(Collectors.toList());
             plcList.removeAll(plcList1);
             List<PlayerCoefficient> plcList2 = plcList;
