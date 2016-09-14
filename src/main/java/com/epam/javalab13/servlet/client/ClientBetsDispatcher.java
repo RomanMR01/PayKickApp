@@ -9,10 +9,10 @@ import java.io.IOException;
 /**
  * Created by Vikno on 9/14/2016.
  */
-public class MatchesDispatcher extends HttpServlet {
+public class ClientBetsDispatcher extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/client/matches.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/view/client/bets.jsp").forward(req,resp);
     }
 
     @Override
