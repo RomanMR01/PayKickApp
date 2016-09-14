@@ -3,8 +3,10 @@ package com.epam.javalab13.servlet.admin;
 import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.game.GameService;
+import com.epam.javalab13.service.game.PlayerService;
 import com.epam.javalab13.service.game.TeamService;
 import com.epam.javalab13.service.game.UserService;
 import org.apache.log4j.Logger;
@@ -74,7 +76,24 @@ public class AddNewGameServlet extends HttpServlet {
             }
         }
 
+
         if (firstTeamExist && secondTeamExist) {
+            TeamService teamService = new TeamService();
+            Team firstTeam = teamService.getTeamByName(firstTeamName);
+            Team secondTeam = teamService.getTeamByName(secondTeamName);
+
+            PlayerService playerService = new PlayerService();
+            List<Player> firstTeamPlayers = playerService.getPlayersByTeam(firstTeam);
+            List<Player> secondTeamPlayers = playerService.getPlayersByTeam(secondTeam);
+
+            if(firstTeamPlayers==null || firstTeamPlayers.size()<7){
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"First team have not enough players!\"}");
+                return;
+            }
+            if(secondTeamPlayers==null || secondTeamPlayers.size()<7){
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Second team have not enough players!\"}");
+                return;
+            }
             if (userExists) {
                 Game game = gameService.addNewGame(title, location, stringDate, firstTeamName, secondTeamName, bookmakerName);
 
