@@ -62,11 +62,9 @@ public class ChartServlet extends HttpServlet {
                     }
                     break;
                 case "team_win":
-                    Team team=new Team();
-                    team.setName("Р”РёРЅР°РјРѕ");
                     Team resultTeam=null;
 
-                        resultTeam=teamService.getTeamByName(team);
+                    resultTeam=teamService.getTeamByName("some name");
 
                     json = gson.toJson(resultTeam);
                     break;
