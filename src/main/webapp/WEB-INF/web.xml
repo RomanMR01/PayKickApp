@@ -346,11 +346,29 @@
 
     <servlet>
         <servlet-name>ClientMatches</servlet-name>
-        <servlet-class>com.epam.javalab13.servlet.client.MatchesDispatcher</servlet-class>
+        <servlet-class>com.epam.javalab13.servlet.client.ClientMatchesDispatcher</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClientMatches</servlet-name>
         <url-pattern>/client/matches</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientBets</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.client.ClientBetsDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientBets</servlet-name>
+        <url-pattern>/client/bets</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientStatistics</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.client.ClientStatisticsDispatcher</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientStatistics</servlet-name>
+        <url-pattern>/client/statistics</url-pattern>
     </servlet-mapping>
     <!-- END CLIENT-->
 
