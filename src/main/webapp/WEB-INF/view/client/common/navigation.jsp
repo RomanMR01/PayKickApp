@@ -32,7 +32,7 @@
 
                 <ul id="userSideDropdown" class="dropdown-content sidebar grey darken-3">
                     <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
-                    <li><a href="${pageContext.request.contextPath}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
                     <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
                 </ul>
 
@@ -56,9 +56,9 @@
                                 <a href="${pageContext.request.contextPath}/home" class="center-align logo"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                             </li>
 
-                            <li><a href="${pageContext.request.contextPath}/admin/matches">MY BETS<i class="material-icons right green-text text-accent-4">library_books</i></a></li>
-                            <li><a href="${pageContext.request.contextPath}/admin/teams">ACTIVE MATCHES<i class="material-icons right green-text text-accent-4">list</i></a></li>
-                            <li><a href="${pageContext.request.contextPath}/admin/statistics">STATISTICS<i class="material-icons right light-blue-text text-accent-2">equalizer</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/client/bets">MY BETSj<i class="material-icons right green-text text-accent-4">library_books</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/client/matches">ACTIVE MATCHES<i class="material-icons right green-text text-accent-4">list</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/client/statistics">STATISTICS<i class="material-icons right light-blue-text text-accent-2">equalizer</i></a></li>
 
                             <div class="hide-on-large-only">
                                 <hr>
