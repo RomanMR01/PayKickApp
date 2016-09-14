@@ -13,7 +13,7 @@
 
                 <!-- Mobile Metas -->
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Bookmaker - Matches</title>
+                <title>PayKick - My Bets</title>
 
                 <jsp:include page="common/styles.jsp"></jsp:include>
                 <jsp:include page="common/scripts.jsp"></jsp:include>

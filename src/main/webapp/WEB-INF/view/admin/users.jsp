@@ -82,7 +82,7 @@
                         </c:otherwise>
                     </c:choose>
                     <!-- Statistics Modal Structure -->
-                    <div id="modal-stats" class="modal my-stats">
+                    <div id="modal-stats" class="modal">
                         <div class="modal-content">
                             <div class="row">
                                 <div class="col s12">
