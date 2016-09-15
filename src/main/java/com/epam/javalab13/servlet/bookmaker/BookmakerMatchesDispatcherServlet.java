@@ -45,12 +45,12 @@ public class BookmakerMatchesDispatcherServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String login = (String)session.getAttribute("login");
 		User user = new UserService().getUserByLogin(login);
-		if(user==null){
-			response.sendError(401, "You are not autorized yet. Please log in.");
-			return;
-		}
 		paginationService=new PaginationService();
 		pages=paginationService.getPagesForGamesByBookmaker(type,page,itemsOnPage,games,user);
+		if(pages==-1){
+			response.sendRedirect(getServletContext().getContextPath() + "/bookmaker/matches");
+			return;
+		}
 		int intPage = Integer.valueOf(page);
 		intPage=intPage>pages?pages:Integer.valueOf(page);
 		request.setAttribute("pages", pages);
