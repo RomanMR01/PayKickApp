@@ -149,33 +149,40 @@ public class GameTransformer implements Transformer<Game>{
             User u = userDAO.getUser(user, UserDAO.GetOneUserType.ID);
             game.setBookmaker(u);
             game.setProfit(rs.getDouble("profit"));
+//seting all coefficients for active game
+            if (Status.ACTIVE.equals(game.getStatus())) {
+                ResultCoefficientDAO resCoefDao = new ResultCoefficientDAO();
+                List<ResultCoefficient> resultCoefficients = resCoefDao.getResultCoefficientsByGame(game);
+                if (resultCoefficients != null && resultCoefficients.size() != 0) {
+                    resultCoefficients.sort(new Comparator<ResultCoefficient>() {
 
-            ResultCoefficientDAO resCoefDao = new ResultCoefficientDAO();
-            List<ResultCoefficient> resultCoefficients = resCoefDao.getResultCoefficientsByGame(game);
-            if (resultCoefficients != null && resultCoefficients.size() != 0) {
-                resultCoefficients.sort(new Comparator<ResultCoefficient>() {
+                        @Override
+                        public int compare(ResultCoefficient o1, ResultCoefficient o2) {
+                            return o1.getResult().compareTo(o2.getResult());
+                        }
 
-                    @Override
-                    public int compare(ResultCoefficient o1, ResultCoefficient o2) {
-                        return o1.getResult().compareTo(o2.getResult());
-                    }
+                    });
+                    game.setResultCoefficients(resultCoefficients);
+                }
+                ScoreCoefficientDAO scoreCoefDao = new ScoreCoefficientDAO();
+                game.setScoreCoefficient(scoreCoefDao.getScoreCoefficientByGame(game));
 
-                });
-                game.setResultCoefficients(resultCoefficients);
+                // get all playerCoefficients by game
+                PlayerCoefficientDAO playerCoefficientDao = new PlayerCoefficientDAO();
+                List<PlayerCoefficient> playerCoefficientList = playerCoefficientDao.getPlayerCoefficientByGame(game);
+
+                // filter for first and second teams
+                List<PlayerCoefficient> playerCoefficientList1 = playerCoefficientList.stream()
+                        .filter(playerCoef -> playerCoef.getPlayer().getTeam() != null
+                                && first.getId() == playerCoef.getPlayer().getTeam().getId())
+                        .collect(Collectors.toList());
+                List<PlayerCoefficient> playerCoefficientList2 = playerCoefficientList.stream()
+                        .filter(playerCoef -> playerCoef.getPlayer().getTeam() != null
+                                && second.getId() == playerCoef.getPlayer().getTeam().getId())
+                        .collect(Collectors.toList());
+                game.setFirstTeamPlayerCoefficients(playerCoefficientList1);
+                game.setSecondTeamPlayerCoefficients(playerCoefficientList2);
             }
-            ScoreCoefficientDAO scoreCoefDao = new ScoreCoefficientDAO();
-            game.setScoreCoefficient(scoreCoefDao.getScoreCoefficientByGame(game));
-
-            PlayerCoefficientDAO pcDao = new PlayerCoefficientDAO();
-            List<PlayerCoefficient> plcList = pcDao.getPlayerCoefficientByGame(game);
-            List<PlayerCoefficient> plcList1 = plcList.stream()
-                    .filter(playerCoef -> first.getId() == playerCoef.getPlayer().getTeam().getId())//Bug here, add checking on playerCoef.getPlayer().getTeam()==null
-                    .collect(Collectors.toList());
-            plcList.removeAll(plcList1);
-            List<PlayerCoefficient> plcList2 = plcList;
-            game.setFirstTeamPlayerCoefficients(plcList1);
-            game.setSecondTeamPlayerCoefficients(plcList2);
-
             games.add(game);
         }
 
