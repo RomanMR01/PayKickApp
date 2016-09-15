@@ -110,9 +110,9 @@ public class PaginationService {
                     : items * (pageNumber - 1);
             int end = allGames.size() < items * pageNumber ? allGames.size() : items * pageNumber;
             games.addAll(allGames.subList(start, end));
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             logger.error("failed to find games by type = " + type, e);
+            return -1;
         }
         return pages;
     }
