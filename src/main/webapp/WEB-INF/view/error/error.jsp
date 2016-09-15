@@ -82,21 +82,10 @@
 
 <main class="grey lighten-3">
     <div class="main-wrapper">
-        <h1 class="center-align red-text" style="margin-bottom: 10px;">${pageContext.errorData.statusCode}</h1>
+        <h1 class="center-align red-text header" style="margin-bottom: 10px;">${pageContext.errorData.statusCode}</h1>
         <div class="row"><h3 class="center text-black">Error</h3></div>
-        <div class="row"><h3 class="center text-black"><a href="${pageContext.request.contextPath}/home" class="black-text">Return to home page, please!</a></h3></div>
+        <div class="row"><h3 class="center text-black"><a href="${pageContext.request.contextPath}/home" class="black-text">Return to <span class="orange-text">home page</span> , please!</a></h3></div>
         <div class="grey lighten-3">
-            <br>
-            <br>
-            <div class="container">
-
-
-                <div class="row"><c:forEach var="trace"
-                                            items="${pageContext.exception.stackTrace}">
-                    <p>${trace}</p>
-                </c:forEach></div>
-            </div>
-            <br>
         </div>
     </div>
     </div>
