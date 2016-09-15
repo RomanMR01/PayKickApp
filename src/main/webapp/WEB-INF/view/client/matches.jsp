@@ -610,8 +610,8 @@
 
                 <jsp:include page="common/footer.jsp"></jsp:include>
                 <script>
-                    var totalCof = 1;
-                    var amount = 0;
+                    var totalCof = 1.00;
+                    var betsCount = 0;
                     (function () {
                         $("input[type=number]").not("input#amount").prop("disabled", true);
                         $(".switch input[type=checkbox]").on("change", function () {
@@ -664,19 +664,18 @@
                             if (tdContext.hasClass("green-hover")) {
                                 if (tdContext.hasClass("green-active")) {
                                     tdContext.removeClass("green-active");
-                                    $("input[type=checkbox]", tdContext).prop("checked", false);
-                                    totalCof *= $("input", tdContext).val();
+                                    $("input", tdContext).prop("checked", false);
                                 } else {
                                     tdContext.addClass("green-active");
-                                    $("input[type=checkbox]", tdContext).prop("checked", true);
-                                    alert($("input", tdContext).val());
+                                    $("input", tdContext).prop("checked", true);
                                 }
                                 $("td.green-active", trContext).not(this).removeClass("green-active");
-                                $("input[type=radio]", tdContext).prop("checked", true);
                             }
 
                         });
                     })();
+                    
+                    
                 </script>
                 <script>
                     $(document).ready(function () {
