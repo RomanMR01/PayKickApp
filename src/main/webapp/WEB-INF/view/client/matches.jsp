@@ -46,12 +46,12 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div class="col s12 center-align my-disabled" id="result-bet-block">
+                                        <div class="col s12 center-align my-disabled exclusive" id="game_1_result-bet-block">
                                             <hr>
                                             <br>
                                             <div class="switch my-green">
                                                 <label>
-                                                    <input type="checkbox" id="result_checkbox"> Not Bet <span class="lever"></span> Bet
+                                                    <input type="checkbox" id="game_1_result-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
                                                 </label>
                                             </div>
                                             <br>
@@ -70,23 +70,42 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="green-hover">3.56</td>
-                                                        <td class="green-hover">2.19</td>
-                                                        <td class="green-hover">2.12</td>
-                                                        <td class="green-hover">3.23</td>
-                                                        <td class="green-hover">1.16</td>
-                                                        <td class="green-hover">6.16</td>
+                                                        <td class="coef">
+                                                            3.56
+                                                            <input name="game_1_result-bet-radio" type="radio" value="3.56" />
+                                                        </td>
+
+                                                        <td class="coef">
+                                                            2.19
+                                                            <input name="game_1_result-bet-radio" type="radio" value="2.19" />
+                                                        </td>
+                                                        <td class="coef">
+                                                            2.12
+                                                            <input name="game_1_result-bet-radio" type="radio" value="2.12" />
+                                                        </td>
+                                                        <td class="coef">
+                                                            3.23
+                                                            <input name="game_1_result-bet-radio" type="radio" value="3.23" />
+                                                        </td>
+                                                        <td class="coef">
+                                                            1.16
+                                                            <input name="game_1_result-bet-radio" type="radio" value="1.16" />
+                                                        </td>
+                                                        <td class="coef">
+                                                            6.16
+                                                            <input name="game_1_result-bet-radio" type="radio" value="6.16" />
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col s12 center-align my-disabled" id="score-bet-block">
+                                        <div class="col s12 center-align my-disabled exclusive" id="game_1_score-bet-block">
                                             <br>
                                             <hr>
                                             <br>
                                             <div class="switch my-green">
                                                 <label>
-                                                    <input type="checkbox" id="score_checkbox"> Not Bet <span class="lever"></span> Bet
+                                                    <input type="checkbox" id="game_1_score-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
                                                 </label>
                                             </div>
                                             <br>
@@ -102,14 +121,14 @@
                                                     <tr>
                                                         <td>
                                                             <div class="input-field col s12">
-                                                                <input id="barca_score" type="number">
-                                                                <label for="barca_score">Score</label>
+                                                                <input id="game_1_score-bet_fid" type="number" min="0">
+                                                                <label for="game_1_score-bet_fid">Score</label>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="input-field col s12">
-                                                                <input id="real_score" type="number">
-                                                                <label for="real_score">Score</label>
+                                                                <input id="game_1_score-bet-sid" type="number" min="0">
+                                                                <label for="game_1_score-bet_sid">Score</label>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -118,13 +137,13 @@
                                         </div>
                                         <br>
                                         <br>
-                                        <div class="col s12 center-align my-disabled" id="total-bet-block">
+                                        <div class="col s12 center-align my-disabled exclusive" id="game_1_total-bet-block">
                                             <br>
                                             <hr>
                                             <br>
                                             <div class="switch my-green">
                                                 <label>
-                                                    <input type="checkbox" id="total_checkbox"> Not Bet <span class="lever"></span> Bet
+                                                    <input type="checkbox" id="game_1_total-bet-checkbox"> Not Bet <span class="lever"></span> Bet
                                                 </label>
                                             </div>
                                             <br>
@@ -139,8 +158,8 @@
                                                     <tr>
                                                         <td>
                                                             <div class="input-field col s12">
-                                                                <input id="total_goals" type="number">
-                                                                <label for="total_goals">Count</label>
+                                                                <input id="game_1_total-bet-value" type="number" min="0">
+                                                                <label for="game_1_total-bet-value">Count</label>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -149,12 +168,12 @@
                                         </div>
                                         <br>
                                         <br>
-                                        <div class="col s12 center-align my-disabled" id="players-bet-block">
+                                        <div class="col s12 center-align my-disabled" id="game_1_players-bet-block">
                                             <hr>
                                             <br>
                                             <div class="switch my-green">
                                                 <label>
-                                                    <input type="checkbox" id="players_checkbox"> Not Bet <span class="lever"></span> Bet
+                                                    <input type="checkbox" id="game_1_players-bet-checkbox"> Not Bet <span class="lever"></span> Bet
                                                 </label>
                                             </div>
                                             <br>
@@ -173,23 +192,39 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>Richard Agueiro</td>
-                                                                <td class="green-hover">3.31</td>
+                                                                <td class="coef">
+                                                                    3.31
+                                                                    <input name="game_1_players-bet_16" type="checkbox" value="3.31" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Salem Gonzalez</td>
-                                                                <td class="green-hover">2.67</td>
+                                                                <td class="coef">
+                                                                    2.67
+                                                                    <input name="game_1_players-bet_61" type="checkbox" value="2.67" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Nicky Markus</td>
-                                                                <td class="green-hover">7.13</td>
+                                                                <td class="coef">
+                                                                    7.13
+                                                                    <input name="game_1_players-bet_22" type="checkbox" value="7.13" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Christiano Ronaldo</td>
-                                                                <td class="green-hover">4.42</td>
+                                                                <td class="coef">
+                                                                    4.42
+                                                                    <input name="game_1_players-bet_7" type="checkbox" value="4.42" />
+                                                                </td>
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Dilly Dong</td>
-                                                                <td class="green-hover">2.98</td>
+                                                                <td class="coef">
+                                                                    2.98
+                                                                    <input name="game_1_players-bet_19" type="checkbox" value="2.98" />
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -206,23 +241,38 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>Richard Agueiro</td>
-                                                                <td class="green-hover">3.31</td>
+                                                                <td class="coef">
+                                                                    3.31
+                                                                    <input name="game_1_players-bet_24" type="checkbox" value="3.31" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Salem Gonzalez</td>
-                                                                <td class="green-hover">2.67</td>
+                                                                <td class="coef">
+                                                                    2.67
+                                                                    <input name="game_1_players-bet_44" type="checkbox" value="2.67" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Nicky Markus</td>
-                                                                <td class="green-hover">7.13</td>
+                                                                <td class="coef">
+                                                                    7.13
+                                                                    <input name="game_1_players-bet_161" type="checkbox" value="7.13" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Christiano Ronaldo</td>
-                                                                <td class="green-hover">4.42</td>
+                                                                <td class="coef">
+                                                                    4.42
+                                                                    <input name="game_1_players-bet_168" type="checkbox" value="4.42" />
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Dilly Dong</td>
-                                                                <td class="green-hover">2.98</td>
+                                                                <td class="coef">
+                                                                    2.98
+                                                                    <input name="game_1_players-bet_2" type="checkbox" value="2.98" />
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -281,91 +331,69 @@
 
                 <jsp:include page="common/footer.jsp"></jsp:include>
                 <script>
-                    var rbb = $("div#result-bet-block");
-                    var sbb = $("div#score-bet-block");
-                    var tbb = $("div#total-bet-block");
-                    var pbb = $("div#players-bet-block");
-
-                    var rbb_td = $("div#result-bet-block td.green-hover");
-                    var pbb_td = $("div#players-bet-block td.green-hover");
-
-                    var sbb_input = $("div#score-bet-block input[type=number]");
-                    var tbb_input = $("div#total-bet-block input[type=number]");
-
-                    var rbb_available = false;
-                    var pbb_available = false;
-
-                    $(".my-disabled input[type=number]").prop("disabled", true);
-
-                    $("td.green-hover").removeClass("green-hover");
-
-
-                    $("input#result_checkbox").on("change", function () {
-                        if ($(this).is(":checked")) {
-                            rbb.removeClass("my-disabled");
-                            rbb_td.addClass("green-hover");
-                            rbb_available = true;
-                            $("td.green-disabled").removeClass("green-disabled").addClass("green-active");
-                            $("td.green-hover").off().on("click", function () {
-                                if (rbb_available) {
-                                    if ($(this).hasClass("green-active")) {
-                                        $(this).removeClass("green-active");
+                    (function () {
+                        $("input[type=number]").prop("disabled", true);
+                        $(".switch input[type=checkbox]").on("change", function () {
+                            var temp = $(this);
+                            var gameDiv = temp.parent().parent().parent().parent();
+                            var betDiv = temp.parent().parent().parent();
+                            if (betDiv.hasClass("exclusive")) {
+                                if (temp.is(":checked")) {
+                                    temp.parent().parent().parent().removeClass("my-disabled");
+                                    $(".exclusive input[type=checkbox]", gameDiv).not(temp).prop("checked", false).parent().parent().parent().addClass("my-disabled");
+                                    $("input[type=number]", gameDiv).prop("disabled", true);
+                                    $("input[type=number]", betDiv).prop("disabled", false);
+                                    if (/result-bet-block$/.test(betDiv.attr("id"))) {
+                                        $("td.coef", betDiv).addClass("green-hover");
+                                        $("td.coef.green-disabled", betDiv).addClass("green-active").removeClass("green-disabled");
                                     } else {
-                                        $(this).addClass("green-active");
+                                        $(".exclusive td.coef", gameDiv).removeClass("green-hover");
+                                        $(".exclusive td.coef.green-active", gameDiv).addClass("green-disabled").removeClass("green-active");
                                     }
-                                }
-                            });
-                        } else {
-                            rbb.addClass("my-disabled");
-                            rbb_td.removeClass("green-hover");
-                            rbb_available = false;
-                            $("td.green-active").removeClass("green-active").addClass("green-disabled");
-                        }
-                    });
 
-                    $("input#score_checkbox").on("change", function () {
-                        if ($(this).is(":checked")) {
-                            sbb.removeClass("my-disabled");
-                            sbb_input.prop("disabled", false);
-                        } else {
-                            sbb.addClass("my-disabled");
-                            sbb_input.prop("disabled", true);
-                        }
-                    });
-
-                    $("input#total_checkbox").on("change", function () {
-                        if ($(this).is(":checked")) {
-                            tbb.removeClass("my-disabled");
-                            tbb_input.prop("disabled", false);
-                        } else {
-                            tbb.addClass("my-disabled");
-                            tbb_input.prop("disabled", true);
-                        }
-                    });
-
-                    $("input#players_checkbox").on("change", function () {
-                        if ($(this).is(":checked")) {
-                            pbb.removeClass("my-disabled");
-                            pbb_td.addClass("green-hover");
-                            pbb_available = true;
-                            $("td.green-disabled").removeClass("green-disabled").addClass("green-active");
-                            $("td.green-hover").off().on("click", function () {
-                                if (pbb_available) {
-                                    if ($(this).hasClass("green-active")) {
-                                        $(this).removeClass("green-active");
-                                    } else {
-                                        $(this).addClass("green-active");
+                                } else {
+                                    if (/result-bet-block$/.test(betDiv.attr("id"))) {
+                                        $("td.coef", betDiv).removeClass("green-hover");
+                                        $("td.coef.green-active", betDiv).addClass("green-disabled").removeClass("green-active");
                                     }
-                                }
-                            });
+                                    $("input[type=number]", betDiv).prop("disabled", true);
+                                    temp.parent().parent().parent().addClass("my-disabled");
 
-                        } else {
-                            pbb.addClass("my-disabled");
-                            pbb_td.removeClass("green-hover");
-                            $("td.green-active").removeClass("green-active").addClass("green-disabled");
-                            pbb_available = false;
-                        }
-                    });
+                                }
+                            } else {
+                                if (temp.is(":checked")) {
+                                    temp.parent().parent().parent().removeClass("my-disabled");
+                                    $("td.coef", betDiv).addClass("green-hover");
+                                    $("td.coef.green-disabled", betDiv).addClass("green-active").removeClass("green-disabled");
+                                } else {
+                                    temp.parent().parent().parent().addClass("my-disabled");
+                                    $("td.coef", betDiv).removeClass("green-hover");
+                                    $("td.coef.green-active", betDiv).addClass("green-disabled").removeClass("green-active");
+                                }
+                            }
+
+
+                        });
+                    })();
+
+                    (function () {
+                        $("td.coef").on("click", function () {
+                            var tdContext = $(this);
+                            var trContext = tdContext.parent();
+                            if (tdContext.hasClass("green-hover")) {
+                                if (tdContext.hasClass("green-active")) {
+                                    tdContext.removeClass("green-active");
+                                    $("input[type=checkbox]", tdContext).prop("checked", false);
+                                } else {
+                                    tdContext.addClass("green-active");
+                                    $("input[type=checkbox]", tdContext).prop("checked", true);
+                                }
+                                $("td.green-active", trContext).not(this).removeClass("green-active");
+                                $("input[type=radio]", tdContext).prop("checked", true);
+                            }
+
+                        });
+                    })();
                 </script>
             </body>
 
