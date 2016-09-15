@@ -1,0 +1,60 @@
+nav ul a,
+nav .brand-logo {
+    color: #3c3c3c;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.button-collapse {
+    color: #3c3c3c;
+}
+
+
+
+.parallax-container {
+    min-height: 300px;
+    line-height: 0;
+    height: auto;
+    color: rgba(0, 185, 197, 0.9);
+}
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
