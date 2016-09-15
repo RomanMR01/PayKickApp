@@ -382,14 +382,17 @@
                                                                     <div class="input-field col s12">
                                                                         <input id="game_2_score-bet_fid" type="number" min="0">
                                                                         <label for="game_2_score-bet_fid">Score</label>
+                                                                        <input type="hidden" id="game_2_score-bet_first-team-coefficient" value="3.15">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="input-field col s12">
                                                                         <input id="game_2_score-bet-sid" type="number" min="0">
                                                                         <label for="game_2_score-bet_sid">Score</label>
+                                                                        <input type="hidden" id="game_2_score-bet_second-team-coefficient" value="3.15">
                                                                     </div>
                                                                 </td>
+                                                                <input type="hidden" id="game_2_score-bet_start-coefficient" value="3.15">
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -419,6 +422,7 @@
                                                                     <div class="input-field col s12">
                                                                         <input id="game_2_total-bet-value" type="number" min="0">
                                                                         <label for="game_2_total-bet-value">Count</label>
+                                                                        <input type="hidden" id="game_2_total-bet-coefficient" value="3.15">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -544,45 +548,6 @@
                                             <br>
                                         </div>
                                     </li>
-                                </ul>
-                                <ul class="pagination center-align">
-                                    <c:choose>
-                                        <c:when test="${page <= 1}">
-                                            <li class="disabled"><a href="#!"><i
-                            class="material-icons">chevron_left</i></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="material-icons"><a href="matches?type=${type}&page=${page-1}&itemsOnPage=${itemsOnPage}"><i
-                            class="material-icons">chevron_left</i></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-
-                                    <c:forEach var="i" begin="1" end="${requestScope.pages}">
-
-                                        <c:choose>
-                                            <c:when test="${i == page}">
-                                                <li class="active green"><a href="#!">${i}</a></li>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <li class="waves-effect">
-                                                    <a href="matches?type=${type}&page=${i}&itemsOnPage=${itemsOnPage}">
-                                                        <c:out value="${i}"></c:out>
-                                                    </a>
-                                                </li>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-
-                                    <c:choose>
-                                        <c:when test="${page == pages}">
-                                            <li class="disabled"><a href="#!"><i
-                            class="material-icons">chevron_right</i></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="material-icons"><a href="matches?type=${type}&page=${page+1}&itemsOnPage=${itemsOnPage}"><i
-                            class="material-icons">chevron_right</i></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
                                 </ul>
                                 <br>
                             </div>
