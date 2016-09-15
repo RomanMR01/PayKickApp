@@ -130,7 +130,7 @@
 														items="${game.resultCoefficients}">
 														<td>
 															<div class="input-field col s12">
-																<input id="coef_${resultCoefficient.id}" type="number"
+																<input id="coef_${resultCoefficient.id}" type="number" min="1.01" max="100"
 																	step="0.01" form="form_${game.id}"
 																	name="resultCoefficients" value="${resultCoefficient.coefficient}"> <label
 																	for="coef_${resultCoefficient.id}">Coefficient</label>
@@ -142,7 +142,7 @@
 													<c:forEach var="i" begin="0" end="5">
 														<td>
 															<div class="input-field col s12">
-																<input id="coef_${i}_${game.id}" type="number"
+																<input id="coef_${i}_${game.id}" type="number" min="1.01" max="100"
 																	step="0.01" form="form_${game.id}"
 																	name="resultCoefficients"> <label
 																	for="coef_${i}_${game.id}">Coefficient</label>
@@ -174,21 +174,21 @@
 										<c:when test="${game.status=='ACTIVE'}">
 											<td>
 												<div class="input-field col s12">
-													<input id="coef_start_${game.scoreCoefficient.id}" type="number" step="0.01"
+													<input id="coef_start_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" value="${game.scoreCoefficient.firstTeamCoefficient}"> <label
 														for="coef_start_${game.scoreCoefficient.id}">Coefficient</label>
 												</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
-													<input id="coef_t1_${game.scoreCoefficient.id}" type="number" step="0.01"
+													<input id="coef_t1_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" value="${game.scoreCoefficient.startCoefficient}"> <label
 														for="coef_t1_${game.scoreCoefficient.id}" >Coefficient</label>
 												</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
-													<input id="coef_t2_${game.scoreCoefficient.id}" type="number" step="0.01"
+													<input id="coef_t2_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" value="${game.scoreCoefficient.secondTeamCoefficient}"> <label
 														for="coef_t2_${game.scoreCoefficient.id}" >Coefficient</label>
 												</div>
@@ -197,21 +197,21 @@
 											<c:otherwise>
 											<td>
 												<div class="input-field col s12">
-													<input id="coef_start_${game.scoreCoefficient.id}" type="number" step="0.01"
+													<input id="coef_start_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients">
 															<label for="coef_start_${game.scoreCoefficient.id}">Coefficient</label>
 														</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
-													<input id="coef_t1_${game.scoreCoefficient.id}" type="number" step="0.01"
+													<input id="coef_t1_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" > <label
 														for="coef_t1_${game.scoreCoefficient.id}" >Coefficient</label>
 												</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
-													<input id="coef_t2_${game.scoreCoefficient.id}" type="number" step="0.01"
+													<input id="coef_t2_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" > <label
 														for="coef_t2_${game.scoreCoefficient.id}" >Coefficient</label>
 												</div>
@@ -238,7 +238,7 @@
 												<c:forEach var="player" items="${game.firstTeam.players}">
 													<div class="input-field col s12">
 													<input type="hidden" name="firstTeamPlayerId" value="${player.id}" form="form_${game.id}" />
-														<input id="player${player.id}" type="number" step="0.01"
+														<input id="player${player.id}" type="number" step="0.01" min="1.01" max="100"
 															value="5.00" form="form_${game.id}"
 															name="firstTeamPlayerCoefficients"> <label
 															for="player${player.id}"><c:out
@@ -252,7 +252,7 @@
 													<div class="input-field col s12">
 													<input type="hidden" name="firstTeamPlayerId" value="${playerCoefficient.player.id}" form="form_${game.id}"/>
 														<input id="player${playerCoefficient.player.id}"
-															type="number" step="0.01"
+															type="number" step="0.01" min="1.01" max="100"
 															value="${playerCoefficient.coefficient}"
 															form="form_${game.id}" name="firstTeamPlayerCoefficients">
 														<label for="player${player.id}"><c:out
@@ -271,7 +271,7 @@
 												<c:forEach var="player" items="${game.secondTeam.players}">
 													<div class="input-field col s12">
 													<input type="hidden" name="secondTeamPlayerId" value="${player.id}" form="form_${game.id}" />
-														<input id="player${player.id}" type="number" step="0.01"
+														<input id="player${player.id}" type="number" step="0.01" min="1.01" max="100"
 															value="5.00" form="form_${game.id}"
 															name="secondTeamPlayerCoefficients"> <label
 															for="player${player.id}"><c:out
@@ -285,7 +285,7 @@
 													<div class="input-field col s12">
 													<input type="hidden" name="secondTeamPlayerId" value="${playerCoefficient.player.id}" form="form_${game.id}"/>
 														<input id="player${playerCoefficient.player.id}"
-															type="number" step="0.01"
+															type="number" step="0.01" min="1.01" max="100"
 															value="${playerCoefficient.coefficient}"
 															form="form_${game.id}"
 															name="secondTeamPlayerCoefficients"> <label
