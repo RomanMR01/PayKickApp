@@ -145,8 +145,7 @@
 </div>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
-<button id="button1">here to test</button>
+<script src="${pageContext.request.contextPath}/static/js/clientChart.js"></script>
 </body>
 
 </html>
-<script src="${pageContext.request.contextPath}/static/js/clientChart.js"></script>

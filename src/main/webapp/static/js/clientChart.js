@@ -24,7 +24,7 @@ $(".buttonPlayerChart").click(function (event) {
                 chart_info = [];
             }else {
                 chart_info = [
-                    ['Total games', allGames],
+                    ['Total matches', allGames],
                     ['Total goals', allGoals]
                 ];
             }
@@ -33,6 +33,7 @@ $(".buttonPlayerChart").click(function (event) {
             $('#chart').highcharts({
                 chart: {
                     type: 'pie',
+                    backgroundColor: '#FAFAFA',
                     options3d: {
                         enabled: true,
                         alpha: 45,
@@ -40,7 +41,7 @@ $(".buttonPlayerChart").click(function (event) {
                     }
                 },
                 title: {
-                    text: 'Game results'
+                    text: 'Goals/Matches'
                 },
                 plotOptions: {
                     pie: {
@@ -57,7 +58,8 @@ $(".buttonPlayerChart").click(function (event) {
                     enabled: false
                 },
                 series: [{
-                    name: 'ammount',
+                    name: 'Amount',
+                    colors: ['#5689FF', '#32E356'],
                     colorByPoint: true,
                     data: chart_info
                 }]
@@ -86,8 +88,8 @@ $(".buttonTeamChart").click(function (event) {
             }else {
                 chart_info = [
                     ['Wins', wins],
-                    ['Loss', loses],
-                    ['Draw', draws]
+                    ['Losses', loses],
+                    ['Draws', draws]
                 ];
             }
             $("#currentHeader").text(teamName);
@@ -95,6 +97,7 @@ $(".buttonTeamChart").click(function (event) {
             $('#chart').highcharts({
                 chart: {
                     type: 'pie',
+                    backgroundColor: '#FAFAFA',
                     options3d: {
                         enabled: true,
                         alpha: 45,
@@ -102,7 +105,7 @@ $(".buttonTeamChart").click(function (event) {
                     }
                 },
                 title: {
-                    text: 'Game results'
+                    text: 'Matches results'
                 },
                 plotOptions: {
                     pie: {
@@ -119,7 +122,8 @@ $(".buttonTeamChart").click(function (event) {
                     enabled: false
                 },
                 series: [{
-                    name: 'game results',
+                    name: 'Matches',
+                    colors: ['#64DD17', '#FF0000', '#FFE856'],
                     colorByPoint: true,
                     data: chart_info
                 }]
