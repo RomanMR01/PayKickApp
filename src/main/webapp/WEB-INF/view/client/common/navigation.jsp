@@ -56,7 +56,7 @@
                                 <a href="${pageContext.request.contextPath}/home" class="center-align logo"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                             </li>
 
-                            <li><a href="${pageContext.request.contextPath}/client/bets">MY BETSj<i class="material-icons right green-text text-accent-4">library_books</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/client/bets">MY BETS<i class="material-icons right green-text text-accent-4">library_books</i></a></li>
                             <li><a href="${pageContext.request.contextPath}/client/matches">ACTIVE MATCHES<i class="material-icons right green-text text-accent-4">list</i></a></li>
                             <li><a href="${pageContext.request.contextPath}/client/statistics">STATISTICS<i class="material-icons right light-blue-text text-accent-2">equalizer</i></a></li>
 
