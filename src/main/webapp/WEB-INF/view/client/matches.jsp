@@ -48,12 +48,12 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <div class="col s12 center-align my-disabled exclusive" id="game_{1}_result-bet-block">
+                                                <div class="col s12 center-align my-disabled exclusive" id="game_2_result-bet-block">
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{1}_result-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_2_result-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -73,41 +73,41 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td class="coef">
-                                                                    {3.56}
-                                                                    <input name="game_{1}_result-bet-radio" type="radio" value="{3.56}" />
+                                                                    3.56
+                                                                    <input name="game_2_result-bet-radio" type="radio" value="3.56" />
                                                                 </td>
 
                                                                 <td class="coef">
-                                                                    {2.19}
-                                                                    <input name="game_{1}_result-bet-radio" type="radio" value="{2.19}" />
+                                                                    2.19
+                                                                    <input name="game_2_result-bet-radio" type="radio" value="2.19" />
                                                                 </td>
                                                                 <td class="coef">
-                                                                    {2.12}
-                                                                    <input name="game_{1}_result-bet-radio" type="radio" value="{2.12}" />
+                                                                    2.12
+                                                                    <input name="game_2_result-bet-radio" type="radio" value="2.12" />
                                                                 </td>
                                                                 <td class="coef">
-                                                                    {3.23}
-                                                                    <input name="game_{1}_result-bet-radio" type="radio" value="{3.23}" />
+                                                                    3.23
+                                                                    <input name="game_2_result-bet-radio" type="radio" value="3.23" />
                                                                 </td>
                                                                 <td class="coef">
-                                                                    {1.16}
-                                                                    <input name="game_{1}_result-bet-radio" type="radio" value="{1.16}" />
+                                                                    1.16
+                                                                    <input name="game_2_result-bet-radio" type="radio" value="1.16" />
                                                                 </td>
                                                                 <td class="coef">
-                                                                    {6.16}
-                                                                    <input name="game_{1}_result-bet-radio" type="radio" value="{6.16}" />
+                                                                    6.16
+                                                                    <input name="game_2_result-bet-radio" type="radio" value="6.16" />
                                                                 </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="col s12 center-align my-disabled exclusive" id="game_{1}_score-bet-block">
+                                                <div class="col s12 center-align my-disabled exclusive" id="game_2_score-bet-block">
                                                     <br>
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{1}_score-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_2_score-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -123,32 +123,32 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_score-bet_fid_{3}" type="number" min="0" value="0">
-                                                                        <label for="game_{1}_score-bet_fid_{3}">Score</label>
-                                                                        <input type="hidden" id="game_{1}_first-team-coef" value="{3.15}">
+                                                                        <input id="game_2_score-bet_fid" type="number" min="0" value="0">
+                                                                        <label for="game_2_score-bet_fid">Score</label>
+                                                                        <input type="hidden" id="game_2_score-bet_first-team-coefficient" value="3.15">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_score-bet-sid_{5}" type="number" min="0" value="0">
-                                                                        <label for="game_1_score-bet_sid_{5}">Score</label>
-                                                                        <input type="hidden" id="game_{1}_second-team-coef" value="{1.27}">
+                                                                        <input id="game_2_score-bet_sid" type="number" min="0" value="0">
+                                                                        <label for="game_2_score-bet_sid">Score</label>
+                                                                        <input type="hidden" id="game_2_score-bet_second-team-coefficient" value="3.15">
                                                                     </div>
                                                                 </td>
-                                                                <input type="hidden" id="game_{1}_start-coef" value="{6.17}">
+                                                                <input type="hidden" id="game_2_score-bet_start-coefficient" value="3.19">
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <br>
                                                 <br>
-                                                <div class="col s12 center-align my-disabled exclusive" id="game_{1}_total-bet-block">
+                                                <div class="col s12 center-align my-disabled exclusive" id="game_1_total-bet-block">
                                                     <br>
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{1}_total-bet-checkbox"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_2_total-bet-checkbox"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -163,9 +163,9 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_total-bet-value" type="number" min="0" value="0">
-                                                                        <label for="game_{1}_total-bet-value">Count</label>
-                                                                        <input type="hidden" id="game_{1}_goal-coef" value="{2.12}">
+                                                                        <input id="game_2_total-bet-value" type="number" min="0" value="0">
+                                                                        <label for="game_2_total-bet-value">Count</label>
+                                                                        <input type="hidden" id="game_2_total-bet-coefficient" value="3.15">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -174,12 +174,12 @@
                                                 </div>
                                                 <br>
                                                 <br>
-                                                <div class="col s12 center-align my-disabled" id="game_{1}_players-bet-block">
+                                                <div class="col s12 center-align my-disabled" id="game_2_players-bet-block">
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{1}_players-bet-checkbox"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_2_players-bet-checkbox"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -199,37 +199,37 @@
                                                                     <tr>
                                                                         <td>Richard Agueiro</td>
                                                                         <td class="coef">
-                                                                            {3.31}
-                                                                            <input name="game_{1}_players-bet_{16}" type="checkbox" value="{3.31}" />
+                                                                            3.31
+                                                                            <input name="game_2_players-bet_16" type="checkbox" value="3.31" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Salem Gonzalez</td>
                                                                         <td class="coef">
-                                                                            {2.67}
-                                                                            <input name="game_{1}_players-bet_{61}" type="checkbox" value="{2.67}" />
+                                                                            2.67
+                                                                            <input name="game_2_players-bet_61" type="checkbox" value="2.67" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Nicky Markus</td>
                                                                         <td class="coef">
-                                                                            {7.13}
-                                                                            <input name="game_{1}_players-bet_{22}" type="checkbox" value="{7.13}" />
+                                                                            7.13
+                                                                            <input name="game_2_players-bet_22" type="checkbox" value="7.13" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Christiano Ronaldo</td>
                                                                         <td class="coef">
-                                                                            {4.42}
-                                                                            <input name="game_{1}_players-bet_{7}" type="checkbox" value="{4.42}" />
+                                                                            4.42
+                                                                            <input name="game_2_players-bet_7" type="checkbox" value="4.42" />
                                                                         </td>
 
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Dilly Dong</td>
                                                                         <td class="coef">
-                                                                            {2.98}
-                                                                            <input name="game_{1}_players-bet_{19}" type="checkbox" value="{2.98}" />
+                                                                            2.98
+                                                                            <input name="game_2_players-bet_19" type="checkbox" value="2.98" />
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -248,36 +248,36 @@
                                                                     <tr>
                                                                         <td>Richard Agueiro</td>
                                                                         <td class="coef">
-                                                                            {3.31}
-                                                                            <input name="game_{1}_players-bet_{24}" type="checkbox" value="{3.31}" />
+                                                                            3.31
+                                                                            <input name="game_2_players-bet_24" type="checkbox" value="3.31" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Salem Gonzalez</td>
                                                                         <td class="coef">
-                                                                            {2.67}
-                                                                            <input name="game_{1}_players-bet_{44}" type="checkbox" value="{2.67}" />
+                                                                            2.67
+                                                                            <input name="game_2_players-bet_44" type="checkbox" value="2.67" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Nicky Markus</td>
                                                                         <td class="coef">
-                                                                            {7.13}
-                                                                            <input name="game_{1}_players-bet_{161}" type="checkbox" value="{7.13}" />
+                                                                            7.13
+                                                                            <input name="game_2_players-bet_161" type="checkbox" value="7.13" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Christiano Ronaldo</td>
                                                                         <td class="coef">
-                                                                            {4.42}
-                                                                            <input name="game_{1}_players-bet_{168}" type="checkbox" value="{4.42}" />
+                                                                            4.42
+                                                                            <input name="game_2_players-bet_168" type="checkbox" value="4.42" />
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Dilly Dong</td>
                                                                         <td class="coef">
-                                                                            {2.98}
-                                                                            <input name="game_{1}_players-bet_{2}" type="checkbox" value="{2.98}" />
+                                                                            2.98
+                                                                            <input name="game_2_players-bet_2" type="checkbox" value="2.98" />
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
