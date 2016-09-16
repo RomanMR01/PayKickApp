@@ -259,7 +259,7 @@
                                     </div>
                                     <h6><span class="black-text">Award: </span> <strong>$<span id="award">0.00</span></strong></h6>
                                     <br>
-                                    <a class="waves-effect waves-light btn green"><i class="material-icons right">done</i>Confirm</a>
+                                    <a class="waves-effect waves-light btn green" id="confirmBets"><i class="material-icons right">done</i>Confirm</a>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +269,33 @@
                 <jsp:include page="common/footer.jsp"></jsp:include>
                 <script>
                     /* FOR GENERATING REQUEST OBJECT */
+                    $("#confirmBets").click(function () {
+                        var requestObject = "";
+                        //Generate
+                        var allGamesIDs = ${allGamesIDs};
+                        var firstTeamsIDs = ${firstTeamsIDs};
+                        var secondTeamsIDs = ${secondTeamsIDs};
 
+                        var firstTeamsPlayers = ${firstTeamsPlayers};
+                        var secondTeamsPlayers = ${secondTeamsPlayers};
+
+                        for (var currentGameNumber = 0; currentGameNumber < allGamesIDs.length; currentGameNumber++) {
+                            var gameId = allGamesIDs[currentGameNumber];
+
+                            //WTF? Don't work, print full arrays
+                            var firstTeamPlayersId = firstTeamsPlayers[currentGameNumber];
+                            var secondTeamPlayersId = secondTeamsPlayers[currentGameNumber];
+
+                            var firstTeamId = firstTeamsIDs[currentGameNumber];
+                            var secondTeamId = secondTeamsIDs[currentGameNumber];
+
+                            alert("Current game id:" + gameId);
+                            alert("Current first team id:" + firstTeamId);
+                            alert("Current second team id:" + secondTeamId);
+                            alert("Current first team players:" + firstTeamPlayersId);
+                            alert("Current second team players:" + secondTeamPlayersId);
+                        }
+                    });
                 </script>
                 <script>
                     var totalCof = 1.00;
