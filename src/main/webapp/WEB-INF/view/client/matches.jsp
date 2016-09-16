@@ -300,14 +300,14 @@
                                     <h5>Total Bet:</h5>
                                     <br>
                                     <br>
-                                    <h6><span class="black-text">Bets:</span> <strong>5</strong></h6>
+                                    <h6><span class="black-text">Bets:</span> <strong><span id="bets-count">0</span></strong></h6>
                                     <br>
-                                    <h6><span class="black-text">Total Coefficient:</span> <strong>5.75</strong></h6>
+                                    <h6><span class="black-text">Total Coefficient:</span> <strong><span id="total-coef">1.00</span></strong></h6>
                                     <div class="input-field">
                                         <input id="amount" type="number" min="0" value="0.00" step="0.01">
                                         <label for="amount">Amount</label>
                                     </div>
-                                    <h6><span class="black-text">Award: </span> <strong>$0.00</strong></h6>
+                                    <h6><span class="black-text">Award: </span> <strong>$<span id="award">0.00</span></strong></h6>
                                     <br>
                                     <a class="waves-effect waves-light btn green"><i class="material-icons right">done</i>Confirm</a>
                                 </div>
@@ -319,7 +319,7 @@
                 <jsp:include page="common/footer.jsp"></jsp:include>
                 <script>
                     var totalCof = 1.00;
-                    var betsCount = 0;
+
                     (function () {
                         $("input[type=number]").not("input#amount").prop("disabled", true);
                         $(".switch input[type=checkbox]").on("change", function () {
@@ -360,7 +360,7 @@
                                     $("td.coef.green-active", betDiv).addClass("green-disabled").removeClass("green-active");
                                 }
                             }
-
+                            countTotal();
 
                         });
                     })();
@@ -378,12 +378,84 @@
                                     $("input", tdContext).prop("checked", true);
                                 }
                                 $("td.green-active", trContext).not(this).removeClass("green-active");
+                                countTotal();
                             }
 
                         });
                     })();
-                    
-                    
+
+                    (function () {
+                        $("input[type=number]:not(#amount)").on("input", function () {
+                            countTotal();
+                        });
+                    })();
+
+                    (function () {
+                        $("input#amount").on("input", function () {
+                            countAward();
+                        });
+                    })();
+
+                    var countAward = function () {
+                        var award = totalCof.toFixed(2) * parseFloat($("input#amount").val()).toFixed(2);
+                        $("span#award").text(award.toFixed(2));
+                    };
+
+                    var countTotal = function () {
+                        totalCof = 1.00;
+                        var betsCount = 0;
+
+                        $("div[id$=bet-block]:not(.my-disabled)").each(function () {
+                            if (/result-bet-block$/.test($(this).attr("id"))) {
+                                $("td.green-active input", $(this)).each(function () {
+                                    betsCount++;
+                                    totalCof *= parseFloat($(this).val());
+                                });
+                            }
+
+                            if (/score-bet-block$/.test($(this).attr("id"))) {
+                                betsCount++;
+
+                                var scoreBetStartCoef = parseFloat($("input[id$=score-bet_start-coefficient]", $(this)).val());
+                                var firstTeamGoalCoef = parseFloat($("input[id$=score-bet_first-team-coefficient]", $(this)).val());
+                                var secondTeamGoalCoef = parseFloat($("input[id$=score-bet_second-team-coefficient]", $(this)).val());
+
+                                var firstTeamScore = parseInt($("input[id$=score-bet_fid]", $(this)).val());
+                                var secondTeamScore = parseInt($("input[id$=score-bet_sid]", $(this)).val());
+
+                                var scoreBlockCoef = scoreBetStartCoef * Math.pow(firstTeamGoalCoef, firstTeamScore) * Math.pow(secondTeamGoalCoef, secondTeamScore);
+
+                                totalCof *= scoreBlockCoef;
+                            }
+
+                            if (/total-bet-block$/.test($(this).attr("id"))) {
+                                betsCount++;
+
+                                var totalBetStartCoef = parseFloat($("input[id$=total-bet-coefficient]", $(this)).val());
+                                var totalGoalsCount = parseInt($("input[id$=total-bet-value]", $(this)).val());
+
+                                var totalBlockCoef = Math.pow(totalBetStartCoef, (totalGoalsCount + 1));
+
+                                totalCof *= totalBlockCoef;
+                            }
+
+                            if (/players-bet-block$/.test($(this).attr("id"))) {
+                                $("td.green-active input", $(this)).each(function () {
+                                    betsCount++;
+                                    totalCof *= parseFloat($(this).val());
+                                });
+                            }
+
+                        });
+
+                        if (isNaN(totalCof)) {
+                            totalCof = 1.00;
+                        }
+
+                        $("span#bets-count").text(betsCount);
+                        $("span#total-coef").text(totalCof.toFixed(2));
+                        countAward();
+                    }
                 </script>
                 <script>
                     $(document).ready(function () {
