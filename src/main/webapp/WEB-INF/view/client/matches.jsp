@@ -123,19 +123,19 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{2}_score-bet_fid" type="number" min="0" value="0">
-                                                                        <label for="game_{2}_score-bet_fid">Score</label>
-                                                                        <input type="hidden" id="game_{2}_score-bet_first-team-coefficient" value="3.15">
+                                                                        <input id="game_{1}_score-bet_fid_{3}" type="number" min="0" value="0">
+                                                                        <label for="game_{1}_score-bet_fid_{3}">Score</label>
+                                                                        <input type="hidden" id="game_{1}_first-team-coef" value="3.15">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{2}_score-bet_sid" type="number" min="0" value="0">
-                                                                        <label for="game_{2}_score-bet_sid">Score</label>
-                                                                        <input type="hidden" id="game_{2}_score-bet_second-team-coefficient" value="3.15">
+                                                                        <input id="game_{1}_score-bet_sid_{5}" type="number" min="0" value="0">
+                                                                        <label for="game_1_score-bet_sid_{5}">Score</label>
+                                                                        <input type="hidden" id="game_{1}_second-team-coef" value="1.27">
                                                                     </div>
                                                                 </td>
-                                                                <input type="hidden" id="game_{2}_score-bet_start-coefficient" value="3.19">
+                                                                <input type="hidden" id="game_{1}_start-coef" value="6.17">
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -163,9 +163,9 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{2}_total-bet-value" type="number" min="0" value="0">
-                                                                        <label for="game_{2}_total-bet-value">Count</label>
-                                                                        <input type="hidden" id="game_{2}_total-bet-coefficient" value="3.15">
+                                                                        <input id="game_{1}_total-bet-value" type="number" min="0" value="0">
+                                                                        <label for="game_{1}_total-bet-value">Count</label>
+                                                                        <input type="hidden" id="game_{1}_goal-coef" value="2.12">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -416,12 +416,12 @@
                             if (/score-bet-block$/.test($(this).attr("id"))) {
                                 betsCount++;
 
-                                var scoreBetStartCoef = parseFloat($("input[id$=score-bet_start-coefficient]", $(this)).val());
-                                var firstTeamGoalCoef = parseFloat($("input[id$=score-bet_first-team-coefficient]", $(this)).val());
-                                var secondTeamGoalCoef = parseFloat($("input[id$=score-bet_second-team-coefficient]", $(this)).val());
-
-                                var firstTeamScore = parseInt($("input[id$=score-bet_fid]", $(this)).val());
-                                var secondTeamScore = parseInt($("input[id$=score-bet_sid]", $(this)).val());
+                                var scoreBetStartCoef = parseFloat($("input[id$=start-coef]", $(this)).val());
+                                var firstTeamGoalCoef = parseFloat($("input[id$=first-team-coef]", $(this)).val());
+                                var secondTeamGoalCoef = parseFloat($("input[id$=second-team-coef]", $(this)).val());
+                                    
+                                var firstTeamScore = parseInt($("input[id*=score-bet_fid]", $(this)).val());
+                                var secondTeamScore = parseInt($("input[id*=score-bet_sid]", $(this)).val());
 
                                 var scoreBlockCoef = scoreBetStartCoef * Math.pow(firstTeamGoalCoef, firstTeamScore) * Math.pow(secondTeamGoalCoef, secondTeamScore);
 
@@ -431,7 +431,7 @@
                             if (/total-bet-block$/.test($(this).attr("id"))) {
                                 betsCount++;
 
-                                var totalBetStartCoef = parseFloat($("input[id$=total-bet-coefficient]", $(this)).val());
+                                var totalBetStartCoef = parseFloat($("input[id$=goal-coef]", $(this)).val());
                                 var totalGoalsCount = parseInt($("input[id$=total-bet-value]", $(this)).val());
 
                                 var totalBlockCoef = Math.pow(totalBetStartCoef, (totalGoalsCount + 1));
