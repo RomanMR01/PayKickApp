@@ -1,14 +1,9 @@
-console.log("chart js init");
-
 $(".button1").click(function (event) {
     var id = event.target.id;
-    console.log("id" + id);
     var values = id.split('/');
 
     id = values[0];
     var role = values[1];
-    console.log("id" + id);
-    console.log("role" + role);
     var chartType;
     if (role === "BOOKMAKER") {
         chartType = 'bookmaker_games';
@@ -41,16 +36,12 @@ $(".button1").click(function (event) {
                             diagram_info.push([Date.parse(value.date), value.award]);
                             if (value.status === "WON") {
                                 win = win + value.award;
-                                console.log("win" + win);
                             } else if (value.status === "LOST") {
                                 loss = loss + value.award;
-                                console.log("loss" + loss);
                             }
                         }
                     }
                 });
-                console.log("all profit" + allProfit);
-                console.log("current profit" + currentBookmakerProfit);
                 if (role === "BOOKMAKER") {
                     chart_info = [
                     ['All profit', allProfit-currentBookmakerProfit],
