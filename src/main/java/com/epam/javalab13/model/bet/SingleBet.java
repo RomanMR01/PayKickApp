@@ -12,6 +12,11 @@ public class SingleBet {
 	private double coefficient;
 	private Status status;
 
+	private BetResult betResult;
+	private BetPlayer betPlayer;
+	private BetScore betScore;
+	private BetTotalGoals betTotalGoals;
+
 	public SingleBet(){}
 
 	public SingleBet(int id, TotalBet totalBet, Game game, Category category, double coefficient, Status status) {
@@ -111,5 +116,37 @@ public class SingleBet {
 				", coefficient=" + coefficient +
 				", status=" + status +
 				'}';
+	}
+
+	public BetResult getBetResult() {
+		return betResult;
+	}
+
+	public void setBetResult(BetResult betResult) {
+		this.betResult = betResult;
+	}
+
+	public BetPlayer getBetPlayer() {
+		return betPlayer;
+	}
+
+	public void setBetPlayer(BetPlayer betPlayer) {
+		this.betPlayer = betPlayer;
+	}
+
+	public BetScore getBetScore() {
+		return betScore;
+	}
+
+	public void setBetScore(BetScore betScore) {
+		this.betScore = betScore;
+	}
+
+	public BetTotalGoals getBetTotalGoals() {
+		return betTotalGoals;
+	}
+
+	public void setBetTotalGoals(BetTotalGoals betTotalGoals) {
+		this.betTotalGoals = betTotalGoals;
 	}
 }

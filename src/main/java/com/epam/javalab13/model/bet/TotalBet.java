@@ -2,6 +2,7 @@ package com.epam.javalab13.model.bet;
 
 import com.epam.javalab13.model.User;
 import java.util.Date;
+import java.util.List;
 
 public class TotalBet implements Comparable<TotalBet> {
 	private int id;
@@ -11,6 +12,8 @@ public class TotalBet implements Comparable<TotalBet> {
 	private Date date;
 	private double award;
 	private Status status;
+
+	private List<SingleBet> singleBets;
 
 	public TotalBet() {
 	}
@@ -129,5 +132,13 @@ public class TotalBet implements Comparable<TotalBet> {
 	@Override
 	public int compareTo(TotalBet o) {
 		return getDate().compareTo(o.getDate());
+	}
+
+	public List<SingleBet> getSingleBets() {
+		return singleBets;
+	}
+
+	public void setSingleBets(List<SingleBet> singleBets) {
+		this.singleBets = singleBets;
 	}
 }

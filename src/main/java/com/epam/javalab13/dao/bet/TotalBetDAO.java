@@ -268,4 +268,62 @@ public class TotalBetDAO {
         return totalBet;
     }
 
+    public List<TotalBet> getTotalBetsWithSingeBetsForUser(GetTotalBetsType type, User user) throws SQLException {
+        final String SQL_ALL = "SELECT * FROM total_bet WHERE user_id = ?";
+        final String SQL_ACTIVE = "SELECT * FROM total_bet tb WHERE tb.status LIKE 'ACTIVE' AND user_id = ?";
+        final String SQL_WON = "SELECT * FROM total_bet tb WHERE tb.status LIKE 'WON' AND user_id = ?";
+        final String SQL_LOST = "SELECT * FROM total_bet tb WHERE tb.status LIKE 'LOST' AND user_id = ?";
+        final String SQL_CANCELED = "SELECT * FROM total_bet tb WHERE tb.status LIKE 'CANCELED' AND user_id = ?";
+
+        List<TotalBet> totalBets = null;
+        TotalBetTransformer totalBetTransformer = new TotalBetTransformer();
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            switch (type) {
+                case ALL:
+                    st = conn.prepareStatement(SQL_ALL);
+                    st.setInt(1, user.getId());
+                    break;
+                case ACTIVE:
+                    st = conn.prepareStatement(SQL_ACTIVE);
+                    st.setInt(1, user.getId());
+                    break;
+                case WON:
+                    st = conn.prepareStatement(SQL_WON);
+                    st.setInt(1, user.getId());
+                    break;
+                case LOST:
+                    st = conn.prepareStatement(SQL_LOST);
+                    st.setInt(1, user.getId());
+                    break;
+                case CANCELED:
+                    st = conn.prepareStatement(SQL_CANCELED);
+                    st.setInt(1, user.getId());
+                    break;
+            }
+
+            rs = st.executeQuery();
+            totalBets = totalBetTransformer.getAllWithSingleBets(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:", e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:", e);
+            }
+
+        }
+
+        return totalBets;
+    }
+
 }

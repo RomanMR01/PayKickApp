@@ -213,4 +213,48 @@ public class SingleBetDAO {
         return singleBets;
 
     }
+
+    /**
+     * Gets fully initialized single bets by total bet.
+     * Depending on Category of SingleBet sets one of these
+     * BetPlayer, BetResult, BetScore or BetTotalGoal to SingleBet
+     * @param totalBet
+     * @return List of SingleBet
+     * @throws SQLException
+     */
+    public List<SingleBet> getFullyInitializedSingleBetsByTotalBet(TotalBet totalBet) throws SQLException {
+        final String SQL = "SELECT * FROM single_bet sb WHERE sb.total_bet_id=?";
+
+        List<SingleBet> singleBets = null;
+        SingleBetTransformer transformer = new SingleBetTransformer();
+
+        Connection conn = ConnectionPool.getConnection();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(SQL);
+            st.setInt(1,totalBet.getId());
+            rs = st.executeQuery();
+
+
+            singleBets = transformer.getAllWithConcreteBet(rs);
+
+        } finally {
+            if (st != null) try {
+                st.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close statement:",e);
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+                logger.warn("Exception while close connection:",e);
+            }
+
+        }
+
+        return singleBets;
+
+    }
 }
