@@ -62,24 +62,13 @@
                             <div class="collapsible-body center-align">
                                 <br> <a
                                     class="waves-effect waves-light btn modal-trigger green"
-                                    href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
+                                    href="#modal-stats"> <div class="buttonTeamChart" id="${team.name}"><i
+                                    class="material-icons right">timeline</i>Statistics
+                            </div></a>
                                 <br> <br>
                             </div>
                         </li>
                     </c:forEach>
-                    <li>
-                        <div class="collapsible-header center-align">
-                            <i class="material-icons green-text">group</i><span
-                                class="green-text"><strong>Barcelona</strong></span>
-                        </div>
-                        <div class="collapsible-body center-align">
-                            <br> <a
-                                class="waves-effect waves-light btn modal-trigger green"
-                                href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
-                            <br> <br>
-                        </div>
-                    </li>
-
                 </ul>
             </c:when>
             <c:when test="${type=='PLAYERS'}">
@@ -91,9 +80,12 @@
                                     class="green-text"><strong><c:out value="${player.fulName}"></c:out></strong></span>
                             </div>
                             <div class="collapsible-body center-align">
-                                <br> <a
-                                    class="waves-effect waves-light btn modal-trigger green"
-                                    href="#modal-stats"><i class="material-icons right">timeline</i>Statistics</a>
+                                <br>
+                                <a class="waves-effect waves-light modal-trigger btn green" href="#modal-stats">
+                                    <div class="buttonPlayerChart" id="${player.id}/${player.fulName}"><i
+                                            class="material-icons right">timeline</i>Statistics
+                                    </div>
+                                    ></a>
                                 <br> <br>
                             </div>
                         </li>
@@ -152,15 +144,16 @@
     <div class="modal-content">
         <div class="row">
             <div id="statistics" class="col s12 center-align">
-                <h5>Bastian Schwarz</h5>
-                Olya, Put Your Code Here
+               <h5><div id="currentHeader"></div></h5>
+                <div id="chart" style="width: 100%;"></div>
             </div>
         </div>
     </div>
 </div>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
-
+<button id="button1">here to test</button>
 </body>
 
 </html>
+<script src="${pageContext.request.contextPath}/static/js/clientChart.js"></script>

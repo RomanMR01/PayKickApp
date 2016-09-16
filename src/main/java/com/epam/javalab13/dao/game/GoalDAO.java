@@ -48,6 +48,25 @@ public class GoalDAO {
         }
     }
 
+    public int countAllGoals(Player player){
+        final String SQL="SELECT COUNT(id) as total FROM goal where player_id=?";
+        Connection conn = ConnectionPool.getConnection();
+        try {
+            PreparedStatement statement = conn.prepareStatement(SQL);
+            statement.setInt(1,player.getId());
+            ResultSet resultSet = statement.executeQuery();
+            int result=0;
+            while(resultSet.next()){
+                result = resultSet.getInt("total");
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
     public List<Goal> getAllGoals() throws SQLException {
         final String SQL = "SELECT * FROM goal";
 
