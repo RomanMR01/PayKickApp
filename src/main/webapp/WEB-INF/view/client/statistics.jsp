@@ -26,14 +26,7 @@
 <main class="valign-wrapper grey lighten-3">
     <div class="container valign" style="margin-top: 20px;">
         <h4 class="center-align">Statistics:</h4>
-        <div class="row">
-            <div class="input-field col s6 offset-s3 l4 offset-l4">
-                <i class="material-icons prefix">person</i> <input type="text"
-                                                                   id="autocomplete-input" class="autocomplete player-input"
-                                                                   autocomplete="off"> <label for="autocomplete-input">Player
-                Search</label>
-            </div>
-        </div>
+        <br>
         <div class="row">
             <div class="col s8 offset-s2 l6 offset-l3">
                 <ul class="tabs transparent">
