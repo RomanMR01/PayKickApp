@@ -93,7 +93,7 @@ public class RegisterServlet extends HttpServlet {
             userService.addUser(user);
             HttpSession session = request.getSession();
             session.setAttribute("login", login);
-            session.setAttribute("role", user.getRole());
+            session.setAttribute("role", user.getRole().toString().toLowerCase());
             response.getWriter().write("True");
 
         } catch (Exception e) {
