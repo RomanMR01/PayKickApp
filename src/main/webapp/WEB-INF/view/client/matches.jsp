@@ -123,14 +123,14 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_score-bet_fid_{3}" type="number" min="0">
+                                                                        <input id="game_{1}_score-bet_fid_{3}" type="number" min="0" value="0">
                                                                         <label for="game_{1}_score-bet_fid_{3}">Score</label>
                                                                         <input type="hidden" id="game_{1}_first-team-coef" value="{3.15}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_score-bet-sid_{5}" type="number" min="0">
+                                                                        <input id="game_{1}_score-bet-sid_{5}" type="number" min="0" value="0">
                                                                         <label for="game_1_score-bet_sid_{5}">Score</label>
                                                                         <input type="hidden" id="game_{1}_second-team-coef" value="{1.27}">
                                                                     </div>
@@ -163,7 +163,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_total-bet-value" type="number" min="0">
+                                                                        <input id="game_{1}_total-bet-value" type="number" min="0" value="0">
                                                                         <label for="game_{1}_total-bet-value">Count</label>
                                                                         <input type="hidden" id="game_{1}_goal-coef" value="{2.12}">
                                                                     </div>
