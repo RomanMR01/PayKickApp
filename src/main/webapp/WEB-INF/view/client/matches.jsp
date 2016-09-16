@@ -30,8 +30,9 @@
                                 <h4 class="center-align">Matches:</h4>
                                 <br>
                                 <ul class="collapsible popout" data-collapsible="expandable">
+                                    <c:forEach var="game" items="${games}">
                                     <li>
-                                        <div class="collapsible-header center-align"><i class="material-icons green-text">list</i><span class="orange-text">Title.</span><span class="green-text"><strong>{Barca} - {Real}</strong></span></div>
+                                        <div class="collapsible-header center-align"><i class="material-icons green-text">list</i><span class="orange-text"><c:out value="${game.title}"/>.</span><span class="green-text"><strong><c:out value="${game.firstTeam.name}"/> - <c:out value="${game.secondTeam.name}"/></strong></span></div>
                                         <div class="collapsible-body center-align">
                                             <div class="row">
                                                 <table class="centered responsive-table col s6 offset-s3">
@@ -43,17 +44,18 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>{Lviv Arena}</td>
-                                                            <td>{12.05.2015 16:40}</td>
+                                                            <td><c:out value="${game.location}"/></td>
+                                                            <td><fmt:formatDate type="both" dateStyle="short"
+                                                                                timeStyle="short" value="${game.date}" /></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <div class="col s12 center-align my-disabled exclusive" id="game_{2}_result-bet-block">
+                                                <div class="col s12 center-align my-disabled exclusive" id="game_${game.id}_result-bet-block">
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{2}_result-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_${game.id}_result-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -73,41 +75,41 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td class="coef">
-                                                                    {3.56}
-                                                                    <input name="game_{2}_result-bet-radio" type="radio" value="3.56" />
+                                                                        ${game.resultCoefficients[0].coefficient}
+                                                                    <input name="game_${game.id}_result-bet-radio" class="C1" type="radio" value="${game.resultCoefficients[0].coefficient}" />
+                                                                </td>
+                                                                <td class="coef">
+                                                                        ${game.resultCoefficients[1].coefficient}
+                                                                    <input name="game_${game.id}_result-bet-radio" class="C2" type="radio" value="${game.resultCoefficients[1].coefficient}" />
+                                                                </td>
+                                                                <td class="coef">
+                                                                        ${game.resultCoefficients[2].coefficient}
+                                                                    <input name="game_${game.id}_result-bet-radio" class="CX" type="radio" value="${game.resultCoefficients[2].coefficient}" />
+                                                                </td>
+                                                                <td class="coef">
+                                                                        ${game.resultCoefficients[3].coefficient}
+                                                                    <input name="game_${game.id}_result-bet-radio" class="C1X" type="radio" value="${game.resultCoefficients[3].coefficient}" />
+                                                                </td>
+                                                                <td class="coef">
+                                                                        ${game.resultCoefficients[4].coefficient}
+                                                                    <input name="game_${game.id}_result-bet-radio" class="CX2" type="radio" value="${game.resultCoefficients[4].coefficient}" />
+                                                                </td>
+                                                                <td class="coef">
+                                                                        ${game.resultCoefficients[5].coefficient}
+                                                                    <input name="game_${game.id}_result-bet-radio" class="C12" type="radio" value="${game.resultCoefficients[5].coefficient}" />
                                                                 </td>
 
-                                                                <td class="coef">
-                                                                    {2.19}
-                                                                    <input name="game_{2}_result-bet-radio" type="radio" value="2.19" />
-                                                                </td>
-                                                                <td class="coef">
-                                                                    {2.12}
-                                                                    <input name="game_{2}_result-bet-radio" type="radio" value="2.12" />
-                                                                </td>
-                                                                <td class="coef">
-                                                                    {3.23}
-                                                                    <input name="game_{2}_result-bet-radio" type="radio" value="3.23" />
-                                                                </td>
-                                                                <td class="coef">
-                                                                    {1.16}
-                                                                    <input name="game_{2}_result-bet-radio" type="radio" value="1.16" />
-                                                                </td>
-                                                                <td class="coef">
-                                                                    {6.16}
-                                                                    <input name="game_{2}_result-bet-radio" type="radio" value="6.16" />
-                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="col s12 center-align my-disabled exclusive" id="game_2_score-bet-block">
+                                                <div class="col s12 center-align my-disabled exclusive" id="game_${game.id}_score-bet-block">
                                                     <br>
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{2}_score-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_${game.id}_score-bet-checkbox" class="exclusive"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -115,40 +117,40 @@
                                                     <table class="centered responsive-table col s6 offset-s3 big-height">
                                                         <thead>
                                                             <tr>
-                                                                <th>Barca</th>
-                                                                <th>Real</th>
+                                                                <th><c:out value="${game.firstTeam.name}"/></th>
+                                                                <th><c:out value="${game.secondTeam.name}"/></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_score-bet_fid_{3}" type="number" min="0" value="0">
-                                                                        <label for="game_{1}_score-bet_fid_{3}">Score</label>
-                                                                        <input type="hidden" id="game_{1}_first-team-coef" value="3.15">
+                                                                        <input id="game_${game.id}_score-bet_fid_${game.firstTeam.id}" type="number" min="0" value="0">
+                                                                        <label for="game_${game.id}_score-bet_fid_${game.firstTeam.id}">Score</label>
+                                                                        <input type="hidden" id="game_${game.id}_first-team-coef" value="${game.scoreCoefficient.firstTeamCoefficient}">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_score-bet_sid_{5}" type="number" min="0" value="0">
-                                                                        <label for="game_1_score-bet_sid_{5}">Score</label>
-                                                                        <input type="hidden" id="game_{1}_second-team-coef" value="1.27">
+                                                                        <input id="game_${game.id}_score-bet_sid_${game.secondTeam.id}" type="number" min="0" value="0">
+                                                                        <label for="game_${game.id}_score-bet_sid_${game.secondTeam.id}">Score</label>
+                                                                        <input type="hidden" id="game_${game.id}_second-team-coef" value="${game.scoreCoefficient.secondTeamCoefficient}">
                                                                     </div>
                                                                 </td>
-                                                                <input type="hidden" id="game_{1}_start-coef" value="6.17">
+                                                                <input type="hidden" id="game_${game.id}_start-coef" value="${game.scoreCoefficient.startCoefficient}">
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <br>
                                                 <br>
-                                                <div class="col s12 center-align my-disabled exclusive" id="game_{1}_total-bet-block">
+                                                <div class="col s12 center-align my-disabled exclusive" id="game_${game.id}_total-bet-block">
                                                     <br>
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{2}_total-bet-checkbox"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_${game.id}_total-bet-checkbox"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -163,9 +165,9 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="input-field col s12">
-                                                                        <input id="game_{1}_total-bet-value" type="number" min="0" value="0">
-                                                                        <label for="game_{1}_total-bet-value">Count</label>
-                                                                        <input type="hidden" id="game_{1}_goal-coef" value="2.12">
+                                                                        <input id="game_${game.id}_total-bet-value" type="number" min="0" value="0">
+                                                                        <label for="game_${game.id}_total-bet-value">Count</label>
+                                                                        <input type="hidden" id="game_${game.id}_goal-coef" value="${game.scoreCoefficient.startCoefficient}">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -174,12 +176,12 @@
                                                 </div>
                                                 <br>
                                                 <br>
-                                                <div class="col s12 center-align my-disabled" id="game_{2}_players-bet-block">
+                                                <div class="col s12 center-align my-disabled" id="game_${game.id}_players-bet-block">
                                                     <hr>
                                                     <br>
                                                     <div class="switch my-green">
                                                         <label>
-                                                            <input type="checkbox" id="game_{2}_players-bet-checkbox"> Not Bet <span class="lever"></span> Bet
+                                                            <input type="checkbox" id="game_${game.id}_players-bet-checkbox"> Not Bet <span class="lever"></span> Bet
                                                         </label>
                                                     </div>
                                                     <br>
@@ -187,8 +189,8 @@
                                                     <br>
                                                     <div class="row">
                                                         <div class="col s6">
-                                                            <h6><strong>{Barcelona}</strong></h6>
-                                                            <table class="centered col s12 big-height">
+                                                            <h6><strong><c:out value="${game.firstTeam.name}"/></strong></h6>
+                                                            <table class="centered col s12 big-height" id="firstTeamPlayers">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Player</th>
@@ -196,48 +198,21 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                <c:forEach var="playerCoefficient" items="${game.firstTeamPlayerCoefficients}">
                                                                     <tr>
-                                                                        <td>{Richard Agueiro}</td>
+                                                                        <td>${playerCoefficient.player.fulName}</td>
                                                                         <td class="coef">
-                                                                            {3.31}
-                                                                            <input name="game_{2}_players-bet_{16}" type="checkbox" value="3.31" />
+                                                                            ${playerCoefficient.coefficient}
+                                                                            <input name="game_${game.id}_players-bet_${playerCoefficient.player.id}" type="checkbox" value="${playerCoefficient.coefficient}" />
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td>Salem Gonzalez</td>
-                                                                        <td class="coef">
-                                                                            {2.67}
-                                                                            <input name="game_{2}_players-bet_{61}" type="checkbox" value="2.67" />
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>{Nicky Markus}</td>
-                                                                        <td class="coef">
-                                                                            {7.13}
-                                                                            <input name="game_{2}_players-bet_{22}" type="checkbox" value="7.13" />
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>{Christiano Ronaldo}</td>
-                                                                        <td class="coef">
-                                                                            {4.42}
-                                                                            <input name="game_{2}_players-bet_{7}" type="checkbox" value="4.42" />
-                                                                        </td>
-
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>{Dilly Dong}</td>
-                                                                        <td class="coef">
-                                                                            {2.98}
-                                                                            <input name="game_{2}_players-bet_{19}" type="checkbox" value="2.98" />
-                                                                        </td>
-                                                                    </tr>
+                                                                </c:forEach>
                                                                 </tbody>
                                                             </table>
                                                         </div>
                                                         <div class="col s6">
-                                                            <h6><strong>{Real Madrid}</strong></h6>
-                                                            <table class="centered col s12 big-height">
+                                                            <h6><strong><c:out value="${game.secondTeam.name}"/></strong></h6>
+                                                            <table class="centered col s12 big-height" id="secondTeamPlayers">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Player</th>
@@ -245,41 +220,15 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                <c:forEach var="playerCoefficient" items="${game.secondTeamPlayerCoefficients}">
                                                                     <tr>
-                                                                        <td>{Richard Agueiro}</td>
+                                                                        <td>${playerCoefficient.player.fulName}</td>
                                                                         <td class="coef">
-                                                                            {3.31}
-                                                                            <input name="game_{2}_players-bet_{24}" type="checkbox" value="3.31" />
+                                                                                ${playerCoefficient.coefficient}
+                                                                            <input name="game_${game.id}_players-bet_${playerCoefficient.player.id}" type="checkbox" value="${playerCoefficient.coefficient}" />
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td>{Salem Gonzalez}</td>
-                                                                        <td class="coef">
-                                                                            {2.67}
-                                                                            <input name="game_{2}_players-bet_{44}" type="checkbox" value="2.67" />
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>{Nicky Markus}</td>
-                                                                        <td class="coef">
-                                                                            {7.13}
-                                                                            <input name="game_{2}_players-bet_{161}" type="checkbox" value="7.13" />
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>{Christiano Ronaldo}</td>
-                                                                        <td class="coef">
-                                                                            {4.42}
-                                                                            <input name="game_{2}_players-bet_{168}" type="checkbox" value="4.42" />
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>{Dilly Dong}</td>
-                                                                        <td class="coef">
-                                                                            {2.98}
-                                                                            <input name="game_{2}_players-bet_{2}" type="checkbox" value="2.98" />
-                                                                        </td>
-                                                                    </tr>
+                                                                </c:forEach>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -291,6 +240,7 @@
                                             <br>
                                         </div>
                                     </li>
+                                    </c:forEach>
                                 </ul>
                                 <br>
                             </div>
@@ -317,6 +267,10 @@
                 </main>
 
                 <jsp:include page="common/footer.jsp"></jsp:include>
+                <script>
+                    /* FOR GENERATING REQUEST OBJECT */
+
+                </script>
                 <script>
                     var totalCof = 1.00;
 
