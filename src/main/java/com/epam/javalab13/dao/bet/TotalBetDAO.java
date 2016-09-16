@@ -42,7 +42,7 @@ public class TotalBetDAO {
 
         try {
             conn = ConnectionPool.getConnection();
-            st = conn.prepareStatement(SQL);
+            st = conn.prepareStatement(SQL,Statement.RETURN_GENERATED_KEYS);
 
             st.setInt(1, totalBet.getUser().getId());
             st.setString(2, totalBet.getType().toString());
@@ -55,6 +55,12 @@ public class TotalBetDAO {
             st.setDouble(5, totalBet.getAward());
 
             st.executeUpdate();
+
+            //Adding id for TotalBet that is auto generated in DB
+            ResultSet rs = st.getGeneratedKeys();
+            if(rs.next()){
+                totalBet.setId(rs.getInt(1));
+            }
         } finally {
             if (st != null) try {
                 st.close();
