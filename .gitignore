@@ -4,7 +4,7 @@
 
 # Maven build
 /target
-<<<<<<< HEAD
+
 .classpath
 .project
 .settings/.jsdtscope

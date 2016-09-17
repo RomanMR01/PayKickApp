@@ -31,9 +31,6 @@ public class AccessFilter implements Filter {
         String url = request.getRequestURL().toString();
         String path = request.getServletContext().getContextPath();
 
-        System.out.println("uri" + uri);
-        System.out.println("path" + url);
-        System.out.println("url" + path);
 
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
