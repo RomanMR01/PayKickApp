@@ -263,15 +263,20 @@ public class GameService {
         BetTotalGoalsDAO betTotalGoalsDAO = new BetTotalGoalsDAO();
 
         for (SingleBet singleBet : singleBets) {
+            System.out.println("SB: " + singleBet);
             Status status = null;
             switch (singleBet.getCategory()) {
                 case PLAYER:
                     BetPlayer betPlayer = betPlayerDAO.getBetPlayer(singleBet);
                     Player player = betPlayer.getPlayer();
-                    if (playersByGoals.contains(player)) {
-                        status = Status.WON;
-                    } else {
-                        status = Status.LOST;
+                    int playerId = player.getId();
+
+                    status = Status.LOST;//Temp status if cant find player
+                    for(Player p:playersByGoals){
+                        if(playerId==p.getId()){
+                            status = Status.WON;
+                            break;
+                        }
                     }
                     break;
                 case RESULT:
