@@ -64,8 +64,9 @@ public class PaginationService {
             int start =allGames.size()<items*(pageNumber-1)?(allGames.size()-allGames.size()/items):items*(pageNumber-1);
             int end = allGames.size()<items*pageNumber?allGames.size():items*pageNumber;
             games.addAll(allGames.subList(start, end));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             logger.error("failed to find games by type = " + type, e);
+            return -1;
         }
         return pages;
     }
