@@ -37,10 +37,15 @@ public class ClientMatchesDispatcher extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("do post start");
+        resp.setCharacterEncoding("UTF-8");
 
         HttpSession session = req.getSession();
         String userLogin = (String) session.getAttribute("login");
+        if(userLogin==null){
+            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Sorry, something going wrong, try again later!\"}");
+            return;
+        }
+
         int userID = new UserService().getUserByLogin(userLogin).getId();
 
         String jsonArray = req.getParameter("requestJsonArray");
@@ -48,20 +53,28 @@ public class ClientMatchesDispatcher extends HttpServlet {
         String amountSum = req.getParameter("amount");
         String awardSum = req.getParameter("award");
 
-        int betsSize = Integer.parseInt(betsCount);
-        int amount = Integer.parseInt(amountSum);
-        double award = Double.parseDouble(awardSum);
-
-        resp.setCharacterEncoding("UTF-8");
-
-
-        ClientBetsService clientBetsService = new ClientBetsService();
-        if(clientBetsService.makeBet(jsonArray,betsSize,amount,award,userID)){
-            resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Bet is done successfully!\"}");
-        }else{
-            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Error, please try again later!\"}");
+        if(jsonArray==null || betsCount==null || amountSum==null || awardSum==null){
+            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Sorry, found empty fields!\"}");
+            return;
         }
 
-        System.out.println("do post end");
+        try {
+            int betsSize = Integer.parseInt(betsCount);
+            int amount = Integer.parseInt(amountSum);
+            double award = Double.parseDouble(awardSum);
+
+            ClientBetsService clientBetsService = new ClientBetsService();
+            if (clientBetsService.makeBet(jsonArray, betsSize, amount, award, userID)) {
+                resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Bet is done successfully!\"}");
+                return;
+            } else {
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Error, please try again later!\"}");
+                return;
+            }
+        }catch (Exception e){
+            resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Can't parse input data!\"}");
+            return;
+        }
+
     }
 }
