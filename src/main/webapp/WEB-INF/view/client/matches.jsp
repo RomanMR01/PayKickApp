@@ -330,6 +330,11 @@
         var amount = new Number($('#amount').val());
         var award = new Number($('#award').text());
 
+        if(amount<=0){
+            alert("Put some money first!");
+            return;
+        }
+
         for (var currentGameNumber = 0; currentGameNumber < allGamesIDs.length; currentGameNumber++) {
             var gameId = allGamesIDs[currentGameNumber];
 
@@ -345,25 +350,14 @@
             Game.firstTeamId = firstTeamId;
             Game.secondTeamId = secondTeamId;
 
-//				alert("Current game id:" + gameId);
-//				alert("Current first team id:" + firstTeamId);
-//				alert("Current second team id:" + secondTeamId);
-//				alert("Current first team players:" + firstTeamPlayersId);
-//				alert("Current second team players:" + secondTeamPlayersId);
-
-
-
             /*Result bet*/
             //Get checked result bets
             var betResultSwitch = $("#game_" + gameId + "_result-bet-checkbox");
             if (betResultSwitch.is(":checked")) {
-//                alert("Bet-result: " + betResultSwitch.is(":checked"));
                 //Get class and value of checked result bet
                 var betResultCoef = $("#game_" + gameId + "_result-bet-block .coef input[name=game_" + gameId + "_result-bet-radio]:checked");
                 //If one value selected (not undefined)
                 if (betResultCoef.val()) {
-//						alert("Bet result coef class: " + betResultCoef.attr("class"));
-//						alert("Coef: " + betResultCoef.val());
                     var betResultType = betResultCoef.attr("class");
                     var coefficient = new Number(betResultCoef.val());
 
@@ -378,7 +372,6 @@
             /* Score bet */
             var betScoreSwitch = $("#game_" + gameId + "_score-bet-checkbox");
             if (betScoreSwitch.is(":checked")) {
-//                alert("Bet-score: " + betScoreSwitch.is(":checked"));
                 var firsTeamScoreSelector = $("#game_" + gameId + "_score-bet_fid_" + firstTeamId);
                 var firsTeamCoefSelector = $("#game_" + gameId + "_first-team-coef");
                 var secondTeamScoreSelector = $("#game_" + gameId + "_score-bet_sid_" + secondTeamId);
@@ -393,12 +386,6 @@
                     return;
                 }
 
-//					alert("First team goals: " + firsTeamScoreSelector.val());
-//					alert("First team coef: " + firsTeamCoefSelector.val());
-//					alert("Second team goals: " + secondTeamScoreSelector.val());
-//					alert("Second team coef: " + secondTeamCoefSelector.val());
-//					alert("Start coef: " + startCoefSelector.val());
-
                 var startCoefficient = new Number(startCoefSelector.val());
                 var firstTeamScore = new Number(firsTeamScoreSelector.val());
                 var secondTeamScore = new Number(secondTeamScoreSelector.val());
@@ -412,7 +399,6 @@
             /* Total goals bet*/
             var betTotalGoalsSwitch = $("#game_" + gameId + "_total-bet-checkbox");
             if (betTotalGoalsSwitch.is(":checked")) {
-//                alert("Bet-total-goals: " + betTotalGoalsSwitch.is(":checked"));
                 var totalGoalsSelector = $("#game_" + gameId + "_total-bet-value");
                 var totalGoalsCoefSelector = $("#game_" + gameId + "_goal-coef");
                 if (totalGoalsSelector.val() == "") {
@@ -423,8 +409,6 @@
                     alert("Incorrect values!");
                     return;
                 }
-//					alert("Total goals: " + totalGoalsSelector.val());
-//					alert("Total goals coef: " + totalGoalsCoefSelector.val());
 
                 var totalGoalsValue = new Number(totalGoalsSelector.val());
                 var totalGoalsCoefficient = new Number(totalGoalsCoefSelector.val());
@@ -441,16 +425,12 @@
             /* Players bet */
             var betPlayersSwitch = $("#game_" + gameId + "_players-bet-checkbox");
             if (betPlayersSwitch.is(":checked")) {
-//                alert("Bet-players: " + betPlayersSwitch.is(":checked"));
-
-//                alert("Fisrt team:");
                 //Selecting players from first team
                 var firstTeamSelector = $("#game_" + gameId + "_players-bet-block #firstTeamPlayers .coef");
                 var firstTeamPlayerNum = 0;
                 firstTeamSelector.each(function () {
                     var checkedPlayersSelector = $("input[name=game_" + gameId + "_players-bet_" + firstTeamPlayersId[firstTeamPlayerNum++] + "]:checked");
                     if (checkedPlayersSelector.val()) {
-//							alert("Player " + firstTeamPlayersId[firstTeamPlayerNum] + " value: " + checkedPlayersSelector.val());
                         var playerId = firstTeamPlayersId[firstTeamPlayerNum];
                         var playerCoefficient = checkedPlayersSelector.val();
 
@@ -460,7 +440,6 @@
                     }
                 });
 
-//                alert("Second team:");
                 //Selecting players from second team
                 var secondTeamSelector = $("#game_" + gameId + "_players-bet-block #secondTeamPlayers .coef");
                 var secondTeamPlayerNum = 0;
@@ -468,21 +447,16 @@
                     var checkedPlayersSelector = $("input[name=game_" + gameId + "_players-bet_" + secondTeamPlayersId[secondTeamPlayerNum++] + "]:checked");
 
                     if (checkedPlayersSelector.val()) {
-//							alert("Player " + secondTeamPlayersId[secondTeamPlayerNum] + " value: " + checkedPlayersSelector.val());
-
                         var playerId = secondTeamPlayersId[secondTeamPlayerNum];
                         var playerCoefficient = checkedPlayersSelector.val();
 
                         /* betPlayer property represents Single bet on some player  */
-
                         var player = {"playerId": playerId, "playerCoefficient": playerCoefficient};
                         Game.betPlayer.push(player);
                     }
                 });
             }
-
             requestObject.push(Game);//Adding new game object to array
-
         }
 
         var outputArray = JSON.parse(JSON.stringify(requestObject))
@@ -499,7 +473,6 @@
             },
             success: function (data) {
                 var response = JSON.parse(data);
-
                 var status = response.status;
                 var message = response.message;
 
@@ -508,8 +481,6 @@
                 } else {
                     alert(message);
                 }
-
-
             }
         });
     });
