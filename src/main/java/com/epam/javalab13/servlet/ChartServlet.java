@@ -2,9 +2,12 @@ package com.epam.javalab13.servlet;
 
 import com.epam.javalab13.dao.bet.TotalBetDAO;
 import com.epam.javalab13.dao.game.GameDAO;
+import com.epam.javalab13.dao.game.GoalDAO;
+import com.epam.javalab13.dao.game.PlayerDAO;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.game.Game;
+import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.game.TeamService;
 import com.google.gson.Gson;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -62,11 +66,37 @@ public class ChartServlet extends HttpServlet {
                     }
                     break;
                 case "team_win":
+                    Team team=new Team();
+                    if (req.getParameter("teamName")!=null){
+                        team.setName(req.getParameter("teamName"));
+                    }
                     Team resultTeam=null;
-
-                    resultTeam=teamService.getTeamByName("some name");
-
+                    resultTeam=teamService.getTeamByName(team.getName());
                     json = gson.toJson(resultTeam);
+                    break;
+                case "player_goals":
+                    PlayerDAO playerDAO=new PlayerDAO();
+                    GoalDAO goalDAO=new GoalDAO();
+                    Player player=new Player();
+                    int goalCount=0;
+                    if (req.getParameter("id")!=null){
+                        player.setId(Integer.valueOf(req.getParameter("id")));
+                    }
+                    Player resultPlayer=null;
+                    try {
+                        resultPlayer=playerDAO.getPlayer(player, "id");
+                        goalCount=goalDAO.countAllGoals(player);
+                    } catch (SQLException e) {
+                        System.out.println("player_goals1234");
+                        e.printStackTrace();
+                    }
+                    Player fakePlayer=new Player();
+                    fakePlayer.setId(-1);
+                    fakePlayer.setAge(goalCount);
+                    List<Player> players=new ArrayList<>();
+                    players.add(resultPlayer);
+                    players.add(fakePlayer);
+                    json = gson.toJson(players);
                     break;
                 case "all_bats":
                     List<TotalBet> all;
@@ -88,14 +118,11 @@ public class ChartServlet extends HttpServlet {
                         games = gameDAO.getFinishedGamesByBookmaker(id);
                         Game fakeGame=new Game();
                         fakeGame.setId(-1);
-                        System.out.println("here");
                         int allProfit=gameDAO.countAllProfit();
-                        System.out.println("allProfit"+allProfit);
                         fakeGame.setProfit(gameDAO.countAllProfit());
                         fakeGame.setDate(new Date());
                         games.add(fakeGame);
                         Collections.sort(games);
-                        System.out.println("here1");
                         json = gson.toJson(games);
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -108,7 +135,6 @@ public class ChartServlet extends HttpServlet {
                         games = gameDAO.getGamesByStatus(GameDAO.GetGamesType.FINISHED);
                         Collections.sort(games);
                         json = gson.toJson(games);
-                        System.out.println("json"+json);
                     } catch (SQLException e) {
                         logger.warn("Exception while getting all TotalBets:",e);
                     }
