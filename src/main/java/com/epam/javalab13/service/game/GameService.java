@@ -136,7 +136,7 @@ public class GameService {
                 //If total bet already have status lost or canceled we skip cycle
                 //Because money already are returned to game profit(if LOST) or to client(if canceled)
                 if(totalBet.getStatus()==Status.LOST || totalBet.getStatus()==Status.CANCELED ){
-                    break;
+                    continue;
                 }
                 totalBet.setStatus(Status.CANCELED);
                 usersInTotalBet.add(totalBet.getUser());
