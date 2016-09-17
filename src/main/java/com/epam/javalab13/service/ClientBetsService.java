@@ -1,12 +1,19 @@
 package com.epam.javalab13.service;
 
+import com.epam.javalab13.dao.bet.*;
 import com.epam.javalab13.dao.game.GameDAO;
+import com.epam.javalab13.model.User;
+import com.epam.javalab13.model.bet.*;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,7 +21,220 @@ import java.util.List;
  */
 public class ClientBetsService {
 
+    /**
+     * Main method for adding client bet to DB
+     * @param jsonArray string representation of data received from client
+     * @param betsCount total count of single bets
+     * @param amount sum client deposit
+     * @param award sum, that client can won
+     * @param userID id of client
+     * @return
+     */
+    public boolean makeBet(final String jsonArray, final int betsCount, final int amount, double award, int userID){
+        String json = jsonArray;
 
+        /*
+        Deserialization of json
+         */
+        Type type = new TypeToken<List<OneGameBet>>(){}.getType();
+        List<OneGameBet> oneGameBets = new Gson().fromJson(json,type);
+
+        /*
+        Creating new total bet
+         */
+        TotalBetDAO totalBetDAO = new TotalBetDAO();
+        TotalBet totalBet = new TotalBet();
+
+        User user = new User();
+        user.setId(userID);
+        totalBet.setUser(user);
+
+        /*
+        Set type of total bet (if betsCount>1 then will be MULTIPLE)
+         */
+        if(betsCount==1){
+            totalBet.setType(com.epam.javalab13.model.bet.Type.SINGLE);
+        }else{
+            totalBet.setType(com.epam.javalab13.model.bet.Type.MULTIPLE);
+        }
+
+        totalBet.setAmount(amount);
+        totalBet.setAward(award);
+        totalBet.setDate(new Date());
+
+        //Adding new TotalBet to DB
+        try {
+            totalBetDAO.addTotalBet(totalBet);
+        } catch (SQLException e) {
+            //TODO add logger
+            e.printStackTrace();
+        }
+        System.out.println(totalBet);
+
+        SingleBetDAO singleBetDAO = new SingleBetDAO();
+
+        BetResultDAO betResultDAO = new BetResultDAO();
+        BetScoreDAO betScoreDAO = new BetScoreDAO();
+        BetTotalGoalsDAO betTotalGoalsDAO = new BetTotalGoalsDAO();
+        BetPlayerDAO betPlayerDAO = new BetPlayerDAO();
+
+        /*
+        Adding single bets to DB by them type
+         */
+        for(OneGameBet oneGameBet:oneGameBets){
+            int gameId = oneGameBet.getGameId();
+
+            //Bet on result
+            if(oneGameBet.getBetResult()!=null){
+                //Data to add
+                Result result = Result.valueOf(oneGameBet.getBetResult().getBetResultType().toString());
+                double coefficient = oneGameBet.getBetResult().getCoefficient();
+
+                //Single bet
+                SingleBet singleBet = new SingleBet();
+
+                Game game = new Game();
+                game.setId(gameId);
+
+                singleBet.setTotalBet(totalBet);
+                singleBet.setGame(game);
+                singleBet.setCategory(Category.RESULT);
+                singleBet.setCoefficient(coefficient);
+
+                try {
+                    singleBetDAO.addSingleBet(singleBet);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+                //Bet on result
+                BetResult betResult = new BetResult();
+                betResult.setSingleBet(singleBet);
+                betResult.setResult(result);
+
+                try {
+                    betResultDAO.addBetResult(betResult);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            //Bet on game score
+            if(oneGameBet.getBetScore()!=null){
+                double startCoefficient = oneGameBet.getBetScore().getStartCoefficient();
+                int firstTeamScore = oneGameBet.getBetScore().getFirstTeamScore();
+                int secondTeamScore = oneGameBet.getBetScore().getSecondTeamScore();
+
+                //Single bet
+                SingleBet singleBet = new SingleBet();
+
+                Game game = new Game();
+                game.setId(gameId);
+
+                singleBet.setTotalBet(totalBet);
+                singleBet.setGame(game);
+                singleBet.setCategory(Category.SCORE);
+                singleBet.setCoefficient(startCoefficient);
+
+                try {
+                    singleBetDAO.addSingleBet(singleBet);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                //Bet on game score
+                BetScore betScore = new BetScore();
+                betScore.setSingleBet(singleBet);
+                betScore.setFirstTeamScore(firstTeamScore);
+                betScore.setSecondTeamScore(secondTeamScore);
+
+                try {
+                    betScoreDAO.addBetScore(betScore);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            //Bet on total goals sum
+            if(oneGameBet.getBetTotalGoals()!=null){
+                int totalGoalsValue = oneGameBet.getBetTotalGoals().getTotalGoalsValue();
+                double totalGoalsCoefficient = oneGameBet.getBetTotalGoals().getTotalGoalsCoefficient();
+
+                //Single bet
+                SingleBet singleBet = new SingleBet();
+
+                Game game = new Game();
+                game.setId(gameId);
+
+                singleBet.setTotalBet(totalBet);
+                singleBet.setGame(game);
+                singleBet.setCategory(Category.GOALS);
+                singleBet.setCoefficient(totalGoalsCoefficient);
+
+                try {
+                    singleBetDAO.addSingleBet(singleBet);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+                //Bet on total goals
+                BetTotalGoals betTotalGoals = new BetTotalGoals();
+                betTotalGoals.setSingleBet(singleBet);
+                betTotalGoals.setTotalGoal(totalGoalsValue);
+                try {
+                    betTotalGoalsDAO.addBetTotalGoals(betTotalGoals);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            //Bets on players
+            if(oneGameBet.getBetPlayer()!=null || oneGameBet.getBetPlayer().size()!=0){
+                //All players, that user choose
+                List<PlayerData> players = oneGameBet.getBetPlayer();
+
+                for(PlayerData playerData:players){
+                    int playerId = playerData.getPlayerId();
+                    double playerCoefficient = playerData.getPlayerCoefficient();
+
+                    //Single bet
+                    SingleBet singleBet = new SingleBet();
+
+                    Game game = new Game();
+                    game.setId(gameId);
+
+                    singleBet.setTotalBet(totalBet);
+                    singleBet.setGame(game);
+                    singleBet.setCategory(Category.PLAYER);
+                    singleBet.setCoefficient(playerCoefficient);
+
+                    try {
+                        singleBetDAO.addSingleBet(singleBet);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    //Bet on one player
+                    BetPlayer betPlayer = new BetPlayer();
+
+                    Player player = new Player();
+                    player.setId(playerId);
+
+                    betPlayer.setPlayer(player);
+                    betPlayer.setSingleBet(singleBet);
+
+                    try {
+                        betPlayerDAO.addBetPlayer(betPlayer);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
     public List<Game> getActiveGames(){
         List<Game> activeGames = new ArrayList<>();
