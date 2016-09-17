@@ -7,10 +7,7 @@ import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.transformer.bet.SingleBetTransformer;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -33,7 +30,7 @@ public class SingleBetDAO {
 
         try {
             conn = ConnectionPool.getConnection();
-            st = conn.prepareStatement(SQL);
+            st = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             st.setInt(1,singleBet.getTotalBet().getId());
             st.setInt(2,singleBet.getGame().getId());
@@ -41,6 +38,12 @@ public class SingleBetDAO {
             st.setDouble(4,singleBet.getCoefficient());
 
             st.executeUpdate();
+
+            //Adding id for SingleBet that is auto generated in DB
+            ResultSet rs = st.getGeneratedKeys();
+            if(rs.next()){
+                singleBet.setId(rs.getInt(1));
+            }
         } finally {
             if (st != null) try {
                 st.close();
