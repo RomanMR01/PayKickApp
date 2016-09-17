@@ -9,6 +9,7 @@ import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.Type;
 import java.sql.SQLException;
@@ -21,6 +22,8 @@ import java.util.List;
  */
 public class ClientBetsService {
 
+    private Logger logger = Logger.getLogger(ClientBetsService.class);
+
     /**
      * Main method for adding client bet to DB
      * @param jsonArray string representation of data received from client
@@ -31,6 +34,7 @@ public class ClientBetsService {
      * @return
      */
     public boolean makeBet(final String jsonArray, final int betsCount, final int amount, double award, int userID){
+        logger.info("Client " + userID + "make a bet with amount:" + amount + " and award:" + award + "!");
         String json = jsonArray;
 
         /*
@@ -60,16 +64,15 @@ public class ClientBetsService {
 
         totalBet.setAmount(amount);
         totalBet.setAward(award);
-        totalBet.setDate(new Date());
+        totalBet.setDate(new Date());//Current date
 
         //Adding new TotalBet to DB
         try {
             totalBetDAO.addTotalBet(totalBet);
-        } catch (SQLException e) {
-            //TODO add logger
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Can't add new total bet:" + totalBet,e);
+            return false;
         }
-        System.out.println(totalBet);
 
         SingleBetDAO singleBetDAO = new SingleBetDAO();
 
@@ -103,8 +106,9 @@ public class ClientBetsService {
 
                 try {
                     singleBetDAO.addSingleBet(singleBet);
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    logger.error("Can't add new single bet on result:" + singleBet,e);
+                    return false;
                 }
 
 
@@ -116,7 +120,8 @@ public class ClientBetsService {
                 try {
                     betResultDAO.addBetResult(betResult);
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("Can't add new bet result:" + betResult,e);
+                    return false;
                 }
 
             }
@@ -140,7 +145,8 @@ public class ClientBetsService {
                 try {
                     singleBetDAO.addSingleBet(singleBet);
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("Can't add new single bet on score:" + singleBet,e);
+                    return false;
                 }
 
                 //Bet on game score
@@ -152,7 +158,8 @@ public class ClientBetsService {
                 try {
                     betScoreDAO.addBetScore(betScore);
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("Can't add new bet score:" + betScore,e);
+                    return false;
                 }
 
             }
@@ -175,7 +182,8 @@ public class ClientBetsService {
                 try {
                     singleBetDAO.addSingleBet(singleBet);
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("Can't add new single bet:" + singleBet,e);
+                    return false;
                 }
 
 
@@ -186,7 +194,8 @@ public class ClientBetsService {
                 try {
                     betTotalGoalsDAO.addBetTotalGoals(betTotalGoals);
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    logger.error("Can't add new bet on total goals:" + betTotalGoals,e);
+                    return false;
                 }
             }
             //Bets on players
@@ -212,7 +221,8 @@ public class ClientBetsService {
                     try {
                         singleBetDAO.addSingleBet(singleBet);
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        logger.error("Can't add new single bet:" + singleBet,e);
+                        return false;
                     }
 
 
@@ -228,11 +238,13 @@ public class ClientBetsService {
                     try {
                         betPlayerDAO.addBetPlayer(betPlayer);
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        logger.error("Can't add new bet on player:" + betPlayer,e);
+                        return false;
                     }
                 }
             }
         }
+        logger.info("Client " + userID + "make a bet successfully!");
         return true;
     }
 
@@ -240,8 +252,9 @@ public class ClientBetsService {
         List<Game> activeGames = new ArrayList<>();
         try {
             activeGames = new GameDAO().getGamesWithCoefficientsByType(GameDAO.Type.ACTIVE);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Can't get active games!",e);
+            return activeGames;
         }
 
         return activeGames;
