@@ -272,9 +272,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="waves-effect waves-light btn green"><i class="material-icons right">done</i>Confirm</a>
-                                <br>
-                                <br>
                             </div>
                         </li>
                     </c:forEach>
