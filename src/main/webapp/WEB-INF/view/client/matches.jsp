@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+         pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+            <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : 'ua_UA'}" scope="session" />
+            <fmt:setLocale value="${language}" />
+            <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 
 <html>
@@ -13,7 +16,7 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayKick - Matches</title>
+    <title>PayKick - <fmt:message key="matches.title" /></title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
     <jsp:include page="common/scripts.jsp"></jsp:include>
@@ -27,7 +30,7 @@
     <div class="container valign" style="margin-top: 20px;">
         <div class="row">
             <div class="col s9">
-                <h4 class="center-align">Matches:</h4>
+                <h4 class="center-align"><fmt:message key="matches.title" />:</h4>
                 <br>
                 <ul class="collapsible popout" data-collapsible="expandable">
                     <c:forEach var="game" items="${games}">
@@ -42,8 +45,8 @@
                                     <table class="centered responsive-table col s6 offset-s3">
                                         <thead>
                                         <tr>
-                                            <th>Location</th>
-                                            <th>Date</th>
+                                            <th><fmt:message key="caption.location" /></th>
+                                            <th><fmt:message key="caption.date" /></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -61,11 +64,11 @@
                                         <div class="switch my-green">
                                             <label>
                                                 <input type="checkbox" id="game_${game.id}_result-bet-checkbox"
-                                                       class="exclusive"> Not Bet <span class="lever"></span> Bet
+                                                       class="exclusive"> <fmt:message key="common.notbet" /> <span class="lever"></span> <fmt:message key="common.bet" />
                                             </label>
                                         </div>
                                         <br>
-                                        <h5>Result</h5>
+                                        <h5><fmt:message key="common.result" /></h5>
                                         <br>
                                         <table class="centered responsive-table col s10 offset-s1 green-hover">
                                             <thead>
@@ -129,11 +132,11 @@
                                         <div class="switch my-green">
                                             <label>
                                                 <input type="checkbox" id="game_${game.id}_score-bet-checkbox"
-                                                       class="exclusive"> Not Bet <span class="lever"></span> Bet
+                                                       class="exclusive"> <fmt:message key="common.notbet" /> <span class="lever"></span> <fmt:message key="common.bet" />
                                             </label>
                                         </div>
                                         <br>
-                                        <h5>Score</h5>
+                                        <h5><fmt:message key="common.score" /></h5>
                                         <table class="centered responsive-table col s6 offset-s3 big-height">
                                             <thead>
                                             <tr>
@@ -147,7 +150,7 @@
                                                     <div class="input-field col s12">
                                                         <input id="game_${game.id}_score-bet_fid_${game.firstTeam.id}"
                                                                type="number" min="0" value="0">
-                                                        <label for="game_${game.id}_score-bet_fid_${game.firstTeam.id}">Score</label>
+                                                        <label for="game_${game.id}_score-bet_fid_${game.firstTeam.id}"><fmt:message key="common.score" /></label>
                                                         <input type="hidden" id="game_${game.id}_first-team-coef"
                                                                value="${game.scoreCoefficient.firstTeamCoefficient}">
                                                     </div>
@@ -156,7 +159,7 @@
                                                     <div class="input-field col s12">
                                                         <input id="game_${game.id}_score-bet_sid_${game.secondTeam.id}"
                                                                type="number" min="0" value="0">
-                                                        <label for="game_${game.id}_score-bet_sid_${game.secondTeam.id}">Score</label>
+                                                        <label for="game_${game.id}_score-bet_sid_${game.secondTeam.id}"><fmt:message key="common.score" /></label>
                                                         <input type="hidden" id="game_${game.id}_second-team-coef"
                                                                value="${game.scoreCoefficient.secondTeamCoefficient}">
                                                     </div>
@@ -176,16 +179,16 @@
                                         <br>
                                         <div class="switch my-green">
                                             <label>
-                                                <input type="checkbox" id="game_${game.id}_total-bet-checkbox"> Not Bet
-                                                <span class="lever"></span> Bet
+                                                <input type="checkbox" id="game_${game.id}_total-bet-checkbox"> <fmt:message key="common.notbet" />
+                                                <span class="lever"></span> <fmt:message key="common.bet" />
                                             </label>
                                         </div>
                                         <br>
-                                        <h5>Total Goals</h5>
+                                        <h5><fmt:message key="common.totalgoals" /></h5>
                                         <table class="centered responsive-table col s6 offset-s3 l4 offset-l4 big-height">
                                             <thead>
                                             <tr>
-                                                <th>Goals Count</th>
+                                                <th><fmt:message key="common.goalscount" /></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -194,7 +197,7 @@
                                                     <div class="input-field col s12">
                                                         <input id="game_${game.id}_total-bet-value" type="number"
                                                                min="0" value="0">
-                                                        <label for="game_${game.id}_total-bet-value">Count</label>
+                                                        <label for="game_${game.id}_total-bet-value"><fmt:message key="common.count" /></label>
                                                         <input type="hidden" id="game_${game.id}_goal-coef"
                                                                value="${game.scoreCoefficient.startCoefficient}">
                                                     </div>
@@ -211,12 +214,11 @@
                                         <br>
                                         <div class="switch my-green">
                                             <label>
-                                                <input type="checkbox" id="game_${game.id}_players-bet-checkbox"> Not
-                                                Bet <span class="lever"></span> Bet
+                                                <input type="checkbox" id="game_${game.id}_players-bet-checkbox"> <fmt:message key="common.notbet" /> <span class="lever"></span> <fmt:message key="common.bet" />
                                             </label>
                                         </div>
                                         <br>
-                                        <h5>Players Coefficients:</h5>
+                                        <h5><fmt:message key="common.players" />:</h5>
                                         <br>
                                         <div class="row">
                                             <div class="col s6">
@@ -224,8 +226,8 @@
                                                 <table class="centered col s12 big-height" id="firstTeamPlayers">
                                                     <thead>
                                                     <tr>
-                                                        <th>Player</th>
-                                                        <th>Coefficient</th>
+                                                        <th><fmt:message key="common.player" /></th>
+                                                        <th><fmt:message key="caption.coefficient" /></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -249,8 +251,8 @@
                                                 <table class="centered col s12 big-height" id="secondTeamPlayers">
                                                     <thead>
                                                     <tr>
-                                                        <th>Player</th>
-                                                        <th>Coefficient</th>
+                                                        <th><fmt:message key="common.player" /></th>
+                                                        <th><fmt:message key="caption.coefficient" /></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -281,21 +283,21 @@
             <div class="col s3 white orange-text center-align">
                 <div class="toc-wrapper">
                     <br>
-                    <h5>Total Bet:</h5>
+                    <h5><fmt:message key="common.totalbet" />:</h5>
                     <br>
                     <br>
-                    <h6><span class="black-text">Bets:</span> <strong><span id="bets-count">0</span></strong></h6>
+                    <h6><span class="black-text"><fmt:message key="common.bets" />:</span> <strong><span id="bets-count">0</span></strong></h6>
                     <br>
-                    <h6><span class="black-text">Total Coefficient:</span> <strong><span
+                    <h6><span class="black-text"><fmt:message key="common.totalcoef" />:</span> <strong><span
                             id="total-coef">1.00</span></strong></h6>
                     <div class="input-field">
                         <input id="amount" type="number" min="0" value="0" step="1">
-                        <label for="amount">Amount</label>
+                        <label for="amount"><fmt:message key="caption.amount" /></label>
                     </div>
-                    <h6><span class="black-text">Award: </span> <strong>$<span id="award">0.00</span></strong></h6>
+                    <h6><span class="black-text"><fmt:message key="caption.award" />: </span> <strong>$<span id="award">0.00</span></strong></h6>
                     <br>
                     <a class="waves-effect waves-light btn green" id="confirmBets"><i
-                            class="material-icons right">done</i>Confirm</a>
+                            class="material-icons right">done</i><fmt:message key="common.confirm" /></a>
                 </div>
             </div>
         </div>

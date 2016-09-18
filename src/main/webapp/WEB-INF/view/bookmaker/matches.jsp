@@ -136,7 +136,7 @@
 																<input id="coef_${resultCoefficient.id}" type="number" min="1.01" max="100"
 																	step="0.01" form="form_${game.id}"
 																	name="resultCoefficients" value="${resultCoefficient.coefficient}"> <label
-																	for="coef_${resultCoefficient.id}">Coefficient<fmt:message key="" /></label>
+																	for="coef_${resultCoefficient.id}"><fmt:message key="caption.coefficient" /></label>
 															</div>
 														</td>
 													</c:forEach>

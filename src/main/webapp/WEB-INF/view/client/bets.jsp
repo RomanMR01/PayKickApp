@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+            <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : 'ua_UA'}" scope="session" />
+            <fmt:setLocale value="${language}" />
+            <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 
 <html>
@@ -13,7 +16,7 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayKick - My Bets</title>
+    <title>PayKick - <fmt:message key="title.mybets" /></title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
     <jsp:include page="common/scripts.jsp"></jsp:include>
@@ -25,7 +28,7 @@
 <!-- Main Content -->
 <main class="valign-wrapper grey lighten-3">
     <div class="container valign" style="margin-top: 20px;">
-        <h4 class="center-align">My Bets:</h4>
+        <h4 class="center-align"><fmt:message key="title.mybets" />:</h4>
         <br>
         <div class="row">
             <div class="col s12 l8 offset-l2">
@@ -75,14 +78,14 @@
                             <table class="centered responsive-table col s10 offset-s1">
                                 <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Match</th>
-                                    <th>Type</th>
-                                    <th>Bet</th>
-                                    <th>Status</th>
-                                    <th>Amount</th>
-                                    <th>Coefficient</th>
-                                    <th>Award</th>
+                                    <th><fmt:message key="caption.date" /></th>
+                                    <th><fmt:message key="caption.match" /></th>
+                                    <th><fmt:message key="caption.type" /></th>
+                                    <th><fmt:message key="caption.bet" /></th>
+                                    <th><fmt:message key="caption.status" /></th>
+                                    <th><fmt:message key="caption.amount" /></th>
+                                    <th><fmt:message key="caption.coefficient" /></th>
+                                    <th><fmt:message key="caption.award" /></th>
                                 </tr>
                                 </thead>
                                 <tbody>
