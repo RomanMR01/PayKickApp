@@ -26,6 +26,18 @@ public class UserService {
         }
     }
 
+    public void updateUserBalance(int userId, double balance){
+        User user = new User();
+        user.setId(userId);
+        user.setBalance(balance);
+
+        try {
+            userDAO.updateUser(user, UserDAO.UpdateUserType.BALANCE);
+        } catch (SQLException e) {
+            logger.error("Can't update user: " + user,e);
+        }
+    }
+
     public void updateUser(int userId, String fullName, int age, Gender gender){
         User user = new User();
         user.setId(userId);

@@ -1,6 +1,7 @@
 package com.epam.javalab13.servlet.client;
 
 import com.epam.javalab13.dao.game.GameDAO;
+import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.service.ClientBetsService;
 import com.epam.javalab13.service.game.GameService;
@@ -25,14 +26,14 @@ public class ClientMatchesDispatcher extends HttpServlet {
         ClientBetsService clientBetsService = new ClientBetsService();
         List<Game> activeGames = clientBetsService.getActiveGames();
 
-        req.setAttribute("games",activeGames);
-        req.setAttribute("allGamesIDs",clientBetsService.getAllGamesIDs());
-        req.setAttribute("firstTeamsIDs",clientBetsService.getFirstTeamsIDs());
-        req.setAttribute("secondTeamsIDs",clientBetsService.getSecondTeamsIDs());
-        req.setAttribute("firstTeamsPlayers",clientBetsService.getFirstTeamsPlayersIDs());
-        req.setAttribute("secondTeamsPlayers",clientBetsService.getSecondTeamsPlayersIDs());
+        req.setAttribute("games", activeGames);
+        req.setAttribute("allGamesIDs", clientBetsService.getAllGamesIDs());
+        req.setAttribute("firstTeamsIDs", clientBetsService.getFirstTeamsIDs());
+        req.setAttribute("secondTeamsIDs", clientBetsService.getSecondTeamsIDs());
+        req.setAttribute("firstTeamsPlayers", clientBetsService.getFirstTeamsPlayersIDs());
+        req.setAttribute("secondTeamsPlayers", clientBetsService.getSecondTeamsPlayersIDs());
 
-        req.getRequestDispatcher("/WEB-INF/view/client/matches.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/view/client/matches.jsp").forward(req, resp);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class ClientMatchesDispatcher extends HttpServlet {
 
         HttpSession session = req.getSession();
         String userLogin = (String) session.getAttribute("login");
-        if(userLogin==null){
+        if (userLogin == null) {
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Sorry, something going wrong, try again later!\"}");
             return;
         }
@@ -53,7 +54,7 @@ public class ClientMatchesDispatcher extends HttpServlet {
         String amountSum = req.getParameter("amount");
         String awardSum = req.getParameter("award");
 
-        if(jsonArray==null || betsCount==null || amountSum==null || awardSum==null){
+        if (jsonArray == null || betsCount == null || amountSum == null || awardSum == null) {
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Sorry, found empty fields!\"}");
             return;
         }
@@ -63,6 +64,23 @@ public class ClientMatchesDispatcher extends HttpServlet {
             int amount = Integer.parseInt(amountSum);
             double award = Double.parseDouble(awardSum);
 
+            UserService service = new UserService();
+            User user = service.getUserByLogin(userLogin);
+            double balance = user.getBalance();
+
+
+            //Check if user have enough money
+            if (balance < amount) {
+                resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"You haven't enough money!\"}");
+                return;
+            } else {
+                balance -= amount;
+                session.setAttribute("balance", balance);
+                user.setBalance(balance);
+                service.updateUserBalance(userID,balance);
+            }
+
+
             ClientBetsService clientBetsService = new ClientBetsService();
             if (clientBetsService.makeBet(jsonArray, betsSize, amount, award, userID)) {
                 resp.getWriter().write("{ \"status\": \"OK\",\"message\":\"Bet is done successfully!\"}");
@@ -71,7 +89,7 @@ public class ClientMatchesDispatcher extends HttpServlet {
                 resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Error, please try again later!\"}");
                 return;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             resp.getWriter().write("{ \"status\": \"FAIL\",\"message\":\"Can't parse input data!\"}");
             return;
         }

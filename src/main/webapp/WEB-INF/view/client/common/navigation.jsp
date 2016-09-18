@@ -47,7 +47,8 @@
                         <ul class="right hide-on-med-and-down">
 
                             <li><a class="dropdown-button" data-activates="userDropdown">Hello, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                            <li><a class="dropdown-button" data-activates="balanceDropdown">Balance: $1000.00<i class="material-icons right green-text">attach_money</i></a></li>
+                            <li><a class="dropdown-button" data-activates="balanceDropdown">Balance: <fmt:formatNumber type="number"
+                                                                                                                       maxFractionDigits="2" value="${balance}" /><i class="material-icons right green-text">attach_money</i></a></li>
                             <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
                             <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
                         </ul>

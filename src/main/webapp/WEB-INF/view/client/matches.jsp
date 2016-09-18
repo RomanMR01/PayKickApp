@@ -477,7 +477,7 @@
                 var message = response.message;
 
                 if (status == 'OK') {
-                   alert(message);
+                   window.location = 'matches';
                 } else {
                     alert(message);
                 }
