@@ -151,9 +151,12 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><strong>$<c:out value="${totalBet.amount}"></c:out></strong></td>
-                                    <td><strong><c:out value="${totalCoefficient}"></c:out></strong></td>
-                                    <td><strong>$<c:out value="${totalBet.award}"></c:out></strong></td>
+                                    <td><strong>$<fmt:formatNumber value="${totalBet.amount}" 
+            type="number" maxFractionDigits="2" minFractionDigits="2"/></strong></td>
+                                    <td><strong><fmt:formatNumber value="${totalCoefficient}" 
+            type="number" maxFractionDigits="2" minFractionDigits="2"/></strong></td>
+                                    <td><strong>$<fmt:formatNumber value="${totalBet.award}" 
+            type="number" maxFractionDigits="2" minFractionDigits="2"/></strong></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -208,7 +211,20 @@
 </main>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
+<script>
+    $(document).ready(function () {
+        $("td").each(function () {
+            var a = $.trim($(this).text());
 
+            if ("C1" == a || "C2" == a || "CX" == a || "C1X" == a || "CX2" == a || "C12" == a) {
+                $(this).text($.trim(a).replace("C", ""));
+            }
+            
+            
+
+        });
+    });
+</script>
 </body>
 
 </html>

@@ -127,7 +127,7 @@
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <input id="g_${game.id}_t_${game.firstTeam.id}" type="number" disabled
-                                               value="0">
+                                               value="${game.firstGoals}">
                                         <!-- Id must be not just a name of team because one team may have several active games at different dates -->
                                         <label for="g_${game.id}_t_${game.firstTeam.id}">
                                             <c:out value="${game.firstTeam.name}"></c:out>
@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="input-field col s6">
                                         <input id="g_${game.id}_t_${game.secondTeam.id}" type="number" disabled
-                                               value="0">
+                                               value="${game.secondGoals}">
                                         <!-- Id must be not just a name of team because one team may have several active games at different dates -->
                                         <label for="g_${game.id}_t_${game.secondTeam.id}">
                                             <c:out value="${game.secondTeam.name}"></c:out>
