@@ -22,17 +22,6 @@ public class BookmakerMatchesDispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PaginationService paginationService;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public BookmakerMatchesDispatcherServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("type");
 		String page = request.getParameter("page");
@@ -62,13 +51,8 @@ public class BookmakerMatchesDispatcherServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

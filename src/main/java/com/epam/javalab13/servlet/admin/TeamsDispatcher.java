@@ -8,11 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.PaginationService;
 import com.epam.javalab13.service.game.PlayerService;
+import com.epam.javalab13.service.game.UserService;
 
 /**
  * Created by Vikno on 9/7/2016.
@@ -24,6 +26,15 @@ public class TeamsDispatcher extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String login = (String)session.getAttribute("login");
+        String currentLang = request.getParameter("language");
+
+        if(login!=null && currentLang!=null) {
+            UserService service = new UserService();
+            service.changeUserLanguage(login,currentLang);
+            session.setAttribute("language",currentLang);
+        }
 
         //START PAGINATION
         String page = request.getParameter("page");

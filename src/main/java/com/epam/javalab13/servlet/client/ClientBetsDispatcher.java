@@ -24,6 +24,16 @@ public class ClientBetsDispatcher extends HttpServlet {
     private PaginationService paginationService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String login = (String)session.getAttribute("login");
+        String currentLang = request.getParameter("language");
+
+        if(login!=null && currentLang!=null) {
+            UserService service = new UserService();
+            service.changeUserLanguage(login,currentLang);
+            session.setAttribute("language",currentLang);
+        }
+
         String type = request.getParameter("type");
         String page = request.getParameter("page");
         String itemsOnPage=request.getParameter("itemsOnPage");
@@ -32,11 +42,14 @@ public class ClientBetsDispatcher extends HttpServlet {
         page=page==null?"1":page;
         itemsOnPage=itemsOnPage==null?"10":itemsOnPage;
         List<TotalBet> totalBets = new ArrayList<>();
-        HttpSession session = request.getSession();
-        String login = (String)session.getAttribute("login");
         User client = new UserService().getUserByLogin(login);
         paginationService=new PaginationService();
         pages=paginationService.getPagesForTotalBetsByClient(type,page,itemsOnPage,totalBets, client);
+
+        if(pages==-1){
+            resp.sendRedirect(getServletContext().getContextPath() + "/client/bets");
+            return;
+        }
         int intPage = Integer.valueOf(page);
         intPage=intPage>pages?pages:Integer.valueOf(page);
         request.setAttribute("pages", pages);

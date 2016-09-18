@@ -4,10 +4,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
 import com.epam.javalab13.service.PaginationService;
+import com.epam.javalab13.service.game.UserService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +23,16 @@ public class ClientStatisticsDispatcher extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String login = (String)session.getAttribute("login");
+        String currentLang = request.getParameter("language");
+
+        if(login!=null && currentLang!=null) {
+            UserService service = new UserService();
+            service.changeUserLanguage(login,currentLang);
+            session.setAttribute("language",currentLang);
+        }
+
         String type = request.getParameter("type");
         String page = request.getParameter("page");
         String itemsOnPage = request.getParameter("itemsOnPage");
@@ -35,6 +47,11 @@ public class ClientStatisticsDispatcher extends HttpServlet {
             pages = paginationService.getPaagesForTeams(page, itemsOnPage, teams);
         } else {
             pages = paginationService.getPagesForPlayers(page, itemsOnPage, players);
+        }
+
+        if(pages==-1){
+            resp.sendRedirect(getServletContext().getContextPath() + "/client/statistics");
+            return;
         }
 
         int intPage = Integer.valueOf(page);

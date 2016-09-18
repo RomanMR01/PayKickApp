@@ -23,6 +23,16 @@ import java.util.List;
 public class ClientMatchesDispatcher extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String login = (String)session.getAttribute("login");
+        String currentLang = req.getParameter("language");
+
+        if(login!=null && currentLang!=null) {
+            UserService service = new UserService();
+            service.changeUserLanguage(login,currentLang);
+            session.setAttribute("language",currentLang);
+        }
+
         ClientBetsService clientBetsService = new ClientBetsService();
         List<Game> activeGames = clientBetsService.getActiveGames();
 
