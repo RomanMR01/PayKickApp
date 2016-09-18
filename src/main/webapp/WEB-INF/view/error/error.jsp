@@ -16,7 +16,7 @@
 
                 <!-- Mobile Metas -->
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>PayKick. One bet - one hit!</title>
+                <title>PayKick. <fmt:message key="common.error" />!</title>
 
                 <!-- Favicon -->
                 <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/img/favicon.ico">
@@ -51,9 +51,9 @@
                         <a href="#" data-activates="sidebar-nav" class="button-collapse"><i
                 class="material-icons white-text">menu</i></a>
                         <ul class="right hide-on-med-and-down">
-                            <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i
+                            <li><a href="${pageContext.request.contextPath}/home" class="white-text"><fmt:message key="common.home" /><i
                     class="material-icons right red-text text-accent-3">home</i></a></li>
-                            <li><a class="dropdown-button white-text" data-activates="languageDropdown">LANGUAGE<i
+                            <li><a class="dropdown-button white-text" data-activates="languageDropdown"><fmt:message key="common.language" /><i
                     class="material-icons right green-text">language</i></a></li>
 
                         </ul>
@@ -63,9 +63,9 @@
                             </li>
 
                             <div class="hide-on-large-only">
-                                <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i
+                                <li><a href="${pageContext.request.contextPath}/home" class="white-text"><fmt:message key="common.home" /><i
                         class="material-icons right red-text text-accent-3">home</i></a></li>
-                                <li><a class="dropdown-button white-text" data-activates="languageSideDropdown">LANGUAGE<i
+                                <li><a class="dropdown-button white-text" data-activates="languageSideDropdown"><fmt:message key="common.language" /><i
                         class="material-icons right green-text">language</i></a></li>
                             </div>
                         </ul>
@@ -77,9 +77,9 @@
                         <div class="main-wrapper">
                             <h1 class="center-align red-text header" style="margin-bottom: 10px;">${pageContext.errorData.statusCode}</h1>
                             <div class="row">
-                                <h3 class="center text-black">Error</h3></div>
+                                <h3 class="center text-black"><fmt:message key="common.error" /></h3></div>
                             <div class="row">
-                                <h3 class="center text-black"><a href="${pageContext.request.contextPath}/home" class="black-text">Return to <span class="orange-text">home page</span> , please!</a></h3></div>
+                                <h3 class="center text-black"><a href="${pageContext.request.contextPath}/home" class="black-text"><fmt:message key="error.return" /> <span class="orange-text"><fmt:message key="common.homepage" /></span>, <fmt:message key="common.please" />!</a></h3></div>
                             <div class="grey lighten-3">
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                 <footer class="page-footer grey darken-1">
                     <div class="footer-copyright grey darken-3">
                         <div class="center-align">
-                            <a href="${pageContext.request.contextPath}/home"><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 All rights Reserved
+                            <a href="${pageContext.request.contextPath}/home"><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 <fmt:message key="footer.rightsreserved" />
                             <div class="right lang">
                                 <a href="?language=ua_UA">
                                     <div id="ua"></div>

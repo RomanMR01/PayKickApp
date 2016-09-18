@@ -67,7 +67,7 @@
 							scalexout:0;
 							scaleyout:0;
 							transformoriginout:left 50% 0;">
-                                Choose match - Make bet - Earn money</h6>
+                                <fmt:message key="home.choosematch" /></h6>
                                             <h2 class="ls-l" style="top: 370px; left: 110px; text-transform: uppercase; font-size: 3em; color: #FFDD00; margin-bottom: 20px; font-weight: bold; white-space: nowrap;" data-ls="
 							offsetxin:0;
 							durationin:2000;
@@ -78,7 +78,7 @@
 							offsetxout:100;
 							durationout:750;
 							skewxout:60;">
-                                Extremely Simple Rules</h2>
+                                <fmt:message key="home.extremelysimple" /></h2>
                                             <p class="ls-l" style="top: 435.68px; left: 43.359px; font-size: 13.8141px; padding: 0px 29.6016px; color: #FFF; line-height: 24.668px; width: 600px; height: auto; margin-left: 0px; margin-top: 0px; opacity: 1; visibility: visible; text-align: center;" data-ls="
 							durationin:2000;
 							delayin:2800;
@@ -93,8 +93,8 @@
 							scalexout:0;
 							scaleyout:0;
 							transformoriginout:left 50% 0;">
-                                                The high-quality statistics system will help you to make
-                                                <br> right choice and to earn your first win!
+                                                <fmt:message key="home.thehigh" />
+                                                <br> <fmt:message key="home.rightchoise" />
                                             </p>
                                             <h6 class="ls-l" style="top: 490.148px; left: 274.359px; color: #FFF; font-size: .9em; font-weight: bold;" data-ls="
 							offsetxin:0;
@@ -106,9 +106,9 @@
 							offsetxout:100;
 							durationout:750;
 							skewxout:60;">
-                                Bets from <span
+                                <fmt:message key="home.betsfrom" /> <span
                                     style="font-family: 'Open Sans'; font-size: 2em; letter-spacing: 0px; color: #FF0000;">$1</span>
-                                per bet
+                                <fmt:message key="home.perbet" />
                             </h6>
                                             <c:if test="${login==null}">
                                                 <div class="ls-l" style="top: 565.148px; left: 258.359px; font-size: 1.2em; font-weight: bold;" data-ls="
@@ -121,7 +121,7 @@
 							offsetxout:100;
 							durationout:750;
 							skewxout:60;"><a id="home_bet" href="#login-modal" class="waves-effect waves-light btn orange modal-trigger"><span
-                                    class="grey-text text-darken-3">Make a Bet</span></a></div>
+                                    class="grey-text text-darken-3"><fmt:message key="home.makeabet" /></span></a></div>
                                             </c:if>
                                             <div class="ls-l nav-wrapper hide-on-large-only" style="top: 20px; left: 20px;">
                                                 <a href="#" data-activates="sidebar-nav" class="button-collapse"><i
@@ -138,7 +138,7 @@
                             <br>
                             <br>
                             <div class="container">
-                                <h4 class="center-align" style="margin-bottom: 10px;">Upcoming Matches</h4>
+                                <h4 class="center-align" style="margin-bottom: 10px;"><fmt:message key="home.upcoming" /></h4>
                                 <div class="row">
                                     <div class="col s12 m10 offset-m1 l8 offset-l2">
                                         <ul class="collapsible popout" data-collapsible="expandable" id="newMatches">
@@ -155,15 +155,15 @@
                             <br>
                             <br>
                             <div class="container">
-                                <h4 class="center-align" style="margin-bottom: 10px;">Top Users</h4>
+                                <h4 class="center-align" style="margin-bottom: 10px;"><fmt:message key="home.topusers" /></h4>
                                 <div class="row">
                                     <div class="col s12 m10 offset-m1 l8 offset-l2">
                                         <table class="striped centered">
                                             <thead>
                                                 <tr>
-                                                    <th>Nickname</th>
-                                                    <th>Total Win</th>
-                                                    <th>Last Bet</th>
+                                                    <th><fmt:message key="caption.nickname" /></th>
+                                                    <th><fmt:message key="caption.totalwin" /></th>
+                                                    <th><fmt:message key="caption.lastbet" /></th>
                                                 </tr>
                                             </thead>
 
@@ -182,7 +182,7 @@
                             <div id="contacts" class="container">
                                 <div class="row">
                                     <div class="col s10 offset-s1 m6">
-                                        <h6 class="white-text">Our Contacts:</h6>
+                                        <h6 class="white-text"><fmt:message key="footer.ourcontacts" /></h6>
                                         <ul>
                                             <li><a class="grey-text text-lighten-3 valign-wrapper" href="mailto:paykick.team@gmail.com"><i
                                     class="material-icons orange-text valign">email</i>&nbsp; paykick.team@gmail.com</a>
@@ -190,17 +190,15 @@
                                             <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i
                                     class="material-icons red-text valign">phone</i>&nbsp;+38 (063) 583-80-88</a></li>
                                             <li><a class="grey-text text-lighten-3 valign-wrapper" href=""><i
-                                    class="material-icons green-text valign">location_on</i>&nbsp; Ukraine, Lviv.
-                                Kozlaniuka str. 7/5</a></li>
+                                    class="material-icons green-text valign">location_on</i>&nbsp; <fmt:message key="footer.address" /></a></li>
                                         </ul>
                                     </div>
                                     <div class="col s10 offset-s1 m4 offset-m1">
-                                        <h6 class="white-text ">Our Rules:</h6>
+                                        <h6 class="white-text "><fmt:message key="footer.ourrules" /></h6>
                                         <ul>
-                                            <li><a class="white-text valign-wrapper modal-trigger" href="#terms-modal" href="" target="_blank"><i class="material-icons valign green-text">assignment</i>&nbsp;
-                                Terms of Use</a></li>
+                                            <li><a class="white-text valign-wrapper modal-trigger" href="#terms-modal" href="" target="_blank"><i class="material-icons valign green-text">assignment</i>&nbsp;    <fmt:message key="footer.termsofuse" /></a></li>
                                             <li><a class="white-text valign-wrapper modal-trigger" href="#policy-modal" target="_blank"><i
-                                    class="material-icons valign orange-text">https</i>&nbsp; Privacy Policy</a></li>
+                                    class="material-icons valign orange-text">https</i>&nbsp; <fmt:message key="footer.privacypolicy" /></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -208,7 +206,7 @@
 
                             <div class="footer-copyright grey darken-3">
                                 <div class="center-align">
-                                    <a href="${pageContext.request.contextPath}/home"><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 All rights Reserved
+                                    <a href="${pageContext.request.contextPath}/home"><span class="orange-text"><strong>PayKick</strong></span></a> © 2016 <fmt:message key="footer.rightsreserved" />
                                     <div class="right lang">
                                         <a href="?language=ua_UA">
                                             <div id="ua"></div>
@@ -229,19 +227,19 @@
                                     <div class="top-header hide-on-med-and-down">
                                         <div class="top-navigation">
                                             <ul class="top-nav list-unstyled list-inline">
-                                                <li><a href="#home-matches">Matches</a></li>
-                                                <li><a href="#home-top-users">Top Users</a></li>
+                                                <li><a href="#home-matches"><fmt:message key="common.matches" /></a></li>
+                                                <li><a href="#home-top-users"><fmt:message key="home.topusers" /></a></li>
                                                 <li>
                                                     <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo" /></a>
                                                 </li>
-                                                <li><a href="#contacts">Contacts</a></li>
+                                                <li><a href="#contacts"><fmt:message key="home.contacts" /></a></li>
                                                 <c:choose>
                                                     <c:when test="${login==null}">
-                                                        <li><a href="#login-modal" class="my-red modal-trigger">Log In</a></li>
+                                                        <li><a href="#login-modal" class="my-red modal-trigger"><fmt:message key="home.login" /></a></li>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <li><a href="${pageContext.request.contextPath}/${role}" class="my-orange">My Account</a></li>
-                                                        <li><a href="${pageContext.request.contextPath}/logout" class="my-red">Log Out</a></li>
+                                                        <li><a href="${pageContext.request.contextPath}/${role}" class="my-orange"><fmt:message key="home.myaccount" /></a></li>
+                                                        <li><a href="${pageContext.request.contextPath}/logout" class="my-red"><fmt:message key="home.logout" /></a></li>
                                                     </c:otherwise>
                                                 </c:choose>
 
@@ -256,25 +254,25 @@
                         <nav class="transparent" style="height: 0;">
                             <div>
                                 <ul id="sidebar-nav" class="side-nav grey darken-4">
-                                    <li><a href="#home-matches">MATCHES</a></li>
-                                    <li><a href="#home-top-users">TOP USERS</a></li>
-                                    <li><a href="#contacts">CONTACTS</a></li>
+                                    <li><a href="#home-matches"><fmt:message key="home.matches" /></a></li>
+                                    <li><a href="#home-top-users"><fmt:message key="home.topusers" /></a></li>
+                                    <li><a href="#contacts"><fmt:message key="home.contacts" /></a></li>
 
                                     <c:choose>
                                         <c:when test="${login==null}">
-                                            <li><a class="modal-trigger" href="#login-modal">LOGIN<i
+                                            <li><a class="modal-trigger" href="#login-modal"><fmt:message key="home.login" /><i
                                     class="material-icons right red-text">input</i></a></li>
                                         </c:when>
                                         <c:otherwise>
-                                            <li><a href="">MY ACCOUNT<i class="material-icons right orange-text">perm_identity</i></a>
+                                            <li><a href=""><fmt:message key="home.myaccount" /><i class="material-icons right orange-text">perm_identity</i></a>
                                             </li>
-                                            <li><a href="logout">LOGOUT<i
+                                            <li><a href="logout"><fmt:message key="home.logout" /><i
                                     class="material-icons right red-text">power_settings_new</i></a></li>
                                         </c:otherwise>
                                     </c:choose>
 
 
-                                    <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i
+                                    <li><a class="dropdown-button" data-activates="languageDropdown"><fmt:message key="common.language" /><i
                             class="material-icons right green-text">language</i></a></li>
                                 </ul>
                                 <ul id="languageDropdown" class="dropdown-content sidebar grey darken-3">
@@ -310,79 +308,79 @@
                         <div class="modal-content">
                             <div class="row">
                                 <form id="home-login-form" class="col s12">
-                                    <h5 class="center-align">Log In</h5>
+                                    <h5 class="center-align"><fmt:message key="home.login" /></h5>
                                     <br>
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <input id="login" type="text" length="50" value="<%=userLogin%>" required>
-                                            <label for="login">Login</label>
+                                            <label for="login"><fmt:message key="caption.login" /></label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password" type="password" length="50" value="<%=userPassword%>" required>
-                                            <label for="password">Password</label>
+                                            <label for="password"><fmt:message key="caption.password" /></label>
                                         </div>
                                         <div class="col s12">
                                             <p>
                                                 <input type="checkbox" id="remember-me" value="rememberMe" />
-                                                <label for="remember-me">Remember Me</label>
+                                                <label for="remember-me"><fmt:message key="home.login.remember" /></label>
                                             </p>
                                         </div>
                                     </div>
                                     <div id="home-submit-login" class="center-align">
-                                        <button id="loginBtn" class="btn waves-effect waves-light">Log In</button>
+                                        <button id="loginBtn" class="btn waves-effect waves-light"><fmt:message key="home.login" /></button>
                                         <br>
                                         <br>
-                                        <p class="message center-align">Still Not Registered? <a><span class="orange-text"><strong>Create an account!</strong></span></a>
+                                        <p class="message center-align"><fmt:message key="home.login.stillnot" /> <a><span class="orange-text"><strong><fmt:message key="home.login.create" /></strong></span></a>
                                         </p>
                                         <span class="center-align red-text" id="messageLogin"></span>
-                                        <p class="center-align"><a href="restorePassword" class="orange-text text-darken-3">Forgot a password?</a></p>
+                                        <p class="center-align"><a href="restorePassword" class="orange-text text-darken-3"><fmt:message key="home.login.forgot" /></a></p>
                                     </div>
                                 </form>
 
                                 <form id="home-registration-form" class="col s12">
-                                    <h5 class="center-align">Registration</h5>
+                                    <h5 class="center-align"><fmt:message key="home.registration" /></h5>
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <input id="fname" type="text" length="100" required>
-                                            <label for="fname">Name</label>
+                                            <label for="fname"><fmt:message key="caption.fname" /></label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="surname" type="text" length="100" required>
-                                            <label for="surname">Surname</label>
+                                            <label for="surname"><fmt:message key="caption.surname" /></label>
                                         </div>
                                         <div class="col s12">
-                                            <p class="big">Sex:</p>
+                                            <p class="big"><fmt:message key="caption.sex" /></p>
                                             <p>
                                                 <input name="gender" type="radio" id="male" value="male" required checked/>
-                                                <label for="male">Male</label>
+                                                <label for="male"><fmt:message key="caption.male" /></label>
                                             </p>
                                             <p>
                                                 <input name="gender" type="radio" id="female" value="female" />
-                                                <label for="female">Female</label>
+                                                <label for="female"><fmt:message key="caption.female" /></label>
                                             </p>
                                         </div>
                                         <div class="col s12">
-                                            <p class="big">Age:</p>
+                                            <p class="big"><fmt:message key="caption.age" /></p>
                                             <p class="range-field">
                                                 <input type="range" id="age" min="0" max="100" value="0" />
                                             </p>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="email" type="email" required>
-                                            <label for="email">Email</label>
+                                            <label for="email"><fmt:message key="caption.email" /></label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="login-reg" type="text" length="50" required>
-                                            <label for="login-reg">Login</label>
+                                            <label for="login-reg"><fmt:message key="caption.login" /></label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="password-reg" type="password" length="50" required>
-                                            <label for="password-reg">Password</label>
+                                            <label for="password-reg"><fmt:message key="caption.password" /></label>
                                         </div>
                                     </div>
                                     <div id="home-submit-reg" class="center-align">
-                                        <button id="register" class="btn waves-effect waves-light">Sign Up</button>
-                                        <p class="message center-align">Already Have An Account? <a><span class="orange-text">Log In!</span></a>
+                                        <button id="register" class="btn waves-effect waves-light"><fmt:message key="home.registration.signup" /></button>
+                                        <p class="message center-align"><fmt:message key="home.registration.alreadyhave" /> <a><span class="orange-text"><fmt:message key="home.login.camelcase" />!</span></a>
                                         </p>
                                         <span class="center-align red-text" id="messageRegistration"></span>
                                     </div>

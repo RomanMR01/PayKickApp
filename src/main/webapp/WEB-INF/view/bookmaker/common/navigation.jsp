@@ -14,9 +14,9 @@
                 </ul>
 
                 <ul id="userDropdown" class="dropdown-content grey darken-3">
-                    <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
-                    <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
-                    <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/${role}" class="white-text"><fmt:message key="menu.mycabinet" /><i class="material-icons right orange-text">perm_identity</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text"><fmt:message key="menu.editaccount" /><i class="material-icons right green-text">mode_edit</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout" class="white-text"><fmt:message key="menu.logout" /><i class="material-icons right red-text">power_settings_new</i></a></li>
                 </ul>
 
                 <!-- Sidebar Dropdowns -->
@@ -26,18 +26,18 @@
                 </ul>
 
                 <ul id="userSideDropdown" class="dropdown-content sidebar grey darken-3">
-                    <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
-                    <li><a href="${pageContext.request.contextPath}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
-                    <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/${role}" class="white-text"><fmt:message key="menu.mycabinet" /><i class="material-icons right orange-text">perm_identity</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/edit" class="white-text"><fmt:message key="menu.editaccount" /><i class="material-icons right green-text">mode_edit</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout" class="white-text"><fmt:message key="menu.logout" /><i class="material-icons right red-text">power_settings_new</i></a></li>
                 </ul>
                 <nav>
                     <div class="nav-wrapper grey darken-3">
                         <a href="#" data-activates="sidebar-nav" class="button-collapse"><i class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
 
-                            <li><a class="dropdown-button" data-activates="userDropdown">Hello, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                            <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
-                            <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
+                            <li><a class="dropdown-button" data-activates="userDropdown"><fmt:message key="common.hello" />, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
+                            <li><a href="${pageContext.request.contextPath}/home" class="white-text"><fmt:message key="common.home" /><i class="material-icons right red-text text-accent-3">home</i></a></li>
+                            <li><a class="dropdown-button" data-activates="languageDropdown"><fmt:message key="common.language" /><i class="material-icons right green-text">language</i></a></li>
                         </ul>
                         <ul class="side-nav grey darken-4" id="sidebar-nav">
                             <li>
@@ -46,8 +46,8 @@
 
                             <div class="hide-on-large-only">
                                 <li><a class="dropdown-button" data-activates="userSideDropdown">${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                                <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
-                                <li><a class="dropdown-button" data-activates="languageSideDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
+                                <li><a href="${pageContext.request.contextPath}/home" class="white-text"><fmt:message key="common.home" /><i class="material-icons right red-text text-accent-3">home</i></a></li>
+                                <li><a class="dropdown-button" data-activates="languageSideDropdown"><fmt:message key="common.language" /><i class="material-icons right green-text">language</i></a></li>
                             </div>
                         </ul>
                     </div>

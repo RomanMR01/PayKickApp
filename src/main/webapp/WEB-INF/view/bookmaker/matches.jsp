@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+         pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+            <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : 'ua_UA'}" scope="session" />
+            <fmt:setLocale value="${language}" />
+            <fmt:setBundle basename="i18n.lang" />
 <!DOCTYPE html>
 
 <html>
@@ -13,7 +16,7 @@
 
 <!-- Mobile Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bookmaker - Matches</title>
+<title><fmt:message key="title.bookmaker_matches" /></title>
 
 <jsp:include page="common/styles.jsp"></jsp:include>
 <jsp:include page="common/scripts.jsp"></jsp:include>
@@ -30,7 +33,7 @@
 		</form>
 	</c:forEach>
 	<div class="container valign" style="margin-top: 20px;">
-		<h4 class="center-align">Matches:</h4>
+		<h4 class="center-align"><fmt:message key="common.matches" />:</h4>
 		<br>
 		<div class="row">
 			<div class="col s12 l8 offset-l2">
@@ -79,9 +82,9 @@
 							<table class="centered responsive-table col s6 offset-s3">
 								<thead>
 									<tr>
-										<th>Location</th>
-										<th>Date</th>
-										<th>Profit</th>
+										<th><fmt:message key="caption.location" /></th>
+										<th><fmt:message key="caption.date" /></th>
+										<th><fmt:message key="caption.profit" /></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -108,7 +111,7 @@
 							<div class="col s12 center-align">
 								<hr>
 								<br>
-								<h5>Result Coefficients:</h5>
+								<h5><fmt:message key="coefficients.result" />:</h5>
 								<table
 									class="centered responsive-table col s10 offset-s1 big-height">
 									<thead>
@@ -133,7 +136,7 @@
 																<input id="coef_${resultCoefficient.id}" type="number" min="1.01" max="100"
 																	step="0.01" form="form_${game.id}"
 																	name="resultCoefficients" value="${resultCoefficient.coefficient}"> <label
-																	for="coef_${resultCoefficient.id}">Coefficient</label>
+																	for="coef_${resultCoefficient.id}">Coefficient<fmt:message key="" /></label>
 															</div>
 														</td>
 													</c:forEach>
@@ -145,7 +148,7 @@
 																<input id="coef_${i}_${game.id}" type="number" min="1.01" max="100"
 																	step="0.01" form="form_${game.id}"
 																	name="resultCoefficients"> <label
-																	for="coef_${i}_${game.id}">Coefficient</label>
+																	for="coef_${i}_${game.id}"><fmt:message key="coefficients.name" /></label>
 															</div>
 														</td>
 													</c:forEach>
@@ -158,14 +161,14 @@
 							<div class="col s12 center-align">
 								<hr>
 								<br>
-								<h5>Goals Coefficients:</h5>
+								<h5><fmt:message key="coefficients.goals" />:</h5>
 								<table
 									class="centered responsive-table col s6 offset-s3 big-height">
 									<thead>
 										<tr>
-											<th><c:out value="${game.firstTeam.name}"></c:out> Goal</th>
-											<th>Start Coefficient</th>
-											<th><c:out value="${game.secondTeam.name}"></c:out> Goal</th>
+											<th><c:out value="${game.firstTeam.name}"></c:out> <fmt:message key="common.goal" /></th>
+											<th><fmt:message key="coefficients.start" /></th>
+											<th><c:out value="${game.secondTeam.name}"></c:out> <fmt:message key="common.goal" /></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -176,21 +179,21 @@
 												<div class="input-field col s12">
 													<input id="coef_start_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" value="${game.scoreCoefficient.firstTeamCoefficient}"> <label
-														for="coef_start_${game.scoreCoefficient.id}">Coefficient</label>
+														for="coef_start_${game.scoreCoefficient.id}"><fmt:message key="coefficients.name" /></label>
 												</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
 													<input id="coef_t1_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" value="${game.scoreCoefficient.startCoefficient}"> <label
-														for="coef_t1_${game.scoreCoefficient.id}" >Coefficient</label>
+														for="coef_t1_${game.scoreCoefficient.id}"><fmt:message key="coefficients.name" /></label>
 												</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
 													<input id="coef_t2_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" value="${game.scoreCoefficient.secondTeamCoefficient}"> <label
-														for="coef_t2_${game.scoreCoefficient.id}" >Coefficient</label>
+														for="coef_t2_${game.scoreCoefficient.id}"><fmt:message key="coefficients.name" /></label>
 												</div>
 											</td>
 											</c:when>
@@ -199,21 +202,21 @@
 												<div class="input-field col s12">
 													<input id="coef_start_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients">
-															<label for="coef_start_${game.scoreCoefficient.id}">Coefficient</label>
+															<label for="coef_start_${game.scoreCoefficient.id}"><fmt:message key="coefficients.name" /></label>
 														</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
 													<input id="coef_t1_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" > <label
-														for="coef_t1_${game.scoreCoefficient.id}" >Coefficient</label>
+														for="coef_t1_${game.scoreCoefficient.id}"><fmt:message key="coefficients.name" /></label>
 												</div>
 											</td>
 											<td>
 												<div class="input-field col s12">
 													<input id="coef_t2_${game.scoreCoefficient.id}" type="number" step="0.01" min="1.01" max="100"
 														form="form_${game.id}" name="goalsCoefficients" > <label
-														for="coef_t2_${game.scoreCoefficient.id}" >Coefficient</label>
+														for="coef_t2_${game.scoreCoefficient.id}"><fmt:message key="coefficients.name" /></label>
 												</div>
 											</td>
 											</c:otherwise>
@@ -226,7 +229,7 @@
 							<div class="col s12 center-align">
 								<hr>
 								<br>
-								<h5>Players Coefficients:</h5>
+								<h5><fmt:message key="coefficients.player" />:</h5>
 								<br>
 								<div class="row">
 									<div class="col s4 offset-s2 m3 offset-m3">
@@ -300,7 +303,7 @@
 							</div>
 						</div>
 						<button class="waves-effect waves-light btn green" type="submit" form="form_${game.id}"><i
-							class="material-icons right">done</i>Confirm</button> <br> <br>
+							class="material-icons right">done</i><fmt:message key="common.confirm" /></button> <br> <br>
 					</div>
 				</li>
 			</c:forEach>
