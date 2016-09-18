@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : 'ua_UA'}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.lang"/>
 <!DOCTYPE html>
 
 <html>
@@ -13,7 +17,7 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Matches</title>
+    <title><fmt:message key="title.adminmatches" /></title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
     <jsp:include page="common/scripts.jsp"></jsp:include>
@@ -25,7 +29,7 @@
 <!-- Main Content -->
 <main class="valign-wrapper grey lighten-3">
     <div class="container valign" style="margin-top: 20px;">
-        <h4 class="center-align">Matches:</h4>
+        <h4 class="center-align"><fmt:message key="matches.title" />:</h4>
         <br>
         <div class="row">
             <div class="col s12 l8 offset-l2">
@@ -85,10 +89,10 @@
                             <table class="centered responsive-table col s6 offset-s3">
                                 <thead>
                                 <tr>
-                                    <th>Location</th>
-                                    <th>Date</th>
-                                    <th>Bookmaker</th>
-                                    <th>Profit</th>
+                                    <th>Location<fmt:message key="caption.location" /></th>
+                                    <th>Date<fmt:message key="caption.date" /></th>
+                                    <th>Bookmaker<fmt:message key="common.bookmaker" /></th>
+                                    <th>Profit<fmt:message key="caption.profit" /></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -154,17 +158,17 @@
                         </div>
                         <c:if test="${game.status=='NEW'}">
                             <a class="waves-effect waves-light btn red" href="#" id="${game.id}"><i
-                                    class="material-icons right">block</i>Cancel</a>
+                                    class="material-icons right">block</i><fmt:message key="caption.cancel" /></a>
                             <br>
                             <br>
                         </c:if>
 
                         <c:if test="${game.status=='ACTIVE'}">
                             <a class="waves-effect waves-light btn red" href="#" id="${game.id}"><i
-                                    class="material-icons right">block</i>Cancel</a>
+                                    class="material-icons right">block</i><fmt:message key="caption.cancel" /></a>
                             <a class="waves-effect waves-light btn green darken-1" href="#"
                                id="g_${game.id}_ft_${game.firstTeam.id}_st_${game.secondTeam.id}"><i
-                                    class="material-icons right">done</i>Confirm</a>
+                                    class="material-icons right">done</i><fmt:message key="common.confirm" /></a>
                             <br>
                             <br>
                         </c:if>
@@ -175,8 +179,7 @@
             </c:forEach>
         </ul>
         <br> <a class="waves-effect waves-light modal-trigger btn right green" href="#new-match-modal"><i
-            class="material-icons right">playlist_add</i>New
-        Match</a>
+            class="material-icons right">playlist_add</i><fmt:message key="admin.newmatch" /></a>
         <br>
         <ul class="pagination center-align">
             <c:choose>
@@ -225,34 +228,34 @@
 <div id="new-match-modal" class="modal my-narrow">
     <div class="modal-content">
         <div class="row">
-            <h5 class="center-align">New Match</h5>
+            <h5 class="center-align"><fmt:message key="admin.newmatch" /></h5>
             <br>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="title" type="text">
-                    <label for="title">Title</label>
+                    <label for="title"><fmt:message key="caption.title" /></label>
                 </div>
                 <div class="input-field col s12">
                     <input id="location" type="text">
-                    <label for="location">Location</label>
+                    <label for="location"><fmt:message key="caption.location" /></label>
                 </div>
                 <div class="col s12">
-                    <label for="date">Date</label>
+                    <label for="date"><fmt:message key="caption.date" /></label>
                     <input id="date" type="datetime-local">
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input type="text" id="first-team" class="autocomplete team-input" autocomplete="off">
-                        <label for="first-team">First Team</label>
+                        <label for="first-team"><fmt:message key="common.firstteam" /></label>
                     </div>
                     <div class="input-field col s6">
                         <input type="text" id="second-team" class="autocomplete team-input" autocomplete="off">
-                        <label for="second-team">Second Team</label>
+                        <label for="second-team"><fmt:message key="common.secondteam" /></label>
                     </div>
                 </div>
                 <div class="input-field col s12">
                     <input type="text" id="bookmaker" class="autocomplete bookmaker-input" autocomplete="off">
-                    <label for="bookmaker">Bookmaker</label>
+                    <label for="bookmaker"><fmt:message key="common.bookmaker" /></label>
                 </div>
                 <br>
                 <br>
@@ -260,7 +263,7 @@
                 <br>
                 <div class="col s12 center-align">
                     <button class="btn waves-effect waves-light" id="addGameBtn">
-                        Confirm <i class="material-icons right">done</i>
+                        <fmt:message key="common.confirm" /> <i class="material-icons right">done</i>
                     </button>
                     <br>
                     <br> <span class="center-align red-text" id="messageAddGame"></span>

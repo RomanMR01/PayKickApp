@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : 'ua_UA'}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.lang"/>
 <!DOCTYPE html>
 
 <html>
@@ -12,7 +17,7 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Users</title>
+    <title><fmt:message key="title.adminuser" /></title>
 
     <jsp:include page="common/styles.jsp"></jsp:include>
 
@@ -25,7 +30,7 @@
 <main class="valign-wrapper grey lighten-3">
 
     <div class="container valign" style="margin-top: 20px;">
-        <h4 class="center-align">Users:</h4>
+        <h4 class="center-align"><fmt:message key="admin.users" />:</h4>
         <br>
         <div class="row">
             <div class="col s12 l6 offset-l3">
@@ -33,21 +38,21 @@
                     <c:choose>
 
                         <c:when test="${type == 'CLIENT'}">
-                            <li class="tab col s4 l2"><a href="users?type=ALL&page=1" target="_self">ALL</a></li>
-                            <li class="tab col s4 l2"><a class="active" href="" target="_self">CLIENTS</a></li>
+                            <li class="tab col s4 l2"><a href="users?type=ALL&page=1" target="_self"><fmt:message key="common.all" /></a></li>
+                            <li class="tab col s4 l2"><a class="active" href="" target="_self"><fmt:message key="common.clients" /></a></li>
                             <li class="tab col s4 l2"><a href="users?type=BOOKMAKER&page=1"
-                                                         target="_self">BOOKMAKERS</a></li>
+                                                         target="_self"><fmt:message key="common.bookmakers" /></a></li>
                         </c:when>
                         <c:when test="${type == 'BOOKMAKER'}">
-                            <li class="tab col s4 l2"><a href="users?type=ALL&page=1" target="_self">ALL</a></li>
-                            <li class="tab col s4 l2"><a href="users?type=CLIENT&page=1" target="_self">CLIENTS</a></li>
-                            <li class="tab col s4 l2"><a class="active" href="" target="_self">BOOKMAKERS</a></li>
+                            <li class="tab col s4 l2"><a href="users?type=ALL&page=1" target="_self"><fmt:message key="common.all" /></a></li>
+                            <li class="tab col s4 l2"><a href="users?type=CLIENT&page=1" target="_self"><fmt:message key="common.clients" /></a></li>
+                            <li class="tab col s4 l2"><a class="active" href="" target="_self"><fmt:message key="common.bookmakers" /></a></li>
                         </c:when>
                         <c:otherwise>
-                            <li class="tab col s4 l2"><a class="active" href="" target="_self">ALL</a></li>
-                            <li class="tab col s4 l2"><a href="users?type=CLIENT&page=1" target="_self">CLIENTS</a></li>
+                            <li class="tab col s4 l2"><a class="active" href="" target="_self"><fmt:message key="common.all" /></a></li>
+                            <li class="tab col s4 l2"><a href="users?type=CLIENT&page=1" target="_self"><fmt:message key="common.clients" /></a></li>
                             <li class="tab col s4 l2"><a href="users?type=BOOKMAKER&page=1"
-                                                         target="_self">BOOKMAKERS</a></li>
+                                                         target="_self"><fmt:message key="common.bookmakers" /></a></li>
                         </c:otherwise>
                     </c:choose>
                 </ul>
@@ -87,8 +92,8 @@
                             <div class="row">
                                 <div class="col s12">
                                     <ul class="tabs transparent">
-                                        <li class="tab col s6"><a href="#chart">Chart</a></li>
-                                        <li class="tab col s6"><a href="#diagram">Diagram</a></li>
+                                        <li class="tab col s6"><a href="#chart"><fmt:message key="common.chart" /></a></li>
+                                        <li class="tab col s6"><a href="#diagram"><fmt:message key="common.diagram" /></a></li>
                                     </ul>
                                 </div>
                                 <div class="col s12">
@@ -104,13 +109,13 @@
                         <table class="centered responsive-table">
                             <thead>
                             <tr>
-                                <th>Full Name</th>
-                                <th>Sex</th>
-                                <th>Age</th>
-                                <th>E-Mail</th>
-                                <th>Balance</th>
-                                <th>Role</th>
-                                <th>Banned</th>
+                                <th><fmt:message key="caption.fullname" /></th>
+                                <th><fmt:message key="caption.sex" /></th>
+                                <th><fmt:message key="caption.age" /></th>
+                                <th><fmt:message key="caption.email" /></th>
+                                <th><fmt:message key="caption.balance" /></th>
+                                <th><fmt:message key="caption.role" /></th>
+                                <th><fmt:message key="caption.banned" /></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -139,19 +144,19 @@
                                             <select id="${user.id}">
                                                 <c:choose>
                                                     <c:when test="${user.role == 'CLIENT'}">
-                                                        <option value="CLIENT" selected>CLIENT</option>
-                                                        <option value="BOOKMAKER">BOOKMAKER</option>
-                                                        <option value="ADMIN">ADMIN</option>
+                                                        <option value="CLIENT" selected><fmt:message key="common.client" /></option>
+                                                        <option value="BOOKMAKER"><fmt:message key="common.bookmaker.caps" /></option>
+                                                        <option value="ADMIN"><fmt:message key="common.admin" /></option>
                                                     </c:when>
                                                     <c:when test="${user.role == 'BOOKMAKER'}">
-                                                        <option value="CLIENT">CLIENT</option>
-                                                        <option value="BOOKMAKER" selected>BOOKMAKER</option>
-                                                        <option value="ADMIN">ADMIN</option>
+                                                        <option value="CLIENT"><fmt:message key="common.client" /></option>
+                                                        <option value="BOOKMAKER" selected><fmt:message key="common.bookmaker.caps" /></option>
+                                                        <option value="ADMIN"><fmt:message key="common.admin" /></option>
                                                     </c:when>
                                                     <c:when test="${user.role == 'ADMIN'}">
-                                                        <option value="CLIENT">CLIENT</option>
-                                                        <option value="BOOKMAKER">BOOKMAKER</option>
-                                                        <option value="ADMIN" selected>ADMIN</option>
+                                                        <option value="CLIENT"><fmt:message key="common.client" /></option>
+                                                        <option value="BOOKMAKER"><fmt:message key="common.bookmaker.caps" /></option>
+                                                        <option value="ADMIN" selected><fmt:message key="common.admin" /></option>
                                                     </c:when>
                                                 </c:choose>
                                             </select>
@@ -160,7 +165,7 @@
                                 </td>
                                 <td>
                                     <div class="switch">
-                                        <label id="${user.id}"> No
+                                        <label id="${user.id}"> <fmt:message key="common.no" />
                                             <c:choose>
                                                 <c:when test="${user.isBanned()}">
                                                     <input id="checkIt_${user.id}" type="checkbox" checked>
@@ -168,7 +173,7 @@
                                                 <c:otherwise>
                                                     <input id="checkIt_${user.id}" type="checkbox">
                                                 </c:otherwise>
-                                            </c:choose> <span class="lever"></span> Yes
+                                            </c:choose> <span class="lever"></span> <fmt:message key="common.yes" />
                                         </label>
                                     </div>
                                 </td>
@@ -178,7 +183,7 @@
                         </table>
                         <a class="waves-effect waves-light modal-trigger btn green" href="#modal-stats">
                             <div class="button1" id="${user.id}/${user.role}"><i
-                                    class="material-icons right">timeline</i>Statistics
+                                    class="material-icons right">timeline</i><fmt:message key="statistics.h" />
                             </div>
                             ></a>
                         <br>

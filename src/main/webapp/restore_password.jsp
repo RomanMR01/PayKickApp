@@ -16,7 +16,7 @@
 
                 <!-- Mobile Metas -->
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>PayKick. Restoring Password!</title>
+                <title>PayKick. <fmt:message key="new_password.title" />!</title>
 
                 <!-- Favicon -->
                 <link rel="shortcut icon" href="static/img/favicon.ico">
@@ -41,28 +41,27 @@
                         <div class="row">
                             <form id="restore-password-form" class="col s8 offset-s2 m6 offset-m3 white center-align">
                                 <br><br>
-                                <h5 class="center-align">Restoring Password:</h5>
+                                <h5 class="center-align"><fmt:message key="new_password.title" />:</h5>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <input id="restore-email" type="email">
-                                        <label class="left-align" for="restore-email" data-error="wrong" data-success="right">Email</label>
+                                        <label class="left-align" for="restore-email" data-error="wrong" data-success="right"><fmt:message key="caption.email" /></label>
                                     </div>
                                 </div>
-                                <button id="restore-email-btn" class="btn waves-effect waves-light" type="submit" name="action">Restore
-                                    <i class="material-icons right">lock_outline</i>
+                                <button id="restore-email-btn" class="btn waves-effect waves-light" type="submit" name="action"><fmt:message key="restore_password.restore" /><i class="material-icons right">lock_outline</i>
                                 </button>
                                 <br>
-                                <p class="center-align"><a href="home" class="orange-text">Home page</a></p>
+                                <p class="center-align"><a href="home" class="orange-text"><fmt:message key="new_password.home" /></a></p>
                                 <span id="messageRestoreFail" class="center-align red-text"></span>
                                 <br><br>
                             </form>
                             <form id="email-sent-form" class="col s8 offset-s2 m6 offset-m3 white center-align" style="display: none">
                                 <br><br>
                                 <div class="row">
-                                    <h5 class="center-align">Email sent successfully! Check your mailbox, please!</h5>
+                                    <h5 class="center-align"><fmt:message key="restore_password.sentsuccessfull" />!</h5>
                                 </div>
                                 <div class="row">
-                                    <h5><a href="home" class="orange-text">Home page!</a></h5>
+                                    <h5><a href="home" class="orange-text"><fmt:message key="new_password.home" />!</a></h5>
                                 </div>
                                 <br><br>
                             </form>

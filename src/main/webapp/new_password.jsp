@@ -16,7 +16,7 @@
 
                 <!-- Mobile Metas -->
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>PayKick. Restoring Password!</title>
+                <title>PayKick. <fmt:message key="new_password.title" />!</title>
 
                 <!-- Favicon -->
                 <link rel="shortcut icon" href="static/img/favicon.ico">
@@ -43,17 +43,17 @@
                                 <c:when test="${hideForm==null}">
                                     <form id="new-password-form"class="col s8 offset-s2 m6 offset-m3 white center-align">
                                         <br><br>
-                                        <h5 class="center-align">Enter New Password:</h5>
+                                        <h5 class="center-align"><fmt:message key="new_password.enter" />:</h5>
                                         <div id="formInput" class="row">
                                             <div class="input-field col s12">
                                                 <input id="new-password-input" type="password">
-                                                <label class="left-align" for="new-password-input">New Password</label>
+                                                <label class="left-align" for="new-password-input"><fmt:message key="new_password.new" /></label>
                                             </div>
                                         </div>
-                                        <button id="new-password-btn"class="btn waves-effect waves-light" type="submit" name="action">Confirm
+                                        <button id="new-password-btn"class="btn waves-effect waves-light" type="submit" name="action"><fmt:message key="new_password.confirm" />
                                             <i class="material-icons right">lock_outline</i>
                                         </button>
-                                        <p class="center-align"><a href="home" class="orange-text">Home page!</a></p>
+                                        <p class="center-align"><a href="home" class="orange-text"><fmt:message key="new_password.home" />!</a></p>
                                         <span id="messageNewPass" class="center-align red-text"></span>
                                         <br><br>
                                     </form>
@@ -62,13 +62,13 @@
                                     <form class="col s8 offset-s2 m6 offset-m3 white center-align">
                                         <br><br>
                                         <div class="row">
-                                            <h5 class="center-align">Link not valid!</h5>
+                                            <h5 class="center-align"><fmt:message key="new_password.notvalid" />!</h5>
                                         </div>
                                         <div class="row">
-                                            <h5 class="center-align">The link is active for 24 hours!</h5>
+                                            <h5 class="center-align"><fmt:message key="new_password.active24" />!</h5>
                                         </div>
                                         <div class="row">
-                                            <h5><a href="home" class="orange-text">Home page!</a></h5>
+                                            <h5><a href="home" class="orange-text"><fmt:message key="new_password.home" />!</a></h5>
                                             <br><br>
                                         </div>
                                     </form>
@@ -78,10 +78,10 @@
                             <form id="go-home-form" class="col s8 offset-s2 m6 offset-m3 white center-align" style="display: none">
                                 <br><br>
                                 <div class="row">
-                                    <h5 class="center-align">Password restored successfully!</h5>
+                                    <h5 class="center-align"><fmt:message key="new_password.success" />!</h5>
                                 </div>
                                <div class="row">
-                                   <h5><a href="home" class="orange-text">Home page!</a></h5>
+                                   <h5><a href="home" class="orange-text"><fmt:message key="new_password.home" />!</a></h5>
                                </div>
                                 <br><br>
                             </form>

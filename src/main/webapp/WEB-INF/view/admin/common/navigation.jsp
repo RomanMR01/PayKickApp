@@ -15,9 +15,9 @@
     </ul>
 
     <ul id="userDropdown" class="dropdown-content grey darken-3">
-        <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
-        <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
-        <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/${role}" class="white-text"><fmt:message key="menu.mycabinet" /><i class="material-icons right orange-text">perm_identity</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text"><fmt:message key="menu.editaccount" /><i class="material-icons right green-text">mode_edit</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/logout" class="white-text"><fmt:message key="menu.logout" /><i class="material-icons right red-text">power_settings_new</i></a></li>
     </ul>
 
     <!-- Sidebar Dropdowns -->
@@ -27,34 +27,34 @@
     </ul>
 
     <ul id="userSideDropdown" class="dropdown-content sidebar grey darken-3">
-        <li><a href="${pageContext.request.contextPath}/${role}" class="white-text">MY CABINET<i class="material-icons right orange-text">perm_identity</i></a></li>
-        <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text">EDIT ACCOUNT<i class="material-icons right green-text">mode_edit</i></a></li>
-        <li><a href="${pageContext.request.contextPath}/logout" class="white-text">LOG OUT<i class="material-icons right red-text">power_settings_new</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/${role}" class="white-text"><fmt:message key="menu.mycabinet" /><i class="material-icons right orange-text">perm_identity</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/${role}/edit" class="white-text"><fmt:message key="menu.editaccount" /><i class="material-icons right green-text">mode_edit</i></a></li>
+        <li><a href="${pageContext.request.contextPath}/logout" class="white-text"><fmt:message key="menu.logout" /><i class="material-icons right red-text">power_settings_new</i></a></li>
     </ul>
     <nav>
         <div class="nav-wrapper grey darken-3">
             <a href="#" data-activates="sidebar-nav" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
 
-                <li><a class="dropdown-button" data-activates="userDropdown">Hello, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
-                <li><a class="dropdown-button" data-activates="languageDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
+                <li><a class="dropdown-button" data-activates="userDropdown"><fmt:message key="common.hello" />, ${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/home" class="white-text"><fmt:message key="common.home" /><i class="material-icons right red-text text-accent-3">home</i></a></li>
+                <li><a class="dropdown-button" data-activates="languageDropdown"><fmt:message key="common.language" /><i class="material-icons right green-text">language</i></a></li>
             </ul>
             <ul class="side-nav fixed grey darken-4" id="sidebar-nav">
                 <li>
                     <a href="${pageContext.request.contextPath}/home" class="center-align logo"><img src="${pageContext.request.contextPath}/static/img/logo.png" alt="PayKick Logo" width="50" height="44"></a>
                 </li>
 
-                <li><a href="${pageContext.request.contextPath}/admin/matches">MANAGE MATCHES<i class="material-icons right red-text text-accent-3">list</i></a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/teams">MANAGE TEAMS<i class="material-icons right orange-text">group</i></a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/users">MANAGE USERS<i class="material-icons right blue-text">person_pin</i></a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/statistics">STATISTICS<i class="material-icons right green-text text-accent-4">equalizer</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/matches"><fmt:message key="menu.managematches" /><i class="material-icons right red-text text-accent-3">list</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/teams"><fmt:message key="menu.manageteams" /><i class="material-icons right orange-text">group</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/users"><fmt:message key="menu.manageusers" /><i class="material-icons right blue-text">person_pin</i></a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/statistics"><fmt:message key="menu.statistics" /><i class="material-icons right green-text text-accent-4">equalizer</i></a></li>
 
                 <div class="hide-on-large-only">
                     <hr>
                     <li><a class="dropdown-button" data-activates="userSideDropdown">${fullName}<i class="material-icons right orange-text">perm_identity</i></a></li>
-                    <li><a href="${pageContext.request.contextPath}/home" class="white-text">HOME<i class="material-icons right red-text text-accent-3">home</i></a></li>
-                    <li><a class="dropdown-button" data-activates="languageSideDropdown">LANGUAGE<i class="material-icons right green-text">language</i></a></li>
+                    <li><a href="${pageContext.request.contextPath}/home" class="white-text"><fmt:message key="common.home" /><i class="material-icons right red-text text-accent-3">home</i></a></li>
+                    <li><a class="dropdown-button" data-activates="languageSideDropdown"><fmt:message key="common.language" /><i class="material-icons right green-text">language</i></a></li>
                 </div>
             </ul>
         </div>
