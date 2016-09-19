@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Created by Vikno on 9/7/2016.
@@ -21,6 +22,7 @@ import java.util.Map;
 public class RestorePasswordServlet extends HttpServlet{
     private Map<String,RestorePassword> restorePasswordMap = new HashMap<>();
     private static Logger logger = Logger.getLogger(RestorePasswordServlet.class);
+    private static ResourceBundle bundle = ResourceBundle.getBundle("security/config");//Here stored data for mail sending
 
     @Override
     public void init() throws ServletException {
@@ -33,6 +35,7 @@ public class RestorePasswordServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String email = req.getParameter("email");
 
         if(email!=null) {
@@ -47,7 +50,7 @@ public class RestorePasswordServlet extends HttpServlet{
                 Date current = new Date();
                 //TODO return this
 //                Date end = new Date(current.getTime() + (1000 * 60 * 60 * 24));//For one day!
-                Date end = new Date(current.getTime() + (1000 * 60 *2));//For two minute!
+                Date end = new Date(current.getTime() + (1000 * 60 *5));//For two minute!
 
                 String uid = UrlGenerator.getFixedUrl(user.getLogin(),current);
 
@@ -57,9 +60,12 @@ public class RestorePasswordServlet extends HttpServlet{
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        //TODO add properties
-                        MailSender sender = new MailSender("paykick.team@gmail.com", "paykickteam01");//server parameters
-                        String restorePasswordMessage = "For restoring your password follow <a href='http://localhost:8080/PayKick/newPassword?uid=" + uid + "'>this</a> link!";
+                        MailSender sender = new MailSender(bundle.getString("mail.email"), bundle.getString("mail.password"));//server parameters
+                        String restorePasswordMessage = "<p>We heard that you lost your PayKick password. Sorry about that!</p>\n" +
+                                "\t<p>But don't worry! You can use the following link within the next day to reset your password:</p>\n" +
+                                "\t<p><a href='http://localhost:8080/PayKick/newPassword?uid=" + uid + "'>" +
+                                 "http://localhost:8080/PayKick/newPassword?uid=" + uid + "</a></p>" +
+                                "\t<p>If you don't use this link within 24 hours, it will expire.</p>";
                         logger.info("Restore password mail are sent to user " + user.getId());
                         sender.sendEmail("Restoring password.", restorePasswordMessage, user.getEmail());
                     }

@@ -92,7 +92,7 @@ public class MailSender {
 
             message.setSubject(subject);
             message.setContent(
-                    "<h3>"+ text + "</h3></br> <a href=\"http://localhost:8080/PayKick\">PayKick</a>",
+                    text + "</br><p>Thanks, Your friends at </p><a href=\"http://localhost:8080/PayKick\">PayKick</a>",
                     "text/html;charset=utf-8");
 
 
