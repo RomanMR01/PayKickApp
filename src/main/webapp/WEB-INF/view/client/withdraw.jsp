@@ -28,10 +28,10 @@
                     <br>
                     <div class="row">
                         <div class="input-field col s6 offset-s3 center-align">
-                            <input id="amount" type="number" min="0">
+                            <input id="amount" type="number" min="1" max="1000" length="7">
                             <br><br>
                             <label for="amount">Amount</label>
-                            <a class="waves-effect waves-light btn green"><i class="material-icons right">attach_money</i>Withdraw</a>
+                            <a class="waves-effect waves-light btn green" id="submitWithdraw"><i class="material-icons right">attach_money</i>Withdraw</a>
                         </div>
                         
                     </div>
@@ -39,7 +39,35 @@
             </main>
 
             <jsp:include page="common/footer.jsp"></jsp:include>
+<script>
+    $("#submitWithdraw").click(function () {
+        var amountSum = new Number($("#amount").val());
+        if (amountSum < 1 || amountSum > 1000000) {
+            Materialize.toast("Wrong input, must be from 1 to 1000000!",5000);
+            return;
+        }
 
+        $.ajax({
+            type: "POST",
+            url: "withdraw",
+            data: {
+                "amountSum":amountSum
+            },
+            success: function (data) {
+                var response = JSON.parse(data);
+                var status = response.status;
+                var message = response.message;
+
+                if (status == 'OK') {
+                    window.location = 'withdraw';
+                } else {
+                    Materialize.toast(message,5000)
+                }
+            }
+        });
+
+    });
+</script>
         </body>
 
         </html>
