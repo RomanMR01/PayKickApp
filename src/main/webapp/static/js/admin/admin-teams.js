@@ -32,6 +32,10 @@ $("a.btn.green.darken-1").click(function () {
 
         var infoMessage = $('#newPlayerFormMessage');
 
+        if(firstName.length>20 || surname.length>25){
+            Materialize.toast("Too long fields!",5000);
+            return;
+        }
         if(firstName.length==0 || surname.length==0 || age.length==0){
             Materialize.toast("Fields can't be empty!",5000);
             return;
@@ -112,6 +116,10 @@ $("#createTeamBtn").click(function () {
     var teamName = $("#teamTitle").val();
     var teamLocation = $("#teamLocation").val();
 
+    if(teamName.length>50 || teamLocation.length>50){
+        Materialize.toast("Too long fields!",5000);
+        return;
+    }
     var infoMessage = $('#newTeamFormMessage');
     if (teamName.length == 0 || teamLocation.length == 0) {
         Materialize.toast("Fields can't be empty!",5000);

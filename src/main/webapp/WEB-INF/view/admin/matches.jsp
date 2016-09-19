@@ -232,11 +232,11 @@
             <br>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="title" type="text">
+                    <input id="title" type="text" length="50">
                     <label for="title"><fmt:message key="caption.title" /></label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="location" type="text">
+                    <input id="location" type="text" length="50">
                     <label for="location"><fmt:message key="caption.location" /></label>
                 </div>
                 <div class="col s12">
@@ -245,16 +245,16 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input type="text" id="first-team" class="autocomplete team-input" autocomplete="off">
+                        <input type="text" id="first-team" class="autocomplete team-input" length="50" autocomplete="off">
                         <label for="first-team"><fmt:message key="common.firstteam" /></label>
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" id="second-team" class="autocomplete team-input" autocomplete="off">
+                        <input type="text" id="second-team" class="autocomplete team-input" length="50" autocomplete="off">
                         <label for="second-team"><fmt:message key="common.secondteam" /></label>
                     </div>
                 </div>
                 <div class="input-field col s12">
-                    <input type="text" id="bookmaker" class="autocomplete bookmaker-input" autocomplete="off">
+                    <input type="text" id="bookmaker" class="autocomplete bookmaker-input" length="50" autocomplete="off">
                     <label for="bookmaker"><fmt:message key="common.bookmaker" /></label>
                 </div>
                 <br>

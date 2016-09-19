@@ -86,6 +86,11 @@ $('#addGameBtn').on('click', function (e) {
 
     var messageAddGame = $("#messageAddGame");
 
+    if(title.length>50 || location.length>50){
+        Materialize.toast("Too long fields!",5000);
+        return;
+    }
+
 
     if(title==null || location==null || date==null || firstTeamName==null || secondTeamName==null || bookmaker==null){
         Materialize.toast("Found empty fields!",5000);

@@ -117,11 +117,11 @@
                         <div id="new-player-form" class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="fname" type="text">
+                                    <input id="fname" type="text" length="20" required>
                                     <label for="fname"><fmt:message key="caption.name" /></label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="surname" type="text">
+                                    <input id="surname" type="text" length="25" required>
                                     <label for="surname"><fmt:message key="caption.surname" /></label>
                                 </div>
                                 <div class="col s12">
@@ -143,7 +143,7 @@
                         <div id="existing-player-form" class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input type="text" id="existing-player" class="autocomplete player-input" autocomplete="off">
+                                    <input type="text" id="existing-player" class="autocomplete player-input" length="50" autocomplete="off">
                                     <label for="existing-player"><fmt:message key="common.player" /></label>
                                 </div>
                             </div>
@@ -169,11 +169,11 @@
                         <div class="col s12" id="createNewTeam">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="teamTitle" type="text" required>
+                                    <input id="teamTitle" type="text" length="50" required>
                                     <label for="teamTitle"><fmt:message key="caption.name" /></label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input id="teamLocation" type="text" required>
+                                    <input id="teamLocation" type="text" length="50" required>
                                     <label for="teamLocation"><fmt:message key="caption.location" /></label>
                                 </div>
                             </div>
