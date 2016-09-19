@@ -87,7 +87,7 @@ public class ChartServlet extends HttpServlet {
                         resultPlayer=playerDAO.getPlayer(player, "id");
                         goalCount=goalDAO.countAllGoals(player);
                     } catch (SQLException e) {
-                        e.printStackTrace();
+                        logger.error("Can't count all goals:",e);
                     }
                     Player fakePlayer=new Player();
                     fakePlayer.setId(-1);
@@ -124,7 +124,6 @@ public class ChartServlet extends HttpServlet {
                         Collections.sort(games);
                         json = gson.toJson(games);
                     } catch (SQLException e) {
-                        e.printStackTrace();
                         logger.warn("Exception while getting all TotalBets:",e);
                     }
                     break;

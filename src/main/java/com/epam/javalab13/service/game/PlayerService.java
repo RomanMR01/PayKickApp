@@ -30,7 +30,7 @@ public class PlayerService {
         try {
             playerDAO.updatePlayer(player,"remove");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't remove player from team:",e);
         }
     }
 
@@ -49,7 +49,7 @@ public class PlayerService {
         try {
             player = playerDAO.getPlayer(p,"name");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get player:",e);
         }
         Team team = new Team();
         team.setId(teamId);
@@ -57,7 +57,7 @@ public class PlayerService {
         try {
             playerDAO.updatePlayer(player, "team");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't update player team:",e);
         }
     }
 
@@ -83,7 +83,7 @@ public class PlayerService {
         try {
             return playerDAO.getPlayersByTeam(team);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get all players by team:",e);
         }
 
         return null;
@@ -93,7 +93,7 @@ public class PlayerService {
         try {
             return playerDAO.getAllPlayers();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can't get all players:",e);
         }
 
         return null;
