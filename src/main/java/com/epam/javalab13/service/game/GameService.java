@@ -169,7 +169,7 @@ public class GameService {
                 public void run() {
                     if (usersEN.size() > 0) {
                         sender.sendEmailsBatch("Game canceled!", "<p>Unfortunately game <b>" + game.getTitle() + "</b> canceled!</p>" +
-                                "<p>For more details login into your account!</p>", usersUA);
+                                "<p>For more details login into your account!</p>", usersEN);
                     }
                     if (usersUA.size() > 0) {
                         sender.sendEmailsBatch("Гру відмінено!", "<p>Нажаль гру <b>" + game.getTitle() + "</b> відмінено!</p>" +
