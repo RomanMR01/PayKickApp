@@ -96,7 +96,7 @@
                                             <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${singleBet.game.date}" />
                                         </td>
                                         <td>
-                                            <c:out value="${singleBet.game.title}"></c:out>
+                                            <c:out value="${singleBet.game.firstTeam.name} - ${singleBet.game.secondTeam.name}"></c:out>
                                         </td>
                                         <td>
                                             <c:out value="${singleBet.category}"></c:out>
@@ -113,7 +113,7 @@
                                                 </td>
                                             </c:when>
                                             <c:when test="${singleBet.category=='SCORE'}">
-                                                <td>${singleBet.betScore.firstTeamScore}- ${singleBet.betScore.secondTeamScore}
+                                                <td>${singleBet.betScore.firstTeamScore} - ${singleBet.betScore.secondTeamScore}
                                                 </td>
                                             </c:when>
                                             <c:when test="${singleBet.category=='PLAYER'}">

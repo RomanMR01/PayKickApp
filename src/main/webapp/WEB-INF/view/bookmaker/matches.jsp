@@ -139,7 +139,7 @@
                                                                    step="0.01" form="form_${game.id}"
                                                                    name="resultCoefficients"
                                                                    value="${resultCoefficient.coefficient}" required/> <label
-                                                                for="coef_${resultCoefficient.id}">Coefficient<fmt:message
+                                                                for="coef_${resultCoefficient.id}"><fmt:message
                                                                 key="coefficients.name"/></label>
                                                         </div>
                                                     </td>
