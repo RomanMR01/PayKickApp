@@ -1,11 +1,5 @@
 package com.epam.javalab13.service;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import com.epam.javalab13.model.Role;
-import org.apache.log4j.Logger;
-
 import com.epam.javalab13.dao.UserDAO;
 import com.epam.javalab13.dao.UserDAO.GetType;
 import com.epam.javalab13.dao.bet.TotalBetDAO;
@@ -14,11 +8,15 @@ import com.epam.javalab13.dao.game.GameDAO;
 import com.epam.javalab13.dao.game.GameDAO.Type;
 import com.epam.javalab13.dao.game.PlayerDAO;
 import com.epam.javalab13.dao.game.TeamDAO;
+import com.epam.javalab13.model.Role;
 import com.epam.javalab13.model.User;
 import com.epam.javalab13.model.bet.TotalBet;
 import com.epam.javalab13.model.game.Game;
 import com.epam.javalab13.model.game.Player;
 import com.epam.javalab13.model.game.Team;
+import org.apache.log4j.Logger;
+
+import java.util.List;
 
 public class PaginationService {
 
@@ -183,7 +181,7 @@ public class PaginationService {
             teams.addAll(allTeams.subList(start, end));
             return pages;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Can't get pages for teams:", e);
             return -1;
         }
     }
@@ -204,7 +202,7 @@ public class PaginationService {
             players.addAll(allPlayers.subList(start, end));
             return pages;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Can't get pages for players:", e);
             return -1;
         }
     }
