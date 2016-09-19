@@ -14,8 +14,8 @@
                 </ul>
 
                 <ul id="balanceDropdown" class="dropdown-content grey darken-3">
-                    <li><a href="" class="white-text">CREDIT</a></li>
-                    <li><a href="" class="white-text">WITHDRAW</a></li>
+                    <li><a href="${pageContext.request.contextPath}/client/credit" class="white-text">CREDIT</a></li>
+                    <li><a href="${pageContext.request.contextPath}/client/withdraw" class="white-text">WITHDRAW</a></li>
                 </ul>
 
                 <ul id="userDropdown" class="dropdown-content grey darken-3">
@@ -37,8 +37,8 @@
                 </ul>
 
                 <ul id="balanceSideDropdown" class="dropdown-content sidebar grey darken-3">
-                    <li><a href="" class="white-text">CREDIT</a></li>
-                    <li><a href="" class="white-text">WITHDRAW</a></li>
+                    <li><a href="${pageContext.request.contextPath}/client/credit" class="white-text">CREDIT</a></li>
+                    <li><a href="${pageContext.request.contextPath}/client/withdraw" class="white-text">WITHDRAW</a></li>
                 </ul>
 
                 <nav>
