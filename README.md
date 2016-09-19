@@ -1,2 +1,2 @@
 Epam JavaLab13 Group Project
-VERSION 0.95
+VERSION 0.97
