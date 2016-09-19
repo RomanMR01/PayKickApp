@@ -427,7 +427,7 @@
                 var firstTeamSelector = $("#game_" + gameId + "_players-bet-block #firstTeamPlayers .coef");
                 var firstTeamPlayerNum = 0;
                 firstTeamSelector.each(function () {
-                    var checkedPlayersSelector = $("input[name=game_" + gameId + "_players-bet_" + firstTeamPlayersId[firstTeamPlayerNum++] + "]:checked");
+                    var checkedPlayersSelector = $("input[name=game_" + gameId + "_players-bet_" + firstTeamPlayersId[firstTeamPlayerNum] + "]:checked");
                     if (checkedPlayersSelector.val()) {
                         var playerId = firstTeamPlayersId[firstTeamPlayerNum];
                         var playerCoefficient = checkedPlayersSelector.val();
@@ -436,13 +436,14 @@
                         var player = {"playerId": playerId, "playerCoefficient": playerCoefficient};
                         Game.betPlayer.push(player);
                     }
+                    firstTeamPlayerNum++;
                 });
 
                 //Selecting players from second team
                 var secondTeamSelector = $("#game_" + gameId + "_players-bet-block #secondTeamPlayers .coef");
                 var secondTeamPlayerNum = 0;
                 secondTeamSelector.each(function () {
-                    var checkedPlayersSelector = $("input[name=game_" + gameId + "_players-bet_" + secondTeamPlayersId[secondTeamPlayerNum++] + "]:checked");
+                    var checkedPlayersSelector = $("input[name=game_" + gameId + "_players-bet_" + secondTeamPlayersId[secondTeamPlayerNum] + "]:checked");
 
                     if (checkedPlayersSelector.val()) {
                         var playerId = secondTeamPlayersId[secondTeamPlayerNum];
@@ -452,6 +453,7 @@
                         var player = {"playerId": playerId, "playerCoefficient": playerCoefficient};
                         Game.betPlayer.push(player);
                     }
+                    secondTeamPlayerNum++;
                 });
             }
             requestObject.push(Game);//Adding new game object to array
