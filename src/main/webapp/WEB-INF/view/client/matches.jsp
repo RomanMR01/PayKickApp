@@ -318,17 +318,17 @@
 
         var betsCount = new Number($('#bets-count').text());
         if(betsCount<=0){
-            alert("Select some bet first!");
+            Materialize.toast("Select some bet first!",5000);
             return;
         }else if(betsCount>10){
-            alert("Too much!");
+            Materialize.toast("Too much!",5000);
             return;
         }
         var amount = new Number($('#amount').val());
         var award = new Number($('#award').text());
 
         if(amount<=0){
-            alert("Put some money first!");
+            Materialize.toast("Put some money first!",5000);
             return;
         }
 
@@ -362,7 +362,7 @@
                     Game.betResult = {"betResultType": betResultType, "coefficient": coefficient};
                 }
                 else {
-                    alert("select value first");
+                    Materialize.toast("select value first",5000);
                     return;
                 }
             }
@@ -375,11 +375,11 @@
                 var secondTeamCoefSelector = $("#game_" + gameId + "_second-team-coef");
                 var startCoefSelector = $("#game_" + gameId + "_start-coef");
                 if (firsTeamScoreSelector.val() == "" || secondTeamScoreSelector.val() == "") {
-                    alert("Can't be empty score!");
+                    Materialize.toast("Can't be empty score!",5000);
                     return;
                 }
                 if (firsTeamScoreSelector.val() < 0 || firsTeamScoreSelector.val() > 100 || secondTeamScoreSelector.val() < 0 || secondTeamScoreSelector.val() > 100) {
-                    alert("Incorrect values!");
+                    Materialize.toast("Incorrect values!",5000);
                     return;
                 }
 
@@ -399,11 +399,11 @@
                 var totalGoalsSelector = $("#game_" + gameId + "_total-bet-value");
                 var totalGoalsCoefSelector = $("#game_" + gameId + "_goal-coef");
                 if (totalGoalsSelector.val() == "") {
-                    alert("Can't be empty goals!");
+                    Materialize.toast("Can't be empty goals!",5000);
                     return;
                 }
                 if (totalGoalsSelector.val() < 0 || totalGoalsSelector.val() > 100) {
-                    alert("Incorrect values!");
+                    Materialize.toast("Incorrect values!",5000);
                     return;
                 }
 
@@ -457,7 +457,6 @@
         }
 
         var outputArray = JSON.parse(JSON.stringify(requestObject))
-        alert("Full object:" + JSON.stringify(outputArray));
 
         $.ajax({
             type: "POST",
@@ -476,7 +475,7 @@
                 if (status == 'OK') {
                    window.location = 'matches';
                 } else {
-                    alert(message);
+                    Materialize.toast(message,5000);
                 }
             }
         });
