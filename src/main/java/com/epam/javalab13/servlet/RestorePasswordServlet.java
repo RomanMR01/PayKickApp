@@ -67,7 +67,7 @@ public class RestorePasswordServlet extends HttpServlet{
                                  "http://localhost:8080/PayKick/newPassword?uid=" + uid + "</a></p>" +
                                 "\t<p>If you don't use this link within 24 hours, it will expire.</p>";
                         logger.info("Restore password mail are sent to user " + user.getId());
-                        sender.sendEmail("Restoring password.", restorePasswordMessage, user.getEmail());
+                        sender.sendEmail("[PayKick] Please reset your password!", restorePasswordMessage, user.getEmail());
                     }
                 }).start();
 

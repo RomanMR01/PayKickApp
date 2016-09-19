@@ -58,9 +58,8 @@ public class MailSender {
 
             message.setSubject(subject);
             message.setContent(
-                    "<h3>"+ text + "</h3></br> <a href=\"http://localhost:8080/PayKick\">PayKick</a>",
+                    text + "</br><p><a href=\"http://localhost:8080/PayKick\">PayKick</a></p>",
                     "text/html;charset=utf-8");
-
 
             Transport.send(message);
             logger.info("Emails sent successfully!");
@@ -92,9 +91,8 @@ public class MailSender {
 
             message.setSubject(subject);
             message.setContent(
-                    text + "</br><p>Thanks, Your friends at </p><a href=\"http://localhost:8080/PayKick\">PayKick</a>",
+                    text + "<p><a href=\"http://localhost:8080/PayKick\">PayKick</a></p>",
                     "text/html;charset=utf-8");
-
 
             Transport.send(message);
             logger.info("Emails sent successfully!");

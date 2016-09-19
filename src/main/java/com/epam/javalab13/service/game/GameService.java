@@ -27,9 +27,9 @@ import java.text.SimpleDateFormat;
  */
 public class GameService {
 
-    //TODO ADD PROPERTIES FOR EMAIL
+    private static ResourceBundle bundle = ResourceBundle.getBundle("security/config");//Here stored data for mail sending
     private static Logger logger = Logger.getLogger(GameService.class);
-    private MailSender sender = new MailSender("paykick.team@gmail.com", "paykickteam01");
+    MailSender sender = new MailSender(bundle.getString("mail.email"), bundle.getString("mail.password"));
     private GameDAO gameDAO = new GameDAO();
 
     /**
@@ -168,10 +168,12 @@ public class GameService {
                 @Override
                 public void run() {
                     if (usersEN.size() > 0) {
-                        sender.sendEmailsBatch("Game canceled", "game canceled", usersEN);
+                        sender.sendEmailsBatch("Game canceled!", "<p>Unfortunately game <b>" + game.getTitle() + "</b> canceled!</p>" +
+                                "<p>For more details login into your account!</p>", usersUA);
                     }
                     if (usersUA.size() > 0) {
-                        sender.sendEmailsBatch("Гру відмінено", "Відмінено", usersUA);
+                        sender.sendEmailsBatch("Гру відмінено!", "<p>Нажаль гру <b>" + game.getTitle() + "</b> відмінено!</p>" +
+                                "<p>Для детальніщої інформації перейдіть у свій обліковий запис.</p>", usersUA);
                     }
                 }
             }).start();
@@ -553,16 +555,16 @@ public class GameService {
             @Override
             public void run() {
                 if (lostUsersEN.size() > 0) {
-                    sender.sendEmailsBatch("You lost", "Some money", lostUsersEN);
+                    sender.sendEmailsBatch("Unfortunately, you lost!", "<p>Unfortunately your bet is lost in game <b>" + game.getTitle() +  "</b>!</p>", lostUsersEN);
                 }
                 if (lostUsersUA.size() > 0) {
-                    sender.sendEmailsBatch("Ви програли гроші", "Програли", lostUsersUA);
+                    sender.sendEmailsBatch("Нажаль, ви програли!", "<p>Нажаль ваша ставка програна у грі <b>" + game.getTitle() +  "</b>!</p>", lostUsersUA);
                 }
                 if (wonUsersEN.size() > 0) {
-                    sender.sendEmailsBatch("You won", "Won", wonUsersEN);
+                    sender.sendEmailsBatch("Congratulations, you won!","<p>You won a bet in game <b>" + game.getTitle() +  "</b>!</p>", wonUsersEN);
                 }
                 if (wonUsersUA.size() > 0) {
-                    sender.sendEmailsBatch("Ви виграли", "Виграли", wonUsersUA);
+                    sender.sendEmailsBatch("Вітаємо, ви виграли!", "<p>Ви виграли ставку у грі <b>" + game.getTitle() +  "</b>!</p>", wonUsersUA);
                 }
             }
         }).start();
