@@ -262,27 +262,42 @@ public class ClientBetsService {
 
     public String getAllGamesIDs(){
         List<Game> activeGames = getActiveGames();
+        if(0==activeGames.size()){
+            return "[]";
+        }
         return getIDsForAllGames(activeGames);
     }
 
     public String getFirstTeamsIDs(){
         List<Game> activeGames = getActiveGames();
+        if(0==activeGames.size()){
+            return "[]";
+        }
         return getIDsForTeams(activeGames,TeamNumber.FIRST);
     }
 
     public String getSecondTeamsIDs(){
         List<Game> activeGames = getActiveGames();
+        if(0==activeGames.size()){
+            return "[]";
+        }
         return getIDsForTeams(activeGames,TeamNumber.SECOND);
     }
 
 
     public String getFirstTeamsPlayersIDs(){
         List<Game> activeGames = getActiveGames();
+        if(0==activeGames.size()){
+            return "[]";
+        }
         return getIDsForPlayers(activeGames,TeamNumber.FIRST);
     }
 
     public String getSecondTeamsPlayersIDs(){
         List<Game> activeGames = getActiveGames();
+        if(0==activeGames.size()){
+            return "[]";
+        }
         return getIDsForPlayers(activeGames,TeamNumber.SECOND);
     }
 
