@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
                     return;
                 }
 
+                session.setAttribute("language",service.getUserLanguage(login));
                 session.setAttribute("login", login);
                 session.setAttribute("fullName", user.getFullName());
                 session.setAttribute("role", user.getRole().toString().toLowerCase());
