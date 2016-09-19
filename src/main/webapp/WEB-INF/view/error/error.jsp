@@ -79,6 +79,10 @@
                             <div class="row">
                                 <h3 class="center text-black"><fmt:message key="common.error" /></h3></div>
                             <div class="row">
+                                <div class="row"><c:forEach var="trace"
+                                                            items="${pageContext.exception.stackTrace}">
+                                    <p>${trace}</p>
+                                </c:forEach></div>
                                 <h3 class="center text-black"><a href="${pageContext.request.contextPath}/home" class="black-text"><fmt:message key="error.return" /> <span class="orange-text"><fmt:message key="common.homepage" /></span>, <fmt:message key="common.please" />!</a></h3></div>
                             <div class="grey lighten-3">
                             </div>

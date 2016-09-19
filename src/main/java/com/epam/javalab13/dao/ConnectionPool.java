@@ -6,12 +6,14 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 /**
  * Class for getting connection to database
  */
 public class ConnectionPool {
 
+    private static ResourceBundle bundle = ResourceBundle.getBundle("security/config");//Here stored confidential data
     private static Logger logger = Logger.getLogger(ConnectionPool.class);
     private static DataSource dataSource;
 
@@ -21,12 +23,12 @@ public class ConnectionPool {
         Database properties
          */
         PoolProperties p = new PoolProperties();
-        p.setUrl("jdbc:mysql://localhost:3306/totalizator");//DataBase URL
+        p.setUrl(bundle.getString("jdbc.url"));//DataBase URL
         p.setDriverClassName("com.mysql.jdbc.Driver");//Class for JDBC
-        p.setUsername("root");//Connection username
-        p.setPassword("root");//Connection password
+        p.setUsername(bundle.getString("jdbc.username"));//Connection username
+        p.setPassword(bundle.getString("jdbc.password"));//Connection password
         p.setValidationQuery("SELECT 1");//For some ? validation
-        p.setMaxActive(100);//Maximum number of active connections
+        p.setMaxActive(Integer.parseInt(bundle.getString("jdbc.maxActive")));//Maximum number of active connections
         p.setInitialSize(5);//Number of created connections on pool start
 
 
