@@ -89,10 +89,10 @@
                             <table class="centered responsive-table col s6 offset-s3">
                                 <thead>
                                 <tr>
-                                    <th>Location<fmt:message key="caption.location" /></th>
-                                    <th>Date<fmt:message key="caption.date" /></th>
-                                    <th>Bookmaker<fmt:message key="common.bookmaker" /></th>
-                                    <th>Profit<fmt:message key="caption.profit" /></th>
+                                    <th><fmt:message key="caption.location" /></th>
+                                    <th><fmt:message key="caption.date" /></th>
+                                    <th><fmt:message key="common.bookmaker" /></th>
+                                    <th><fmt:message key="caption.profit" /></th>
                                 </tr>
                                 </thead>
                                 <tbody>
