@@ -27,7 +27,6 @@ public class DateConverter {
         try {
             date = dateFormat.parse(dateValue);
         } catch (Exception e) {
-        	System.out.println("can parse date");
             logger.error("Cant parse date" + dateValue  + ":",e);
         }
 
@@ -35,7 +34,6 @@ public class DateConverter {
         try {
             time = timeFormat.parse(timeValue);
         } catch (Exception e) {
-        	System.out.println("cant parse time");
             logger.error("Cant parse time" + timeValue  + ":",e);
         }
 

@@ -87,7 +87,6 @@ public class ChartServlet extends HttpServlet {
                         resultPlayer=playerDAO.getPlayer(player, "id");
                         goalCount=goalDAO.countAllGoals(player);
                     } catch (SQLException e) {
-                        System.out.println("player_goals1234");
                         e.printStackTrace();
                     }
                     Player fakePlayer=new Player();

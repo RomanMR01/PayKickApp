@@ -595,7 +595,6 @@ public class GameService {
             logger.error("failed to instantiate team by name from database " + team, e);
         }
 
-//        System.out.println("sd" + stringDate);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = null;
         try {
@@ -607,8 +606,6 @@ public class GameService {
         if (date != null) {
             Date current = new Date();
 
-//            System.out.println(current);
-//            System.out.println(date);
             long added = date.getTime();
             long curr = current.getTime();
 

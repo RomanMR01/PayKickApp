@@ -42,7 +42,7 @@ public class ConnectionPool {
         dataSource = new DataSource();
         dataSource.setPoolProperties(p);
 
-        logger.info("Pull object created!");
+        logger.info("Application started!");
     }
 
 

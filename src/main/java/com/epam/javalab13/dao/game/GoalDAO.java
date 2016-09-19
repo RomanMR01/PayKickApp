@@ -85,14 +85,12 @@ public class GoalDAO {
                 Player player=new Player();
                 Team team=new Team();
                 Game game=new Game();
-                //todo add queries for inner objects
 
                 player.setId(rs.getInt("player_id"));
                 team.setId(rs.getInt("team_id"));
                 game.setId(rs.getInt("game_id"));
 
                 Goal goal = new Goal(rs.getInt("id"),player,team,game,rs.getInt("minute"));
-                System.out.println(goal);
                 goalList.add(goal);
             }
 
