@@ -374,6 +374,24 @@
         <servlet-name>ClientStatistics</servlet-name>
         <url-pattern>/client/statistics</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreditMoney</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.client.CreditMoneyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreditMoney</servlet-name>
+        <url-pattern>/client/credit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>WithdrawMoney</servlet-name>
+        <servlet-class>com.epam.javalab13.servlet.client.WithdrawMoneyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WithdrawMoney</servlet-name>
+        <url-pattern>/client/withdraw</url-pattern>
+    </servlet-mapping>
     <!-- END CLIENT-->
 
     <!-- ERROR PAGES -->
