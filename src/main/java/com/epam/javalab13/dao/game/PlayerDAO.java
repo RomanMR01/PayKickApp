@@ -186,7 +186,7 @@ public class PlayerDAO {
     }
 
     public List<Player> getAllPlayers() throws SQLException {
-        final String SQL = "SELECT * FROM player";
+        final String SQL = "SELECT * FROM player ORDER BY full_name";
 
         List<Player> players = null;
         PlayerTransformer playerTransformer = new PlayerTransformer();
