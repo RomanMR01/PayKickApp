@@ -56,7 +56,11 @@ public class ChartServlet extends HttpServlet {
                     try {
                         User user=new User();
                         if (req.getParameter("id")!=null){
-                            user.setId(Integer.valueOf(req.getParameter("id")));
+                            try {
+                            	user.setId(Integer.valueOf(req.getParameter("id")));
+							} catch (NumberFormatException e) {
+								logger.error("id of player is empty");
+							}
                         }
 
                         allBets = totalBetDAO.getTotalBetsForUser(TotalBetDAO.GetTotalBetsType.ALL, user);
